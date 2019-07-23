@@ -1425,6 +1425,9 @@
     <Content Include="Content\app-assets\images\logo\logo-light-lg.png" />
     <Content Include="Content\app-assets\images\logo\logo-light.png" />
     <Content Include="Content\app-assets\images\logo\logo.png" />
+    <Content Include="Content\app-assets\images\logo\swchs-80.png" />
+    <Content Include="Content\app-assets\images\logo\swchs.png" />
+    <Content Include="Content\app-assets\images\logo\swchsLogo.png" />
     <Content Include="Content\app-assets\images\pages\fitness-profile.jpg" />
     <Content Include="Content\app-assets\images\pages\fitness-shoes.jpg" />
     <Content Include="Content\app-assets\images\pages\fitness-slide-1.jpg" />
@@ -5809,6 +5812,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\Shared\_MasterPage.cshtml" />
+    <Content Include="Views\Shared\_HeaderNavBar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

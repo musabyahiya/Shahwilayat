@@ -42,7 +42,7 @@ html {
       background: url(../../app-assets/images/backgrounds/bg-2.jpg) no-repeat center center fixed;
       background-size: cover; }
     html body .pace .pace-progress {
-      background: #FF4961; }
+      background: #908e8f; }
 
 /*
 * Blank page
@@ -215,7 +215,7 @@ footer.footer-dark {
         .main-menu.menu-light .navigation > li.open > a {
           color: #545766;
           background: whitesmoke;
-          border-right: 4px solid #1E9FF2; }
+          border-right: 4px solid #028130; }
         .main-menu.menu-light .navigation > li.open .hover > a {
           transform: translateX(-4px); }
         .main-menu.menu-light .navigation > li:not(.open) > ul {
