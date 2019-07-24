@@ -71,7 +71,7 @@
             width: 40px;
             height: 40px;
             border-style: solid;
-            border-color: black;
+            border-color: #1565c0;
             border-top-color: transparent;
             border-width: 4px;
             border-radius: 50%;
@@ -90,62 +90,34 @@
 
 
 
+
+
     <div class="app-content content">
         <div class="content-wrapper">
-            <div class="content-header row">
-                <div class="content-header-left col-md-6 col-12 mb-2">
-                    <h3 class="content-header-title">Basic Tables</h3>
-                    <div class="row breadcrumbs-top">
-                        <div class="breadcrumb-wrapper col-12">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item">
-                                    <a href="index.html">Home</a>
-                                </li>
-                                <li class="breadcrumb-item">
-                                    <a href="#">Tables</a>
-                                </li>
-                                <li class="breadcrumb-item active">
-                                    Basic Tables
-                                </li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-                <div class="content-header-right col-md-6 col-12">
-                    <div class="btn-group float-md-right" role="group" aria-label="Button group with nested dropdown">
-                        <button class="btn btn-info round dropdown-toggle dropdown-menu-right box-shadow-2 px-2"
-                                id="btnGroupDrop1" type="button" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
-                            <i class="ft-settings icon-left"></i> Settings
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                            <a class="dropdown-item" href="card-bootstrap.html">Cards</a><a class="dropdown-item"
-                                                                                            href="component-buttons-extended.html">Buttons</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
             <div class="content-body">
                 @RenderBody()
             </div>
+
         </div>
+
     </div>
-
-
     <footer class="footer footer-static footer-light navbar-border navbar-shadow">
         <p class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2">
             <span class="float-md-left d-block d-md-inline-block">
-                Copyright &copy; 2018 <a class="text-bold-800 grey darken-2" href="https://themeforest.net/user/pixinvent/portfolio?ref=pixinvent"
-                                         target="_blank">PIXINVENT</a>, All rights reserved.
+                Copyright &copy; 2006-2019 <a class="text-bold-800 grey darken-2" href="http://shahwilayatcooperative.com"
+                                              target="_blank">Shah Wilayat Cooperative Housing Society</a>, All rights reserved.
             </span>
-            <span class="float-md-right d-block d-md-inline-blockd-none d-lg-block">Hand-crafted & Made with <i class="ft-heart pink"></i></span>
+            <span class="float-md-right d-block d-md-inline-blockd-none d-lg-block">
+                Designed & developed by
+                <a class="text-bold-800 grey darken-2" href="http://femtogen.com"
+                   target="_blank">Femtogen Technologies</a>
+            </span>
         </p>
     </footer>
     <div id="cover-spin"></div>
 
-
     @Scripts.Render("~/bundles/MainlyScripts")
-
 
     @Scripts.Render("~/bundles/SweetAlert")
 
@@ -155,6 +127,18 @@
     @Scripts.Render("~/bundles/Select2")
 
     @Scripts.Render("~/bundles/FileUpload")
+
+    <script src="~/Scripts/assets/js/PagesJS/Constant.js"></script>
+    <script src="~/Scripts/assets/js/PagesJS/Nav.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".mySelect").select2();
+        });
+    </script>
+
+
+
+    @RenderSection("scripts", required: false)
 
 </body>
 </html>

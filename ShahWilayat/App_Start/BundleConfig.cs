@@ -28,9 +28,7 @@ namespace ShahWilayat
                      "~/Scripts/app-assets/js/core/app-menu.js",
                      "~/Scripts/app-assets/js/core/app.js",
                      "~/Scripts/app-assets/js/scripts/customizer.js",
-                     "~/Scripts/assets/js/jquery.tmpl.min.js",
-                     "~/Scripts/assets/js/PagesJS/Constant.js",
-                     "~/Scripts/assets/js/PagesJS/Nav.js"
+                     "~/Scripts/assets/js/jquery.tmpl.min.js"
                      ));
 
             bundles.Add(new ScriptBundle("~/bundles/SweetAlert").Include(

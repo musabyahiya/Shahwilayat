@@ -1,4 +1,4 @@
-
+PickADatePicker();
 
 ProgressBarHide();
 //DatePicker();
@@ -218,14 +218,12 @@ function FillDropDownByReferenceSearch(DropDownReference, res) {
     });
 }
 function ProgressBarShow() {
-    $('#waitProgressBar').show();
-    $('.loader').show();
+    $('#cover-spin').show(0)
 }
 
 
 function ProgressBarHide() {
-    $('#waitProgressBar').hide();
-    $('.loader').hide();
+    $('#cover-spin').hide(0)
 }
 
 function cloneDiv(divToClone, divToAppend) {
@@ -762,4 +760,14 @@ function GetAge(dateString) {
         age--;
     }
     return age;
+}
+
+function PickADatePicker() {
+    $('.DatePicker').pickadate({
+        format: 'yyyy-mm-dd',
+        formatSubmit: 'yyyy-mm-dd',
+        selectYears: true,
+        selectMonths: true
+    });
+
 }

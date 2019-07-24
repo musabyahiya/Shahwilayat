@@ -9,6 +9,7 @@ namespace ShahWilayat.Controllers
     public class DashboardController : Controller
     {
         // GET: Dashboard
+        [SessionCheck]
         public ActionResult Index()
         {
             return View();

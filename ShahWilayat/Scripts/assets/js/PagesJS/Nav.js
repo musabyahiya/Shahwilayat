@@ -1,4 +1,4 @@
-//GetAllMenus();
+GetAllMenus()
 
 function GetUserInfo() {
 
@@ -31,15 +31,15 @@ function onGetUserInfo(data) {
 
 }
 function GetAllMenus() {
- 
+
     var request = $.ajax({
         method: "POST",
         url: "/Menus/GetAllMenus",
-        data: {},
+        data: {}
     });
     request.done(function (data) {
-
-        onGetAllMenus(data);
+        var res = data;
+        onGetAllMenus(res);
 
     });
     request.fail(function (jqXHR, textStatus) {
@@ -50,8 +50,6 @@ function GetAllMenus() {
 
 function onGetAllMenus(data) {
     try {
-
-        /* var res = JSON.parse(data);*/
         var res = data;
         if (res.length == 0) {
             //window.location.href = "../Login.php";
@@ -61,42 +59,32 @@ function onGetAllMenus(data) {
         $.each(res, function (key, value) {
 
             if (value.IsParent == 1) {
-                html += "<li>";
-                html += "<a href='#'>";
-                html += "<i class='" + value.Icon + "'></i>";
-                html += "<span class='nav-label'>" + value.MenuItemName + "</span>";
-                html += "<span class='fa arrow'></span>";
-                html += "</a>";
+                html += '<li class="nav-item has-sub">';
+                html += '<a href="#">';
+                html += '<i class="' + value.Icon + '"></i>';
+                html += '<span class="menu-title">' + value.MenuItemName + '</span>';
+                html += '</a>';
 
                 var childMenus = res.filter(x=> x.ParentId == value.MenuItemId);
-                html += "<ul class='nav nav-second-level collapse'>";
+                html += '<ul class="menu-content">';
                 /*Binding Child Menus*/
                 $.each(childMenus, function (key2, value2) {
-                    html += "<li>";
-                    html += "<a href='/" + value2.MenuItemURL + "'><i class='fa fa-align-justify'></i> " + value2.MenuItemName + "</a>";
-                    html += "</li>";
+                    html += '<li>';
+                    html += '<a href="' + value2.MenuItemURL + '" class="menu-item">' + value2.MenuItemName + '</a>';
+                    html += '</li>';
                 })
                 /*Binding Child Menus*/
-                html += "</ul>";
-                html += "</li>";
+                html += '</ul>';
+                html += '</li>';
             }
-
         });
-        $(html).insertAfter($(".AppendAfterMenu"));
-        $(window).on("load", function () {
-            setTimeout(function () {
-                $('#side-menu').metisMenu();
-              //  ProgressBarHide();
-            }, 3000);
-
-        });
-
-        
-
+      
+        $(".AppendInside").append(html);
     }
     catch (Err) {
         console.log(Err);
     }
 
 }
+
 

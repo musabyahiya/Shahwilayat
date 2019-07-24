@@ -3369,7 +3369,7 @@ input[type="month"].form-control {
 
 .select2-container--classic .select2-results__options .select2-results__option[aria-selected=true],
 .select2-container--default .select2-results__options .select2-results__option[aria-selected=true] {
-  background-color: #666EE8 !important;
+  background-color: #005aa1 !important;
   color: #FFFFFF !important; }
 
 .select2-container--classic .select2-results__option--highlighted[aria-selected],
