@@ -13,6 +13,11 @@ var ProvonceList;
 var CityList;
 var MemberList;
 var AllotteeList;
+
+var CnicFrontFile;
+var CnicFrontBack;
+var ProfileFile;
+
 var objEditRow;
 var Members =
 [{
@@ -53,7 +58,7 @@ var Members =
 function AllClickFunction() {
     $('.btnSaveChanges').click(function () {
         var duplicationMember = false;
-        if (!validateForm(".frmMembers")) return;
+        if (!validateForm(".frmMember")) return;
         if (!isValidEmailAddress($('.txtEmail').val())) return;
 
         Members[0].TitleId = $('.ddlTitle').val();
@@ -89,14 +94,11 @@ function AllClickFunction() {
 
 
         if (Members[0].CnicFrontFile == "" || Members[0].CnicBackFile == "" || Members[0].ProfileFile == "") {
+            showError('Please attach all the attachments');
             return;
         }
-        $('.trMembers').each(function () {
-            if ($(this).children('.tdMembershipNo').text() == Members[0].MembershipNo ||
-                $(this).children('.tdCnic').text() == Members[0].Cnic) {
-                duplicationMember = true;
-            }
-        });
+        duplicationMember = CheckDuplicateMembershipNo(Members[0].MembershipNo);
+
         if (duplicationMember) {
             showError("Membership No or CNIC has already exist.");
             return;
@@ -107,7 +109,7 @@ function AllClickFunction() {
 
     $('.btnUpdateChanges').click(function () {
         var duplicationMember = false;
-        if (!validateForm(".frmMembers_upd")) return;
+        if (!validateForm(".frmMember_upd")) return;
 
         Members[0].TitleId = $('.ddlTitle_upd').val();
         Members[0].MemberRelationId = $('.ddlMemberRelation_upd').val();
@@ -135,9 +137,7 @@ function AllClickFunction() {
         Members[0].ReferenceNo = $('.txtReferenceNo_upd').val();
         Members[0].FolioNo = $('.txtFolioNo_upd').val();
         Members[0].CnicExpiryDate = $('.txtCnicExpiryDate_upd').val()
-        Members[0].CnicFrontFile = FileUpload('.txtCnicFrontFile_upd');
-        Members[0].CnicBackFile = FileUpload('.txtCnicBackFile_upd');
-        Members[0].ProfileFile = FileUpload('.txtProfileFile_upd');
+
 
 
         $('.trMembers').each(function () {
@@ -156,12 +156,10 @@ function AllClickFunction() {
     $('.btnUpdateChangesAttachments').click(function () {
 
         if (!validateForm(".frmMembersAttachments_upd")) return;
-        Members[0].CnicFrontFile = FileUpload('.txtCnicFrontFile_upd');
-        Members[0].CnicBackFile = FileUpload('.txtCnicBackFile_upd');
-        Members[0].ProfileFile = FileUpload('.txtProfileFile_upd');
-        if (Members[0].CnicFrontFile == "" || Members[0].CnicBackFile == "" || Members[0].ProfileFile == "") {
-            return;
-        }
+        Members[0].CnicFrontFile = FileUpload('.txtCnicFrontFile_upd') == '' ? CnicFrontFile : FileUpload('.txtCnicFrontFile_upd');
+        Members[0].CnicBackFile = FileUpload('.txtCnicBackFile_upd') == '' ? CnicBackFile : FileUpload('.txtCnicBackFile_upd');
+        Members[0].ProfileFile = FileUpload('.txtProfileFile_upd') == '' ? ProfileFile : FileUpload('.txtProfileFile_upd');
+
         UpdateAttachment();
     });
 
@@ -584,7 +582,7 @@ function onGetAllMembers(data) {
     try {
 
         var res = data;
-        
+
         var divTbodyGoalFund = $(".MemberListing").html("");
         $("#MemberListing").tmpl(res).appendTo(divTbodyGoalFund);
 
@@ -628,15 +626,15 @@ function SearchTable() {
     });
 }
 
-function CheckDuplicateUserEmail(Email) {
-    var obj = MemberList.filter(x=> x.Email == Email);
+function CheckDuplicateMembershipNo(MembershipNo) {
+    var obj = MemberList.filter(x=> x.MembershipNo == MembershipNo);
     return obj.length > 0 ? true : false;
 }
 function EditMember(selector) {
     objEditRow = $(selector).closest('tr');
     Members[0].MemberId = objEditRow.find('.hdnMemberId').val();
-    $('.ddlTitle_upd').val(objEditRow.find('.hdnTitle').val());
-    $('.ddlMemberRelation_upd').val(objEditRow.find('.hdnMemberRelation').val());
+    $('.ddlTitle_upd').val(objEditRow.find('.hdnTitleId').val());
+    $('.ddlMemberRelation_upd').val(objEditRow.find('.hdnMemberRelationId').val());
     $('.ddlGender_upd').val(objEditRow.find('.hdnGenderId').val());
     $('.ddlCountry_upd').val(objEditRow.find('.hdnCountryId').val()).change();
     $('.ddlProvince_upd').val(objEditRow.find('.hdnProvinceId').val()).change();
@@ -649,23 +647,24 @@ function EditMember(selector) {
     $('.txtWhatsApp_upd').val(objEditRow.find('.hdnWhatsApp').val());
     $('.txtOfficePhone_upd').val(objEditRow.find('.hdnOfficePhone').val());
     $('.txtEmail_upd').val(objEditRow.find('.hdnEmail').val());
-    $('.txhdnob_upd').val(objEditRow.find('.hdnDob').val());
+    $('.txtDob_upd').val(objEditRow.find('.hdnDob').val());
+    $('.txtBirthPlace_upd').val(objEditRow.find('.hdnBirthPlace').val());
     $('.txtCNIC_upd').val(objEditRow.find('.hdnCNIC').val());
-    $('.txtCnicIssuanceDate_upd').val(objEditRow.find('.hdnCnicIssuanceDate').val());
     $('.txtCnicExpiryDate_upd').val(objEditRow.find('.hdnCnicExpiryDate').val());
-    $('.txtCnicIssuancePlace_upd').val(objEditRow.find('.hdnCnicIssuancePlace').val());
-    
     $('.txtPostalCode_upd').val(objEditRow.find('.hdnPostalCode').val());
-    $('.txtPresentAddress_upd').val(objEditRow.find('.hdnPresentAddress').val());
+    $('.txtBloodGroup_upd').val(objEditRow.find('.hdnBloodGroup').val());
+    $('.txtOccupation_upd').val(objEditRow.find('.hdnOccupation').val());
     $('.txtPermanentAddress_upd').val(objEditRow.find('.hdnPermanentAddress').val());
     $('.txtMembershipNo_upd').val(objEditRow.find('.hdnMembershipNo').val());
-    $('.ddlMembershipFee_upd').val(objEditRow.find('.hdnMembershipFeeId').val());
-    $('.txtMembershipFeeDate_upd').val(objEditRow.find('.hdnMembershipFeeDate').val());
-    $('.txtMembershipFeeReceptNo_upd').val(objEditRow.find('.hdnMembershipFeeReceptNo').val());
-    $('.txtMembershipBookNo_upd').val(objEditRow.find('.hdnMembershipBookNo').val());
-    $('.ddlReligion_upd').val(objEditRow.find('.hdnReligionId').val());
-    $('.txtMembershipRegNo_upd').val(objEditRow.find('.hdnMembershipRegNo').val());
+    $('.txtMembershipDate_upd').val(objEditRow.find('.hdnMembershipDate').val());
+    $('.txtReferenceNo_upd').val(objEditRow.find('.hdnReferenceNo').val());
+    $('.txtFolioNo_upd').val(objEditRow.find('.hdnFolioNo').val());
 
+    // for attachments
+
+    CnicFrontFile = objEditRow.find('.hdnCnicFrontFile').val();
+    CnicBackFile = objEditRow.find('.hdnCnicBackFile').val();
+    ProfileFile = objEditRow.find('.hdnProfileFile').val();
 
 }
 

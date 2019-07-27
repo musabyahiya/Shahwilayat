@@ -82,6 +82,7 @@ namespace ShahWilayat.Controllers
                 obj.CNIC = member.CNIC;
                 obj.CnicExpiryDate = member.CnicExpiryDate;
                 obj.PostalCode = member.PostalCode;
+                obj.Occupation = member.Occupation;
                 obj.PermanentAddress = member.PermanentAddress;
                 obj.MembershipNo = member.MembershipNo;
                 obj.MembershipDate = member.MembershipDate;
