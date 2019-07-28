@@ -7,6 +7,7 @@ GetAllTitle();
 GetAllCity();
 GetAllProvince();
 SearchTable();
+GetAllCurrentAllottee();
 AllChangeFunction();
 
 var ProvonceList;
@@ -57,6 +58,7 @@ var Members =
 
 function AllClickFunction() {
     $('.btnSaveChanges').click(function () {
+        ProgressBarShow();
         var duplicationMember = false;
         if (!validateForm(".frmMember")) return;
         if (!isValidEmailAddress($('.txtEmail').val())) return;
@@ -104,10 +106,12 @@ function AllClickFunction() {
             return;
         }
 
-        //CreateNewMember()
+        CreateNewMember()
+        ProgressBarHide();
     });
 
     $('.btnUpdateChanges').click(function () {
+        ProgressBarShow();
         var duplicationMember = false;
         if (!validateForm(".frmMember_upd")) return;
 
@@ -151,11 +155,12 @@ function AllClickFunction() {
             return;
         }
         UpdateMember();
+        ProgressBarHide();
     });
 
-    $('.btnUpdateChangesAttachments').click(function () {
+    $('.btnUpdateAttachment').click(function () {
 
-        if (!validateForm(".frmMembersAttachments_upd")) return;
+        if (!validateForm(".frmAttachment")) return;
         Members[0].CnicFrontFile = FileUpload('.txtCnicFrontFile_upd') == '' ? CnicFrontFile : FileUpload('.txtCnicFrontFile_upd');
         Members[0].CnicBackFile = FileUpload('.txtCnicBackFile_upd') == '' ? CnicBackFile : FileUpload('.txtCnicBackFile_upd');
         Members[0].ProfileFile = FileUpload('.txtProfileFile_upd') == '' ? ProfileFile : FileUpload('.txtProfileFile_upd');
@@ -184,7 +189,7 @@ function AllClickFunction() {
         frameDoc.document.write('<html><head><title>Member Individual Sheet</title>');
         frameDoc.document.write('</head><body>');
         //Append the external CSS file.
-        frameDoc.document.write('<link href="/Content/css/PrintMaterial/IndividualSheet.css" rel="stylesheet" type="text/css" />');
+        frameDoc.document.write('<link href="/Content/assets/css/PrintMaterial/MemberProfile.css" rel="stylesheet" type="text/css" />');
         //Append the DIV contents.
         frameDoc.document.write(contents);
         frameDoc.document.write('</body></html>');
@@ -671,31 +676,31 @@ function EditMember(selector) {
 function PrintIndividualMember(selector) {
     objEditRow = $(selector).closest('tr');
     Members[0].MemberId = objEditRow.find('.hdnMemberId').val();
-    $('.printFullName').html(objEditRow.find('.tdFirstName').text() + ' ' + objEditRow.find('.tdLastName').text());
-    $('.printFatherName').html(objEditRow.find('.tdFatherName').text());
-    $('.printCellNo').html(objEditRow.find('.tdCellNo').text());
-    $('.printLandline').html(objEditRow.find('.tdLandline').text() == null ? 'N/A' : objEditRow.find('.tdLandline').text());
-    $('.printWhatsApp').html(objEditRow.find('.tdWhatsApp').text());
-    $('.printEmail').html(objEditRow.find('.tdEmail').text());
-    $('.printDob').html(objEditRow.find('.tdDob').text());
-    $('.printCnic').html(objEditRow.find('.tdCnic').text());
-    $('.printCnicIssuanceDate').html(objEditRow.find('.tdCnicIssuanceDate').text());
-    $('.printCnicExpiryDate').html(objEditRow.find('.tdCnicExpiryDate').text());
-    $('.printCnicIssuancePlace').html(objEditRow.find('.tdCnicIssuancePlace').text());
-    $('.printGender').html(objEditRow.find('.tdGender').text());
-    $('.printCountry').html(objEditRow.find('.tdCountry').text());
-    $('.printProvince').html(objEditRow.find('.tdProvince').text());
-    $('.printCity').html(objEditRow.find('.tdCity').text());
-    $('.printPostalCode').html(objEditRow.find('.tdPostalCode').text());
-    $('.printPresentAddress').html(objEditRow.find('.tdPresentAddress').text());
-    $('.printPermanentAddress').html(objEditRow.find('.tdPermanentAddress').text());
-    $('.printMembershipNo').html(objEditRow.find('.tdMembershipNo').text());
-    $('.printMembershipFee').html('Rs: ' + moneyFormat(objEditRow.find('.tdMembershipFee').text()));
-    $('.printMembershipFeeDate').html(objEditRow.find('.tdMembershipFeeDate').text());
-    $('.printMembershipFeeReceptNo').html(objEditRow.find('.tdMembershipFeeReceptNo').text());
-    $('.printMembershipBookNo').html(objEditRow.find('.tdMembershipBookNo').text());
-    $('.printMembershipRegNo').html(objEditRow.find('.tdMembershipRegNo').text());
-    $('.printReligion').html(objEditRow.find('.tdReligion').text());
+    $('.printFullName').html(objEditRow.find('.hdnFirstName').val() + ' ' + objEditRow.find('.hdnLastName').val());
+    $('.printMemberRelation').html(objEditRow.find('.hdnMemberRelation').val());
+    $('.printFatherName').html(objEditRow.find('.hdnFatherName').val());
+    $('.printCellNo').html(objEditRow.find('.hdnCellNo').val());
+    $('.printLandline').html(objEditRow.find('.hdnLandline').val() == null ? 'N/A' : objEditRow.find('.hdnLandline').val());
+    $('.printWhatsApp').html(objEditRow.find('.hdnWhatsApp').val() == null ? 'N/A' : objEditRow.find('.hdnWhatsApp').val());
+    $('.printOfficePhone').html(objEditRow.find('.hdnOfficePhone').val() == null ? 'N/A' : objEditRow.find('.hdnOfficePhone').val());
+    $('.printEmail').html(objEditRow.find('.hdnEmail').val() == null ? 'N/A' : objEditRow.find('.hdnWhatsApp').val());
+    $('.printDob').html(objEditRow.find('.hdnDob').val());
+    $('.printBirthPlace').html(objEditRow.find('.hdnBirthPlace').val());
+    $('.printCNIC').html(objEditRow.find('.hdnCNIC').val());
+    $('.printCnicExpiryDate').html(objEditRow.find('.hdnCnicExpiryDate').val());
+
+    $('.printGender').html(objEditRow.find('.hdnGender').val());
+    $('.printCountry').html(objEditRow.find('.hdnCountry').val());
+    $('.printProvince').html(objEditRow.find('.hdnProvince').val());
+    $('.printCity').html(objEditRow.find('.hdnCity').val());
+    $('.printPostalCode').html(objEditRow.find('.hdnPostalCode').val());
+    $('.printBloodGroup').html(objEditRow.find('.hdnBloodGroup').val() == null ? 'N/A' : objEditRow.find('.hdnBloodGroup').val());
+    $('.printOccupation').html(objEditRow.find('.hdnOccupation').val() == null ? 'N/A' : objEditRow.find('.hdnOccupation').val());
+    $('.printPermanentAddress').html(objEditRow.find('.hdnPermanentAddress').val());
+    $('.printMembershipNo').html(objEditRow.find('.hdnMembershipNo').val());
+    $('.printMembershipDate').html(objEditRow.find('.hdnMembershipDate').val());
+    $('.printReferenceNo').html(objEditRow.find('.hdnReferenceNo').val());
+    $('.printFolioNo').html(objEditRow.find('.hdnFolioNo').val());
     $('.printProfileFile').attr('src', objEditRow.find('.hdnProfileFile').val());
 
     // for plot binding
@@ -708,4 +713,3 @@ function PrintIndividualMember(selector) {
         i++;
     });
 }
-

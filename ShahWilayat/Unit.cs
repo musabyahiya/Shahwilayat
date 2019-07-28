@@ -18,7 +18,6 @@ namespace ShahWilayat
         public Unit()
         {
             this.Plots = new HashSet<Plot>();
-            this.UnitRates = new HashSet<UnitRate>();
         }
     
         public int UnitId { get; set; }
@@ -31,7 +30,5 @@ namespace ShahWilayat
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Plot> Plots { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UnitRate> UnitRates { get; set; }
     }
 }

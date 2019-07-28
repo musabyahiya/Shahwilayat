@@ -18,7 +18,6 @@ namespace ShahWilayat
         public Tenure()
         {
             this.PaymentSetups = new HashSet<PaymentSetup>();
-            this.ProvisionalAllotmentFees = new HashSet<ProvisionalAllotmentFee>();
             this.ShareCertificateFees = new HashSet<ShareCertificateFee>();
             this.SocietyPaymentDetails = new HashSet<SocietyPaymentDetail>();
         }
@@ -37,8 +36,6 @@ namespace ShahWilayat
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PaymentSetup> PaymentSetups { get; set; }
         public virtual PaymentSubCategory PaymentSubCategory { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProvisionalAllotmentFee> ProvisionalAllotmentFees { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ShareCertificateFee> ShareCertificateFees { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

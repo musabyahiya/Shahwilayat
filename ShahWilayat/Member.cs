@@ -17,7 +17,7 @@ namespace ShahWilayat
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Member()
         {
-            this.AllotmentOrders = new HashSet<AllotmentOrder>();
+            this.AssociateMembers = new HashSet<AssociateMember>();
             this.CnicHistories = new HashSet<CnicHistory>();
             this.Installments = new HashSet<Installment>();
             this.Invoices = new HashSet<Invoice>();
@@ -27,6 +27,8 @@ namespace ShahWilayat
             this.SocietyPayments = new HashSet<SocietyPayment>();
             this.Transfers = new HashSet<Transfer>();
             this.TransferLogs = new HashSet<TransferLog>();
+            this.Allotments = new HashSet<Allotment>();
+            this.AssociateAllotments = new HashSet<AssociateAllotment>();
         }
     
         public int MemberId { get; set; }
@@ -46,11 +48,14 @@ namespace ShahWilayat
         public string Email { get; set; }
         public System.DateTime Dob { get; set; }
         public string BirthPlace { get; set; }
-        public string BloodGroup { get; set; }
+        public string CNIC { get; set; }
         public System.DateTime CnicExpiryDate { get; set; }
+        public string BloodGroup { get; set; }
         public string PostalCode { get; set; }
         public string PermanentAddress { get; set; }
+        public string Occupation { get; set; }
         public string MembershipNo { get; set; }
+        public System.DateTime MembershipDate { get; set; }
         public string ReferenceNo { get; set; }
         public string FolioNo { get; set; }
         public string CnicFrontFile { get; set; }
@@ -64,12 +69,9 @@ namespace ShahWilayat
         public System.DateTime CreatedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
-        public string CNIC { get; set; }
-        public string Occupation { get; set; }
-        public System.DateTime MembershipDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AllotmentOrder> AllotmentOrders { get; set; }
+        public virtual ICollection<AssociateMember> AssociateMembers { get; set; }
         public virtual City City { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CnicHistory> CnicHistories { get; set; }
@@ -98,5 +100,9 @@ namespace ShahWilayat
         public virtual ICollection<Transfer> Transfers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TransferLog> TransferLogs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Allotment> Allotments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AssociateAllotment> AssociateAllotments { get; set; }
     }
 }

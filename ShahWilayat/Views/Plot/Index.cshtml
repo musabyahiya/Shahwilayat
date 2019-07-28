@@ -1,0 +1,351 @@
+﻿
+@{
+    ViewBag.Title = "Plot - Shah Wilayat Cooperative Housing Society";
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+}
+
+<div class="content-header row">
+    <div class="content-header-left col-md-6 col-12 mb-2">
+        <h3 class="content-header-title">Plot</h3>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#CreatePlot">
+                    Add New Plot
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Both borders end-->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <fieldset>
+                    <div class="input-group">
+                        <input type="text" class="form-control txtSearch" placeholder="Search..." aria-describedby="basic-addon4">
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="basic-addon4"><i class="la la-search"></i></span>
+                        </div>
+                    </div>
+                </fieldset>
+
+            </div>
+            <div class="card-content">
+
+                <div class="table-responsive">
+                    <table class="table table-bordered mb-0 tblPlot">
+                        <thead>
+                            <tr>
+                                <th nowrap>Sr No.</th>
+                                <th>PlotType</th>
+                                <th>SubType</th>
+                                <th style="text-align:center">Size (SqYd)</th>
+                                <th style="text-align:center">Extra Land</th>
+                                <th>Plot No</th>
+                                <th>Allotment</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="PlotListing"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Create Modal Start*@
+<div class="modal fade text-left" id="CreatePlot" role="dialog" aria-labelledby="myModalLabel16" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel16">Create New Plot</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-body frmPlot">
+                    <h4 class="form-section"><i class="la la-home"></i> Plot Details</h4>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ddlPlotType">Plot Type</label>
+                                <select class="form-control ddlPlotType"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ddlPlotSubType">SubType</label>
+                                <select class="form-control ddlPlotSubType"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtPlotNo">Plot No</label>
+                                <input type="text" class="form-control txtPlotNo notrequired" placeholder="Enter plot no">
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ddlUnit">Unit</label>
+                                <select class="form-control ddlUnit"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ddlPlotSize">Plot Size</label>
+                                <select class="form-control ddlPlotSize"></select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+
+                                <label for="ddlHasExtraSize">Has Extra Size</label>
+                                <select class="form-control ddlHasExtraSize notrequired">
+                                    <option value="0">--Select--</option>
+                                    <option value="1">Has Extra Size</option>
+                                </select>
+
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtExtraSize">Extra Size</label>
+                                <input type="text" class="form-control txtExtraSize" disabled="disabled" placeholder="Enter extra size">
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn grey btn-outline-info" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline-dark btnSaveChanges">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+@*Create Modal End*@
+
+
+@*Edit Modal Start*@
+<div class="modal fade text-left" id="EditPlot" role="dialog" aria-labelledby="myModalLabel16" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel16">Edit Plot</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-body frmPlot_upd">
+                    <h4 class="form-section"><i class="la la-home"></i> Plot Details</h4>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ddlPlotType_upd">Plot Type</label>
+                                <select class="form-control ddlPlotType_upd"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ddlPlotSubType_upd">SubType</label>
+                                <select class="form-control ddlPlotSubType_upd"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtPlotNo_upd">Plot No</label>
+                                <input type="text" class="form-control txtPlotNo_upd notrequired" placeholder="Enter plot no">
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ddlUnit_upd">Unit</label>
+                                <select class="form-control ddlUnit_upd"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ddlPlotSize_upd">Plot Size</label>
+                                <select class="form-control ddlPlotSize_upd"></select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+
+                                <label for="ddlHasExtraSize_upd">Has Extra Size</label>
+                                <select class="form-control ddlHasExtraSize_upd notrequired">
+                                    <option value="0">--Select--</option>
+                                    <option value="1">Has Extra Size</option>
+                                </select>
+
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtExtraSize_upd">Extra Size</label>
+                                <input type="text" class="form-control txtExtraSize_upd" disabled="disabled" placeholder="Enter extra size">
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn grey btn-outline-info" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline-dark btnUpdateChanges">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+@*Edit Modal Start*@
+
+@*Edit Attachment Start*@
+<div class="modal fade text-left" id="EditAttachment" role="dialog" aria-labelledby="myModalLabel16" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel16">Edit Attachment</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-body frmAttachment">
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+
+                                <span class="btn btn-block btn-outline btn-info btn-file">
+                                    <span class="fileinput-new">Attach CNIC Front</span>
+                                    <i class="fa fa-upload"></i>&nbsp;&nbsp;
+                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtCnicFrontFile_upd" accept="image/*" />
+                                </span>
+                                <span class="fileinput-filename"></span>
+                                <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+
+                                <span class="btn btn-block btn-outline btn-info btn-file">
+                                    <span class="fileinput-new">Attach CNIC Back</span>
+                                    <i class="fa fa-upload"></i>&nbsp;&nbsp;
+                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtCnicBackFile_upd" accept="image/*" />
+                                </span>
+                                <span class="fileinput-filename"></span>
+                                <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+
+                                <span class="btn btn-block btn-outline btn-info btn-file">
+                                    <span class="fileinput-new">Attach Recent Profile Picture</span>
+                                    <i class="fa fa-upload"></i>&nbsp;&nbsp;
+                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtProfileFile_upd" accept="image/*" />
+                                </span>
+                                <span class="fileinput-filename"></span>
+                                <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn grey btn-outline-info" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline-dark btnUpdateAttachment">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+@*Edit Attachment Start*@
+
+@*Delete Modal Start*@
+<div class="modal fade text-left" id="DeleteAllotment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel10"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-danger white">
+                <h4 class="modal-title white" id="myModalLabel10">Are you sure to delete this item?</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline-danger btnDelete">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+@*Delete Modal Start*@
+
+@section Scripts
+{
+    <script type="text/x-jQuery-tmpl" id="PlotListing">
+        <tr class="trPlot ${HasAlotted==true?'trPlots': 'trPlots warning'}">
+
+            <input type="hidden" class="hdnPlotId" value="${PlotId}" />
+            <input type="hidden" class="hdnPlotTypeId" value="${PlotTypeId}" />
+            <input type="hidden" class="hdnPlotSubTypeId" value="${PlotSubTypeId}" />
+            <input type="hidden" class="hdnUnitId" value="${UnitId}" />
+            <input type="hidden" class="hdnPlotSizeId" value="${PlotSizeId}" />
+
+            <input type="hidden" class="hdnHasExtraSize" value="${HasExtraSize}" />
+            <input type="hidden" class="hdnExtraSize" value="${ExtraSize}" />
+            <input type="hidden" class="hdnHasAlotted" value="${HasAlotted}" />
+            <input type="hidden" class="hdnUnitRate" value="${UnitRate}" />
+            <input type="hidden" class="hdnTotalSize" value="${TotalSize}" />
+
+            <td></td>
+            <td class="project-title tdPlotType">${PlotType}</td>
+            <td class="project-title tdPlotSubType">${PlotSubType}</td>
+            <td class="project-title tdPlotSize" align="center">${PlotSize}</td>
+            <td class="project-title tdExtraSize" align="center">${ExtraSize==null ? '0':ExtraSize }</td>
+            <td class="project-title tdPlotNo">${PlotNo}</td>
+
+
+            <td class="project-title tdAllotment">
+
+                <div class="${HasAlotted==true?'badge badge-success badge-pill': 'badge badge-warning badge-pill'}">${HasAlotted==true?'Allotted': 'Not Allotted'}</div>
+
+            </td>
+            <td class="project-title" nowrap>
+                <a href="javascript:void(0)" data-toggle="modal" data-target="#EditPlot" onclick="EditPlot(this)" data-toggle="tooltip" data-placement="top" data-original-title="Edit Plot"><i class="la la-pencil-square success"></i></a>
+
+                <a href="javascript:void(0)" data-toggle="modal" data-target="#DeletePlot" onclick="EditPlot(this)" data-toggle="tooltip" data-placement="top" data-original-title="Delete Plot"><i class="la la-trash danger"></i></a>
+            </td>
+
+        </tr>
+    </script>
+
+    <script src="~/Scripts/assets/js/PagesJS/Plot.js"></script>
+
+
+}
+
+

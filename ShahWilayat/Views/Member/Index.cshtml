@@ -103,7 +103,7 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="txtFatherName">Father Name</label>
+                                <label for="txtFatherName">Father/ Husband Name</label>
                                 <input type="text" id="txtFatherName" class="form-control txtFatherName" placeholder="Enter father name">
                             </div>
                         </div>
@@ -319,7 +319,7 @@
 
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="txtFirstName_upd">First Name</label>
+                                <label for="txtFirstName_upd">Father/ Husband Name</label>
                                 <input type="text" id="txtFirstName_upd" class="form-control txtFirstName_upd" placeholder="Enter first name">
                             </div>
                         </div>
@@ -475,8 +475,8 @@
                             </div>
                         </div>
                     </div>
-                    
-                    
+
+
 
                 </div>
             </div>
@@ -553,6 +553,270 @@
 </div>
 @*Edit Attachment Start*@
 
+@*Delete Modal Start*@
+<div class="modal fade text-left" id="DeleteMember" tabindex="-1" role="dialog" aria-labelledby="myModalLabel10"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-danger white">
+                <h4 class="modal-title white" id="myModalLabel10">Are you sure to delete this item?</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline-danger btnDelete">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+@*Delete Modal Start*@
+
+@*Print Modal Start*@
+<div class="modal fade text-left" id="PrintMember" role="dialog" aria-labelledby="myModalLabel16" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel16">Membership Profile</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-body frmMember">
+                    <div id="Print">
+                        <table style="width: 100%; height: 25%; color: black;">
+                            <thead>
+                                <tr class="trPrint" style="background-color:#005aa1;color: white;">
+                                    <td colspan="4" style="font-weight:600;font-size: 18px; height:40px;">&nbsp;Membership Information</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="line-height:15px;">
+                                    <td rowspan="2">
+
+                                        <img height="130px;" class="tdProfilePicPrint" width="120px;" alt="User Pic" src="~/Uploads/Musab Yahiya_20190123163602_20190725020850.jpg" style="border:2px solid #028130; border-radius:50%;">
+                                    </td>
+
+                                    <td style="border-bottom: 1px solid #028130;">
+                                        <label>Membership No </label>
+                                        <br>
+                                        <span><b class="printMembershipNo"></b></span>
+                                    </td>
+                                    <td style="border-bottom: 1px solid #028130;">
+                                        <label>Membership Date </label>
+                                        <br>
+                                        <span><b class="printMembershipDate"></b></span>
+                                    </td>
+
+                                    <td style="border-bottom: 1px solid #028130;">
+                                        <label>Reference No</label>
+                                        <br>
+                                        <span><b class="printReferenceNo"></b></span>
+
+                                    </td>
+                                </tr>
+
+                                <tr style="line-height:15px;">
+                                    <td>
+                                        <label>Register Folio No</label>
+                                        <br>
+                                        <span><b class="printFolioNo"></b></span>
+                                    </td>
+                                    <td>
+                                        <label>Memebership Fee </label>
+                                        <br>
+                                        <span><b>100</b></span>
+                                    </td>
+                                    <!-- 	<td>
+                                        <label>Membership Fee Receipt No </label>
+                                        <br>
+                                        <span><b>R-7811</b></span>
+                                    </td> -->
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!--End of Table-->
+                        <table style="width: 100%; height: 100%; color: black;" class="table">
+                            <thead>
+                                <tr class="trPrint" style="background-color: #005aa1;color: white;">
+                                    <td colspan="4" style="font-weight:600;font-size: 18px; height:40px;">&nbsp;Personal Information</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="line-height:20px;">
+                                    <td colspan="1" style="border-bottom: 1px solid #e7eaec">
+                                        <label>Full Name</label>
+                                        <br>
+                                        <span><b class="printFullName"></b></span>
+                                    </td>
+
+                                    <td colspan="3" style="border-bottom: 1px solid #e7eaec">
+                                        <label>Realtion</label>
+                                        <br>
+                                        <span><b class="printMemberRelation"></b></span>
+                                    </td>
+                                </tr>
+                                <tr style="line-height:20px;">
+                                    <td colspan="1" style="border-bottom: 1px solid #e7eaec">
+                                        <label> Father Name</label>
+                                        <br>
+                                        <span><b class="printFatherName"></b></span>
+                                    </td>
+                                    <td colspan="3" style="border-bottom: 1px solid #e7eaec">
+                                        <label>Gender</label>
+                                        <br>
+                                        <span><b class="printGender"></b></span>
+                                    </td>
+                                </tr>
+
+                                <tr style="line-height:20px;">
+                                    <td colspan="1" style="border-bottom: 1px solid #e7eaec">
+                                        <label>Date of Birth</label>
+                                        <br>
+                                        <span><b class="printDob"></b></span>
+                                    </td>
+                                    <td colspan="3" style="border-bottom: 1px solid #e7eaec">
+                                        <label>Place of Birth</label>
+                                        <br>
+                                        <span><b class="printBirthPlace"></b></span>
+                                    </td>
+                                </tr>
+
+                                <tr style="line-height:20px;">
+                                    <td colspan="1" style="border-bottom: 1px solid #e7eaec">
+                                        <label>Cell</label>
+                                        <br>
+                                        <span><b class="printCellNo"></b></span>
+                                    </td>
+                                    <td colspan="3" style="border-bottom: 1px solid #e7eaec">
+                                        <label>WhatsApp</label>
+                                        <br>
+                                        <span><b class="printWhatsApp"></b></span>
+                                    </td>
+
+
+                                </tr>
+                                <tr style="line-height:20px;">
+                                    <td colspan="1" style="border-bottom: 1px solid #e7eaec">
+                                        <label>Landline</label>
+                                        <br>
+                                        <span><b class="printLandline"></b></span>
+                                    </td>
+
+                                    <td colspan="3" style="border-bottom: 1px solid #e7eaec">
+                                        <label>Office Phone</label>
+                                        <br>
+                                        <span><b class="printOfficePhone"></b></span>
+                                    </td>
+                                </tr>
+                                <tr style="line-height:20px;">
+                                    <td colspan="1" style="border-bottom: 1px solid #e7eaec">
+                                        <label>Email</label>
+                                        <br>
+                                        <span><b class="printEmail"></b></span>
+                                    </td>
+                                    <td colspan="3" style="border-bottom: 1px solid #e7eaec">
+                                        <label>CNIC</label>
+                                        <br>
+                                        <span><b class="printCNIC"></b></span>
+                                    </td>
+                                </tr>
+
+                                <tr style="line-height:20px;">
+                                    <td colspan="1" style="border-bottom: 1px solid #e7eaec">
+                                        <label>CNIC Expiry Date</label>
+                                        <br>
+                                        <span><b class="printCnicExpiryDate"></b></span>
+                                    </td>
+                                    <td colspan="3" style="border-bottom: 1px solid #e7eaec">
+                                        <label>Country</label>
+                                        <br>
+                                        <span><b class="printCountry"></b></span>
+                                    </td>
+                                </tr>
+
+                                <tr style="line-height:20px;">
+                                    <td colspan="1" style="border-bottom: 1px solid #e7eaec">
+                                        <label>Province</label>
+                                        <br>
+                                        <span><b class="printProvince"></b></span>
+                                    </td>
+                                    <td colspan="3" style="border-bottom: 1px solid #e7eaec">
+                                        <label>City</label>
+                                        <br>
+                                        <span><b class="printCity"></b></span>
+                                    </td>
+                                </tr>
+
+                                <tr style="line-height:20px;">
+                                    <td colspan="1" style="border-bottom: 1px solid #e7eaec">
+                                        <label>Postal Code</label>
+                                        <br>
+                                        <span><b class="printPostalCode"></b></span>
+                                    </td>
+                                    <td colspan="3" style="border-bottom: 1px solid #e7eaec">
+                                        <label>Address</label>
+                                        <br>
+                                        <span style="width: 20px;"><b class="printPermanentAddress"></b></span>
+                                    </td>
+
+                                </tr>
+
+                                <tr style="line-height:20px;">
+                                    <td colspan="1" style="border-bottom: 1px solid #e7eaec">
+                                        <label>Blood Group</label>
+                                        <br>
+                                        <span><b class="printBloodGroup"></b></span>
+                                    </td>
+                                    <td colspan="3" style="border-bottom: 1px solid #e7eaec">
+                                        <label>Occupation</label>
+                                        <br>
+                                        <span><b class="printOccupation"></b></span>
+                                    </td>
+                                </tr>
+
+
+
+                            </tbody>
+                        </table>
+
+                        <!--End of Table-->
+                        <table style="width: 100%; height: 100%; color: black;" id="PlotTable" class="table table-bordered mb-0 ">
+                            <thead>
+                                <tr class="trPrint" style="background-color: #005aa1;color: white;">
+                                    <td colspan="4" style="font-weight:600;font-size: 18px;height:40px;">&nbsp;Plot Details</td>
+                                </tr>
+
+
+                                <tr>
+                                    <th class="center">Sr No.</th>
+                                    <th class="center">Plot Type</th>
+                                    <th class="center">Plot Size</th>
+                                    <th class="center">Plot No</th>
+
+                                </tr>
+                            </thead>
+                            <tbody class="PlotListing"></tbody>
+                        </table>
+                        <!--Enf of Table-->
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn grey btn-outline-info" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline-warning btnPrint">Print</button>
+            </div>
+        </div>
+    </div>
+</div>
+@*Print Modal Start*@
+@*<link href="~/Content/assets/css/PrintMaterial/MemberProfile.css" rel="stylesheet" />*@
 @section Scripts
 {
     <script type="text/x-jQuery-tmpl" id="MemberListing">
@@ -561,10 +825,15 @@
             <input type="hidden" class="hdnMemberId" value="${MemberId}" />
             <input type="hidden" class="hdnTitleId" value="${TitleId}" />
             <input type="hidden" class="hdnMemberRelationId" value="${MemberRelationId}" />
+            <input type="hidden" class="hdnMemberRelation" value="${MemberRelation}" />
             <input type="hidden" class="hdnGenderId" value="${GenderId}" />
+            <input type="hidden" class="hdnGender" value="${Gender}" />
             <input type="hidden" class="hdnCountryId" value="${CountryId}" />
+            <input type="hidden" class="hdnCountry" value="${Country}" />
             <input type="hidden" class="hdnProvinceId" value="${ProvinceId}" />
+            <input type="hidden" class="hdnProvince" value="${Province}" />
             <input type="hidden" class="hdnCityId" value="${CityId}" />
+            <input type="hidden" class="hdnCity" value="${City}" />
             <input type="hidden" class="hdnFirstName" value="${FirstName}" />
             <input type="hidden" class="hdnLastName" value="${LastName}" />
             <input type="hidden" class="hdnFatherName" value="${FatherName}" />
@@ -599,15 +868,30 @@
                 <div class="badge badge-success badge-pill ">Active</div>
             </td>
             <td class="project-title">
-                <a href="javascript:void(0)" data-toggle="modal" data-target="#EditMember" onclick="EditMember(this)" data-toggle="tooltip" data-placement="top" data-original-title="Edit Member"><i class="la la-pencil-square success"></i></a>
-                <a href="javascript:void(0)" data-toggle="modal" data-target="#EditAttachment" onclick="EditMember(this)" data-toggle="tooltip" data-placement="top" data-original-title="Edit Attachment"><i class="ft-paperclip"></i></a>
-                <a href="javascript:void(0)" data-toggle="modal" data-target="#DeleteMember" onclick="EditMember(this)" data-toggle="tooltip" data-placement="top" data-original-title="Delete Member"><i class="la la-trash danger"></i></a>
+                <a href="javascript:void(0)" data-toggle="modal" data-target="#PrintMember" onclick="PrintIndividualMember(this)" data-toggle="tooltip" title="Print Profile"><i class="la la-user warning"></i></a>
+                <a href="javascript:void(0)" data-toggle="modal" data-target="#EditMember" onclick="EditMember(this)" data-toggle="tooltip" title="Edit Member"><i class="la la-pencil-square success"></i></a>
+                <a href="javascript:void(0)" data-toggle="modal" data-target="#EditAttachment" onclick="EditMember(this)" data-toggle="tooltip" title="Edit Attachment"><i class="ft-paperclip"></i></a>
+                <a href="javascript:void(0)" data-toggle="modal" data-target="#DeleteMember" onclick="EditMember(this)" data-toggle="tooltip" title="Delete Member"><i class="la la-trash danger"></i></a>
             </td>
 
 
         </tr>
     </script>
+    @*Print Individual*@
+    <script type="text/x-jQuery-tmpl" id="PlotListing">
 
+        <tr class="trPlots center" style="line-height: 25px;">
+            
+            <td style="border-bottom: 1px solid #e7eaec;"></td>
+            <td class="project-title tdPlotType" style="border-bottom: 1px solid #e7eaec;">${PlotType}</td>
+            <td class="project-title tdPlotSize" style="border-bottom: 1px solid #e7eaec;">${Size+' '+Unit}</td>
+            <td class="project-title tdPlotNo" style="border-bottom: 1px solid #e7eaec;">${PlotNo}</td>
+          
+
+
+
+        </tr>
+    </script>
     <script src="~/Scripts/assets/js/PagesJS/Member.js"></script>
 
 

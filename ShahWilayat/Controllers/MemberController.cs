@@ -19,6 +19,7 @@ namespace ShahWilayat.Controllers
         {
             return View();
         }
+      
 
         public string CreateNewMember(Member member)
         {
@@ -118,6 +119,25 @@ namespace ShahWilayat.Controllers
             }
         }
 
+        public string GetCurrentAllottee()
+        {
+            try
+            {
+                DataSet ds = new DataSet();
+                DataTable dt = new DataTable();
+                string dbConnectionString = context.Database.Connection.ConnectionString;
+                SqlConnection con = new SqlConnection(dbConnectionString);
+                SqlDataAdapter da = new SqlDataAdapter("GetCurrentAllottees", con);
+                da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                da.Fill(dt);
+                return JsonConvert.SerializeObject(dt);
+            }
+            catch (Exception e)
+            {
+                return e.ToString();
+            }
+
+        }
         public JsonResult GetAllCountry()
         {
             try

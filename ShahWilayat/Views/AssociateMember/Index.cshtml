@@ -5,4 +5,605 @@
 }
 
 
+<div class="content-header row">
+    <div class="content-header-left col-md-6 col-12 mb-2">
+        <h3 class="content-header-title">Associate Member</h3>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#CreateMember">
+                    Associate A New Member
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Both borders end-->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <fieldset>
+                    <div class="input-group">
+                        <input type="text" class="form-control txtSearch" placeholder="Search..." aria-describedby="basic-addon4">
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="basic-addon4"><i class="la la-search"></i></span>
+                        </div>
+                    </div>
+                </fieldset>
+
+            </div>
+            <div class="card-content">
+
+                <div class="table-responsive">
+                    <table class="table table-bordered mb-0 tblMember">
+                        <thead>
+                            <tr>
+                                <th style="text-align:center">Sr No.</th>
+                                <th>Membership No</th>
+                                <th>Date</th>
+                                <th>Name</th>
+                                <th>Cell No</th>
+                                <th>Status</th>
+                                <th class="align-middle">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="MemberListing"></tbody>
+                        <tfoot>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Create Modal Start*@
+<div class="modal fade text-left" id="CreateMember" role="dialog" aria-labelledby="myModalLabel16" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel16">Associate A New Member</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-body frmMember">
+                    <h4 class="form-section"><i class="ft-user"></i> Personal Info</h4>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ddlMember">Member</label>
+                                <select id="ddlMember" class="form-control ddlMember select2 mySelect" style="width:100%"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ddlTitle">Title</label>
+                                <select id="ddlTitle" class="form-control ddlTitle"></select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtFirstName">First Name</label>
+                                <input type="text" id="txtFirstName" class="form-control txtFirstName" placeholder="Enter first name">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtLastName">Last Name</label>
+                                <input type="text" id="txtLastName" class="form-control txtLastName" placeholder="Enter last name">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ddlMemberRelation">Relation</label>
+                                <select id="ddlMemberRelation" class="form-control ddlMemberRelation"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtFatherName">Father Name</label>
+                                <input type="text" id="txtFatherName" class="form-control txtFatherName" placeholder="Enter father name">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ddlGender">Gender</label>
+                                <select id="ddlGender" class="form-control ddlGender"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtDob">Date of Birth</label>
+                                <input type="text" id="txtDob" class="form-control DatePicker txtDob" placeholder="yyyy-mm-dd">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtBirthPlace">Place of Birth</label>
+                                <input type="text" id="txtBirthPlace" class="form-control txtBirthPlace" placeholder="Enter birth place">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtCellNo">Cell No</label>
+                                <input type="text" id="txtCellNo" class="form-control txtCellNo numbericOnly" placeholder="Enter cell number">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtWhatsApp">WhatsApp No</label>
+                                <input type="text" id="txtWhatsApp" class="form-control txtWhatsApp numericOnly notrequired" placeholder="Enter whatsapp number">
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtLandline">Landline</label>
+                                <input type="text" id="txtLandline" class="form-control txtLandline numericOnly notrequired" placeholder="Enter landline number">
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtOfficePhone">Office Phone</label>
+                                <input type="text" id="txtOfficePhone" class="form-control txtOfficePhone numericOnly notrequired" placeholder="Enter OfficePhone number">
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtEmail">Email</label>
+                                <input type="text" id="txtEmail" class="form-control txtEmail  notrequired" placeholder="Enter email">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtCNIC">CNIC</label>
+                                <input type="text" id="txtCNIC" class="form-control txtCNIC " placeholder="Enter CNIC without dash">
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtCnicExpiryDate">CNIC Expiry Date</label>
+                                <input type="text" id="txtCnicExpiryDate" class="form-control DatePicker txtCnicExpiryDate" placeholder="yyyy-mm-dd">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ddlCountry">Country</label>
+                                <select id="ddlCountry" class="form-control ddlCountry"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ddlProvince">Province</label>
+                                <select id="ddlProvince" class="form-control ddlProvince"></select>
+                            </div>
+
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ddlCity">City</label>
+                                <select id="ddlCity" class="form-control ddlCity"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtPermanentAddress">Permanent Address</label>
+                                <textarea class="form-control txtPermanentAddress" id="txtPermanentAddress" rows="1" placeholder="Enter permanent address"></textarea>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtPostalCode">Postal Code</label>
+                                <input type="text" id="txtPostalCode" class="form-control txtPostalCode numericOnly" placeholder="Enter postal code">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtBloodGroup">Blood Group</label>
+                                <input type="text" id="txtBloodGroup" class="form-control txtBloodGroup notrequired" placeholder="Enter blood group">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtOccupation">Occupation</label>
+                                <input type="text" id="txtOccupation" class="form-control txtOccupation notrequired" placeholder="Enter occupation">
+                            </div>
+                        </div>
+
+                    </div>
+                    <h4 class="form-section"><i class="ft-paperclip"></i> Attachments</h4>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+
+                                <span class="btn btn-block btn-outline btn-info btn-file">
+                                    <span class="fileinput-new">Attach CNIC Front</span>
+                                    <i class="fa fa-upload"></i>&nbsp;&nbsp;
+                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtCnicFrontFile" accept="image/*" />
+                                </span>
+                                <span class="fileinput-filename"></span>
+                                <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+
+                                <span class="btn btn-block btn-outline btn-info btn-file">
+                                    <span class="fileinput-new">Attach CNIC Back</span>
+                                    <i class="fa fa-upload"></i>&nbsp;&nbsp;
+                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtCnicBackFile" accept="image/*" />
+                                </span>
+                                <span class="fileinput-filename"></span>
+                                <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+
+                                <span class="btn btn-block btn-outline btn-info btn-file">
+                                    <span class="fileinput-new">Attach Recent Profile Picture</span>
+                                    <i class="fa fa-upload"></i>&nbsp;&nbsp;
+                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtProfileFile" accept="image/*" />
+                                </span>
+                                <span class="fileinput-filename"></span>
+                                <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn grey btn-outline-info" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline-dark btnSaveChanges">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+@*Create Modal End*@
+
+
+@*Edit Modal Start*@
+<div class="modal fade text-left" id="EditMember" role="dialog" aria-labelledby="myModalLabel16" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel16">Edit Member</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-body frmMember_upd">
+                    <h4 class="form-section"><i class="ft-user"></i> Personal Info</h4>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ddlMember_upd">Member</label>
+                                <select id="ddlMember_upd" class="select2 form-control ddlMember_upd mySelect" style="width:100%"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ddlTitle_upd">Title</label>
+                                <select id="ddlTitle_upd" class="form-control ddlTitle_upd"></select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtFirstName_upd">First Name</label>
+                                <input type="text" id="txtFirstName_upd" class="form-control txtFirstName_upd" placeholder="Enter first name">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtLastName_upd">Last Name</label>
+                                <input type="text" id="txtLastName_upd" class="form-control txtLastName_upd" placeholder="Enter last name">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ddlMemberRelation_upd">Relation</label>
+                                <select id="ddlMemberRelation_upd" class="form-control ddlMemberRelation_upd"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtFatherName_upd">Father Name</label>
+                                <input type="text" id="txtFatherName_upd" class="form-control txtFatherName_upd" placeholder="Enter father name">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ddlGender_upd">Gender</label>
+                                <select id="ddlGender_upd" class="form-control ddlGender_upd"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtDob_upd">Date of Birth</label>
+                                <input type="text" id="txtDob_upd" class="form-control DatePicker txtDob_upd" placeholder="yyyy-mm-dd">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtBirthPlace_upd">Place of Birth</label>
+                                <input type="text" id="txtBirthPlace_upd" class="form-control txtBirthPlace_upd" placeholder="Enter birth place">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtCellNo_upd">Cell No</label>
+                                <input type="text" id="txtCellNo_upd" class="form-control txtCellNo_upd numbericOnly" placeholder="Enter cell number">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtWhatsApp_upd">WhatsApp No</label>
+                                <input type="text" id="txtWhatsApp_upd" class="form-control txtWhatsApp_upd numericOnly notrequired" placeholder="Enter whatsapp number">
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtLandline_upd">Landline</label>
+                                <input type="text" id="txtLandline_upd" class="form-control txtLandline_upd numericOnly notrequired" placeholder="Enter landline number">
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtOfficePhone_upd">Office Phone</label>
+                                <input type="text" id="txtOfficePhone_upd" class="form-control txtOfficePhone_upd numericOnly notrequired" placeholder="Enter OfficePhone number">
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtEmail_upd">Email</label>
+                                <input type="text" id="txtEmail_upd" class="form-control txtEmail_upd  notrequired" placeholder="Enter email">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtCNIC_upd">CNIC</label>
+                                <input type="text" id="txtCNIC_upd" class="form-control txtCNIC_upd " placeholder="Enter CNIC without dash">
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtCnicExpiryDate_upd">CNIC Expiry Date</label>
+                                <input type="text" id="txtCnicExpiryDate_upd" class="form-control DatePicker txtCnicExpiryDate_upd" placeholder="yyyy-mm-dd">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ddlCountry_upd">Country</label>
+                                <select id="ddlCountry_upd" class="form-control ddlCountry_upd"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ddlProvince_upd">Province</label>
+                                <select id="ddlProvince_upd" class="form-control ddlProvince_upd"></select>
+                            </div>
+
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ddlCity_upd">City</label>
+                                <select id="ddlCity_upd" class="form-control ddlCity_upd"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtPermanentAddress_upd">Permanent Address</label>
+                                <textarea class="form-control txtPermanentAddress_upd" id="txtPermanentAddress_upd" rows="1" placeholder="Enter permanent address"></textarea>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtPostalCode_upd">Postal Code</label>
+                                <input type="text" id="txtPostalCode_upd" class="form-control txtPostalCode_upd numericOnly" placeholder="Enter postal code">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtBloodGroup_upd">Blood Group</label>
+                                <input type="text" id="txtBloodGroup_upd" class="form-control txtBloodGroup_upd" placeholder="Enter blood group">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtOccupation_upd">Occupation</label>
+                                <input type="text" id="txtOccupation_upd" class="form-control txtOccupation_upd" placeholder="Enter occupation">
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn grey btn-outline-info" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline-dark btnUpdateChanges">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+@*Edit Modal Start*@
+
+@*Edit Attachment Start*@
+<div class="modal fade text-left" id="EditAttachment" role="dialog" aria-labelledby="myModalLabel16" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel16">Edit Attachment</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-body frmAttachment">
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+
+                                <span class="btn btn-block btn-outline btn-info btn-file">
+                                    <span class="fileinput-new">Attach CNIC Front</span>
+                                    <i class="fa fa-upload"></i>&nbsp;&nbsp;
+                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtCnicFrontFile_upd" accept="image/*" />
+                                </span>
+                                <span class="fileinput-filename"></span>
+                                <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+
+                                <span class="btn btn-block btn-outline btn-info btn-file">
+                                    <span class="fileinput-new">Attach CNIC Back</span>
+                                    <i class="fa fa-upload"></i>&nbsp;&nbsp;
+                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtCnicBackFile_upd" accept="image/*" />
+                                </span>
+                                <span class="fileinput-filename"></span>
+                                <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+
+                                <span class="btn btn-block btn-outline btn-info btn-file">
+                                    <span class="fileinput-new">Attach Recent Profile Picture</span>
+                                    <i class="fa fa-upload"></i>&nbsp;&nbsp;
+                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtProfileFile_upd" accept="image/*" />
+                                </span>
+                                <span class="fileinput-filename"></span>
+                                <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn grey btn-outline-info" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline-dark btnUpdateAttachment">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+@*Edit Attachment Start*@
+
+@*Delete Modal Start*@
+<div class="modal fade text-left" id="DeleteMember" tabindex="-1" role="dialog" aria-labelledby="myModalLabel10"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-danger white">
+                <h4 class="modal-title white" id="myModalLabel10">Are you sure to delete this item?</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline-danger btnDelete">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+@*Delete Modal Start*@
+
+@section Scripts
+{
+    <script type="text/x-jQuery-tmpl" id="MemberListing">
+        <tr class="trMembers">
+
+            <input type="hidden" class="hdnAssociateMemberId" value="${AssociateMemberId}" />
+            <input type="hidden" class="hdnMemberId" value="${MemberId}" />
+            <input type="hidden" class="hdnTitleId" value="${TitleId}" />
+            <input type="hidden" class="hdnMemberRelationId" value="${MemberRelationId}" />
+            <input type="hidden" class="hdnGenderId" value="${GenderId}" />
+            <input type="hidden" class="hdnCountryId" value="${CountryId}" />
+            <input type="hidden" class="hdnProvinceId" value="${ProvinceId}" />
+            <input type="hidden" class="hdnCityId" value="${CityId}" />
+            <input type="hidden" class="hdnFirstName" value="${FirstName}" />
+            <input type="hidden" class="hdnLastName" value="${LastName}" />
+            <input type="hidden" class="hdnFatherName" value="${FatherName}" />
+            <input type="hidden" class="hdnCellNo" value="${CellNo}" />
+            <input type="hidden" class="hdnLandline" value="${Landline}" />
+            <input type="hidden" class="hdnWhatsApp" value="${WhatsApp}" />
+            <input type="hidden" class="hdnOfficePhone" value="${OfficePhone}" />
+            <input type="hidden" class="hdnEmail" value="${Email}" />
+            <input type="hidden" class="hdnDob" value="${ToJavaScriptDate(Dob)}" />
+            <input type="hidden" class="hdnBirthPlace" value="${BirthPlace}" />
+            <input type="hidden" class="hdnCNIC" value="${CNIC}" />
+            <input type="hidden" class="hdnCnicExpiryDate" value="${ToJavaScriptDate(CnicExpiryDate)}" />
+            <input type="hidden" class="hdnBloodGroup" value="${BloodGroup}" />
+            <input type="hidden" class="hdnPostalCode" value="${PostalCode}" />
+            <input type="hidden" class="hdnOccupation" value="${Occupation}" />
+            <input type="hidden" class="hdnPermanentAddress" value="${PermanentAddress}" />
+            <input type="hidden" class="hdnOccupation" value="${Occupation}" />
+            <input type="hidden" class="hdnCnicFrontFile" value="../Uploads/${JSON.parse(CnicFrontFile)[0]}" />
+            <input type="hidden" class="hdnCnicBackFile" value="../Uploads/${JSON.parse(CnicBackFile)[0]}" />
+            <input type="hidden" class="hdnProfileFile" value="../Uploads/${JSON.parse(ProfileFile)[0]}" />
+
+            <td align="center"></td>
+            <td class="project-title tdMembershipNo">${MembershipNo}</td>
+            <td class="project-title tdMembershipDate">${ToJavaScriptDate(MembershipDate)}</td>
+            <td class="project-title tdName">${FirstName+' '+LastName}</td>
+            <td class="project-title tdCellNo">${CellNo}</td>
+            <td class="project-title tdStatus">
+                <div class="badge badge-success badge-pill ">Active</div>
+            </td>
+            <td class="project-title">
+                <a href="javascript:void(0)" data-toggle="modal" data-target="#EditMember" onclick="EditMember(this)" data-toggle="tooltip" data-placement="top" data-original-title="Edit Member"><i class="la la-pencil-square success"></i></a>
+                <a href="javascript:void(0)" data-toggle="modal" data-target="#EditAttachment" onclick="EditMember(this)" data-toggle="tooltip" data-placement="top" data-original-title="Edit Attachment"><i class="ft-paperclip"></i></a>
+                <a href="javascript:void(0)" data-toggle="modal" data-target="#DeleteMember" onclick="EditMember(this)" data-toggle="tooltip" data-placement="top" data-original-title="Delete Member"><i class="la la-trash danger"></i></a>
+            </td>
+
+
+        </tr>
+    </script>
+
+    <script src="~/Scripts/assets/js/PagesJS/AssociateMember.js"></script>
+
+
+}
+
+
+
+
+
+
+
+
+
 

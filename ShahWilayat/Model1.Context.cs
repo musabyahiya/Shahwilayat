@@ -25,7 +25,7 @@ namespace ShahWilayat
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<AllotmentOrder> AllotmentOrders { get; set; }
+        public virtual DbSet<AssociateMember> AssociateMembers { get; set; }
         public virtual DbSet<Charge> Charges { get; set; }
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<CnicHistory> CnicHistories { get; set; }
@@ -35,7 +35,6 @@ namespace ShahWilayat
         public virtual DbSet<InstallmentPlan> InstallmentPlans { get; set; }
         public virtual DbSet<Installment> Installments { get; set; }
         public virtual DbSet<Invoice> Invoices { get; set; }
-        public virtual DbSet<IssuerDesignation> IssuerDesignations { get; set; }
         public virtual DbSet<MemberRelation> MemberRelations { get; set; }
         public virtual DbSet<Member> Members { get; set; }
         public virtual DbSet<MembershipFee> MembershipFees { get; set; }
@@ -48,18 +47,14 @@ namespace ShahWilayat
         public virtual DbSet<Payment> Payments { get; set; }
         public virtual DbSet<PaymentSetup> PaymentSetups { get; set; }
         public virtual DbSet<PaymentSubCategory> PaymentSubCategories { get; set; }
-        public virtual DbSet<Phase> Phases { get; set; }
         public virtual DbSet<Plot> Plots { get; set; }
         public virtual DbSet<PlotCategory> PlotCategories { get; set; }
         public virtual DbSet<PlotCategoryPercent> PlotCategoryPercents { get; set; }
         public virtual DbSet<PlotSize> PlotSizes { get; set; }
-        public virtual DbSet<PlotSpec> PlotSpecs { get; set; }
         public virtual DbSet<PlotSubType> PlotSubTypes { get; set; }
         public virtual DbSet<PlotType> PlotTypes { get; set; }
         public virtual DbSet<Province> Provinces { get; set; }
-        public virtual DbSet<ProvisionalAllotmentFee> ProvisionalAllotmentFees { get; set; }
         public virtual DbSet<Relation> Relations { get; set; }
-        public virtual DbSet<Religion> Religions { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<RoleMenuMapping> RoleMenuMappings { get; set; }
         public virtual DbSet<ShareCertificateFee> ShareCertificateFees { get; set; }
@@ -70,8 +65,9 @@ namespace ShahWilayat
         public virtual DbSet<Title> Titles { get; set; }
         public virtual DbSet<Transfer> Transfers { get; set; }
         public virtual DbSet<TransferLog> TransferLogs { get; set; }
-        public virtual DbSet<UnitRate> UnitRates { get; set; }
         public virtual DbSet<Unit> Units { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Allotment> Allotments { get; set; }
+        public virtual DbSet<AssociateAllotment> AssociateAllotments { get; set; }
     }
 }

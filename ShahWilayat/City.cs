@@ -17,6 +17,7 @@ namespace ShahWilayat
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public City()
         {
+            this.AssociateMembers = new HashSet<AssociateMember>();
             this.Members = new HashSet<Member>();
         }
     
@@ -29,6 +30,8 @@ namespace ShahWilayat
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifedDate { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AssociateMember> AssociateMembers { get; set; }
         public virtual Province Province { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Member> Members { get; set; }

@@ -5,11 +5,11 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="ShahWilayatModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="AllotmentOrder">
+        <EntityType Name="Allotment">
           <Key>
-            <PropertyRef Name="AllotmentOrderId" />
+            <PropertyRef Name="AllotmentId" />
           </Key>
-          <Property Name="AllotmentOrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AllotmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MemberId" Type="int" Nullable="false" />
           <Property Name="PlotId" Type="int" Nullable="false" />
           <Property Name="AllotmentOrderNo" Type="varchar" MaxLength="50" Nullable="false" />
@@ -18,6 +18,65 @@
           <Property Name="ProvisionalAllotmentDate" Type="datetime" />
           <Property Name="ShareCertificateNo" Type="varchar" MaxLength="50" />
           <Property Name="ShareCertificateDate" Type="datetime" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="AssociateAllotment">
+          <Key>
+            <PropertyRef Name="AssociateAllotmentId" />
+          </Key>
+          <Property Name="AssociateAllotmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberId" Type="int" Nullable="false" />
+          <Property Name="PlotId" Type="int" Nullable="false" />
+          <Property Name="AllotmentOrderNo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AllotmentOrderDate" Type="datetime" Nullable="false" />
+          <Property Name="ProvisionalAllotmentNo" Type="varchar" MaxLength="50" />
+          <Property Name="ProvisionalAllotmentDate" Type="datetime" />
+          <Property Name="ShareCertificateNo" Type="varchar" MaxLength="50" />
+          <Property Name="ShareCertificateDate" Type="datetime" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="AssociateMember">
+          <Key>
+            <PropertyRef Name="AssociateMemberId" />
+          </Key>
+          <Property Name="AssociateMemberId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberId" Type="int" Nullable="false" />
+          <Property Name="TitleId" Type="int" Nullable="false" />
+          <Property Name="MemberRelationId" Type="int" Nullable="false" />
+          <Property Name="GenderId" Type="int" Nullable="false" />
+          <Property Name="CountryId" Type="int" Nullable="false" />
+          <Property Name="ProvinceId" Type="int" Nullable="false" />
+          <Property Name="CityId" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FatherName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CellNo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Landline" Type="varchar" MaxLength="50" />
+          <Property Name="WhatsApp" Type="varchar" MaxLength="100" />
+          <Property Name="OfficePhone" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="Dob" Type="datetime" Nullable="false" />
+          <Property Name="BirthPlace" Type="varchar" MaxLength="50" />
+          <Property Name="CNIC" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CnicExpiryDate" Type="datetime" Nullable="false" />
+          <Property Name="BloodGroup" Type="varchar" MaxLength="50" />
+          <Property Name="PostalCode" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="PermanentAddress" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Occupation" Type="varchar" MaxLength="100" />
+          <Property Name="CnicFrontFile" Type="text" />
+          <Property Name="CnicBackFile" Type="text" />
+          <Property Name="ProfileFile" Type="text" />
+          <Property Name="IsMember" Type="bit" Nullable="false" />
+          <Property Name="IsGone" Type="bit" Nullable="false" />
+          <Property Name="GoneDate" Type="datetime" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedBy" Type="int" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
@@ -162,18 +221,6 @@
           <Property Name="ModifiedBy" Type="int" />
           <Property Name="ModifiedDate" Type="datetime" />
         </EntityType>
-        <EntityType Name="IssuerDesignation">
-          <Key>
-            <PropertyRef Name="IssuerDesignationId" />
-          </Key>
-          <Property Name="IssuerDesignationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IssuerDesignation" Type="varchar" MaxLength="250" Nullable="false" />
-          <Property Name="IsActive" Type="bit" Nullable="false" />
-          <Property Name="CreatedBy" Type="int" Nullable="false" />
-          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
-          <Property Name="ModifiedBy" Type="int" />
-          <Property Name="ModifiedDate" Type="datetime" />
-        </EntityType>
         <EntityType Name="MemberRelation">
           <Key>
             <PropertyRef Name="MemberRelationId" />
@@ -270,14 +317,16 @@
           <Property Name="RelationId" Type="int" Nullable="false" />
           <Property Name="FirstName" Type="varchar" MaxLength="250" Nullable="false" />
           <Property Name="LastName" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="FatherName" Type="varbinary" MaxLength="50" Nullable="false" />
           <Property Name="Dob" Type="datetime" Nullable="false" />
           <Property Name="BirthPlace" Type="varchar" MaxLength="100" />
           <Property Name="CNIC" Type="varchar" MaxLength="50" />
           <Property Name="CellNo" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Address" Type="varchar" MaxLength="500" Nullable="false" />
-          <Property Name="AttachmentFile" Type="text" />
           <Property Name="CnicFront" Type="text" />
           <Property Name="CnicBack" Type="text" />
+          <Property Name="ProfileFile" Type="text" />
+          <Property Name="BirthCertificate" Type="text" />
           <Property Name="FrcFile" Type="text" />
           <Property Name="HereshipCertificate" Type="text" />
           <Property Name="GuardianCertificate" Type="text" />
@@ -401,18 +450,6 @@
           <Property Name="ModifiedBy" Type="int" />
           <Property Name="ModifiedDate" Type="datetime" />
         </EntityType>
-        <EntityType Name="Phase">
-          <Key>
-            <PropertyRef Name="PhaseId" />
-          </Key>
-          <Property Name="PhaseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Phase" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="IsActive" Type="bit" Nullable="false" />
-          <Property Name="CreatedBy" Type="int" Nullable="false" />
-          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
-          <Property Name="ModifiedBy" Type="int" />
-          <Property Name="ModifiedDate" Type="datetime" />
-        </EntityType>
         <EntityType Name="Plot">
           <Key>
             <PropertyRef Name="PlotId" />
@@ -471,18 +508,6 @@
           <Property Name="ModifiedBy" Type="int" />
           <Property Name="ModifedDate" Type="datetime" />
         </EntityType>
-        <EntityType Name="PlotSpecs">
-          <Key>
-            <PropertyRef Name="PlotSpecsId" />
-          </Key>
-          <Property Name="PlotSpecsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PlotSpecs" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="IsActive" Type="bit" Nullable="false" />
-          <Property Name="CreatedBy" Type="int" Nullable="false" />
-          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
-          <Property Name="ModifiedBy" Type="int" />
-          <Property Name="ModifiedDate" Type="datetime" />
-        </EntityType>
         <EntityType Name="PlotSubType">
           <Key>
             <PropertyRef Name="PlotSubTypeId" />
@@ -521,37 +546,12 @@
           <Property Name="ModifiedBy" Type="int" />
           <Property Name="ModifedDate" Type="datetime" />
         </EntityType>
-        <EntityType Name="ProvisionalAllotmentFee">
-          <Key>
-            <PropertyRef Name="ProvisionalAllotmentFeeId" />
-          </Key>
-          <Property Name="ProvisionalAllotmentFeeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TenureId" Type="int" Nullable="false" />
-          <Property Name="ProvisionalAllotmentFee" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="IsActive" Type="bit" Nullable="false" />
-          <Property Name="CreatedBy" Type="int" Nullable="false" />
-          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
-          <Property Name="ModifiedBy" Type="int" />
-          <Property Name="ModifiedDate" Type="datetime" />
-        </EntityType>
         <EntityType Name="Relation">
           <Key>
             <PropertyRef Name="RelationId" />
           </Key>
           <Property Name="RelationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Relation" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="IsActive" Type="bit" Nullable="false" />
-          <Property Name="CreatedBy" Type="int" Nullable="false" />
-          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
-          <Property Name="ModifiedBy" Type="int" />
-          <Property Name="ModifiedDate" Type="datetime" />
-        </EntityType>
-        <EntityType Name="Religion">
-          <Key>
-            <PropertyRef Name="ReligionId" />
-          </Key>
-          <Property Name="ReligionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Religion" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedBy" Type="int" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
@@ -709,19 +709,6 @@
           <Property Name="ModifiedBy" Type="int" />
           <Property Name="ModifiedDate" Type="datetime" />
         </EntityType>
-        <EntityType Name="UnitRates">
-          <Key>
-            <PropertyRef Name="UnitRateId" />
-          </Key>
-          <Property Name="UnitRateId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UnitId" Type="int" Nullable="false" />
-          <Property Name="UnitRate" Type="int" Nullable="false" />
-          <Property Name="IsActive" Type="bit" Nullable="false" />
-          <Property Name="CreatedBy" Type="int" Nullable="false" />
-          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
-          <Property Name="ModifiedBy" Type="int" />
-          <Property Name="ModifiedDate" Type="datetime" />
-        </EntityType>
         <EntityType Name="Units">
           <Key>
             <PropertyRef Name="UnitId" />
@@ -751,27 +738,135 @@
           <Property Name="ModifiedBy" Type="int" />
           <Property Name="ModifiedDate" Type="datetime" />
         </EntityType>
-        <Association Name="FK_AllotmentOrder_Members">
-          <End Role="Members" Type="Self.Members" Multiplicity="1" />
-          <End Role="AllotmentOrder" Type="Self.AllotmentOrder" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Members">
-              <PropertyRef Name="MemberId" />
-            </Principal>
-            <Dependent Role="AllotmentOrder">
-              <PropertyRef Name="MemberId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_AllotmentOrder_Plot">
+        <Association Name="FK_Allotment_Plot">
           <End Role="Plot" Type="Self.Plot" Multiplicity="1" />
-          <End Role="AllotmentOrder" Type="Self.AllotmentOrder" Multiplicity="*" />
+          <End Role="Allotment" Type="Self.Allotment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Plot">
               <PropertyRef Name="PlotId" />
             </Principal>
-            <Dependent Role="AllotmentOrder">
+            <Dependent Role="Allotment">
               <PropertyRef Name="PlotId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AllotmentOrder_Members">
+          <End Role="Members" Type="Self.Members" Multiplicity="1" />
+          <End Role="Allotment" Type="Self.Allotment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Members">
+              <PropertyRef Name="MemberId" />
+            </Principal>
+            <Dependent Role="Allotment">
+              <PropertyRef Name="MemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssociateAllotment_Members">
+          <End Role="Members" Type="Self.Members" Multiplicity="1" />
+          <End Role="AssociateAllotment" Type="Self.AssociateAllotment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Members">
+              <PropertyRef Name="MemberId" />
+            </Principal>
+            <Dependent Role="AssociateAllotment">
+              <PropertyRef Name="MemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssociateAllotment_Plot">
+          <End Role="Plot" Type="Self.Plot" Multiplicity="1" />
+          <End Role="AssociateAllotment" Type="Self.AssociateAllotment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plot">
+              <PropertyRef Name="PlotId" />
+            </Principal>
+            <Dependent Role="AssociateAllotment">
+              <PropertyRef Name="PlotId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssociateMember_City">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="AssociateMember" Type="Self.AssociateMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="AssociateMember">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssociateMember_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="1" />
+          <End Role="AssociateMember" Type="Self.AssociateMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="AssociateMember">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssociateMember_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="AssociateMember" Type="Self.AssociateMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="GenderId" />
+            </Principal>
+            <Dependent Role="AssociateMember">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssociateMember_MemberRelation">
+          <End Role="MemberRelation" Type="Self.MemberRelation" Multiplicity="1" />
+          <End Role="AssociateMember" Type="Self.AssociateMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemberRelation">
+              <PropertyRef Name="MemberRelationId" />
+            </Principal>
+            <Dependent Role="AssociateMember">
+              <PropertyRef Name="MemberRelationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssociateMember_Members">
+          <End Role="Members" Type="Self.Members" Multiplicity="1" />
+          <End Role="AssociateMember" Type="Self.AssociateMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Members">
+              <PropertyRef Name="MemberId" />
+            </Principal>
+            <Dependent Role="AssociateMember">
+              <PropertyRef Name="MemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssociateMember_Province">
+          <End Role="Province" Type="Self.Province" Multiplicity="1" />
+          <End Role="AssociateMember" Type="Self.AssociateMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Province">
+              <PropertyRef Name="ProvinceId" />
+            </Principal>
+            <Dependent Role="AssociateMember">
+              <PropertyRef Name="ProvinceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssociateMember_Title">
+          <End Role="Title" Type="Self.Title" Multiplicity="1" />
+          <End Role="AssociateMember" Type="Self.AssociateMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Title">
+              <PropertyRef Name="TitleId" />
+            </Principal>
+            <Dependent Role="AssociateMember">
+              <PropertyRef Name="TitleId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1459,18 +1554,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UnitRate_Units">
-          <End Role="Units" Type="Self.Units" Multiplicity="1" />
-          <End Role="UnitRates" Type="Self.UnitRates" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Units">
-              <PropertyRef Name="UnitId" />
-            </Principal>
-            <Dependent Role="UnitRates">
-              <PropertyRef Name="UnitId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Users_Role">
           <End Role="Role" Type="Self.Role" Multiplicity="1" />
           <End Role="Users" Type="Self.Users" Multiplicity="*" />
@@ -1480,18 +1563,6 @@
             </Principal>
             <Dependent Role="Users">
               <PropertyRef Name="RoleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="ProvisionalAllotmentFee_Tenure">
-          <End Role="Tenure" Type="Self.Tenure" Multiplicity="1" />
-          <End Role="ProvisionalAllotmentFee" Type="Self.ProvisionalAllotmentFee" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tenure">
-              <PropertyRef Name="TenureId" />
-            </Principal>
-            <Dependent Role="ProvisionalAllotmentFee">
-              <PropertyRef Name="TenureId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1508,7 +1579,9 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="ShahWilayatModelStoreContainer">
-          <EntitySet Name="AllotmentOrder" EntityType="Self.AllotmentOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Allotment" EntityType="Self.Allotment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AssociateAllotment" EntityType="Self.AssociateAllotment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AssociateMember" EntityType="Self.AssociateMember" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Charges" EntityType="Self.Charges" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CnicHistory" EntityType="Self.CnicHistory" Schema="dbo" store:Type="Tables" />
@@ -1518,7 +1591,6 @@
           <EntitySet Name="InstallmentPlans" EntityType="Self.InstallmentPlans" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Installments" EntityType="Self.Installments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="IssuerDesignation" EntityType="Self.IssuerDesignation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MemberRelation" EntityType="Self.MemberRelation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Members" EntityType="Self.Members" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MembershipFee" EntityType="Self.MembershipFee" Schema="dbo" store:Type="Tables" />
@@ -1531,18 +1603,14 @@
           <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PaymentSetup" EntityType="Self.PaymentSetup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PaymentSubCategory" EntityType="Self.PaymentSubCategory" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Phase" EntityType="Self.Phase" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Plot" EntityType="Self.Plot" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PlotCategory" EntityType="Self.PlotCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PlotCategoryPercent" EntityType="Self.PlotCategoryPercent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PlotSize" EntityType="Self.PlotSize" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PlotSpecs" EntityType="Self.PlotSpecs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PlotSubType" EntityType="Self.PlotSubType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PlotType" EntityType="Self.PlotType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Province" EntityType="Self.Province" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ProvisionalAllotmentFee" EntityType="Self.ProvisionalAllotmentFee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Relation" EntityType="Self.Relation" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Religion" EntityType="Self.Religion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RoleMenuMapping" EntityType="Self.RoleMenuMapping" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ShareCertificateFee" EntityType="Self.ShareCertificateFee" Schema="dbo" store:Type="Tables" />
@@ -1553,16 +1621,51 @@
           <EntitySet Name="Title" EntityType="Self.Title" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Transfer" EntityType="Self.Transfer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TransferLogs" EntityType="Self.TransferLogs" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UnitRates" EntityType="Self.UnitRates" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Units" EntityType="Self.Units" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Allotment_Plot" Association="Self.FK_Allotment_Plot">
+            <End Role="Plot" EntitySet="Plot" />
+            <End Role="Allotment" EntitySet="Allotment" />
+          </AssociationSet>
           <AssociationSet Name="FK_AllotmentOrder_Members" Association="Self.FK_AllotmentOrder_Members">
             <End Role="Members" EntitySet="Members" />
-            <End Role="AllotmentOrder" EntitySet="AllotmentOrder" />
+            <End Role="Allotment" EntitySet="Allotment" />
           </AssociationSet>
-          <AssociationSet Name="FK_AllotmentOrder_Plot" Association="Self.FK_AllotmentOrder_Plot">
+          <AssociationSet Name="FK_AssociateAllotment_Members" Association="Self.FK_AssociateAllotment_Members">
+            <End Role="Members" EntitySet="Members" />
+            <End Role="AssociateAllotment" EntitySet="AssociateAllotment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssociateAllotment_Plot" Association="Self.FK_AssociateAllotment_Plot">
             <End Role="Plot" EntitySet="Plot" />
-            <End Role="AllotmentOrder" EntitySet="AllotmentOrder" />
+            <End Role="AssociateAllotment" EntitySet="AssociateAllotment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssociateMember_City" Association="Self.FK_AssociateMember_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="AssociateMember" EntitySet="AssociateMember" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssociateMember_Country" Association="Self.FK_AssociateMember_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="AssociateMember" EntitySet="AssociateMember" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssociateMember_Gender" Association="Self.FK_AssociateMember_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="AssociateMember" EntitySet="AssociateMember" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssociateMember_MemberRelation" Association="Self.FK_AssociateMember_MemberRelation">
+            <End Role="MemberRelation" EntitySet="MemberRelation" />
+            <End Role="AssociateMember" EntitySet="AssociateMember" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssociateMember_Members" Association="Self.FK_AssociateMember_Members">
+            <End Role="Members" EntitySet="Members" />
+            <End Role="AssociateMember" EntitySet="AssociateMember" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssociateMember_Province" Association="Self.FK_AssociateMember_Province">
+            <End Role="Province" EntitySet="Province" />
+            <End Role="AssociateMember" EntitySet="AssociateMember" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssociateMember_Title" Association="Self.FK_AssociateMember_Title">
+            <End Role="Title" EntitySet="Title" />
+            <End Role="AssociateMember" EntitySet="AssociateMember" />
           </AssociationSet>
           <AssociationSet Name="FK_Charges_PaymentSetup" Association="Self.FK_Charges_PaymentSetup">
             <End Role="PaymentSetup" EntitySet="PaymentSetup" />
@@ -1792,17 +1895,9 @@
             <End Role="Transfer" EntitySet="Transfer" />
             <End Role="TransferLogs" EntitySet="TransferLogs" />
           </AssociationSet>
-          <AssociationSet Name="FK_UnitRate_Units" Association="Self.FK_UnitRate_Units">
-            <End Role="Units" EntitySet="Units" />
-            <End Role="UnitRates" EntitySet="UnitRates" />
-          </AssociationSet>
           <AssociationSet Name="FK_Users_Role" Association="Self.FK_Users_Role">
             <End Role="Role" EntitySet="Role" />
             <End Role="Users" EntitySet="Users" />
-          </AssociationSet>
-          <AssociationSet Name="ProvisionalAllotmentFee_Tenure" Association="Self.ProvisionalAllotmentFee_Tenure">
-            <End Role="Tenure" EntitySet="Tenure" />
-            <End Role="ProvisionalAllotmentFee" EntitySet="ProvisionalAllotmentFee" />
           </AssociationSet>
           <AssociationSet Name="ShareCertificateFee_Tenure" Association="Self.ShareCertificateFee_Tenure">
             <End Role="Tenure" EntitySet="Tenure" />
@@ -1813,26 +1908,52 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ShahWilayatModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="AllotmentOrder">
+        <EntityType Name="AssociateMember">
           <Key>
-            <PropertyRef Name="AllotmentOrderId" />
+            <PropertyRef Name="AssociateMemberId" />
           </Key>
-          <Property Name="AllotmentOrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AssociateMemberId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MemberId" Type="Int32" Nullable="false" />
-          <Property Name="PlotId" Type="Int32" Nullable="false" />
-          <Property Name="AllotmentOrderNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="AllotmentOrderDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ProvisionalAllotmentNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ProvisionalAllotmentDate" Type="DateTime" Precision="3" />
-          <Property Name="ShareCertificateNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ShareCertificateDate" Type="DateTime" Precision="3" />
+          <Property Name="TitleId" Type="Int32" Nullable="false" />
+          <Property Name="MemberRelationId" Type="Int32" Nullable="false" />
+          <Property Name="GenderId" Type="Int32" Nullable="false" />
+          <Property Name="CountryId" Type="Int32" Nullable="false" />
+          <Property Name="ProvinceId" Type="Int32" Nullable="false" />
+          <Property Name="CityId" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FatherName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CellNo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Landline" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WhatsApp" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="OfficePhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Dob" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="BirthPlace" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CNIC" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CnicExpiryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="BloodGroup" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PostalCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PermanentAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Occupation" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CnicFrontFile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CnicBackFile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ProfileFile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsMember" Type="Boolean" Nullable="false" />
+          <Property Name="IsGone" Type="Boolean" Nullable="false" />
+          <Property Name="GoneDate" Type="DateTime" Precision="3" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="CreatedBy" Type="Int32" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Member" Relationship="Self.FK_AllotmentOrder_Members" FromRole="AllotmentOrder" ToRole="Members" />
-          <NavigationProperty Name="Plot" Relationship="Self.FK_AllotmentOrder_Plot" FromRole="AllotmentOrder" ToRole="Plot" />
+          <NavigationProperty Name="City" Relationship="Self.FK_AssociateMember_City" FromRole="AssociateMember" ToRole="City" />
+          <NavigationProperty Name="Country" Relationship="Self.FK_AssociateMember_Country" FromRole="AssociateMember" ToRole="Country" />
+          <NavigationProperty Name="Gender" Relationship="Self.FK_AssociateMember_Gender" FromRole="AssociateMember" ToRole="Gender" />
+          <NavigationProperty Name="MemberRelation" Relationship="Self.FK_AssociateMember_MemberRelation" FromRole="AssociateMember" ToRole="MemberRelation" />
+          <NavigationProperty Name="Member" Relationship="Self.FK_AssociateMember_Members" FromRole="AssociateMember" ToRole="Members" />
+          <NavigationProperty Name="Province" Relationship="Self.FK_AssociateMember_Province" FromRole="AssociateMember" ToRole="Province" />
+          <NavigationProperty Name="Title" Relationship="Self.FK_AssociateMember_Title" FromRole="AssociateMember" ToRole="Title" />
         </EntityType>
         <EntityType Name="Charge">
           <Key>
@@ -1866,6 +1987,7 @@
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="ModifedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AssociateMembers" Relationship="Self.FK_AssociateMember_City" FromRole="City" ToRole="AssociateMember" />
           <NavigationProperty Name="Province" Relationship="Self.FK_City_Province" FromRole="City" ToRole="Province" />
           <NavigationProperty Name="Members" Relationship="Self.FK_Members_City" FromRole="City" ToRole="Members" />
         </EntityType>
@@ -1894,6 +2016,7 @@
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AssociateMembers" Relationship="Self.FK_AssociateMember_Country" FromRole="Country" ToRole="AssociateMember" />
           <NavigationProperty Name="Members" Relationship="Self.FK_Members_Country" FromRole="Country" ToRole="Members" />
           <NavigationProperty Name="Provinces" Relationship="Self.FK_Province_Country" FromRole="Country" ToRole="Province" />
         </EntityType>
@@ -1929,6 +2052,7 @@
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AssociateMembers" Relationship="Self.FK_AssociateMember_Gender" FromRole="Gender" ToRole="AssociateMember" />
           <NavigationProperty Name="Members" Relationship="Self.FK_Members_Gender" FromRole="Gender" ToRole="Members" />
         </EntityType>
         <EntityType Name="InstallmentPlan">
@@ -1991,18 +2115,6 @@
           <NavigationProperty Name="Member" Relationship="Self.FK_Invoice_Members" FromRole="Invoice" ToRole="Members" />
           <NavigationProperty Name="Plot" Relationship="Self.FK_Invoice_Plot" FromRole="Invoice" ToRole="Plot" />
         </EntityType>
-        <EntityType Name="IssuerDesignation">
-          <Key>
-            <PropertyRef Name="IssuerDesignationId" />
-          </Key>
-          <Property Name="IssuerDesignationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IssuerDesignation1" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
-          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ModifiedBy" Type="Int32" />
-          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-        </EntityType>
         <EntityType Name="MemberRelation">
           <Key>
             <PropertyRef Name="MemberRelationId" />
@@ -2014,6 +2126,7 @@
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AssociateMembers" Relationship="Self.FK_AssociateMember_MemberRelation" FromRole="MemberRelation" ToRole="AssociateMember" />
           <NavigationProperty Name="Members" Relationship="Self.FK_Members_MemberRelation" FromRole="MemberRelation" ToRole="Members" />
           <NavigationProperty Name="Members1" Relationship="Self.FK_Members_MemberRelation1" FromRole="MemberRelation" ToRole="Members" />
           <NavigationProperty Name="Nominees" Relationship="Self.FK_Nominee_MemberRelation" FromRole="MemberRelation" ToRole="Nominee" />
@@ -2039,11 +2152,14 @@
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Dob" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="BirthPlace" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="BloodGroup" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CNIC" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CnicExpiryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="BloodGroup" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PostalCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PermanentAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Occupation" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="MembershipNo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MembershipDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ReferenceNo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="FolioNo" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="CnicFrontFile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
@@ -2057,7 +2173,7 @@
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="AllotmentOrders" Relationship="Self.FK_AllotmentOrder_Members" FromRole="Members" ToRole="AllotmentOrder" />
+          <NavigationProperty Name="AssociateMembers" Relationship="Self.FK_AssociateMember_Members" FromRole="Members" ToRole="AssociateMember" />
           <NavigationProperty Name="City" Relationship="Self.FK_Members_City" FromRole="Members" ToRole="City" />
           <NavigationProperty Name="CnicHistories" Relationship="Self.FK_HistoryCnic_Members" FromRole="Members" ToRole="CnicHistory" />
           <NavigationProperty Name="Country" Relationship="Self.FK_Members_Country" FromRole="Members" ToRole="Country" />
@@ -2077,9 +2193,8 @@
           <NavigationProperty Name="SocietyPayments" Relationship="Self.FK_SocietyPayment_Members" FromRole="Members" ToRole="SocietyPayment" />
           <NavigationProperty Name="Transfers" Relationship="Self.FK_Transfer_Members" FromRole="Members" ToRole="Transfer" />
           <NavigationProperty Name="TransferLogs" Relationship="Self.FK_TransferLogs_Members" FromRole="Members" ToRole="TransferLogs" />
-          <Property Name="CNIC" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Occupation" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="MembershipDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Allotments" Relationship="ShahWilayatModel.FK_AllotmentOrder_Members1" FromRole="Member" ToRole="Allotment" />
+          <NavigationProperty Name="AssociateAllotments" Relationship="ShahWilayatModel.FK_AssociateAllotment_Members" FromRole="Member" ToRole="AssociateAllotment" />
         </EntityType>
         <EntityType Name="MembershipFee">
           <Key>
@@ -2128,7 +2243,6 @@
           <Property Name="CNIC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CellNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="AttachmentFile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="CnicFront" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="CnicBack" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="FrcFile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
@@ -2144,6 +2258,9 @@
           <NavigationProperty Name="Member" Relationship="Self.FK_Nominee_Members" FromRole="Nominee" ToRole="Members" />
           <NavigationProperty Name="Relation" Relationship="Self.FK_Nominee_Relation" FromRole="Nominee" ToRole="Relation" />
           <NavigationProperty Name="Title" Relationship="Self.FK_Nominee_Title" FromRole="Nominee" ToRole="Title" />
+          <Property Name="FatherName" Type="Binary" Nullable="false" MaxLength="50" FixedLength="false" />
+          <Property Name="ProfileFile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="BirthCertificate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="PaymentCategory">
           <Key>
@@ -2280,18 +2397,6 @@
           <NavigationProperty Name="PaymentSetups" Relationship="Self.FK_PaymentSetup_PaymentSubCategory" FromRole="PaymentSubCategory" ToRole="PaymentSetup" />
           <NavigationProperty Name="Tenures" Relationship="Self.FK_Tenure_PaymentSubCategory" FromRole="PaymentSubCategory" ToRole="Tenure" />
         </EntityType>
-        <EntityType Name="Phase">
-          <Key>
-            <PropertyRef Name="PhaseId" />
-          </Key>
-          <Property Name="PhaseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Phase1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
-          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ModifiedBy" Type="Int32" />
-          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-        </EntityType>
         <EntityType Name="Plot">
           <Key>
             <PropertyRef Name="PlotId" />
@@ -2310,7 +2415,6 @@
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="AllotmentOrders" Relationship="Self.FK_AllotmentOrder_Plot" FromRole="Plot" ToRole="AllotmentOrder" />
           <NavigationProperty Name="Installments" Relationship="Self.FK_Installments_Plot" FromRole="Plot" ToRole="Installments" />
           <NavigationProperty Name="Invoices" Relationship="Self.FK_Invoice_Plot" FromRole="Plot" ToRole="Invoice" />
           <NavigationProperty Name="PaymentPlans" Relationship="Self.FK_PaymentPlan_Plot" FromRole="Plot" ToRole="PaymentPlan" />
@@ -2326,6 +2430,8 @@
           <NavigationProperty Name="SocietyPayments" Relationship="Self.FK_SocietyPayment_Plot" FromRole="Plot" ToRole="SocietyPayment" />
           <NavigationProperty Name="Transfers" Relationship="Self.FK_Transfer_Plot" FromRole="Plot" ToRole="Transfer" />
           <NavigationProperty Name="TransferLogs" Relationship="Self.FK_TransferLogs_Plot" FromRole="Plot" ToRole="TransferLogs" />
+          <NavigationProperty Name="Allotments" Relationship="ShahWilayatModel.FK_Allotment_Plot" FromRole="Plot" ToRole="Allotment" />
+          <NavigationProperty Name="AssociateAllotments" Relationship="ShahWilayatModel.FK_AssociateAllotment_Plot" FromRole="Plot" ToRole="AssociateAllotment" />
         </EntityType>
         <EntityType Name="PlotCategory">
           <Key>
@@ -2366,18 +2472,6 @@
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="ModifedDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Plots" Relationship="Self.FK_Plot_PlotSize" FromRole="PlotSize" ToRole="Plot" />
-        </EntityType>
-        <EntityType Name="PlotSpec">
-          <Key>
-            <PropertyRef Name="PlotSpecsId" />
-          </Key>
-          <Property Name="PlotSpecsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PlotSpecs" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
-          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ModifiedBy" Type="Int32" />
-          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="PlotSubType">
           <Key>
@@ -2421,23 +2515,10 @@
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="ModifedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AssociateMembers" Relationship="Self.FK_AssociateMember_Province" FromRole="Province" ToRole="AssociateMember" />
           <NavigationProperty Name="Cities" Relationship="Self.FK_City_Province" FromRole="Province" ToRole="City" />
           <NavigationProperty Name="Country" Relationship="Self.FK_Province_Country" FromRole="Province" ToRole="Country" />
           <NavigationProperty Name="Members" Relationship="Self.FK_Members_Province" FromRole="Province" ToRole="Members" />
-        </EntityType>
-        <EntityType Name="ProvisionalAllotmentFee">
-          <Key>
-            <PropertyRef Name="ProvisionalAllotmentFeeId" />
-          </Key>
-          <Property Name="ProvisionalAllotmentFeeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TenureId" Type="Int32" Nullable="false" />
-          <Property Name="ProvisionalAllotmentFee1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
-          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ModifiedBy" Type="Int32" />
-          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Tenure" Relationship="Self.ProvisionalAllotmentFee_Tenure" FromRole="ProvisionalAllotmentFee" ToRole="Tenure" />
         </EntityType>
         <EntityType Name="Relation">
           <Key>
@@ -2451,18 +2532,6 @@
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Nominees" Relationship="Self.FK_Nominee_Relation" FromRole="Relation" ToRole="Nominee" />
-        </EntityType>
-        <EntityType Name="Religion">
-          <Key>
-            <PropertyRef Name="ReligionId" />
-          </Key>
-          <Property Name="ReligionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Religion1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
-          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ModifiedBy" Type="Int32" />
-          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -2578,7 +2647,6 @@
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="PaymentSetups" Relationship="Self.FK_PaymentSetup_Tenure" FromRole="Tenure" ToRole="PaymentSetup" />
           <NavigationProperty Name="PaymentSubCategory" Relationship="Self.FK_Tenure_PaymentSubCategory" FromRole="Tenure" ToRole="PaymentSubCategory" />
-          <NavigationProperty Name="ProvisionalAllotmentFees" Relationship="Self.ProvisionalAllotmentFee_Tenure" FromRole="Tenure" ToRole="ProvisionalAllotmentFee" />
           <NavigationProperty Name="ShareCertificateFees" Relationship="Self.ShareCertificateFee_Tenure" FromRole="Tenure" ToRole="ShareCertificateFee" />
           <NavigationProperty Name="SocietyPaymentDetails" Relationship="Self.FK_SocietyPaymentDetails_Tenure" FromRole="Tenure" ToRole="SocietyPaymentDetails" />
         </EntityType>
@@ -2593,6 +2661,7 @@
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AssociateMembers" Relationship="Self.FK_AssociateMember_Title" FromRole="Title" ToRole="AssociateMember" />
           <NavigationProperty Name="Members" Relationship="Self.FK_Members_Title" FromRole="Title" ToRole="Members" />
           <NavigationProperty Name="Members1" Relationship="Self.FK_Members_Title1" FromRole="Title" ToRole="Members" />
           <NavigationProperty Name="Nominees" Relationship="Self.FK_Nominee_Title" FromRole="Title" ToRole="Nominee" />
@@ -2639,20 +2708,6 @@
           <NavigationProperty Name="Plot" Relationship="Self.FK_TransferLogs_Plot" FromRole="TransferLogs" ToRole="Plot" />
           <NavigationProperty Name="Transfer" Relationship="Self.FK_TransferLogs_Transfer" FromRole="TransferLogs" ToRole="Transfer" />
         </EntityType>
-        <EntityType Name="UnitRate">
-          <Key>
-            <PropertyRef Name="UnitRateId" />
-          </Key>
-          <Property Name="UnitRateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UnitId" Type="Int32" Nullable="false" />
-          <Property Name="UnitRate1" Type="Int32" Nullable="false" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
-          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ModifiedBy" Type="Int32" />
-          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Unit" Relationship="Self.FK_UnitRate_Units" FromRole="UnitRates" ToRole="Units" />
-        </EntityType>
         <EntityType Name="Unit">
           <Key>
             <PropertyRef Name="UnitId" />
@@ -2665,7 +2720,6 @@
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Plots" Relationship="Self.FK_Plot_Units" FromRole="Units" ToRole="Plot" />
-          <NavigationProperty Name="UnitRates" Relationship="Self.FK_UnitRate_Units" FromRole="Units" ToRole="UnitRates" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -2685,27 +2739,87 @@
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Role" Relationship="Self.FK_Users_Role" FromRole="Users" ToRole="Role" />
         </EntityType>
-        <Association Name="FK_AllotmentOrder_Members">
+        <Association Name="FK_AssociateMember_City">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="AssociateMember" Type="Self.AssociateMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="AssociateMember">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssociateMember_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="1" />
+          <End Role="AssociateMember" Type="Self.AssociateMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="AssociateMember">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssociateMember_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="AssociateMember" Type="Self.AssociateMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="GenderId" />
+            </Principal>
+            <Dependent Role="AssociateMember">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssociateMember_MemberRelation">
+          <End Role="MemberRelation" Type="Self.MemberRelation" Multiplicity="1" />
+          <End Role="AssociateMember" Type="Self.AssociateMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemberRelation">
+              <PropertyRef Name="MemberRelationId" />
+            </Principal>
+            <Dependent Role="AssociateMember">
+              <PropertyRef Name="MemberRelationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssociateMember_Members">
           <End Role="Members" Type="Self.Member" Multiplicity="1" />
-          <End Role="AllotmentOrder" Type="Self.AllotmentOrder" Multiplicity="*" />
+          <End Role="AssociateMember" Type="Self.AssociateMember" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Members">
               <PropertyRef Name="MemberId" />
             </Principal>
-            <Dependent Role="AllotmentOrder">
+            <Dependent Role="AssociateMember">
               <PropertyRef Name="MemberId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_AllotmentOrder_Plot">
-          <End Role="Plot" Type="Self.Plot" Multiplicity="1" />
-          <End Role="AllotmentOrder" Type="Self.AllotmentOrder" Multiplicity="*" />
+        <Association Name="FK_AssociateMember_Province">
+          <End Role="Province" Type="Self.Province" Multiplicity="1" />
+          <End Role="AssociateMember" Type="Self.AssociateMember" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Plot">
-              <PropertyRef Name="PlotId" />
+            <Principal Role="Province">
+              <PropertyRef Name="ProvinceId" />
             </Principal>
-            <Dependent Role="AllotmentOrder">
-              <PropertyRef Name="PlotId" />
+            <Dependent Role="AssociateMember">
+              <PropertyRef Name="ProvinceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssociateMember_Title">
+          <End Role="Title" Type="Self.Title" Multiplicity="1" />
+          <End Role="AssociateMember" Type="Self.AssociateMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Title">
+              <PropertyRef Name="TitleId" />
+            </Principal>
+            <Dependent Role="AssociateMember">
+              <PropertyRef Name="TitleId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3357,18 +3471,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="ProvisionalAllotmentFee_Tenure">
-          <End Role="Tenure" Type="Self.Tenure" Multiplicity="1" />
-          <End Role="ProvisionalAllotmentFee" Type="Self.ProvisionalAllotmentFee" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tenure">
-              <PropertyRef Name="TenureId" />
-            </Principal>
-            <Dependent Role="ProvisionalAllotmentFee">
-              <PropertyRef Name="TenureId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Users_Role">
           <End Role="Role" Type="Self.Role" Multiplicity="1" />
           <End Role="Users" Type="Self.User" Multiplicity="*" />
@@ -3429,20 +3531,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UnitRate_Units">
-          <End Role="Units" Type="Self.Unit" Multiplicity="1" />
-          <End Role="UnitRates" Type="Self.UnitRate" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Units">
-              <PropertyRef Name="UnitId" />
-            </Principal>
-            <Dependent Role="UnitRates">
-              <PropertyRef Name="UnitId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="ShahWilayatEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="AllotmentOrders" EntityType="Self.AllotmentOrder" />
+          <EntitySet Name="AssociateMembers" EntityType="Self.AssociateMember" />
           <EntitySet Name="Charges" EntityType="Self.Charge" />
           <EntitySet Name="Cities" EntityType="Self.City" />
           <EntitySet Name="CnicHistories" EntityType="Self.CnicHistory" />
@@ -3452,7 +3542,6 @@
           <EntitySet Name="InstallmentPlans" EntityType="Self.InstallmentPlan" />
           <EntitySet Name="Installments" EntityType="Self.Installment" />
           <EntitySet Name="Invoices" EntityType="Self.Invoice" />
-          <EntitySet Name="IssuerDesignations" EntityType="Self.IssuerDesignation" />
           <EntitySet Name="MemberRelations" EntityType="Self.MemberRelation" />
           <EntitySet Name="Members" EntityType="Self.Member" />
           <EntitySet Name="MembershipFees" EntityType="Self.MembershipFee" />
@@ -3465,18 +3554,14 @@
           <EntitySet Name="Payments" EntityType="Self.Payment" />
           <EntitySet Name="PaymentSetups" EntityType="Self.PaymentSetup" />
           <EntitySet Name="PaymentSubCategories" EntityType="Self.PaymentSubCategory" />
-          <EntitySet Name="Phases" EntityType="Self.Phase" />
           <EntitySet Name="Plots" EntityType="Self.Plot" />
           <EntitySet Name="PlotCategories" EntityType="Self.PlotCategory" />
           <EntitySet Name="PlotCategoryPercents" EntityType="Self.PlotCategoryPercent" />
           <EntitySet Name="PlotSizes" EntityType="Self.PlotSize" />
-          <EntitySet Name="PlotSpecs" EntityType="Self.PlotSpec" />
           <EntitySet Name="PlotSubTypes" EntityType="Self.PlotSubType" />
           <EntitySet Name="PlotTypes" EntityType="Self.PlotType" />
           <EntitySet Name="Provinces" EntityType="Self.Province" />
-          <EntitySet Name="ProvisionalAllotmentFees" EntityType="Self.ProvisionalAllotmentFee" />
           <EntitySet Name="Relations" EntityType="Self.Relation" />
-          <EntitySet Name="Religions" EntityType="Self.Religion" />
           <EntitySet Name="Roles" EntityType="Self.Role" />
           <EntitySet Name="RoleMenuMappings" EntityType="Self.RoleMenuMapping" />
           <EntitySet Name="ShareCertificateFees" EntityType="Self.ShareCertificateFee" />
@@ -3487,16 +3572,35 @@
           <EntitySet Name="Titles" EntityType="Self.Title" />
           <EntitySet Name="Transfers" EntityType="Self.Transfer" />
           <EntitySet Name="TransferLogs" EntityType="Self.TransferLog" />
-          <EntitySet Name="UnitRates" EntityType="Self.UnitRate" />
           <EntitySet Name="Units" EntityType="Self.Unit" />
           <EntitySet Name="Users" EntityType="Self.User" />
-          <AssociationSet Name="FK_AllotmentOrder_Members" Association="Self.FK_AllotmentOrder_Members">
-            <End Role="Members" EntitySet="Members" />
-            <End Role="AllotmentOrder" EntitySet="AllotmentOrders" />
+          <AssociationSet Name="FK_AssociateMember_City" Association="Self.FK_AssociateMember_City">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="AssociateMember" EntitySet="AssociateMembers" />
           </AssociationSet>
-          <AssociationSet Name="FK_AllotmentOrder_Plot" Association="Self.FK_AllotmentOrder_Plot">
-            <End Role="Plot" EntitySet="Plots" />
-            <End Role="AllotmentOrder" EntitySet="AllotmentOrders" />
+          <AssociationSet Name="FK_AssociateMember_Country" Association="Self.FK_AssociateMember_Country">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="AssociateMember" EntitySet="AssociateMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssociateMember_Gender" Association="Self.FK_AssociateMember_Gender">
+            <End Role="Gender" EntitySet="Genders" />
+            <End Role="AssociateMember" EntitySet="AssociateMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssociateMember_MemberRelation" Association="Self.FK_AssociateMember_MemberRelation">
+            <End Role="MemberRelation" EntitySet="MemberRelations" />
+            <End Role="AssociateMember" EntitySet="AssociateMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssociateMember_Members" Association="Self.FK_AssociateMember_Members">
+            <End Role="Members" EntitySet="Members" />
+            <End Role="AssociateMember" EntitySet="AssociateMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssociateMember_Province" Association="Self.FK_AssociateMember_Province">
+            <End Role="Province" EntitySet="Provinces" />
+            <End Role="AssociateMember" EntitySet="AssociateMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssociateMember_Title" Association="Self.FK_AssociateMember_Title">
+            <End Role="Title" EntitySet="Titles" />
+            <End Role="AssociateMember" EntitySet="AssociateMembers" />
           </AssociationSet>
           <AssociationSet Name="FK_Charges_PaymentSetup" Association="Self.FK_Charges_PaymentSetup">
             <End Role="PaymentSetup" EntitySet="PaymentSetups" />
@@ -3714,10 +3818,6 @@
             <End Role="PlotType" EntitySet="PlotTypes" />
             <End Role="PlotSubType" EntitySet="PlotSubTypes" />
           </AssociationSet>
-          <AssociationSet Name="ProvisionalAllotmentFee_Tenure" Association="Self.ProvisionalAllotmentFee_Tenure">
-            <End Role="Tenure" EntitySet="Tenures" />
-            <End Role="ProvisionalAllotmentFee" EntitySet="ProvisionalAllotmentFees" />
-          </AssociationSet>
           <AssociationSet Name="FK_Users_Role" Association="Self.FK_Users_Role">
             <End Role="Role" EntitySet="Roles" />
             <End Role="Users" EntitySet="Users" />
@@ -3738,29 +3838,154 @@
             <End Role="Transfer" EntitySet="Transfers" />
             <End Role="TransferLogs" EntitySet="TransferLogs" />
           </AssociationSet>
-          <AssociationSet Name="FK_UnitRate_Units" Association="Self.FK_UnitRate_Units">
-            <End Role="Units" EntitySet="Units" />
-            <End Role="UnitRates" EntitySet="UnitRates" />
+          <EntitySet Name="Allotments" EntityType="ShahWilayatModel.Allotment" />
+          <AssociationSet Name="FK_AllotmentOrder_Members1" Association="ShahWilayatModel.FK_AllotmentOrder_Members1">
+            <End Role="Member" EntitySet="Members" />
+            <End Role="Allotment" EntitySet="Allotments" />
+          </AssociationSet>
+          <EntitySet Name="AssociateAllotments" EntityType="ShahWilayatModel.AssociateAllotment" />
+          <AssociationSet Name="FK_Allotment_Plot" Association="ShahWilayatModel.FK_Allotment_Plot">
+            <End Role="Plot" EntitySet="Plots" />
+            <End Role="Allotment" EntitySet="Allotments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssociateAllotment_Members" Association="ShahWilayatModel.FK_AssociateAllotment_Members">
+            <End Role="Member" EntitySet="Members" />
+            <End Role="AssociateAllotment" EntitySet="AssociateAllotments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssociateAllotment_Plot" Association="ShahWilayatModel.FK_AssociateAllotment_Plot">
+            <End Role="Plot" EntitySet="Plots" />
+            <End Role="AssociateAllotment" EntitySet="AssociateAllotments" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Allotment">
+          <Key>
+            <PropertyRef Name="AllotmentId" />
+          </Key>
+          <Property Name="AllotmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberId" Type="Int32" Nullable="false" />
+          <Property Name="PlotId" Type="Int32" Nullable="false" />
+          <Property Name="AllotmentOrderNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AllotmentOrderDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ProvisionalAllotmentNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProvisionalAllotmentDate" Type="DateTime" Precision="3" />
+          <Property Name="ShareCertificateNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ShareCertificateDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Member" Relationship="ShahWilayatModel.FK_AllotmentOrder_Members1" FromRole="Allotment" ToRole="Member" />
+          <NavigationProperty Name="Plot" Relationship="ShahWilayatModel.FK_Allotment_Plot" FromRole="Allotment" ToRole="Plot" />
+        </EntityType>
+        <Association Name="FK_AllotmentOrder_Members1">
+          <End Type="ShahWilayatModel.Member" Role="Member" Multiplicity="1" />
+          <End Type="ShahWilayatModel.Allotment" Role="Allotment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberId" />
+            </Principal>
+            <Dependent Role="Allotment">
+              <PropertyRef Name="MemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AssociateAllotment">
+          <Key>
+            <PropertyRef Name="AssociateAllotmentId" />
+          </Key>
+          <Property Name="AssociateAllotmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberId" Type="Int32" Nullable="false" />
+          <Property Name="PlotId" Type="Int32" Nullable="false" />
+          <Property Name="AllotmentOrderNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AllotmentOrderDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ProvisionalAllotmentNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProvisionalAllotmentDate" Type="DateTime" Precision="3" />
+          <Property Name="ShareCertificateNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ShareCertificateDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Member" Relationship="ShahWilayatModel.FK_AssociateAllotment_Members" FromRole="AssociateAllotment" ToRole="Member" />
+          <NavigationProperty Name="Plot" Relationship="ShahWilayatModel.FK_AssociateAllotment_Plot" FromRole="AssociateAllotment" ToRole="Plot" />
+        </EntityType>
+        <Association Name="FK_Allotment_Plot">
+          <End Type="ShahWilayatModel.Plot" Role="Plot" Multiplicity="1" />
+          <End Type="ShahWilayatModel.Allotment" Role="Allotment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plot">
+              <PropertyRef Name="PlotId" />
+            </Principal>
+            <Dependent Role="Allotment">
+              <PropertyRef Name="PlotId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssociateAllotment_Members">
+          <End Type="ShahWilayatModel.Member" Role="Member" Multiplicity="1" />
+          <End Type="ShahWilayatModel.AssociateAllotment" Role="AssociateAllotment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberId" />
+            </Principal>
+            <Dependent Role="AssociateAllotment">
+              <PropertyRef Name="MemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssociateAllotment_Plot">
+          <End Type="ShahWilayatModel.Plot" Role="Plot" Multiplicity="1" />
+          <End Type="ShahWilayatModel.AssociateAllotment" Role="AssociateAllotment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plot">
+              <PropertyRef Name="PlotId" />
+            </Principal>
+            <Dependent Role="AssociateAllotment">
+              <PropertyRef Name="PlotId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ShahWilayatModelStoreContainer" CdmEntityContainer="ShahWilayatEntities">
-          <EntitySetMapping Name="AllotmentOrders">
-            <EntityTypeMapping TypeName="ShahWilayatModel.AllotmentOrder">
-              <MappingFragment StoreEntitySet="AllotmentOrder">
-                <ScalarProperty Name="AllotmentOrderId" ColumnName="AllotmentOrderId" />
+          <EntitySetMapping Name="AssociateMembers">
+            <EntityTypeMapping TypeName="ShahWilayatModel.AssociateMember">
+              <MappingFragment StoreEntitySet="AssociateMember">
+                <ScalarProperty Name="AssociateMemberId" ColumnName="AssociateMemberId" />
                 <ScalarProperty Name="MemberId" ColumnName="MemberId" />
-                <ScalarProperty Name="PlotId" ColumnName="PlotId" />
-                <ScalarProperty Name="AllotmentOrderNo" ColumnName="AllotmentOrderNo" />
-                <ScalarProperty Name="AllotmentOrderDate" ColumnName="AllotmentOrderDate" />
-                <ScalarProperty Name="ProvisionalAllotmentNo" ColumnName="ProvisionalAllotmentNo" />
-                <ScalarProperty Name="ProvisionalAllotmentDate" ColumnName="ProvisionalAllotmentDate" />
-                <ScalarProperty Name="ShareCertificateNo" ColumnName="ShareCertificateNo" />
-                <ScalarProperty Name="ShareCertificateDate" ColumnName="ShareCertificateDate" />
+                <ScalarProperty Name="TitleId" ColumnName="TitleId" />
+                <ScalarProperty Name="MemberRelationId" ColumnName="MemberRelationId" />
+                <ScalarProperty Name="GenderId" ColumnName="GenderId" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="ProvinceId" ColumnName="ProvinceId" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+                <ScalarProperty Name="CellNo" ColumnName="CellNo" />
+                <ScalarProperty Name="Landline" ColumnName="Landline" />
+                <ScalarProperty Name="WhatsApp" ColumnName="WhatsApp" />
+                <ScalarProperty Name="OfficePhone" ColumnName="OfficePhone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Dob" ColumnName="Dob" />
+                <ScalarProperty Name="BirthPlace" ColumnName="BirthPlace" />
+                <ScalarProperty Name="CNIC" ColumnName="CNIC" />
+                <ScalarProperty Name="CnicExpiryDate" ColumnName="CnicExpiryDate" />
+                <ScalarProperty Name="BloodGroup" ColumnName="BloodGroup" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="PermanentAddress" ColumnName="PermanentAddress" />
+                <ScalarProperty Name="Occupation" ColumnName="Occupation" />
+                <ScalarProperty Name="CnicFrontFile" ColumnName="CnicFrontFile" />
+                <ScalarProperty Name="CnicBackFile" ColumnName="CnicBackFile" />
+                <ScalarProperty Name="ProfileFile" ColumnName="ProfileFile" />
+                <ScalarProperty Name="IsMember" ColumnName="IsMember" />
+                <ScalarProperty Name="IsGone" ColumnName="IsGone" />
+                <ScalarProperty Name="GoneDate" ColumnName="GoneDate" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
@@ -3916,19 +4141,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="IssuerDesignations">
-            <EntityTypeMapping TypeName="ShahWilayatModel.IssuerDesignation">
-              <MappingFragment StoreEntitySet="IssuerDesignation">
-                <ScalarProperty Name="IssuerDesignationId" ColumnName="IssuerDesignationId" />
-                <ScalarProperty Name="IssuerDesignation1" ColumnName="IssuerDesignation" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="MemberRelations">
             <EntityTypeMapping TypeName="ShahWilayatModel.MemberRelation">
               <MappingFragment StoreEntitySet="MemberRelation">
@@ -3945,9 +4157,6 @@
           <EntitySetMapping Name="Members">
             <EntityTypeMapping TypeName="ShahWilayatModel.Member">
               <MappingFragment StoreEntitySet="Members">
-                <ScalarProperty Name="MembershipDate" ColumnName="MembershipDate" />
-                <ScalarProperty Name="Occupation" ColumnName="Occupation" />
-                <ScalarProperty Name="CNIC" ColumnName="CNIC" />
                 <ScalarProperty Name="MemberId" ColumnName="MemberId" />
                 <ScalarProperty Name="TitleId" ColumnName="TitleId" />
                 <ScalarProperty Name="MemberRelationId" ColumnName="MemberRelationId" />
@@ -3965,11 +4174,14 @@
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Dob" ColumnName="Dob" />
                 <ScalarProperty Name="BirthPlace" ColumnName="BirthPlace" />
-                <ScalarProperty Name="BloodGroup" ColumnName="BloodGroup" />
+                <ScalarProperty Name="CNIC" ColumnName="CNIC" />
                 <ScalarProperty Name="CnicExpiryDate" ColumnName="CnicExpiryDate" />
+                <ScalarProperty Name="BloodGroup" ColumnName="BloodGroup" />
                 <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
                 <ScalarProperty Name="PermanentAddress" ColumnName="PermanentAddress" />
+                <ScalarProperty Name="Occupation" ColumnName="Occupation" />
                 <ScalarProperty Name="MembershipNo" ColumnName="MembershipNo" />
+                <ScalarProperty Name="MembershipDate" ColumnName="MembershipDate" />
                 <ScalarProperty Name="ReferenceNo" ColumnName="ReferenceNo" />
                 <ScalarProperty Name="FolioNo" ColumnName="FolioNo" />
                 <ScalarProperty Name="CnicFrontFile" ColumnName="CnicFrontFile" />
@@ -4021,6 +4233,9 @@
           <EntitySetMapping Name="Nominees">
             <EntityTypeMapping TypeName="ShahWilayatModel.Nominee">
               <MappingFragment StoreEntitySet="Nominee">
+                <ScalarProperty Name="BirthCertificate" ColumnName="BirthCertificate" />
+                <ScalarProperty Name="ProfileFile" ColumnName="ProfileFile" />
+                <ScalarProperty Name="FatherName" ColumnName="FatherName" />
                 <ScalarProperty Name="NomineeId" ColumnName="NomineeId" />
                 <ScalarProperty Name="MemberId" ColumnName="MemberId" />
                 <ScalarProperty Name="TitleId" ColumnName="TitleId" />
@@ -4033,7 +4248,6 @@
                 <ScalarProperty Name="CNIC" ColumnName="CNIC" />
                 <ScalarProperty Name="CellNo" ColumnName="CellNo" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="AttachmentFile" ColumnName="AttachmentFile" />
                 <ScalarProperty Name="CnicFront" ColumnName="CnicFront" />
                 <ScalarProperty Name="CnicBack" ColumnName="CnicBack" />
                 <ScalarProperty Name="FrcFile" ColumnName="FrcFile" />
@@ -4168,19 +4382,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Phases">
-            <EntityTypeMapping TypeName="ShahWilayatModel.Phase">
-              <MappingFragment StoreEntitySet="Phase">
-                <ScalarProperty Name="PhaseId" ColumnName="PhaseId" />
-                <ScalarProperty Name="Phase1" ColumnName="Phase" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Plots">
             <EntityTypeMapping TypeName="ShahWilayatModel.Plot">
               <MappingFragment StoreEntitySet="Plot">
@@ -4243,19 +4444,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PlotSpecs">
-            <EntityTypeMapping TypeName="ShahWilayatModel.PlotSpec">
-              <MappingFragment StoreEntitySet="PlotSpecs">
-                <ScalarProperty Name="PlotSpecsId" ColumnName="PlotSpecsId" />
-                <ScalarProperty Name="PlotSpecs" ColumnName="PlotSpecs" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="PlotSubTypes">
             <EntityTypeMapping TypeName="ShahWilayatModel.PlotSubType">
               <MappingFragment StoreEntitySet="PlotSubType">
@@ -4297,38 +4485,11 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ProvisionalAllotmentFees">
-            <EntityTypeMapping TypeName="ShahWilayatModel.ProvisionalAllotmentFee">
-              <MappingFragment StoreEntitySet="ProvisionalAllotmentFee">
-                <ScalarProperty Name="ProvisionalAllotmentFeeId" ColumnName="ProvisionalAllotmentFeeId" />
-                <ScalarProperty Name="TenureId" ColumnName="TenureId" />
-                <ScalarProperty Name="ProvisionalAllotmentFee1" ColumnName="ProvisionalAllotmentFee" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Relations">
             <EntityTypeMapping TypeName="ShahWilayatModel.Relation">
               <MappingFragment StoreEntitySet="Relation">
                 <ScalarProperty Name="RelationId" ColumnName="RelationId" />
                 <ScalarProperty Name="Relation1" ColumnName="Relation" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Religions">
-            <EntityTypeMapping TypeName="ShahWilayatModel.Religion">
-              <MappingFragment StoreEntitySet="Religion">
-                <ScalarProperty Name="ReligionId" ColumnName="ReligionId" />
-                <ScalarProperty Name="Religion1" ColumnName="Religion" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
@@ -4498,20 +4659,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="UnitRates">
-            <EntityTypeMapping TypeName="ShahWilayatModel.UnitRate">
-              <MappingFragment StoreEntitySet="UnitRates">
-                <ScalarProperty Name="UnitRateId" ColumnName="UnitRateId" />
-                <ScalarProperty Name="UnitId" ColumnName="UnitId" />
-                <ScalarProperty Name="UnitRate1" ColumnName="UnitRate" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Units">
             <EntityTypeMapping TypeName="ShahWilayatModel.Unit">
               <MappingFragment StoreEntitySet="Units">
@@ -4540,6 +4687,46 @@
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Allotments">
+            <EntityTypeMapping TypeName="ShahWilayatModel.Allotment">
+              <MappingFragment StoreEntitySet="Allotment">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ShareCertificateDate" ColumnName="ShareCertificateDate" />
+                <ScalarProperty Name="ShareCertificateNo" ColumnName="ShareCertificateNo" />
+                <ScalarProperty Name="ProvisionalAllotmentDate" ColumnName="ProvisionalAllotmentDate" />
+                <ScalarProperty Name="ProvisionalAllotmentNo" ColumnName="ProvisionalAllotmentNo" />
+                <ScalarProperty Name="AllotmentOrderDate" ColumnName="AllotmentOrderDate" />
+                <ScalarProperty Name="AllotmentOrderNo" ColumnName="AllotmentOrderNo" />
+                <ScalarProperty Name="PlotId" ColumnName="PlotId" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="AllotmentId" ColumnName="AllotmentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AssociateAllotments">
+            <EntityTypeMapping TypeName="ShahWilayatModel.AssociateAllotment">
+              <MappingFragment StoreEntitySet="AssociateAllotment">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ShareCertificateDate" ColumnName="ShareCertificateDate" />
+                <ScalarProperty Name="ShareCertificateNo" ColumnName="ShareCertificateNo" />
+                <ScalarProperty Name="ProvisionalAllotmentDate" ColumnName="ProvisionalAllotmentDate" />
+                <ScalarProperty Name="ProvisionalAllotmentNo" ColumnName="ProvisionalAllotmentNo" />
+                <ScalarProperty Name="AllotmentOrderDate" ColumnName="AllotmentOrderDate" />
+                <ScalarProperty Name="AllotmentOrderNo" ColumnName="AllotmentOrderNo" />
+                <ScalarProperty Name="PlotId" ColumnName="PlotId" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="AssociateAllotmentId" ColumnName="AssociateAllotmentId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

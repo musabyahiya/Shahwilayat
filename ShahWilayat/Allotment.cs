@@ -12,14 +12,24 @@ namespace ShahWilayat
     using System;
     using System.Collections.Generic;
     
-    public partial class Religion
+    public partial class Allotment
     {
-        public int ReligionId { get; set; }
-        public string Religion1 { get; set; }
+        public int AllotmentId { get; set; }
+        public int MemberId { get; set; }
+        public int PlotId { get; set; }
+        public string AllotmentOrderNo { get; set; }
+        public System.DateTime AllotmentOrderDate { get; set; }
+        public string ProvisionalAllotmentNo { get; set; }
+        public Nullable<System.DateTime> ProvisionalAllotmentDate { get; set; }
+        public string ShareCertificateNo { get; set; }
+        public Nullable<System.DateTime> ShareCertificateDate { get; set; }
         public bool IsActive { get; set; }
         public int CreatedBy { get; set; }
         public System.DateTime CreatedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
+    
+        public virtual Member Member { get; set; }
+        public virtual Plot Plot { get; set; }
     }
 }

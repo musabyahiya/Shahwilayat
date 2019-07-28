@@ -1,21 +1,33 @@
 ﻿AllClickFunction();
-GetAllRelations();
+GetAllRelation();
 GetAllMembers();
 GetAllNominees();
+GetAllMemberRelation();
+GetAllTitle();
 
 var Nominee =
 [{
     NomineeId: 0,
     MemberId: 0,
+    TitleId: 0,
+    MemberRelationId: 0,
     RelationId: 0,
     FirstName: null,
     LastName: null,
+    FatherName:null,
     Dob: null,
+    BirthPlace: null,
     CNIC: null,
     CellNo: null,
     Address: null,
-    AttachmentFile: null,
-    FrcFile: null
+    CnicFront: null,
+    CnicBack: null,
+    ProfileFile: null,
+    BirthCertificate: null,
+    FrcFile: null,
+    HereshipCertificate: null,
+    GuardianCertificate: null,
+    DeathCertificate: null
 }]
 
 function AllClickFunction() {
@@ -24,28 +36,41 @@ function AllClickFunction() {
         if (!validateForm(".frmNominee")) return;
 
         Nominee[0].MemberId = $('.ddlMember').val();
+        Nominee[0].TitleId = $('.ddlTitle').val();
+        Nominee[0].MemberRelationId = $('.ddlMemberRelation').val();
         Nominee[0].RelationId = $('.ddlRelation').val();
+        Nominee[0].MemberRelation = $('.ddlMemberRelation').val();
+   
         Nominee[0].FirstName = $('.txtFirstName').val();
         Nominee[0].LastName = $('.txtLastName').val();
-        Nominee[0].Dob = formatDate($('.txtDob').val());
+        Nominee[0].FatherName = $('.txtFatherName').val();
+        Nominee[0].Dob = $('.txtDob').val();
+        Nominee[0].BirthPlace = $('.txtBirthPlace').val();
         Nominee[0].CNIC = $('.txtCNIC').val();
         Nominee[0].CellNo = $('.txtCellNo').val();
         Nominee[0].Address = $('.txtAddress').val();
-        Nominee[0].AttachmentFile = FileUpload('.txtAttachmentFile');
+        Nominee[0].ProfileFile = FileUpload('.txtProfileFile');
         Nominee[0].FrcFile = FileUpload('.txtFrcFile');
+        Nominee[0].CnicFront = FileUpload('.txtCnicFront');
+        Nominee[0].CnicBack = FileUpload('.txtCnicBack');
+        Nominee[0].HereshipCertificate = FileUpload('.txtHereshipCertificate');
+        Nominee[0].BirthCertificate = FileUpload('.txtBirthCertificate');
+        Nominee[0].GuardianCertificate = FileUpload('.txtGuardianCertificate');
+        Nominee[0].DeathCertificate = FileUpload('.txtDeathCertificate');
+  
 
-        $('.trNominee').each(function () {
-            if ($(this).children('.tdRelation').trim().val() == 'Father' &&
-                $(this).children('.tdRelation').trim().val() == 'Mother' &&
-                $(this).children('.hdnMemberId').val() == Nominee[0].MemberId) {
-                duplicationRelation = true;
-            }
-        });
-        if (duplicationRelation) {
-            showError("This Relation of selected Member is already exist.");
-            return;
-        }
-        CreateNewNominee();
+        //$('.trNominee').each(function () {
+        //    if ($(this).children('.tdRelation').trim().val() == 'Father' &&
+        //        $(this).children('.tdRelation').trim().val() == 'Mother' &&
+        //        $(this).children('.hdnMemberId').val() == Nominee[0].MemberId) {
+        //        duplicationRelation = true;
+        //    }
+        //});
+        //if (duplicationRelation) {
+        //    showError("This Relation of selected Member is already exist.");
+        //    return;
+        //}
+       // CreateNewNominee();
     });
 
     $('.btnUpdateChanges').click(function () {
@@ -202,28 +227,90 @@ function onGetAllMembers(data) {
     }
 }
 
-function GetAllRelations() {
+function GetAllRelation() {
 
     var request = $.ajax({
         method: "POST",
-        url: "/Nominee/GetAllRelations",
+        url: "/Nominee/GetAllRelation",
         data: {}
     });
     request.done(function (data) {
 
         var res = data;
-        onGetAllRelations(res);
+        onGetAllRelation(res);
     });
     request.fail(function (jqXHR, Status) {
         console.log(jqXHR.responseText);
     });
 }
 
-function onGetAllRelations(data) {
+function onGetAllRelation(data) {
     try {
         var res = data;
         FillDropDownByReference('.ddlRelation', res);
         FillDropDownByReference('.ddlRelation_upd', res);
+
+    }
+    catch (Err) {
+        console.log(Err);
+    }
+}
+
+
+
+
+
+function GetAllMemberRelation() {
+
+    var request = $.ajax({
+        method: "POST",
+        url: "/Nominee/GetAllMemberRelations",
+        data: {}
+    });
+    request.done(function (data) {
+
+        var res = data;
+        onGetAllMemberRelation(res);
+    });
+    request.fail(function (jqXHR, Status) {
+        console.log(jqXHR.responseText);
+    });
+}
+
+function onGetAllMemberRelation(data) {
+    try {
+        var res = data;
+        FillDropDownByReference('.ddlMemberRelation', res);
+        FillDropDownByReference('.ddlMemberRelation_upd', res);
+
+    }
+    catch (Err) {
+        console.log(Err);
+    }
+}
+
+function GetAllTitle() {
+
+    var request = $.ajax({
+        method: "POST",
+        url: "/Nominee/GetAllTitle",
+        data: {}
+    });
+    request.done(function (data) {
+
+        var res = data;
+        onGetAllTitle(res);
+    });
+    request.fail(function (jqXHR, Status) {
+        console.log(jqXHR.responseText);
+    });
+}
+
+function onGetAllTitle(data) {
+    try {
+        var res = data;
+        FillDropDownByReference('.ddlTitle', res);
+        FillDropDownByReference('.ddlTitle_upd', res);
 
     }
     catch (Err) {
@@ -247,6 +334,8 @@ function GetAllNominees() {
 
     });
 }
+
+
 
 function onGetAllNominees(data) {
     try {

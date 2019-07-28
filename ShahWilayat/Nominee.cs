@@ -26,7 +26,6 @@ namespace ShahWilayat
         public string CNIC { get; set; }
         public string CellNo { get; set; }
         public string Address { get; set; }
-        public string AttachmentFile { get; set; }
         public string CnicFront { get; set; }
         public string CnicBack { get; set; }
         public string FrcFile { get; set; }
@@ -38,6 +37,9 @@ namespace ShahWilayat
         public System.DateTime CreatedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
+        public byte[] FatherName { get; set; }
+        public string ProfileFile { get; set; }
+        public string BirthCertificate { get; set; }
     
         public virtual MemberRelation MemberRelation { get; set; }
         public virtual Member Member { get; set; }

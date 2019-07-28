@@ -1,0 +1,259 @@
+﻿
+@{
+    ViewBag.Title = "Allotment - Shah Wilayat Cooperative Housing Society";
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+}
+
+<div class="content-header row">
+    <div class="content-header-left col-md-6 col-12 mb-2">
+        <h3 class="content-header-title">Allotment</h3>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#CreateAllotment">
+                    Add New Allotment
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Both borders end-->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <fieldset>
+                    <div class="input-group">
+                        <input type="text" class="form-control txtSearch" placeholder="Search..." aria-describedby="basic-addon4">
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="basic-addon4"><i class="la la-search"></i></span>
+                        </div>
+                    </div>
+                </fieldset>
+
+            </div>
+            <div class="card-content">
+
+                <div class="table-responsive">
+                    <table class="table table-bordered mb-0 tblAllotment">
+                        <thead>
+                            <tr>
+                                <th nowrap>Sr No.</th>
+                                <th>Membership No</th>
+                                <th>Plot No</th>
+                                <th>Allotment Order No</th>
+                                <th>Allotment Order Date</th>
+                          
+                                <th>Action</th>
+                              
+                            </tr>
+                        </thead>
+                        <tbody class="AllotmentListing"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@*Create Modal Start*@
+<div class="modal fade text-left" id="CreateAllotment" role="dialog" aria-labelledby="myModalLabel16" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel16">Create New Allotment</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-body frmAllotment">
+                      <h4 class="form-section"><i class="la la-file-text"></i> Allotment Details</h4>
+                     <hr> 
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ddlMember">Member</label>
+                                <select id="ddlMember" class="form-control ddlMember select2 mySelect" style="width: 100%"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ddlPlot">Plot No</label>
+                                <select id="ddlPlot" class="form-control ddlPlot select2 mySelect" style="width: 100%"></select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtAllotmentOrderNo">Allotment No</label>
+                                <input type="text" id="txtAllotmentOrderNo" class="form-control txtAllotmentOrderNo" placeholder="Enter allotment no">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtAllotmentOrderDate">Allotment Date</label>
+                                <input type="text" id="txtAllotmentOrderDate" class="form-control DatePicker txtAllotmentOrderDate" placeholder="yyyy-mm-dd">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtProvisionalAllotmentNo">Provisional Allotment No</label>
+                                <input type="text" id="txtProvisionalAllotmentNo" class="form-control txtProvisionalAllotmentNo " placeholder="Enter provisional allotment no">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtProvisionalAllotmentDate">Provisional Allotment Date</label>
+                                <input type="text" id="txtProvisionalAllotmentDate" class="form-control DatePicker txtProvisionalAllotmentDate " placeholder="yyyy-mm-dd">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtShareCertificateNo">Share Certificate No</label>
+                                <input type="text" id="txtShareCertificateNo" class="form-control txtShareCertificateNo " placeholder="Enter share certificate no">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtShareCertificateDate">Share Certificate Date</label>
+                                <input type="text" id="txtShareCertificateDate" class="form-control DatePicker txtShareCertificateDate " placeholder="yyyy-mm-dd">
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn grey btn-outline-info" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline-dark btnSaveChanges">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+@*Create Modal End*@
+
+
+@*Edit Modal Start*@
+<div class="modal fade text-left" id="EditAllotment" role="dialog" aria-labelledby="myModalLabel16" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel16">Edit Allotment</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-body frmAllotment_upd">
+                    <h4 class="form-section"><i class="la la-file-text"></i> Allotment Details</h4>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ddlMember_upd">Member</label>
+                                <select id="ddlMember_upd" class="form-control ddlMember_upd select2 mySelect" disabled style="width: 100%"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ddlPlot_upd">Plot No</label>
+                                <select id="ddlPlot_upd" class="form-control ddlPlot_upd select2 mySelect" disabled style="width: 100%"></select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtAllotmentOrderNo">Allotment No</label>
+                                <input type="text" id="txtAllotmentOrderNo_upd" class="form-control txtAllotmentOrderNo_upd" placeholder="Enter allotment no">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtAllotmentOrderDate_upd">Allotment Date</label>
+                                <input type="text" id="txtAllotmentOrderDate_upd" class="form-control DatePicker txtAllotmentOrderDate_upd" placeholder="yyyy-mm-dd">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtProvisionalAllotmentNo_upd">Provisional Allotment No</label>
+                                <input type="text" id="txtProvisionalAllotmentNo_upd" class="form-control txtProvisionalAllotmentNo_upd " placeholder="Enter provisional allotment no">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtProvisionalAllotmentDate_upd">Provisional Allotment Date</label>
+                                <input type="text" id="txtProvisionalAllotmentDate_upd" class="form-control DatePicker txtProvisionalAllotmentDate_upd " placeholder="yyyy-mm-dd">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtShareCertificateNo_upd">Share Certificate No</label>
+                                <input type="text" id="txtShareCertificateNo_upd" class="form-control txtShareCertificateNo_upd " placeholder="Enter share certificate no">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtShareCertificateDate">Share Certificate Date</label>
+                                <input type="text" id="txtShareCertificateDate_upd" class="form-control DatePicker txtShareCertificateDate_upd " placeholder="yyyy-mm-dd">
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn grey btn-outline-info" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline-dark btnUpdateChanges">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Edit Modal Start*@
+
+@section Scripts
+{
+    <script type="text/x-jQuery-tmpl" id="AllotmentListing">
+        <tr class="trAllotment">
+
+            <input type="hidden" class="hdnAllotmentId" value="${AllotmentId}" />
+            <input type="hidden" class="hdnMemberId" value="${MemberId}" />
+            <input type="hidden" class="hdnPlotId" value="${PlotId}" />
+            <input type="hidden" class="hdnAllotmentOrderNo" value="${AllotmentOrderNo}" />
+            <input type="hidden" class="hdnAllotmentOrderDate" value="${ToJavaScriptDate(AllotmentOrderDate)}" />
+            <input type="hidden" class="hdnShareCertificateNo" value="${ShareCertificateNo}" />
+            <input type="hidden" class="hdnShareCertificateDate" value="${ToJavaScriptDate(ShareCertificateDate)}" />
+            <input type="hidden" class="hdnProvisionalAllotmentNo" value="${ProvisionalAllotmentNo}" />
+            <input type="hidden" class="hdnProvisionalAllotmentDate" value="${ToJavaScriptDate(ProvisionalAllotmentDate)}" />
+
+            <td></td>
+            <td class="project-title tdMember" nowrap>${FirstName + ' ' + LastName}</td>
+            <td class="project-title tdPlot" nowrap>${Plot}</td>
+            <td class="project-title tdAllotmentOrderNo" nowrap>${AllotmentOrderNo}</td>
+            <td class="project-title tdAllotmentOrderDate" nowrap>${ToJavaScriptDate(AllotmentOrderDate)}</td>
+     
+           
+            <td class="project-title">
+               <a href="javascript:void(0)" data-toggle="modal" data-target="#EditAllotment" onclick="EditAllotment(this)" data-toggle="tooltip" data-placement="top" data-original-title="Edit Allotment"><i class="la la-pencil-square success"></i></a>
+           </td>
+
+
+        </tr>
+    </script>
+
+    <script src="~/Scripts/assets/js/PagesJS/Allotment.js"></script>
+
+
+}
+
+

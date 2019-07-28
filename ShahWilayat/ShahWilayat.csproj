@@ -192,7 +192,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AllotmentOrder.cs">
+    <Compile Include="Allotment.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -200,6 +200,12 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="AssociateAllotment.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AssociateMember.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Charge.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -210,6 +216,7 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AllotmentController.cs" />
     <Compile Include="Controllers\AssociateMemberController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -217,6 +224,8 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\MenusController.cs" />
+    <Compile Include="Controllers\NomineeController.cs" />
+    <Compile Include="Controllers\PlotController.cs" />
     <Compile Include="Controllers\SessionCheck.cs" />
     <Compile Include="Country.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -240,9 +249,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Invoice.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="IssuerDesignation.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Member.cs">
@@ -299,9 +305,6 @@
     <Compile Include="PaymentSubCategory.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Phase.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Plot.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -314,9 +317,6 @@
     <Compile Include="PlotSize.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="PlotSpec.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="PlotSubType.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -327,13 +327,7 @@
     <Compile Include="Province.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="ProvisionalAllotmentFee.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Relation.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Religion.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Role.cs">
@@ -368,9 +362,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Unit.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="UnitRate.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="User.cs">
@@ -2039,6 +2030,7 @@
     <Content Include="Content\app-assets\vendors\css\ui\prism-treeview.css" />
     <Content Include="Content\app-assets\vendors\css\ui\prism.min.css" />
     <Content Include="Content\app-assets\vendors\css\weather-icons\climacons.min.css" />
+    <Content Include="Content\assets\css\PrintMaterial\MemberProfile.css" />
     <Content Include="Content\assets\css\style-rtl.css" />
     <Content Include="Content\assets\css\style.css" />
     <Content Include="Content\bootstrap.css" />
@@ -5371,8 +5363,9 @@
     <Content Include="Scripts\app-assets\vendors\js\ui\unison.min.js" />
     <Content Include="Scripts\app-assets\vendors\js\vendors.min.js" />
     <Content Include="Scripts\assets\js\jquery.tmpl.min.js" />
-    <Content Include="Scripts\assets\js\PagesJS\AllotmentOrder.js" />
+    <Content Include="Scripts\assets\js\PagesJS\Allotment.js" />
     <Content Include="Scripts\assets\js\PagesJS\AllotmentRegister.js" />
+    <Content Include="Scripts\assets\js\PagesJS\AssociateMember.js" />
     <Content Include="Scripts\assets\js\PagesJS\Certificates.js" />
     <Content Include="Scripts\assets\js\PagesJS\Charges.js" />
     <Content Include="Scripts\assets\js\PagesJS\CnicHistory.js" />
@@ -5942,6 +5935,7 @@
     <Content Include="Scripts\app-assets\vendors\js\editors\tinymce\skins\lightgray\Variables.less" />
     <Content Include="Scripts\app-assets\vendors\js\editors\tinymce\skins\lightgray\Window.less" />
     <Content Include="Scripts\app-assets\vendors\js\pages\.DS_Store" />
+    <Content Include="FileUploadHandler.ashx" />
     <EntityDeploy Include="Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -5949,7 +5943,6 @@
     <Content Include="Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
-    <Content Include="FileUploadHandler.ashx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -6002,6 +5995,9 @@
     <Content Include="Views\Shared\_HeaderNavBar.cshtml" />
     <Content Include="Views\Member\Index.cshtml" />
     <Content Include="Views\AssociateMember\Index.cshtml" />
+    <Content Include="Views\Plot\Index.cshtml" />
+    <Content Include="Views\Allotment\Index.cshtml" />
+    <Content Include="Views\Nominee\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
