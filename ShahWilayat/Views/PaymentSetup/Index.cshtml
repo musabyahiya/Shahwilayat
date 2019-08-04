@@ -1,8 +1,9 @@
 ﻿
 @{
-    ViewBag.Title = "Plot - Shah Wilayat Cooperative Housing Society";
+    ViewBag.Title = "Payment Setup - Shah Wilayat Cooperative Housing Society";
     Layout = "~/Views/Shared/_MasterPage.cshtml";
 }
+
 
 <div class="content-header row">
     <div class="content-header-left col-md-6 col-12 mb-2">
@@ -14,8 +15,8 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#CreatePlot">
-                    Add New Plot
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#CreatePaymentSetup">
+                    Add New Payment Setup
                 </button>
             </div>
         </div>
@@ -37,21 +38,22 @@
 
             </div>
             <div class="card-content">
+
                 <div class="table-responsive">
-                    <table class="table table-bordered mb-0 tblPlot">
+                    <table class="table table-bordered mb-0 tblPaymentSetup">
                         <thead>
                             <tr>
                                 <th nowrap>Sr No.</th>
-                                <th>PlotType</th>
-                                <th>SubType</th>
-                                <th style="text-align:center">Size (SqYd)</th>
-                                <th style="text-align:center">Extra Land</th>
-                                <th>Plot No</th>
-                                <th>Allotment</th>
+                                <th>Payment Category</th>
+                                <th>Tenure</th>
+                                <th>Rate</th>
+                                <th>Plot Type</th>
+                                <th>Plot</th>
+                                <th>Fixed Rate</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody class="PlotListing"></tbody>
+                        <tbody class="PaymentSetupListing"></tbody>
                     </table>
                 </div>
             </div>
@@ -60,7 +62,7 @@
 </div>
 
 @*Create Modal Start*@
-<div class="modal fade text-left" id="CreatePlot" role="dialog" aria-labelledby="myModalLabel16" aria-hidden="true">
+<div class="modal fade text-left" id="CreatePaymentSetup" role="dialog" aria-labelledby="myModalLabel16" aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -71,56 +73,49 @@
             </div>
             <div class="modal-body">
                 <div class="form-body frmPlot">
-                    <h4 class="form-section"><i class="la la-home"></i> Plot Details</h4>
+                    <h4 class="form-section"><i class="la la-gears"></i> Payment Setup Detail</h4>
                     <hr>
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="ddlPaymentCategory">Payment Category</label>
+                                <select class="form-control ddlPaymentCategory"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="ddlTenure">Tenure</label>
+                                <select class="form-control ddlTenure"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="ddlPlotType">Plot Type</label>
                                 <select class="form-control ddlPlotType"></select>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="form-group">
-                                <label for="ddlPlotSubType">SubType</label>
-                                <select class="form-control ddlPlotSubType"></select>
+                                <label for="ddlPlot">Plot</label>
+                                <select class="form-control ddlPlot"></select>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="form-group">
-                                <label for="txtPlotNo">Plot No</label>
-                                <input type="text" class="form-control txtPlotNo notrequired" placeholder="Enter plot no">
-                            </div>
-                        </div>
-
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="ddlUnit">Unit</label>
-                                <select class="form-control ddlUnit"></select>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="ddlPlotSize">Plot Size</label>
-                                <select class="form-control ddlPlotSize"></select>
+                                <label for="txtRate">Rate</label>
+                                <input type="text" class="form-control txtRate" placeholder="Enter rate">
                             </div>
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="form-group">
-
-                                <label for="ddlHasExtraSize">Has Extra Size</label>
-                                <select class="form-control ddlHasExtraSize notrequired">
+                                <label for="ddlFixed">Fixed/ Square Yards</label>
+                                <select class="form-control ddlFixed">
                                     <option value="0">--Select--</option>
-                                    <option value="1">Has Extra Size</option>
+                                    <option value="1">Per Square Yard</option>
+                                    <option value="2">Fixed</option>
                                 </select>
 
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="txtExtraSize">Extra Size</label>
-                                <input type="text" class="form-control txtExtraSize" disabled="disabled" placeholder="Enter extra size">
                             </div>
                         </div>
 
@@ -140,67 +135,60 @@
 
 
 @*Edit Modal Start*@
-<div class="modal fade text-left" id="EditPlot" role="dialog" aria-labelledby="myModalLabel16" aria-hidden="true">
+<div class="modal fade text-left" id="EditPaymentSetup" role="dialog" aria-labelledby="myModalLabel16" aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel16">Edit Plot</h4>
+                <h4 class="modal-title" id="myModalLabel16">Edit Payment Setup</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <div class="form-body frmPlot_upd">
-                    <h4 class="form-section"><i class="la la-home"></i> Plot Details</h4>
+                <div class="form-body frmPlot">
+                    <h4 class="form-section"><i class="la la-gears"></i> Payment Setup Detail</h4>
                     <hr>
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="ddlPaymentCategory_upd">Payment Category</label>
+                                <select class="form-control ddlPaymentCategory_upd"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="ddlTenure_upd">Tenure</label>
+                                <select class="form-control ddlTenure_upd"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="ddlPlotType_upd">Plot Type</label>
                                 <select class="form-control ddlPlotType_upd"></select>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="form-group">
-                                <label for="ddlPlotSubType_upd">SubType</label>
-                                <select class="form-control ddlPlotSubType_upd"></select>
+                                <label for="ddlPlot_upd">Plot</label>
+                                <select class="form-control ddlPlot_upd"></select>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="form-group">
-                                <label for="txtPlotNo_upd">Plot No</label>
-                                <input type="text" class="form-control txtPlotNo_upd notrequired" placeholder="Enter plot no">
-                            </div>
-                        </div>
-
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="ddlUnit_upd">Unit</label>
-                                <select class="form-control ddlUnit_upd"></select>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="ddlPlotSize_upd">Plot Size</label>
-                                <select class="form-control ddlPlotSize_upd"></select>
+                                <label for="txtRate_upd">Rate</label>
+                                <input type="text" class="form-control txtRate_upd" placeholder="Enter rate">
                             </div>
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="form-group">
-
-                                <label for="ddlHasExtraSize_upd">Has Extra Size</label>
-                                <select class="form-control ddlHasExtraSize_upd notrequired">
+                                <label for="ddlFixed_upd">Fixed/ Square Yards</label>
+                                <select class="form-control ddlFixed_upd">
                                     <option value="0">--Select--</option>
-                                    <option value="1">Has Extra Size</option>
+                                    <option value="1">Per Square Yard</option>
+                                    <option value="2">Fixed</option>
                                 </select>
 
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="txtExtraSize_upd">Extra Size</label>
-                                <input type="text" class="form-control txtExtraSize_upd" disabled="disabled" placeholder="Enter extra size">
                             </div>
                         </div>
 
@@ -305,44 +293,42 @@
 
 @section Scripts
 {
-    <script type="text/x-jQuery-tmpl" id="PlotListing">
-        <tr class="trPlot ${HasAlotted==true?'trPlots': 'trPlots warning'}">
+    <script type="text/x-jQuery-tmpl" id="PaymentSetupListing">
+        <tr class="trPaymentSetup">
 
-            <input type="hidden" class="hdnPlotId" value="${PlotId}" />
-            <input type="hidden" class="hdnPlotTypeId" value="${PlotTypeId}" />
+            <input type="hidden" class="hdnPaymentSetupId" value="${PaymentSetupId}" />
+            <input type="hidden" class="hdnPaymentCategoryId" value="${PaymentCategoryId}" />
+            <input type="hidden" class="hdnPaymentCategory" value="${PaymentCategory}" />
             <input type="hidden" class="hdnPlotSubTypeId" value="${PlotSubTypeId}" />
-            <input type="hidden" class="hdnUnitId" value="${UnitId}" />
-            <input type="hidden" class="hdnPlotSizeId" value="${PlotSizeId}" />
+            <input type="hidden" class="hdnPlotSubType" value="${PlotSubType}" />
+            <input type="hidden" class="hdnTenureId" value="${TenureId}" />
+            <input type="hidden" class="hdnRate" value="${Rate}" />
+            <input type="hidden" class="hdnPlotTypeId" value="${PlotTypeId}" />
+            <input type="hidden" class="hdnPlotId" value="${PlotId}" />
+            <input type="hidden" class="hdnIsFixed" value="${IsFixed}" />
 
-            <input type="hidden" class="hdnHasExtraSize" value="${HasExtraSize}" />
-            <input type="hidden" class="hdnExtraSize" value="${ExtraSize}" />
-            <input type="hidden" class="hdnHasAlotted" value="${HasAlotted}" />
-            <input type="hidden" class="hdnUnitRate" value="${UnitRate}" />
-            <input type="hidden" class="hdnTotalSize" value="${TotalSize}" />
 
             <td></td>
             <td class="project-title tdPlotType">${PlotType}</td>
-            <td class="project-title tdPlotSubType">${PlotSubType}</td>
-            <td class="project-title tdPlotSize" align="center">${PlotSize}</td>
-            <td class="project-title tdExtraSize" align="center">${ExtraSize==null ? '0':ExtraSize }</td>
-            <td class="project-title tdPlotNo">${PlotNo}</td>
+            <td class="project-title tdTenure">${Tenure}</td>
+            <td class="project-title tdRate">${Rate}</td>
+            <td class="project-title tdPlotType" align="center">${PlotType}</td>
+            <td class="project-title tdPlot">${Plot}</td>
+            <td class="project-title tdIsFixed">${IsFixed}</td>
 
-
-            <td class="project-title tdAllotment">
-
-                <div class="${HasAlotted==true?'badge badge-success badge-pill': 'badge badge-warning badge-pill'}">${HasAlotted==true?'Allotted': 'Not Allotted'}</div>
-
+            <td class="project-title tdIsFixed">
+                <div class="${IsFixed==true?'badge badge-success badge-pill': 'badge badge-warning badge-pill'}">${IsFixed==true?'Allotted': 'Not Allotted'}</div>
             </td>
             <td class="project-title" nowrap>
-                <a href="javascript:void(0)" data-toggle="modal" data-target="#EditPlot" onclick="EditPlot(this)" data-toggle="tooltip" data-placement="top" data-original-title="Edit Plot"><i class="la la-pencil-square success"></i></a>
+                <a href="javascript:void(0)" data-toggle="modal" data-target="#EditPaymentSetup" onclick="EditPaymentSetup(this)" data-toggle="tooltip" data-placement="top" data-original-title="Edit Plot"><i class="la la-pencil-square success"></i></a>
 
-                <a href="javascript:void(0)" data-toggle="modal" data-target="#DeletePlot" onclick="EditPlot(this)" data-toggle="tooltip" data-placement="top" data-original-title="Delete Plot"><i class="la la-trash danger"></i></a>
+                <a href="javascript:void(0)" data-toggle="modal" data-target="#DeletePlot" onclick="EditPaymentSetup(this)" data-toggle="tooltip" data-placement="top" data-original-title="Delete Plot"><i class="la la-trash danger"></i></a>
             </td>
 
         </tr>
     </script>
 
-    <script src="~/Scripts/assets/js/PagesJS/Plot.js"></script>
+    <script src="~/Scripts/assets/js/PagesJS/PaymentSetup.js"></script>
 
 
 }

@@ -11,7 +11,13 @@ var Transfer =
     MemberId: 0,
     TransferOrderNo: null,
     TransferDate: null,
-    IsTransfered: true
+    MCMDate: null,
+    NewspaperAdvDate: null,
+    NewspaperName: null,
+    NewspaperScan: null,
+    IndemnityBondScan: null,
+    IsTransfered: false
+
 }]
 
 function GetAllTransfer() {
@@ -80,23 +86,15 @@ function AllClickFunction() {
         Transfer[0].MemberId = $('.ddlMember').val();
         Transfer[0].PlotId = $('.ddlPlot').val();
         Transfer[0].TransferOrderNo = $('.txtTransferOrderNo').val();
-        Transfer[0].TransferDate = formatDate($('.txtTransferDate').val());
+        Transfer[0].TransferDate = $('.txtTransferDate').val();
+        Transfer[0].MCMDate = $('.txtMCMDate').val();
+        Transfer[0].NewspaperAdvDate = formatDate($('.txtNewspaperAdvDate').val());
+        Transfer[0].NewspaperName = formatDate($('.txtNewspaperName').val());
+        Transfer[0].NewspaperScan = FileUpload('.txtNewspaperScan');
+        Transfer[0].IndemnityBondScan = FileUpload('.txtIndemnityBondScan');
 
-        $('.trTransfer').each(function () {
-            if ($(this).children('.tdTrasnferOrderNo').text() == Transfer[0].TransferOrderNo) {
-                duplicateTransfer = true;
-            }
-        });
 
-        $('.trTransfer').each(function () {
-            if ($(this).children('.hdnMemberId').val() == Transfer[0].MemberId && $(this).children('.hdnPlotId').val() == Transfer[0].PlotId) {
-                duplicateTransfer = true;
-            }
-        });
-        if (duplicateTransfer) {
-            showError("This Transfer is already exist.");
-            return;
-        }
+
         CreateNewTransfer();
     });
 
@@ -107,16 +105,11 @@ function AllClickFunction() {
         Transfer[0].MemberId = $('.ddlMember_upd').val();
         Transfer[0].PlotId = $('.ddlPlot_upd').val();
         Transfer[0].TransferOrderNo = $('.txtTransferOrderNo_upd').val();
-        Transfer[0].TransferDate = formatDate($('.txtTransferDate_upd').val());
-        $('.trTransfer').each(function () {
-            if ($(this).children('.tdTransferOrderNo').text() == Transfer[0].TransferOrderNo && $(this).children('.hdnTransferId').val() != Transfer[0].TransferId) {
-                duplicateTransfer = true;
-            }
-        });
-        if (duplicateTransfer) {
-            showError("This Transfer is already exist.");
-            return;
-        }
+        Transfer[0].TransferDate = $('.txtTransferDate_upd').val();
+        Transfer[0].MCMDate = $('.txtMCMDate_upd').val();
+        Transfer[0].NewspaperAdvDate = formatDate($('.txtNewspaperAdvDate_upd').val());
+        Transfer[0].NewspaperName = formatDate($('.txtNewspaperName_upd').val());
+
         UpdateTransfer();
     });
 

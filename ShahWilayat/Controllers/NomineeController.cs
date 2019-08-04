@@ -106,13 +106,15 @@ namespace ShahWilayat.Controllers
                  x.RelationId,
                  Relation = x.Relation.Relation1,
                  x.MemberRelationId,
-                 x.MemberRelation.MemberRelation1,
+                 MemberRelation = x.MemberRelation.MemberRelation1,
                  x.MemberId,
+                 x.Member.MembershipNo,
                  MemberName = x.Member.FirstName + " " + x.Member.LastName,
                  x.FirstName,
                  x.LastName,
                  x.FatherName,
                  x.Dob,
+                 x.BirthPlace,
                  x.CellNo,
                  x.CNIC,
                  x.CnicFront,
@@ -171,13 +173,7 @@ namespace ShahWilayat.Controllers
                 obj.CNIC = nominee.CNIC;
                 obj.CellNo = nominee.CellNo;
                 obj.Address = nominee.Address;
-                obj.CnicFront = nominee.CnicFront;
-                obj.CnicBack = nominee.CnicBack;
-                obj.ProfileFile = nominee.ProfileFile;
-                obj.BirthCertificate = nominee.BirthCertificate;
-                obj.HereshipCertificate = nominee.HereshipCertificate;
-                obj.GuardianCertificate = nominee.GuardianCertificate;
-                obj.DeathCertificate = nominee.DeathCertificate;
+     
                
                 obj.ModifiedDate = DateTime.Now;
                 obj.ModifiedBy = (int)HttpContext.Session["UserId"];

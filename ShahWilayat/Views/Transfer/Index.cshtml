@@ -1,22 +1,21 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Transfer - Shah Wilayat Cooperative Housing Society";
     Layout = "~/Views/Shared/_MasterPage.cshtml";
 }
 
-
 <div class="content-header row">
     <div class="content-header-left col-md-6 col-12 mb-2">
-        <h3 class="content-header-title">Nominee</h3>
+        <h3 class="content-header-title">Transfer</h3>
     </div>
-
 </div>
+
 <div class="row">
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#CreateNominee">
-                    Add New Nominee
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#CreateTransfer">
+                    Add New Transfer
                 </button>
             </div>
         </div>
@@ -40,13 +39,13 @@
             <div class="card-content">
 
                 <div class="table-responsive">
-                    <table class="table table-bordered mb-0 tblNominee">
+                    <table class="table table-bordered mb-0 tblTransfer">
                         <thead>
                             <tr>
                                 <th nowrap>Sr No.</th>
                                 <th>Membership No</th>
                                 <th>Member</th>
-                                <th>Nominee</th>
+                                <th>Transfer</th>
                                 <th>Relation</th>
                                 <th>Member Relation</th>
                                 <th>Father/ Husband Name</th>
@@ -54,7 +53,7 @@
 
                             </tr>
                         </thead>
-                        <tbody class="NomineeListing"></tbody>
+                        <tbody class="TransferListing"></tbody>
                     </table>
                 </div>
             </div>
@@ -62,99 +61,66 @@
     </div>
 </div>
 
-
-
-
-
 @*Create Modal Start*@
-<div class="modal fade text-left" id="CreateNominee" role="dialog" aria-labelledby="myModalLabel16" aria-hidden="true">
+<div class="modal fade text-left" id="CreateTransfer" role="dialog" aria-labelledby="myModalLabel16" aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel16">Create New Nominee</h4>
+                <h4 class="modal-title" id="myModalLabel16">Create New Transfer</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <div class="form-body frmNominee">
-                    <h4 class="form-section"><i class="ft-user"></i> Personal Info</h4>
+                <div class="form-body frmTransfer">
+                    <h4 class="form-section"><i class="la la-exchange"></i> Transfer Details</h4>
                     <hr>
                     <div class="row">
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="ddlMember">Member</label>
-                                <select id="ddlMember" class="form-control ddlMember select2 mySelect" style="width:100%"></select>
+                                <select id="ddlMember" class="form-control ddlMember mySelect select2" style="width:100%"></select>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="ddlTitle">Title</label>
-                                <select id="ddlTitle" class="form-control ddlTitle"></select>
+                                <label for="ddlPlot">Plot</label>
+                                <select id="ddlPlot" class="form-control ddlPlot mySelect select2" style="width:100%"></select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtTransferOrderNo">Transfer Order No</label>
+                                <input type="text" id="txtTransferOrderNo" class="form-control txtTransferOrderNo" placeholder="Enter transfer no">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="ddlRelation">Relation</label>
-                                <select id="ddlRelation" class="form-control ddlRelation"></select>
+                                <label for="txtTransferDate">Transfer Date</label>
+                                <input type="text" id="txtTransferDate" class="form-control DatePicker txtTransferDate" placeholder="yyyy-mm-dd">
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtMCMDate">MCM Date</label>
+                                <input type="text" id="txtMCMDate" class="form-control DatePicker txtMCMDate" placeholder="yyyy-mm-dd">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="txtFirstName">First Name</label>
-                                <input type="text" id="txtFirstName" class="form-control txtFirstName" placeholder="Enter first name">
+                                <label for="txtNewspaperName">Newspaper Name </label>
+                                <input type="text" id="txtNewspaperName" class="form-control txtNewspaperName" placeholder="Enter newspaper name">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="txtLastName">Last Name</label>
-                                <input type="text" id="txtLastName" class="form-control txtLastName" placeholder="Enter last name">
+                                <label for="txtNewspaperAdvDate">Newspaper Advertisement Date</label>
+                                <input type="text" id="txtNewspaperAdvDate" class="form-control DatePicker txtNewspaperAdvDate" placeholder="yyyy-mm-dd">
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="ddlMemberRelation">Member Relation</label>
-                                <select id="ddlMemberRelation" class="form-control ddlMemberRelation"></select>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="txtFatherName">Father Name</label>
-                                <input type="text" id="txtFatherName" class="form-control txtFatherName" placeholder="Enter father name">
-                            </div>
-                        </div>
-                     
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="txtDob">Date of Birth</label>
-                                <input type="text" id="txtDob" class="form-control DatePicker txtDob" placeholder="yyyy-mm-dd">
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="txtBirthPlace">Place of Birth</label>
-                                <input type="text" id="txtBirthPlace" class="form-control txtBirthPlace" placeholder="Enter birth place">
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="txtCellNo">Cell No</label>
-                                <input type="text" id="txtCellNo" class="form-control txtCellNo numbericOnly" placeholder="Enter cell number">
-                            </div>
-                        </div>
-                   
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="txtCNIC">CNIC</label>
-                                <input type="text" id="txtCNIC" class="form-control txtCNIC " placeholder="Enter CNIC without dash">
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="txtAddress">Address</label>
-                                <textarea class="form-control txtAddress" id="txtAddress" rows="1" placeholder="Enter permanent address"></textarea>
-                            </div>
-                        </div>
+
                     </div>
                     <h4 class="form-section"><i class="ft-paperclip"></i> Attachments</h4>
                     <hr>
@@ -163,9 +129,9 @@
                             <div class="fileinput fileinput-new" data-provides="fileinput">
 
                                 <span class="btn btn-block btn-outline btn-info btn-file">
-                                    <span class="fileinput-new">Attach CNIC Front</span>
+                                    <span class="fileinput-new">Attach Newspaper Scan</span>
                                     <i class="fa fa-upload"></i>&nbsp;&nbsp;
-                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtCnicFront" accept="image/*" />
+                                    <span class="fileinput-exists">Change</span><input type="file" class="txtNewspaperScan" accept="image/*" />
                                 </span>
                                 <span class="fileinput-filename"></span>
                                 <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
@@ -175,9 +141,9 @@
                             <div class="fileinput fileinput-new" data-provides="fileinput">
 
                                 <span class="btn btn-block btn-outline btn-info btn-file">
-                                    <span class="fileinput-new">Attach CNIC Back</span>
+                                    <span class="fileinput-new">Attach Indemnity Bond Scan </span>
                                     <i class="fa fa-upload"></i>&nbsp;&nbsp;
-                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtCnicBack" accept="image/*" />
+                                    <span class="fileinput-exists">Change</span><input type="file" class="txtIndemnityBondScan notrequired" accept="image/*" />
                                 </span>
                                 <span class="fileinput-filename"></span>
                                 <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
@@ -187,69 +153,9 @@
                             <div class="fileinput fileinput-new" data-provides="fileinput">
 
                                 <span class="btn btn-block btn-outline btn-info btn-file">
-                                    <span class="fileinput-new">Attach Recent Profile Picture</span>
+                                    <span class="fileinput-new">Attach Transfer Order Scan</span>
                                     <i class="fa fa-upload"></i>&nbsp;&nbsp;
-                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtProfileFile" accept="image/*" />
-                                </span>
-                                <span class="fileinput-filename"></span>
-                                <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="fileinput fileinput-new" data-provides="fileinput">
-
-                                <span class="btn btn-block btn-outline btn-info btn-file">
-                                    <span class="fileinput-new">Attach Birth Certificate</span>
-                                    <i class="fa fa-upload"></i>&nbsp;&nbsp;
-                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtBirthCertificate" accept="image/*" />
-                                </span>
-                                <span class="fileinput-filename"></span>
-                                <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="fileinput fileinput-new" data-provides="fileinput">
-
-                                <span class="btn btn-block btn-outline btn-info btn-file">
-                                    <span class="fileinput-new">Attach Hereship Certificate</span>
-                                    <i class="fa fa-upload"></i>&nbsp;&nbsp;
-                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtHereshipCertificate" accept="image/*" />
-                                </span>
-                                <span class="fileinput-filename"></span>
-                                <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="fileinput fileinput-new" data-provides="fileinput">
-
-                                <span class="btn btn-block btn-outline btn-info btn-file">
-                                    <span class="fileinput-new">Attach FRC </span>
-                                    <i class="fa fa-upload"></i>&nbsp;&nbsp;
-                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtFrcFile" accept="image/*" />
-                                </span>
-                                <span class="fileinput-filename"></span>
-                                <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="fileinput fileinput-new" data-provides="fileinput">
-
-                                <span class="btn btn-block btn-outline btn-info btn-file">
-                                    <span class="fileinput-new">Attach Guardian Certificate </span>
-                                    <i class="fa fa-upload"></i>&nbsp;&nbsp;
-                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtGuardianCertificate" accept="image/*" />
-                                </span>
-                                <span class="fileinput-filename"></span>
-                                <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="fileinput fileinput-new" data-provides="fileinput">
-
-                                <span class="btn btn-block btn-outline btn-info btn-file">
-                                    <span class="fileinput-new">Attach Death Certificate </span>
-                                    <i class="fa fa-upload"></i>&nbsp;&nbsp;
-                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtDeathCertificate" accept="image/*" />
+                                    <span class="fileinput-exists">Change</span><input type="file" class="txtTransferOrderScan notrequired" accept="image/*" />
                                 </span>
                                 <span class="fileinput-filename"></span>
                                 <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
@@ -267,21 +173,21 @@
         </div>
     </div>
 </div>
+
 @*Create Modal End*@
 
-
 @*Edit Modal Start*@
-<div class="modal fade text-left" id="EditNominee" role="dialog" aria-labelledby="myModalLabel16" aria-hidden="true">
+<div class="modal fade text-left" id="EditTransfer" role="dialog" aria-labelledby="myModalLabel16" aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel16">Edit Nominee</h4>
+                <h4 class="modal-title" id="myModalLabel16">Edit Transfer</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <div class="form-body frmNominee_upd">
+                <div class="form-body frmTransfer_upd">
                     <h4 class="form-section"><i class="ft-user"></i> Personal Info</h4>
                     <hr>
                     <div class="row">
@@ -360,7 +266,7 @@
                             </div>
                         </div>
                     </div>
-                  
+
 
                 </div>
             </div>
@@ -376,10 +282,10 @@
 
 @section Scripts
 {
-    <script type="text/x-jQuery-tmpl" id="NomineeListing">
-        <tr class="trNominee">
+    <script type="text/x-jQuery-tmpl" id="TransferListing">
+        <tr class="trTransfer">
 
-            <input type="hidden" class="hdnNomineeId" value="${NomineeId}" />
+            <input type="hidden" class="hdnTransferId" value="${TransferId}" />
             <input type="hidden" class="hdnMemberId" value="${MemberId}" />
             <input type="hidden" class="hdnTitleId" value="${TitleId}" />
             <input type="hidden" class="hdnMemberRelationId" value="${MemberRelationId}" />
@@ -410,20 +316,23 @@
 
             <td class="project-title" nowrap>
 
-                <a href="javascript:void(0)" data-toggle="modal" data-target="#EditNominee" onclick="EditNominee(this)" data-toggle="tooltip" data-placement="top" data-original-title="Edit Nominee"><i class="la la-pencil-square success"></i></a>
-                <a href="javascript:void(0)" data-toggle="modal" data-target="#EditAttachment" onclick="EditNominee(this)" title="Edit Attachment"><i class="ft-paperclip"></i></a>
-                 <a href="javascript:void(0)" data-toggle="modal" data-target="#DeleteNominee" onclick="EditNominee(this)" data-toggle="tooltip" data-placement="top" data-original-title="Delete Nominee"><i class="la la-trash danger"></i></a>
+                <a href="javascript:void(0)" data-toggle="modal" data-target="#EditTransfer" onclick="EditTransfer(this)" data-toggle="tooltip" data-placement="top" data-original-title="Edit Transfer"><i class="la la-pencil-square success"></i></a>
+                <a href="javascript:void(0)" data-toggle="modal" data-target="#EditAttachment" onclick="EditTransfer(this)" title="Edit Attachment"><i class="ft-paperclip"></i></a>
+                <a href="javascript:void(0)" data-toggle="modal" data-target="#DeleteTransfer" onclick="EditTransfer(this)" data-toggle="tooltip" data-placement="top" data-original-title="Delete Transfer"><i class="la la-trash danger"></i></a>
 
-             </td>
+            </td>
 
 
         </tr>
     </script>
 
-    <script src="~/Scripts/assets/js/PagesJS/Nominee.js"></script>
-
+    <script src="~/Scripts/assets/js/PagesJS/Transfer.js"></script>
 
 }
+
+
+
+
 
 
 

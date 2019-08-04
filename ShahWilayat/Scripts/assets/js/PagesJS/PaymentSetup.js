@@ -1,48 +1,36 @@
-﻿GetAllPaymentSetup();
-GetAllPaymentCategory();
-GetAllPaymentSubCategory();
-GetAllTenure();
-GetAllPlotType();
-GetAllPlots();
+﻿//GetAllPaymentSetup();
+//GetAllPaymentCategory();
+//GetAllTenure();
+//GetAllPlotType();
+//GetAllPlots();
 AllClickFunction();
 AllChangeFunction();
 var objEditRow;
-var PaymentSubCategoryList;
 var TenureList;
 var PlotList;
 var PaymentSetup =
 [{
     PaymentSetupId: 0,
     PaymentCategoryId: 0,
-    PaymentSubCategoryId: 0,
     TenureId: 0,
     Rate: 0,
     PlotTypeId: 0,
-    PlotId: 0
+    PlotId: 0,
+    IsFixed:false
 }]
 
 function AllChangeFunction() {
+    
+
     $(".ddlPaymentCategory").change(function () {
         var PaymentCategoryId = $(this).val();
-        var obj = PaymentSubCategoryList.filter(x => x.PaymentCategoryId == PaymentCategoryId);
-        onGetAllPaymentSubCategory(obj);
+        var obj = TenureList.filter(x => x.PaymentCategoryId == PaymentCategoryId);
+        onGetAllTenure(obj);
     });
 
     $(".ddlPaymentCategory_upd").change(function () {
         var PaymentCategoryId = $(this).val();
-        var obj = PaymentSubCategoryList.filter(x => x.PaymentCategoryId == PaymentCategoryId);
-        onGetAllPaymentSubCategory_upd(obj);
-    });
-
-    $(".ddlPaymentSubCategory").change(function () {
-        var PaymentSubCategoryId = $(this).val();
-        var obj = TenureList.filter(x => x.PaymentSubCategoryId == PaymentSubCategoryId);
-        onGetAllTenure(obj);
-    });
-
-    $(".ddlPaymentSubCategory_upd").change(function () {
-        var PaymentSubCategoryId = $(this).val();
-        var obj = TenureList.filter(x => x.PaymentSubCategoryId == PaymentSubCategoryId);
+        var obj = TenureList.filter(x => x.PaymentCategoryId == PaymentCategoryId);
         onGetAllTenure_upd(obj);
     });
 
@@ -50,12 +38,12 @@ function AllChangeFunction() {
         var PlotTypeId = $(this).val();
 
         if (PlotTypeId == 4 || PlotTypeId == 0) {
-            $('.ddlPlots').prop("disabled", true);
-            $('.ddlPlots').addClass("notrequired");
+            $('.ddlPlot').prop("disabled", true);
+            $('.ddlPlot').addClass("notrequired");
         }
         else {
-            $('.ddlPlots').prop("disabled", false);
-            $('.ddlPlots').removeClass("notrequired");
+            $('.ddlPlot').prop("disabled", false);
+            $('.ddlPlot').removeClass("notrequired");
             var obj = PlotList.filter(x => x.PlotTypeId == PlotTypeId);
             onGetAllPlots(obj);
         }
@@ -65,12 +53,12 @@ function AllChangeFunction() {
     $(".ddlPlotType_upd").change(function () {
         var PlotTypeId = $(this).val();
         if (PlotTypeId == 4 || PlotTypeId == 0) {
-            $('.ddlPlots_upd').prop("disabled", true);
-            $('.ddlPlots_upd').addClass("notrequired");
+            $('.ddlPlot_upd').prop("disabled", true);
+            $('.ddlPlot_upd').addClass("notrequired");
         }
         else {
-            $('.ddlPlots_upd').prop("disabled", false);
-            $('.ddlPlots_upd').removeClass("notrequired");
+            $('.ddlPlot_upd').prop("disabled", false);
+            $('.ddlPlot_upd').removeClass("notrequired");
             var obj = PlotList.filter(x => x.PlotTypeId == PlotTypeId);
             onGetAllPlots_upd(obj);
         }
@@ -87,7 +75,7 @@ function AllClickFunction() {
         PaymentSetup[0].TenureId = $('.ddlTenure').val();
         PaymentSetup[0].Rate = $('.txtRate').val();
         PaymentSetup[0].PlotTypeId = $('.ddlPlotType').val();
-        PaymentSetup[0].PlotId = $('.ddlPlots').val();
+        PaymentSetup[0].PlotId = $('.ddlPlot').val();
 
         $('.trPaymentSetup').each(function () {
             if ($(this).children('.hdnPaymentCategoryId').val() == PaymentSetup[0].PaymentCategoryId &&
@@ -116,7 +104,7 @@ function AllClickFunction() {
         PaymentSetup[0].TenureId = $('.ddlTenure_upd').val();
         PaymentSetup[0].Rate = $('.txtRate_upd').val();
         PaymentSetup[0].PlotTypeId = $('.ddlPlotType_upd').val();
-        PaymentSetup[0].PlotId = $('.ddlPlots_upd').val();
+        PaymentSetup[0].PlotId = $('.ddlPlot_upd').val();
         var i = 0;
         $('.trPaymentSetup').each(function () {
             if (
@@ -199,7 +187,7 @@ function onGetAllPlots(data) {
     try {
 
         var res = data;
-        FillDropDownByReference('.ddlPlots', res);
+        FillDropDownByReference('.ddlPlot', res);
 
 
     }
@@ -212,7 +200,7 @@ function onGetAllPlots_upd(data) {
     try {
 
         var res = data;
-        FillDropDownByReference('.ddlPlots_upd', res);
+        FillDropDownByReference('.ddlPlot_upd', res);
 
 
     }
@@ -518,16 +506,16 @@ function EditPaymentSetup(selector) {
     $('.txtRate_upd').val(objEditRow.find('.hdnRate').val());
 
     $('.ddlPlotType_upd').val(objEditRow.find('.hdnPlotTypeId').val()).change();
-    $('.ddlPlots_upd').val(objEditRow.find('.hdnPlotId').val());
+    $('.ddlPlot_upd').val(objEditRow.find('.hdnPlotId').val());
 
     var PlotTypeId = objEditRow.find('.hdnPlotTypeId').val();
     if (PlotTypeId == 4 || PlotTypeId == 0) {
-        $('.ddlPlots_upd').prop("disabled", true);
-        $('.ddlPlots_upd').addClass("notrequired");
+        $('.ddlPlot_upd').prop("disabled", true);
+        $('.ddlPlot_upd').addClass("notrequired");
     }
     else {
-        $('.ddlPlots_upd').prop("disabled", false);
-        $('.ddlPlots_upd').removeClass("notrequired");
+        $('.ddlPlot_upd').prop("disabled", false);
+        $('.ddlPlot_upd').removeClass("notrequired");
 
     }
 }

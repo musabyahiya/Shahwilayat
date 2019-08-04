@@ -181,6 +181,16 @@ function validateForm(selector) {
             CSS_BorderAndColor(this, 'green');
     });
 
+    $(selector).find('.select2-selection').each(function () {
+        if (($(this).val() == 0 || $(this).val() == null) && this.className.includes('notrequired') == false) {
+            $('.select2-selection').attr('style', 'border-color : red !important; border-style: solid');
+            showError('Check All Mandatory Fields');
+            check = false;
+        }
+        else
+            $('.select2-selection').attr('style', 'border-color : green !important; border-style: solid');
+    });
+
     $(selector).find('input, textarea').each(function () {
         if ($(this).val() == "" && this.type != "hidden" && this.className.includes('notrequired') == false) {
             CSS_BorderAndColor(this, 'red');

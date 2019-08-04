@@ -28,6 +28,8 @@ namespace ShahWilayat
         public System.DateTime CreatedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
+        public Nullable<System.DateTime> AllotmentApplicationDate { get; set; }
+        public string AllotmentOrderScan { get; set; }
     
         public virtual Member Member { get; set; }
         public virtual Plot Plot { get; set; }

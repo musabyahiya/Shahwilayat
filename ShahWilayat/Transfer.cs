@@ -36,6 +36,7 @@ namespace ShahWilayat
         public System.DateTime CreatedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
+        public string TransferOrderScan { get; set; }
     
         public virtual Member Member { get; set; }
         public virtual Plot Plot { get; set; }

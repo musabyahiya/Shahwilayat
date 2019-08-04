@@ -18,6 +18,8 @@
           <Property Name="ProvisionalAllotmentDate" Type="datetime" />
           <Property Name="ShareCertificateNo" Type="varchar" MaxLength="50" />
           <Property Name="ShareCertificateDate" Type="datetime" />
+          <Property Name="AllotmentApplicationDate" Type="datetime" />
+          <Property Name="AllotmentOrderScan" Type="text" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedBy" Type="int" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
@@ -37,6 +39,7 @@
           <Property Name="ProvisionalAllotmentDate" Type="datetime" />
           <Property Name="ShareCertificateNo" Type="varchar" MaxLength="50" />
           <Property Name="ShareCertificateDate" Type="datetime" />
+          <Property Name="AllotmentOrderScan" Type="text" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedBy" Type="int" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
@@ -317,7 +320,7 @@
           <Property Name="RelationId" Type="int" Nullable="false" />
           <Property Name="FirstName" Type="varchar" MaxLength="250" Nullable="false" />
           <Property Name="LastName" Type="varchar" MaxLength="250" Nullable="false" />
-          <Property Name="FatherName" Type="varbinary" MaxLength="50" Nullable="false" />
+          <Property Name="FatherName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Dob" Type="datetime" Nullable="false" />
           <Property Name="BirthPlace" Type="varchar" MaxLength="100" />
           <Property Name="CNIC" Type="varchar" MaxLength="50" />
@@ -683,11 +686,12 @@
           <Property Name="TransferOrderNo" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="TransferDate" Type="datetime" Nullable="false" />
           <Property Name="MCMDate" Type="date" />
-          <Property Name="IsTransfered" Type="bit" Nullable="false" />
           <Property Name="NewspaperAdvDate" Type="datetime" />
           <Property Name="NewspaperName" Type="varchar" MaxLength="50" />
           <Property Name="NewspaperScan" Type="text" />
           <Property Name="IndemnityBondScan" Type="text" />
+          <Property Name="TransferOrderScan" Type="text" />
+          <Property Name="IsTransfered" Type="bit" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedBy" Type="int" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
@@ -2258,7 +2262,7 @@
           <NavigationProperty Name="Member" Relationship="Self.FK_Nominee_Members" FromRole="Nominee" ToRole="Members" />
           <NavigationProperty Name="Relation" Relationship="Self.FK_Nominee_Relation" FromRole="Nominee" ToRole="Relation" />
           <NavigationProperty Name="Title" Relationship="Self.FK_Nominee_Title" FromRole="Nominee" ToRole="Title" />
-          <Property Name="FatherName" Type="Binary" Nullable="false" MaxLength="50" FixedLength="false" />
+          <Property Name="FatherName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="ProfileFile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="BirthCertificate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
@@ -2689,6 +2693,7 @@
           <NavigationProperty Name="Member" Relationship="Self.FK_Transfer_Members" FromRole="Transfer" ToRole="Members" />
           <NavigationProperty Name="Plot" Relationship="Self.FK_Transfer_Plot" FromRole="Transfer" ToRole="Plot" />
           <NavigationProperty Name="TransferLogs" Relationship="Self.FK_TransferLogs_Transfer" FromRole="Transfer" ToRole="TransferLogs" />
+          <Property Name="TransferOrderScan" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="TransferLog">
           <Key>
@@ -3877,6 +3882,8 @@
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Member" Relationship="ShahWilayatModel.FK_AllotmentOrder_Members1" FromRole="Allotment" ToRole="Member" />
           <NavigationProperty Name="Plot" Relationship="ShahWilayatModel.FK_Allotment_Plot" FromRole="Allotment" ToRole="Plot" />
+          <Property Name="AllotmentApplicationDate" Type="DateTime" Precision="3" />
+          <Property Name="AllotmentOrderScan" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_AllotmentOrder_Members1">
           <End Type="ShahWilayatModel.Member" Role="Member" Multiplicity="1" />
@@ -3910,6 +3917,7 @@
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Member" Relationship="ShahWilayatModel.FK_AssociateAllotment_Members" FromRole="AssociateAllotment" ToRole="Member" />
           <NavigationProperty Name="Plot" Relationship="ShahWilayatModel.FK_AssociateAllotment_Plot" FromRole="AssociateAllotment" ToRole="Plot" />
+          <Property Name="AllotmentOrderScan" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Allotment_Plot">
           <End Type="ShahWilayatModel.Plot" Role="Plot" Multiplicity="1" />
@@ -4624,6 +4632,7 @@
           <EntitySetMapping Name="Transfers">
             <EntityTypeMapping TypeName="ShahWilayatModel.Transfer">
               <MappingFragment StoreEntitySet="Transfer">
+                <ScalarProperty Name="TransferOrderScan" ColumnName="TransferOrderScan" />
                 <ScalarProperty Name="TransferId" ColumnName="TransferId" />
                 <ScalarProperty Name="PlotId" ColumnName="PlotId" />
                 <ScalarProperty Name="MemberId" ColumnName="MemberId" />
@@ -4693,6 +4702,8 @@
           <EntitySetMapping Name="Allotments">
             <EntityTypeMapping TypeName="ShahWilayatModel.Allotment">
               <MappingFragment StoreEntitySet="Allotment">
+                <ScalarProperty Name="AllotmentOrderScan" ColumnName="AllotmentOrderScan" />
+                <ScalarProperty Name="AllotmentApplicationDate" ColumnName="AllotmentApplicationDate" />
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
                 <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
@@ -4713,6 +4724,7 @@
           <EntitySetMapping Name="AssociateAllotments">
             <EntityTypeMapping TypeName="ShahWilayatModel.AssociateAllotment">
               <MappingFragment StoreEntitySet="AssociateAllotment">
+                <ScalarProperty Name="AllotmentOrderScan" ColumnName="AllotmentOrderScan" />
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
                 <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />

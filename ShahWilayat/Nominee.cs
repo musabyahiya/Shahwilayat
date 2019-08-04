@@ -37,7 +37,7 @@ namespace ShahWilayat
         public System.DateTime CreatedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
-        public byte[] FatherName { get; set; }
+        public string FatherName { get; set; }
         public string ProfileFile { get; set; }
         public string BirthCertificate { get; set; }
     

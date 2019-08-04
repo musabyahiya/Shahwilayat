@@ -225,8 +225,10 @@
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\MenusController.cs" />
     <Compile Include="Controllers\NomineeController.cs" />
+    <Compile Include="Controllers\PaymentSetupController.cs" />
     <Compile Include="Controllers\PlotController.cs" />
     <Compile Include="Controllers\SessionCheck.cs" />
+    <Compile Include="Controllers\TransferController.cs" />
     <Compile Include="Country.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -5395,7 +5397,6 @@
     <Content Include="Scripts\assets\js\PagesJS\Tenure.js" />
     <Content Include="Scripts\assets\js\PagesJS\Transfer.js" />
     <Content Include="Scripts\assets\js\PagesJS\TransferLogs.js" />
-    <Content Include="Scripts\assets\js\PagesJS\UnitRate.js" />
     <Content Include="Scripts\assets\js\scripts.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -5998,6 +5999,8 @@
     <Content Include="Views\Plot\Index.cshtml" />
     <Content Include="Views\Allotment\Index.cshtml" />
     <Content Include="Views\Nominee\Index.cshtml" />
+    <Content Include="Views\Transfer\Index.cshtml" />
+    <Content Include="Views\PaymentSetup\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
