@@ -17,15 +17,15 @@ namespace ShahWilayat
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Tenure()
         {
-            this.SocietyPaymentDetails = new HashSet<SocietyPaymentDetail>();
             this.PaymentSetups = new HashSet<PaymentSetup>();
+            this.SocietyPaymentDetails = new HashSet<SocietyPaymentDetail>();
         }
     
         public int TenureId { get; set; }
         public int PaymentCategoryId { get; set; }
         public string Tenure1 { get; set; }
-        public Nullable<System.DateTime> StartYear { get; set; }
-        public Nullable<System.DateTime> EndYear { get; set; }
+        public Nullable<System.DateTime> StartDate { get; set; }
+        public Nullable<System.DateTime> EndDate { get; set; }
         public bool IsActive { get; set; }
         public int CreatedBy { get; set; }
         public System.DateTime CreatedDate { get; set; }
@@ -34,8 +34,8 @@ namespace ShahWilayat
     
         public virtual PaymentCategory PaymentCategory { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SocietyPaymentDetail> SocietyPaymentDetails { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PaymentSetup> PaymentSetups { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SocietyPaymentDetail> SocietyPaymentDetails { get; set; }
     }
 }

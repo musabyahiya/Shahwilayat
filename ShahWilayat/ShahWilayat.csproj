@@ -228,6 +228,7 @@
     <Compile Include="Controllers\PaymentSetupController.cs" />
     <Compile Include="Controllers\PlotController.cs" />
     <Compile Include="Controllers\SessionCheck.cs" />
+    <Compile Include="Controllers\TenureController.cs" />
     <Compile Include="Controllers\TransferController.cs" />
     <Compile Include="Country.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -5998,6 +5999,7 @@
     <Content Include="Views\Nominee\Index.cshtml" />
     <Content Include="Views\Transfer\Index.cshtml" />
     <Content Include="Views\PaymentSetup\Index.cshtml" />
+    <Content Include="Views\Tenure\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

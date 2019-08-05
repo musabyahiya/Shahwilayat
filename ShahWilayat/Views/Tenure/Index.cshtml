@@ -1,0 +1,222 @@
+﻿
+@{
+    ViewBag.Title = "Tenure - Shah Wilayat Cooperative Housing Society";
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+}
+
+<div class="content-header row">
+    <div class="content-header-left col-md-6 col-12 mb-2">
+        <h3 class="content-header-title">Tenure</h3>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#CreateTenure">
+                    Add New Tenure
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Both borders end-->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <fieldset>
+                    <div class="input-group">
+                        <input type="text" class="form-control txtSearch" placeholder="Search..." aria-describedby="basic-addon4">
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="basic-addon4"><i class="la la-search"></i></span>
+                        </div>
+                    </div>
+                </fieldset>
+
+            </div>
+            <div class="card-content">
+
+                <div class="table-responsive">
+                    <table class="table table-bordered mb-0 tblTenure">
+                        <thead>
+                            <tr>
+                                <th nowrap>Sr No.</th>
+                                <th>Payment Category</th>
+                                <th>Tenure</th>
+                                <th>Start Year</th>
+                                <th>End Year</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="TenureListing"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Create Modal Start*@
+<div class="modal fade text-left" id="CreateTenure" role="dialog" aria-labelledby="myModalLabel16" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel16">Create New Tenure</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-body frmTenure">
+                    <h4 class="form-section"><i class="la la-gears"></i> Tenure Detail</h4>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="ddlPaymentCategory">Payment Category</label>
+                                <select class="form-control ddlPaymentCategory"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="txtTenure">Tenure</label>
+                                <input type="text" class="form-control txtTenure" placeholder="Enter tenure to display">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="txtStartDate">Start Date</label>
+                                <input type="text" class="form-control DatePicker txtStartDate" placeholder="yyyy-mm-dd">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="txtEndDate">Tenure</label>
+                                <input type="text" class="form-control DatePicker txtEndDate" placeholder="yyyy-mm-dd">
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn grey btn-outline-info" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline-dark btnSaveChanges">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+@*Create Modal End*@
+
+
+@*Edit Modal Start*@
+<div class="modal fade text-left" id="EditTenure" role="dialog" aria-labelledby="myModalLabel16" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel16">Edit Tenure</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-body frmTenure_upd">
+                    <h4 class="form-section"><i class="la la-gears"></i> Tenure Detail</h4>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="ddlPaymentCategory_upd">Payment Category</label>
+                                <select class="form-control ddlPaymentCategory_upd"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="txtTenure_upd">Tenure</label>
+                                <input type="text" class="form-control txtTenure_upd" placeholder="Enter tenure to display">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="txtStartDate_upd">Start Date</label>
+                                <input type="text" class="form-control DatePicker txtStartDate_upd" placeholder="yyyy-mm-dd">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="txtEndDate_upd">End Date</label>
+                                <input type="text" class="form-control DatePicker txtEndDate_upd" placeholder="yyyy-mm-dd">
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn grey btn-outline-info" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline-dark btnUpdateChanges">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+@*Edit Modal Start*@
+
+
+@*Delete Modal Start*@
+<div class="modal fade text-left" id="DeleteAllotment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel10"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-danger white">
+                <h4 class="modal-title white" id="myModalLabel10">Are you sure to delete this item?</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline-danger btnDelete">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+@*Delete Modal Start*@
+
+@section Scripts
+{
+    <script type="text/x-jQuery-tmpl" id="TenureListing">
+        <tr class="trTenure">
+
+            <input type="hidden" class="hdnTenureId" value="${TenureId}" />
+            <input type="hidden" class="hdnPaymentCategoryId" value="${PaymentCategoryId}" />
+
+            <td></td>
+            <td class="project-title tdPaymentCategory">${PaymentCategory}</td>
+            <td class="project-title tdTenure">${Tenure}</td>
+            <td class="project-title tdStartDate">${ToJavaScriptDate(StartDate)}</td>
+            <td class="project-title tdEndDate">${ToJavaScriptDate(EndDate)}</td>
+            
+            
+            <td class="project-title" nowrap>
+                <a href="javascript:void(0)" data-toggle="modal" data-target="#EditTenure" onclick="EditTenure(this)" data-toggle="tooltip" data-placement="top" data-original-title="Edit Plot"><i class="la la-pencil-square success"></i></a>
+
+                <a href="javascript:void(0)" data-toggle="modal" data-target="#DeletePlot" onclick="EditTenure(this)" data-toggle="tooltip" data-placement="top" data-original-title="Delete Plot"><i class="la la-trash danger"></i></a>
+            </td>
+
+        </tr>
+    </script>
+
+    <script src="~/Scripts/assets/js/PagesJS/Tenure.js"></script>
+
+
+}
+
+
+
+
+

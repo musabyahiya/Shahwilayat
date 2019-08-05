@@ -98,13 +98,13 @@ namespace ShahWilayat.Controllers
             try
             {
                 var obj = context.PaymentSetups.FirstOrDefault(x => x.PaymentSetupId == ps.PaymentSetupId);
-                obj.PaymentCategoryId = ps.PaymentCategoryId;
+               
 
                 obj.TenureId = ps.TenureId;
                 obj.Rate = ps.Rate;
                 obj.PlotTypeId = ps.PlotTypeId;
                 obj.PlotId = ps.PlotId;
-                obj.PaymentCategoryId = ps.PaymentCategoryId;
+         
                 obj.HasSizeBase = ps.HasSizeBase;
                 obj.SizeFrom = ps.SizeFrom;
                 obj.SizeTo = ps.SizeTo;
@@ -163,6 +163,28 @@ namespace ShahWilayat.Controllers
                 return Json(e, JsonRequestBehavior.AllowGet);
             }
         }
+        public JsonResult GetAllPaymentCategory()
+        {
+            try
+            {
+                var lst = context.PaymentCategories.Where(x => x.IsActive == true)
+             .Select(x => new
+             {
+                 Id = x.PaymentCategoryId,
+                 Value = x.PaymentCategory1,
+                
+             }).ToList();
+
+                return Json(lst, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                return Json(e, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+
 
         public JsonResult GetAllPaymentSetup()
         {
@@ -172,8 +194,8 @@ namespace ShahWilayat.Controllers
              .Select(x => new
              {
                  x.PaymentSetupId,
-                 x.PaymentCategoryId,
-                 PaymentCategory = x.PaymentCategory.PaymentCategory1,
+                 PaymentCategoryId = x.Tenure.PaymentCategoryId,
+                 PaymentCategory =x.Tenure.PaymentCategory.PaymentCategory1,
                  x.TenureId,
                  Tenure = x.Tenure.Tenure1,
                  x.PlotTypeId,
@@ -186,7 +208,7 @@ namespace ShahWilayat.Controllers
                  x.SizeTo,
                  x.SizeFrom
 
-             }).OrderBy(x => x.PlotType).OrderBy(x => x.PaymentCategory).ToList();
+             }).OrderBy(x => x.PlotType).OrderBy(x => x.PaymentCategoryId).ToList();
 
                 return Json(lst, JsonRequestBehavior.AllowGet);
             }
@@ -196,23 +218,6 @@ namespace ShahWilayat.Controllers
             }
         }
 
-        public JsonResult GetAllPaymentCategory()
-        {
-            try
-            {
-                var lst = context.PaymentCategories.Where(x => x.IsActive == true)
-             .Select(x => new
-             {
-                 Id = x.PaymentCategoryId,
-                 Value = x.PaymentCategory1
-             }).ToList();
-
-                return Json(lst, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception e)
-            {
-                return Json(e, JsonRequestBehavior.AllowGet);
-            }
-        }
+       
     }
 }

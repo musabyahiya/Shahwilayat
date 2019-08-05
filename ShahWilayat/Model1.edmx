@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ShahWilayatModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="ShahWilayatModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Allotment">
           <Key>
             <PropertyRef Name="AllotmentId" />
@@ -428,7 +428,6 @@
             <PropertyRef Name="PaymentSetupId" />
           </Key>
           <Property Name="PaymentSetupId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PaymentCategoryId" Type="int" Nullable="false" />
           <Property Name="TenureId" Type="int" Nullable="false" />
           <Property Name="PlotTypeId" Type="int" Nullable="false" />
           <Property Name="Rate" Type="float" Nullable="false" />
@@ -646,8 +645,8 @@
           <Property Name="TenureId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PaymentCategoryId" Type="int" Nullable="false" />
           <Property Name="Tenure" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="StartYear" Type="datetime" />
-          <Property Name="EndYear" Type="datetime" />
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="EndDate" Type="datetime" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedBy" Type="int" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
@@ -1236,18 +1235,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PaymentSetup_PaymentCategory">
-          <End Role="PaymentCategory" Type="Self.PaymentCategory" Multiplicity="1" />
-          <End Role="PaymentSetup" Type="Self.PaymentSetup" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PaymentCategory">
-              <PropertyRef Name="PaymentCategoryId" />
-            </Principal>
-            <Dependent Role="PaymentSetup">
-              <PropertyRef Name="PaymentCategoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_PaymentSetup_PlotType">
           <End Role="PlotType" Type="Self.PlotType" Multiplicity="1" />
           <End Role="PaymentSetup" Type="Self.PaymentSetup" Multiplicity="*" />
@@ -1748,10 +1735,6 @@
             <End Role="Plot" EntitySet="Plot" />
             <End Role="Payments" EntitySet="Payments" />
           </AssociationSet>
-          <AssociationSet Name="FK_PaymentSetup_PaymentCategory" Association="Self.FK_PaymentSetup_PaymentCategory">
-            <End Role="PaymentCategory" EntitySet="PaymentCategory" />
-            <End Role="PaymentSetup" EntitySet="PaymentSetup" />
-          </AssociationSet>
           <AssociationSet Name="FK_PaymentSetup_PlotType" Association="Self.FK_PaymentSetup_PlotType">
             <End Role="PlotType" EntitySet="PlotType" />
             <End Role="PaymentSetup" EntitySet="PaymentSetup" />
@@ -1849,7 +1832,8 @@
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ShahWilayatModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -2263,8 +2247,6 @@
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="PaymentSetups" Relationship="Self.FK_PaymentSetup_PaymentCategory" FromRole="PaymentCategory" ToRole="PaymentSetup" />
-          <NavigationProperty Name="PaymentSetups1" Relationship="Self.FK_PaymentSetup_Tenure" FromRole="PaymentCategory" ToRole="PaymentSetup" />
           <NavigationProperty Name="Tenures" Relationship="Self.FK_Tenure_PaymentCategory" FromRole="PaymentCategory" ToRole="Tenure" />
         </EntityType>
         <EntityType Name="PaymentDetail">
@@ -2355,25 +2337,22 @@
             <PropertyRef Name="PaymentSetupId" />
           </Key>
           <Property Name="PaymentSetupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PaymentCategoryId" Type="Int32" Nullable="false" />
           <Property Name="TenureId" Type="Int32" Nullable="false" />
           <Property Name="PlotTypeId" Type="Int32" Nullable="false" />
           <Property Name="Rate" Type="Double" Nullable="false" />
           <Property Name="PlotId" Type="Int32" Nullable="false" />
           <Property Name="IsFixed" Type="Boolean" Nullable="false" />
+          <Property Name="HasSizeBase" Type="Boolean" Nullable="false" />
+          <Property Name="SizeFrom" Type="Int32" Nullable="false" />
+          <Property Name="SizeTo" Type="Int32" Nullable="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="CreatedBy" Type="Int32" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Charges" Relationship="Self.FK_Charges_PaymentSetup" FromRole="PaymentSetup" ToRole="Charges" />
-          <NavigationProperty Name="PaymentCategory" Relationship="Self.FK_PaymentSetup_PaymentCategory" FromRole="PaymentSetup" ToRole="PaymentCategory" />
-          <NavigationProperty Name="PaymentCategory1" Relationship="Self.FK_PaymentSetup_Tenure" FromRole="PaymentSetup" ToRole="PaymentCategory" />
           <NavigationProperty Name="PlotType" Relationship="Self.FK_PaymentSetup_PlotType" FromRole="PaymentSetup" ToRole="PlotType" />
-          <NavigationProperty Name="Tenure" Relationship="ShahWilayatModel.FK_PaymentSetup_Tenure1" FromRole="PaymentSetup" ToRole="Tenure" />
-          <Property Name="HasSizeBase" Type="Boolean" Nullable="false" />
-          <Property Name="SizeFrom" Type="Int32" Nullable="false" />
-          <Property Name="SizeTo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Tenure" Relationship="Self.FK_PaymentSetup_Tenure1" FromRole="PaymentSetup" ToRole="Tenure" />
         </EntityType>
         <EntityType Name="Plot">
           <Key>
@@ -2615,16 +2594,16 @@
           <Property Name="TenureId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PaymentCategoryId" Type="Int32" Nullable="false" />
           <Property Name="Tenure1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="StartYear" Type="DateTime" Precision="3" />
-          <Property Name="EndYear" Type="DateTime" Precision="3" />
+          <Property Name="StartDate" Type="DateTime" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="CreatedBy" Type="Int32" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="PaymentCategory" Relationship="Self.FK_Tenure_PaymentCategory" FromRole="Tenure" ToRole="PaymentCategory" />
+          <NavigationProperty Name="PaymentSetups" Relationship="Self.FK_PaymentSetup_Tenure1" FromRole="Tenure" ToRole="PaymentSetup" />
           <NavigationProperty Name="SocietyPaymentDetails" Relationship="Self.FK_SocietyPaymentDetails_Tenure" FromRole="Tenure" ToRole="SocietyPaymentDetails" />
-          <NavigationProperty Name="PaymentSetups" Relationship="ShahWilayatModel.FK_PaymentSetup_Tenure1" FromRole="Tenure" ToRole="PaymentSetup" />
         </EntityType>
         <EntityType Name="Title">
           <Key>
@@ -3244,30 +3223,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PaymentSetup_PaymentCategory">
-          <End Role="PaymentCategory" Type="Self.PaymentCategory" Multiplicity="1" />
-          <End Role="PaymentSetup" Type="Self.PaymentSetup" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PaymentCategory">
-              <PropertyRef Name="PaymentCategoryId" />
-            </Principal>
-            <Dependent Role="PaymentSetup">
-              <PropertyRef Name="PaymentCategoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PaymentSetup_Tenure">
-          <End Role="PaymentCategory" Type="Self.PaymentCategory" Multiplicity="1" />
-          <End Role="PaymentSetup" Type="Self.PaymentSetup" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PaymentCategory">
-              <PropertyRef Name="PaymentCategoryId" />
-            </Principal>
-            <Dependent Role="PaymentSetup">
-              <PropertyRef Name="PaymentCategoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Tenure_PaymentCategory">
           <End Role="PaymentCategory" Type="Self.PaymentCategory" Multiplicity="1" />
           <End Role="Tenure" Type="Self.Tenure" Multiplicity="*" />
@@ -3349,6 +3304,18 @@
             </Principal>
             <Dependent Role="PaymentSetup">
               <PropertyRef Name="PlotTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaymentSetup_Tenure1">
+          <End Role="Tenure" Type="Self.Tenure" Multiplicity="1" />
+          <End Role="PaymentSetup" Type="Self.PaymentSetup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tenure">
+              <PropertyRef Name="TenureId" />
+            </Principal>
+            <Dependent Role="PaymentSetup">
+              <PropertyRef Name="TenureId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3740,14 +3707,6 @@
             <End Role="Title" EntitySet="Titles" />
             <End Role="Nominee" EntitySet="Nominees" />
           </AssociationSet>
-          <AssociationSet Name="FK_PaymentSetup_PaymentCategory" Association="Self.FK_PaymentSetup_PaymentCategory">
-            <End Role="PaymentCategory" EntitySet="PaymentCategories" />
-            <End Role="PaymentSetup" EntitySet="PaymentSetups" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PaymentSetup_Tenure" Association="Self.FK_PaymentSetup_Tenure">
-            <End Role="PaymentCategory" EntitySet="PaymentCategories" />
-            <End Role="PaymentSetup" EntitySet="PaymentSetups" />
-          </AssociationSet>
           <AssociationSet Name="FK_Tenure_PaymentCategory" Association="Self.FK_Tenure_PaymentCategory">
             <End Role="PaymentCategory" EntitySet="PaymentCategories" />
             <End Role="Tenure" EntitySet="Tenures" />
@@ -3774,6 +3733,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_PaymentSetup_PlotType" Association="Self.FK_PaymentSetup_PlotType">
             <End Role="PlotType" EntitySet="PlotTypes" />
+            <End Role="PaymentSetup" EntitySet="PaymentSetups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentSetup_Tenure1" Association="Self.FK_PaymentSetup_Tenure1">
+            <End Role="Tenure" EntitySet="Tenures" />
             <End Role="PaymentSetup" EntitySet="PaymentSetups" />
           </AssociationSet>
           <AssociationSet Name="FK_Plot_Plot" Association="Self.FK_Plot_Plot">
@@ -3832,23 +3795,7 @@
             <End Role="Transfer" EntitySet="Transfers" />
             <End Role="TransferLogs" EntitySet="TransferLogs" />
           </AssociationSet>
-          <AssociationSet Name="FK_PaymentSetup_Tenure1" Association="ShahWilayatModel.FK_PaymentSetup_Tenure1">
-            <End Role="Tenure" EntitySet="Tenures" />
-            <End Role="PaymentSetup" EntitySet="PaymentSetups" />
-          </AssociationSet>
         </EntityContainer>
-        <Association Name="FK_PaymentSetup_Tenure1">
-          <End Type="ShahWilayatModel.Tenure" Role="Tenure" Multiplicity="1" />
-          <End Type="ShahWilayatModel.PaymentSetup" Role="PaymentSetup" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tenure">
-              <PropertyRef Name="TenureId" />
-            </Principal>
-            <Dependent Role="PaymentSetup">
-              <PropertyRef Name="TenureId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4298,16 +4245,15 @@
           <EntitySetMapping Name="PaymentSetups">
             <EntityTypeMapping TypeName="ShahWilayatModel.PaymentSetup">
               <MappingFragment StoreEntitySet="PaymentSetup">
-                <ScalarProperty Name="SizeTo" ColumnName="SizeTo" />
-                <ScalarProperty Name="SizeFrom" ColumnName="SizeFrom" />
-                <ScalarProperty Name="HasSizeBase" ColumnName="HasSizeBase" />
                 <ScalarProperty Name="PaymentSetupId" ColumnName="PaymentSetupId" />
-                <ScalarProperty Name="PaymentCategoryId" ColumnName="PaymentCategoryId" />
                 <ScalarProperty Name="TenureId" ColumnName="TenureId" />
                 <ScalarProperty Name="PlotTypeId" ColumnName="PlotTypeId" />
                 <ScalarProperty Name="Rate" ColumnName="Rate" />
                 <ScalarProperty Name="PlotId" ColumnName="PlotId" />
                 <ScalarProperty Name="IsFixed" ColumnName="IsFixed" />
+                <ScalarProperty Name="HasSizeBase" ColumnName="HasSizeBase" />
+                <ScalarProperty Name="SizeFrom" ColumnName="SizeFrom" />
+                <ScalarProperty Name="SizeTo" ColumnName="SizeTo" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
@@ -4532,8 +4478,8 @@
                 <ScalarProperty Name="TenureId" ColumnName="TenureId" />
                 <ScalarProperty Name="PaymentCategoryId" ColumnName="PaymentCategoryId" />
                 <ScalarProperty Name="Tenure1" ColumnName="Tenure" />
-                <ScalarProperty Name="StartYear" ColumnName="StartYear" />
-                <ScalarProperty Name="EndYear" ColumnName="EndYear" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />

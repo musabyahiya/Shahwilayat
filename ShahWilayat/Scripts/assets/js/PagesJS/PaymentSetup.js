@@ -13,7 +13,6 @@ var PaymentSetupList;
 var PaymentSetup =
 [{
     PaymentSetupId: 0,
-    PaymentCategoryId: 0,
     TenureId: 0,
     Rate: 0,
     PlotTypeId: 0,
@@ -123,7 +122,7 @@ function AllClickFunction() {
         var duplicationPaymentSetup = false;
         if (!validateForm(".frmPaymentSetup")) return;
 
-        PaymentSetup[0].PaymentCategoryId = $('.ddlPaymentCategory').val();
+      
         PaymentSetup[0].TenureId = $('.ddlTenure').val();
         PaymentSetup[0].Rate = $('.txtRate').val();
         PaymentSetup[0].PlotTypeId = $('.ddlPlotType').val();
@@ -135,7 +134,7 @@ function AllClickFunction() {
         PaymentSetup[0].IsFixed = $('.ddlFixed').val() == 1 ? false : true;
 
 
-        var obj = PaymentSetupList.filter(x=> (x.PaymentCategoryId == PaymentSetup[0].PaymentCategoryId) && (x.TenureId == PaymentSetup[0].TenureId)
+        var obj = PaymentSetupList.filter(x=> (x.TenureId == PaymentSetup[0].TenureId)
             && (x.PlotTypeId == PaymentSetup[0].PlotTypeId) && (x.SizeFrom == PaymentSetup[0].SizeFrom) && (x.SizeTo == PaymentSetup[0].SizeTo));
 
         if (obj.length > 0)
@@ -153,7 +152,7 @@ function AllClickFunction() {
         var duplicationPaymentSetup = false;
         if (!validateForm(".frmPaymentSetup_upd")) return;
 
-        PaymentSetup[0].PaymentCategoryId = $('.ddlPaymentCategory_upd').val();
+      
         PaymentSetup[0].TenureId = $('.ddlTenure_upd').val();
         PaymentSetup[0].Rate = $('.txtRate_upd').val();
         PaymentSetup[0].PlotTypeId = $('.ddlPlotType_upd').val();
@@ -163,7 +162,7 @@ function AllClickFunction() {
         PaymentSetup[0].HasSizeBase = $('.ddlHasSizeBase_upd').val() == 1 ? true : false;
         PaymentSetup[0].SizeFrom = $('.txtSizeFrom_upd').val();
         PaymentSetup[0].SizeTo = $('.txtSizeTo_upd').val();
-        var obj = PaymentSetupList.filter(x=> (x.PaymentCategoryId == PaymentSetup[0].PaymentCategoryId) && (x.TenureId == PaymentSetup[0].TenureId)
+        var obj = PaymentSetupList.filter(x=>  (x.TenureId == PaymentSetup[0].TenureId)
             && (x.PlotTypeId == PaymentSetup[0].PlotTypeId) && (x.PaymentSetupId != PaymentSetup[0].PaymentSetupId)
             && (x.SizeFrom == PaymentSetup[0].SizeFrom) && (x.SizeTo == PaymentSetup[0].SizeTo)
             )
@@ -375,34 +374,7 @@ function DeletePaymentSetup() {
     });
 }
 
-function GetAllPaymentCategory() {
 
-    var request = $.ajax({
-        method: "POST",
-        url: "/PaymentSetup/GetAllPaymentCategory",
-        data: {}
-    });
-    request.done(function (data) {
-
-        onGetAllPaymentCategory(data);
-    });
-    request.fail(function (jqXHR, Status) {
-        console.log(jqXHR.responseText);
-    });
-}
-
-function onGetAllPaymentCategory(data) {
-    try {
-
-        var res = data;
-        FillDropDownByReference('.ddlPaymentCategory', res);
-        FillDropDownByReference('.ddlPaymentCategory_upd', res);
-    }
-    catch (Err) {
-        console.log(Err);
-    }
-
-}
 
 function GetAllTenure() {
 
@@ -427,6 +399,39 @@ function onGetAllTenure(data) {
 
         var res = data;
         FillDropDownByReference('.ddlTenure', res);
+        FillDropDownByReference('.ddlTenure_upd', res);
+    }
+    catch (Err) {
+        console.log(Err);
+    }
+
+}
+
+function GetAllPaymentCategory() {
+
+    var request = $.ajax({
+        method: "POST",
+        url: "/PaymentSetup/GetAllPaymentCategory",
+        data: {}
+    });
+    request.done(function (data) {
+
+        var res = data;
+        onGetAllPaymentCategory(res);
+
+    });
+    request.fail(function (jqXHR, Status) {
+        console.log(jqXHR.responseText);
+
+    });
+}
+
+function onGetAllPaymentCategory(data) {
+    try {
+
+        var res = data;
+        FillDropDownByReference('.ddlPaymentCategory', res);
+        FillDropDownByReference('.ddlPaymentCategory_upd', res);
     }
     catch (Err) {
         console.log(Err);
