@@ -429,24 +429,14 @@
           </Key>
           <Property Name="PaymentSetupId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PaymentCategoryId" Type="int" Nullable="false" />
-          <Property Name="PaymentSubCategoryId" Type="int" Nullable="false" />
           <Property Name="TenureId" Type="int" Nullable="false" />
-          <Property Name="Rate" Type="bigint" Nullable="false" />
           <Property Name="PlotTypeId" Type="int" Nullable="false" />
+          <Property Name="Rate" Type="float" Nullable="false" />
           <Property Name="PlotId" Type="int" Nullable="false" />
-          <Property Name="IsActive" Type="bit" Nullable="false" />
-          <Property Name="CreatedBy" Type="int" Nullable="false" />
-          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
-          <Property Name="ModifiedBy" Type="int" />
-          <Property Name="ModifiedDate" Type="datetime" />
-        </EntityType>
-        <EntityType Name="PaymentSubCategory">
-          <Key>
-            <PropertyRef Name="PaymentSubCategoryId" />
-          </Key>
-          <Property Name="PaymentSubCategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PaymentCategoryId" Type="int" Nullable="false" />
-          <Property Name="PaymentSubCategory" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="IsFixed" Type="bit" Nullable="false" />
+          <Property Name="HasSizeBase" Type="bit" Nullable="false" />
+          <Property Name="SizeFrom" Type="int" Nullable="false" />
+          <Property Name="SizeTo" Type="int" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedBy" Type="int" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
@@ -654,10 +644,10 @@
             <PropertyRef Name="TenureId" />
           </Key>
           <Property Name="TenureId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PaymentSubCategoryId" Type="int" Nullable="false" />
+          <Property Name="PaymentCategoryId" Type="int" Nullable="false" />
           <Property Name="Tenure" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="StartYear" Type="int" />
-          <Property Name="EndYear" Type="int" />
+          <Property Name="StartYear" Type="datetime" />
+          <Property Name="EndYear" Type="datetime" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedBy" Type="int" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
@@ -1258,18 +1248,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PaymentSetup_PaymentSubCategory">
-          <End Role="PaymentSubCategory" Type="Self.PaymentSubCategory" Multiplicity="1" />
-          <End Role="PaymentSetup" Type="Self.PaymentSetup" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PaymentSubCategory">
-              <PropertyRef Name="PaymentSubCategoryId" />
-            </Principal>
-            <Dependent Role="PaymentSetup">
-              <PropertyRef Name="PaymentSubCategoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_PaymentSetup_PlotType">
           <End Role="PlotType" Type="Self.PlotType" Multiplicity="1" />
           <End Role="PaymentSetup" Type="Self.PaymentSetup" Multiplicity="*" />
@@ -1282,7 +1260,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PaymentSetup_Tenure">
+        <Association Name="FK_PaymentSetup_Tenure1">
           <End Role="Tenure" Type="Self.Tenure" Multiplicity="1" />
           <End Role="PaymentSetup" Type="Self.PaymentSetup" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1291,18 +1269,6 @@
             </Principal>
             <Dependent Role="PaymentSetup">
               <PropertyRef Name="TenureId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PaymentSubCategory_PaymentCategory">
-          <End Role="PaymentCategory" Type="Self.PaymentCategory" Multiplicity="1" />
-          <End Role="PaymentSubCategory" Type="Self.PaymentSubCategory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PaymentCategory">
-              <PropertyRef Name="PaymentCategoryId" />
-            </Principal>
-            <Dependent Role="PaymentSubCategory">
-              <PropertyRef Name="PaymentCategoryId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1486,15 +1452,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Tenure_PaymentSubCategory">
-          <End Role="PaymentSubCategory" Type="Self.PaymentSubCategory" Multiplicity="1" />
+        <Association Name="FK_Tenure_PaymentCategory">
+          <End Role="PaymentCategory" Type="Self.PaymentCategory" Multiplicity="1" />
           <End Role="Tenure" Type="Self.Tenure" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="PaymentSubCategory">
-              <PropertyRef Name="PaymentSubCategoryId" />
+            <Principal Role="PaymentCategory">
+              <PropertyRef Name="PaymentCategoryId" />
             </Principal>
             <Dependent Role="Tenure">
-              <PropertyRef Name="PaymentSubCategoryId" />
+              <PropertyRef Name="PaymentCategoryId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1570,18 +1536,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="ShareCertificateFee_Tenure">
-          <End Role="Tenure" Type="Self.Tenure" Multiplicity="1" />
-          <End Role="ShareCertificateFee" Type="Self.ShareCertificateFee" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tenure">
-              <PropertyRef Name="TenureId" />
-            </Principal>
-            <Dependent Role="ShareCertificateFee">
-              <PropertyRef Name="TenureId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="ShahWilayatModelStoreContainer">
           <EntitySet Name="Allotment" EntityType="Self.Allotment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AssociateAllotment" EntityType="Self.AssociateAllotment" Schema="dbo" store:Type="Tables" />
@@ -1606,7 +1560,6 @@
           <EntitySet Name="PaymentPlan" EntityType="Self.PaymentPlan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PaymentSetup" EntityType="Self.PaymentSetup" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PaymentSubCategory" EntityType="Self.PaymentSubCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Plot" EntityType="Self.Plot" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PlotCategory" EntityType="Self.PlotCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PlotCategoryPercent" EntityType="Self.PlotCategoryPercent" Schema="dbo" store:Type="Tables" />
@@ -1799,21 +1752,13 @@
             <End Role="PaymentCategory" EntitySet="PaymentCategory" />
             <End Role="PaymentSetup" EntitySet="PaymentSetup" />
           </AssociationSet>
-          <AssociationSet Name="FK_PaymentSetup_PaymentSubCategory" Association="Self.FK_PaymentSetup_PaymentSubCategory">
-            <End Role="PaymentSubCategory" EntitySet="PaymentSubCategory" />
-            <End Role="PaymentSetup" EntitySet="PaymentSetup" />
-          </AssociationSet>
           <AssociationSet Name="FK_PaymentSetup_PlotType" Association="Self.FK_PaymentSetup_PlotType">
             <End Role="PlotType" EntitySet="PlotType" />
             <End Role="PaymentSetup" EntitySet="PaymentSetup" />
           </AssociationSet>
-          <AssociationSet Name="FK_PaymentSetup_Tenure" Association="Self.FK_PaymentSetup_Tenure">
+          <AssociationSet Name="FK_PaymentSetup_Tenure1" Association="Self.FK_PaymentSetup_Tenure1">
             <End Role="Tenure" EntitySet="Tenure" />
             <End Role="PaymentSetup" EntitySet="PaymentSetup" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PaymentSubCategory_PaymentCategory" Association="Self.FK_PaymentSubCategory_PaymentCategory">
-            <End Role="PaymentCategory" EntitySet="PaymentCategory" />
-            <End Role="PaymentSubCategory" EntitySet="PaymentSubCategory" />
           </AssociationSet>
           <AssociationSet Name="FK_Plot_Plot" Association="Self.FK_Plot_Plot">
             <End Role="Plot" EntitySet="Plot" />
@@ -1875,8 +1820,8 @@
             <End Role="Tenure" EntitySet="Tenure" />
             <End Role="SocietyPaymentDetails" EntitySet="SocietyPaymentDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK_Tenure_PaymentSubCategory" Association="Self.FK_Tenure_PaymentSubCategory">
-            <End Role="PaymentSubCategory" EntitySet="PaymentSubCategory" />
+          <AssociationSet Name="FK_Tenure_PaymentCategory" Association="Self.FK_Tenure_PaymentCategory">
+            <End Role="PaymentCategory" EntitySet="PaymentCategory" />
             <End Role="Tenure" EntitySet="Tenure" />
           </AssociationSet>
           <AssociationSet Name="FK_Transfer_Members" Association="Self.FK_Transfer_Members">
@@ -1903,15 +1848,56 @@
             <End Role="Role" EntitySet="Role" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
-          <AssociationSet Name="ShareCertificateFee_Tenure" Association="Self.ShareCertificateFee_Tenure">
-            <End Role="Tenure" EntitySet="Tenure" />
-            <End Role="ShareCertificateFee" EntitySet="ShareCertificateFee" />
-          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ShahWilayatModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Allotment">
+          <Key>
+            <PropertyRef Name="AllotmentId" />
+          </Key>
+          <Property Name="AllotmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberId" Type="Int32" Nullable="false" />
+          <Property Name="PlotId" Type="Int32" Nullable="false" />
+          <Property Name="AllotmentOrderNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AllotmentOrderDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ProvisionalAllotmentNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProvisionalAllotmentDate" Type="DateTime" Precision="3" />
+          <Property Name="ShareCertificateNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ShareCertificateDate" Type="DateTime" Precision="3" />
+          <Property Name="AllotmentApplicationDate" Type="DateTime" Precision="3" />
+          <Property Name="AllotmentOrderScan" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Plot" Relationship="Self.FK_Allotment_Plot" FromRole="Allotment" ToRole="Plot" />
+          <NavigationProperty Name="Member" Relationship="Self.FK_AllotmentOrder_Members" FromRole="Allotment" ToRole="Members" />
+        </EntityType>
+        <EntityType Name="AssociateAllotment">
+          <Key>
+            <PropertyRef Name="AssociateAllotmentId" />
+          </Key>
+          <Property Name="AssociateAllotmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberId" Type="Int32" Nullable="false" />
+          <Property Name="PlotId" Type="Int32" Nullable="false" />
+          <Property Name="AllotmentOrderNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AllotmentOrderDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ProvisionalAllotmentNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProvisionalAllotmentDate" Type="DateTime" Precision="3" />
+          <Property Name="ShareCertificateNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ShareCertificateDate" Type="DateTime" Precision="3" />
+          <Property Name="AllotmentOrderScan" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Member" Relationship="Self.FK_AssociateAllotment_Members" FromRole="AssociateAllotment" ToRole="Members" />
+          <NavigationProperty Name="Plot" Relationship="Self.FK_AssociateAllotment_Plot" FromRole="AssociateAllotment" ToRole="Plot" />
+        </EntityType>
         <EntityType Name="AssociateMember">
           <Key>
             <PropertyRef Name="AssociateMemberId" />
@@ -2177,6 +2163,8 @@
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Allotments" Relationship="Self.FK_AllotmentOrder_Members" FromRole="Members" ToRole="Allotment" />
+          <NavigationProperty Name="AssociateAllotments" Relationship="Self.FK_AssociateAllotment_Members" FromRole="Members" ToRole="AssociateAllotment" />
           <NavigationProperty Name="AssociateMembers" Relationship="Self.FK_AssociateMember_Members" FromRole="Members" ToRole="AssociateMember" />
           <NavigationProperty Name="City" Relationship="Self.FK_Members_City" FromRole="Members" ToRole="City" />
           <NavigationProperty Name="CnicHistories" Relationship="Self.FK_HistoryCnic_Members" FromRole="Members" ToRole="CnicHistory" />
@@ -2197,8 +2185,6 @@
           <NavigationProperty Name="SocietyPayments" Relationship="Self.FK_SocietyPayment_Members" FromRole="Members" ToRole="SocietyPayment" />
           <NavigationProperty Name="Transfers" Relationship="Self.FK_Transfer_Members" FromRole="Members" ToRole="Transfer" />
           <NavigationProperty Name="TransferLogs" Relationship="Self.FK_TransferLogs_Members" FromRole="Members" ToRole="TransferLogs" />
-          <NavigationProperty Name="Allotments" Relationship="ShahWilayatModel.FK_AllotmentOrder_Members1" FromRole="Member" ToRole="Allotment" />
-          <NavigationProperty Name="AssociateAllotments" Relationship="ShahWilayatModel.FK_AssociateAllotment_Members" FromRole="Member" ToRole="AssociateAllotment" />
         </EntityType>
         <EntityType Name="MembershipFee">
           <Key>
@@ -2242,6 +2228,7 @@
           <Property Name="RelationId" Type="Int32" Nullable="false" />
           <Property Name="FirstName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="LastName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FatherName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Dob" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="BirthPlace" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="CNIC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -2249,6 +2236,8 @@
           <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CnicFront" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="CnicBack" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ProfileFile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="BirthCertificate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="FrcFile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="HereshipCertificate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="GuardianCertificate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
@@ -2262,9 +2251,6 @@
           <NavigationProperty Name="Member" Relationship="Self.FK_Nominee_Members" FromRole="Nominee" ToRole="Members" />
           <NavigationProperty Name="Relation" Relationship="Self.FK_Nominee_Relation" FromRole="Nominee" ToRole="Relation" />
           <NavigationProperty Name="Title" Relationship="Self.FK_Nominee_Title" FromRole="Nominee" ToRole="Title" />
-          <Property Name="FatherName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="ProfileFile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="BirthCertificate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="PaymentCategory">
           <Key>
@@ -2278,7 +2264,8 @@
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="PaymentSetups" Relationship="Self.FK_PaymentSetup_PaymentCategory" FromRole="PaymentCategory" ToRole="PaymentSetup" />
-          <NavigationProperty Name="PaymentSubCategories" Relationship="Self.FK_PaymentSubCategory_PaymentCategory" FromRole="PaymentCategory" ToRole="PaymentSubCategory" />
+          <NavigationProperty Name="PaymentSetups1" Relationship="Self.FK_PaymentSetup_Tenure" FromRole="PaymentCategory" ToRole="PaymentSetup" />
+          <NavigationProperty Name="Tenures" Relationship="Self.FK_Tenure_PaymentCategory" FromRole="PaymentCategory" ToRole="Tenure" />
         </EntityType>
         <EntityType Name="PaymentDetail">
           <Key>
@@ -2369,11 +2356,11 @@
           </Key>
           <Property Name="PaymentSetupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PaymentCategoryId" Type="Int32" Nullable="false" />
-          <Property Name="PaymentSubCategoryId" Type="Int32" Nullable="false" />
           <Property Name="TenureId" Type="Int32" Nullable="false" />
-          <Property Name="Rate" Type="Int64" Nullable="false" />
           <Property Name="PlotTypeId" Type="Int32" Nullable="false" />
+          <Property Name="Rate" Type="Double" Nullable="false" />
           <Property Name="PlotId" Type="Int32" Nullable="false" />
+          <Property Name="IsFixed" Type="Boolean" Nullable="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="CreatedBy" Type="Int32" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
@@ -2381,25 +2368,12 @@
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Charges" Relationship="Self.FK_Charges_PaymentSetup" FromRole="PaymentSetup" ToRole="Charges" />
           <NavigationProperty Name="PaymentCategory" Relationship="Self.FK_PaymentSetup_PaymentCategory" FromRole="PaymentSetup" ToRole="PaymentCategory" />
-          <NavigationProperty Name="PaymentSubCategory" Relationship="Self.FK_PaymentSetup_PaymentSubCategory" FromRole="PaymentSetup" ToRole="PaymentSubCategory" />
+          <NavigationProperty Name="PaymentCategory1" Relationship="Self.FK_PaymentSetup_Tenure" FromRole="PaymentSetup" ToRole="PaymentCategory" />
           <NavigationProperty Name="PlotType" Relationship="Self.FK_PaymentSetup_PlotType" FromRole="PaymentSetup" ToRole="PlotType" />
-          <NavigationProperty Name="Tenure" Relationship="Self.FK_PaymentSetup_Tenure" FromRole="PaymentSetup" ToRole="Tenure" />
-        </EntityType>
-        <EntityType Name="PaymentSubCategory">
-          <Key>
-            <PropertyRef Name="PaymentSubCategoryId" />
-          </Key>
-          <Property Name="PaymentSubCategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PaymentCategoryId" Type="Int32" Nullable="false" />
-          <Property Name="PaymentSubCategory1" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
-          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ModifiedBy" Type="Int32" />
-          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="PaymentCategory" Relationship="Self.FK_PaymentSubCategory_PaymentCategory" FromRole="PaymentSubCategory" ToRole="PaymentCategory" />
-          <NavigationProperty Name="PaymentSetups" Relationship="Self.FK_PaymentSetup_PaymentSubCategory" FromRole="PaymentSubCategory" ToRole="PaymentSetup" />
-          <NavigationProperty Name="Tenures" Relationship="Self.FK_Tenure_PaymentSubCategory" FromRole="PaymentSubCategory" ToRole="Tenure" />
+          <NavigationProperty Name="Tenure" Relationship="ShahWilayatModel.FK_PaymentSetup_Tenure1" FromRole="PaymentSetup" ToRole="Tenure" />
+          <Property Name="HasSizeBase" Type="Boolean" Nullable="false" />
+          <Property Name="SizeFrom" Type="Int32" Nullable="false" />
+          <Property Name="SizeTo" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Plot">
           <Key>
@@ -2419,6 +2393,8 @@
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Allotments" Relationship="Self.FK_Allotment_Plot" FromRole="Plot" ToRole="Allotment" />
+          <NavigationProperty Name="AssociateAllotments" Relationship="Self.FK_AssociateAllotment_Plot" FromRole="Plot" ToRole="AssociateAllotment" />
           <NavigationProperty Name="Installments" Relationship="Self.FK_Installments_Plot" FromRole="Plot" ToRole="Installments" />
           <NavigationProperty Name="Invoices" Relationship="Self.FK_Invoice_Plot" FromRole="Plot" ToRole="Invoice" />
           <NavigationProperty Name="PaymentPlans" Relationship="Self.FK_PaymentPlan_Plot" FromRole="Plot" ToRole="PaymentPlan" />
@@ -2434,8 +2410,6 @@
           <NavigationProperty Name="SocietyPayments" Relationship="Self.FK_SocietyPayment_Plot" FromRole="Plot" ToRole="SocietyPayment" />
           <NavigationProperty Name="Transfers" Relationship="Self.FK_Transfer_Plot" FromRole="Plot" ToRole="Transfer" />
           <NavigationProperty Name="TransferLogs" Relationship="Self.FK_TransferLogs_Plot" FromRole="Plot" ToRole="TransferLogs" />
-          <NavigationProperty Name="Allotments" Relationship="ShahWilayatModel.FK_Allotment_Plot" FromRole="Plot" ToRole="Allotment" />
-          <NavigationProperty Name="AssociateAllotments" Relationship="ShahWilayatModel.FK_AssociateAllotment_Plot" FromRole="Plot" ToRole="AssociateAllotment" />
         </EntityType>
         <EntityType Name="PlotCategory">
           <Key>
@@ -2576,7 +2550,6 @@
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Tenure" Relationship="Self.ShareCertificateFee_Tenure" FromRole="ShareCertificateFee" ToRole="Tenure" />
         </EntityType>
         <EntityType Name="SocietyPayment">
           <Key>
@@ -2640,19 +2613,18 @@
             <PropertyRef Name="TenureId" />
           </Key>
           <Property Name="TenureId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PaymentSubCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="PaymentCategoryId" Type="Int32" Nullable="false" />
           <Property Name="Tenure1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="StartYear" Type="Int32" />
-          <Property Name="EndYear" Type="Int32" />
+          <Property Name="StartYear" Type="DateTime" Precision="3" />
+          <Property Name="EndYear" Type="DateTime" Precision="3" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="CreatedBy" Type="Int32" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="PaymentSetups" Relationship="Self.FK_PaymentSetup_Tenure" FromRole="Tenure" ToRole="PaymentSetup" />
-          <NavigationProperty Name="PaymentSubCategory" Relationship="Self.FK_Tenure_PaymentSubCategory" FromRole="Tenure" ToRole="PaymentSubCategory" />
-          <NavigationProperty Name="ShareCertificateFees" Relationship="Self.ShareCertificateFee_Tenure" FromRole="Tenure" ToRole="ShareCertificateFee" />
+          <NavigationProperty Name="PaymentCategory" Relationship="Self.FK_Tenure_PaymentCategory" FromRole="Tenure" ToRole="PaymentCategory" />
           <NavigationProperty Name="SocietyPaymentDetails" Relationship="Self.FK_SocietyPaymentDetails_Tenure" FromRole="Tenure" ToRole="SocietyPaymentDetails" />
+          <NavigationProperty Name="PaymentSetups" Relationship="ShahWilayatModel.FK_PaymentSetup_Tenure1" FromRole="Tenure" ToRole="PaymentSetup" />
         </EntityType>
         <EntityType Name="Title">
           <Key>
@@ -2680,11 +2652,12 @@
           <Property Name="TransferOrderNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TransferDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="MCMDate" Type="DateTime" Precision="0" />
-          <Property Name="IsTransfered" Type="Boolean" Nullable="false" />
           <Property Name="NewspaperAdvDate" Type="DateTime" Precision="3" />
           <Property Name="NewspaperName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="NewspaperScan" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="IndemnityBondScan" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TransferOrderScan" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsTransfered" Type="Boolean" Nullable="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="CreatedBy" Type="Int32" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
@@ -2693,7 +2666,6 @@
           <NavigationProperty Name="Member" Relationship="Self.FK_Transfer_Members" FromRole="Transfer" ToRole="Members" />
           <NavigationProperty Name="Plot" Relationship="Self.FK_Transfer_Plot" FromRole="Transfer" ToRole="Plot" />
           <NavigationProperty Name="TransferLogs" Relationship="Self.FK_TransferLogs_Transfer" FromRole="Transfer" ToRole="TransferLogs" />
-          <Property Name="TransferOrderScan" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="TransferLog">
           <Key>
@@ -2744,6 +2716,54 @@
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Role" Relationship="Self.FK_Users_Role" FromRole="Users" ToRole="Role" />
         </EntityType>
+        <Association Name="FK_Allotment_Plot">
+          <End Role="Plot" Type="Self.Plot" Multiplicity="1" />
+          <End Role="Allotment" Type="Self.Allotment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plot">
+              <PropertyRef Name="PlotId" />
+            </Principal>
+            <Dependent Role="Allotment">
+              <PropertyRef Name="PlotId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AllotmentOrder_Members">
+          <End Role="Members" Type="Self.Member" Multiplicity="1" />
+          <End Role="Allotment" Type="Self.Allotment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Members">
+              <PropertyRef Name="MemberId" />
+            </Principal>
+            <Dependent Role="Allotment">
+              <PropertyRef Name="MemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssociateAllotment_Members">
+          <End Role="Members" Type="Self.Member" Multiplicity="1" />
+          <End Role="AssociateAllotment" Type="Self.AssociateAllotment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Members">
+              <PropertyRef Name="MemberId" />
+            </Principal>
+            <Dependent Role="AssociateAllotment">
+              <PropertyRef Name="MemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssociateAllotment_Plot">
+          <End Role="Plot" Type="Self.Plot" Multiplicity="1" />
+          <End Role="AssociateAllotment" Type="Self.AssociateAllotment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plot">
+              <PropertyRef Name="PlotId" />
+            </Principal>
+            <Dependent Role="AssociateAllotment">
+              <PropertyRef Name="PlotId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_AssociateMember_City">
           <End Role="City" Type="Self.City" Multiplicity="1" />
           <End Role="AssociateMember" Type="Self.AssociateMember" Multiplicity="*" />
@@ -3236,14 +3256,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PaymentSubCategory_PaymentCategory">
+        <Association Name="FK_PaymentSetup_Tenure">
           <End Role="PaymentCategory" Type="Self.PaymentCategory" Multiplicity="1" />
-          <End Role="PaymentSubCategory" Type="Self.PaymentSubCategory" Multiplicity="*" />
+          <End Role="PaymentSetup" Type="Self.PaymentSetup" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PaymentCategory">
               <PropertyRef Name="PaymentCategoryId" />
             </Principal>
-            <Dependent Role="PaymentSubCategory">
+            <Dependent Role="PaymentSetup">
+              <PropertyRef Name="PaymentCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tenure_PaymentCategory">
+          <End Role="PaymentCategory" Type="Self.PaymentCategory" Multiplicity="1" />
+          <End Role="Tenure" Type="Self.Tenure" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentCategory">
+              <PropertyRef Name="PaymentCategoryId" />
+            </Principal>
+            <Dependent Role="Tenure">
               <PropertyRef Name="PaymentCategoryId" />
             </Dependent>
           </ReferentialConstraint>
@@ -3308,18 +3340,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PaymentSetup_PaymentSubCategory">
-          <End Role="PaymentSubCategory" Type="Self.PaymentSubCategory" Multiplicity="1" />
-          <End Role="PaymentSetup" Type="Self.PaymentSetup" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PaymentSubCategory">
-              <PropertyRef Name="PaymentSubCategoryId" />
-            </Principal>
-            <Dependent Role="PaymentSetup">
-              <PropertyRef Name="PaymentSubCategoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_PaymentSetup_PlotType">
           <End Role="PlotType" Type="Self.PlotType" Multiplicity="1" />
           <End Role="PaymentSetup" Type="Self.PaymentSetup" Multiplicity="*" />
@@ -3329,30 +3349,6 @@
             </Principal>
             <Dependent Role="PaymentSetup">
               <PropertyRef Name="PlotTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PaymentSetup_Tenure">
-          <End Role="Tenure" Type="Self.Tenure" Multiplicity="1" />
-          <End Role="PaymentSetup" Type="Self.PaymentSetup" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tenure">
-              <PropertyRef Name="TenureId" />
-            </Principal>
-            <Dependent Role="PaymentSetup">
-              <PropertyRef Name="TenureId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Tenure_PaymentSubCategory">
-          <End Role="PaymentSubCategory" Type="Self.PaymentSubCategory" Multiplicity="1" />
-          <End Role="Tenure" Type="Self.Tenure" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PaymentSubCategory">
-              <PropertyRef Name="PaymentSubCategoryId" />
-            </Principal>
-            <Dependent Role="Tenure">
-              <PropertyRef Name="PaymentSubCategoryId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3488,18 +3484,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="ShareCertificateFee_Tenure">
-          <End Role="Tenure" Type="Self.Tenure" Multiplicity="1" />
-          <End Role="ShareCertificateFee" Type="Self.ShareCertificateFee" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tenure">
-              <PropertyRef Name="TenureId" />
-            </Principal>
-            <Dependent Role="ShareCertificateFee">
-              <PropertyRef Name="TenureId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SocietyPaymentDetails_SocietyPayment">
           <End Role="SocietyPayment" Type="Self.SocietyPayment" Multiplicity="1" />
           <End Role="SocietyPaymentDetails" Type="Self.SocietyPaymentDetail" Multiplicity="*" />
@@ -3537,6 +3521,8 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="ShahWilayatEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Allotments" EntityType="Self.Allotment" />
+          <EntitySet Name="AssociateAllotments" EntityType="Self.AssociateAllotment" />
           <EntitySet Name="AssociateMembers" EntityType="Self.AssociateMember" />
           <EntitySet Name="Charges" EntityType="Self.Charge" />
           <EntitySet Name="Cities" EntityType="Self.City" />
@@ -3558,7 +3544,6 @@
           <EntitySet Name="PaymentPlans" EntityType="Self.PaymentPlan" />
           <EntitySet Name="Payments" EntityType="Self.Payment" />
           <EntitySet Name="PaymentSetups" EntityType="Self.PaymentSetup" />
-          <EntitySet Name="PaymentSubCategories" EntityType="Self.PaymentSubCategory" />
           <EntitySet Name="Plots" EntityType="Self.Plot" />
           <EntitySet Name="PlotCategories" EntityType="Self.PlotCategory" />
           <EntitySet Name="PlotCategoryPercents" EntityType="Self.PlotCategoryPercent" />
@@ -3579,6 +3564,22 @@
           <EntitySet Name="TransferLogs" EntityType="Self.TransferLog" />
           <EntitySet Name="Units" EntityType="Self.Unit" />
           <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Allotment_Plot" Association="Self.FK_Allotment_Plot">
+            <End Role="Plot" EntitySet="Plots" />
+            <End Role="Allotment" EntitySet="Allotments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AllotmentOrder_Members" Association="Self.FK_AllotmentOrder_Members">
+            <End Role="Members" EntitySet="Members" />
+            <End Role="Allotment" EntitySet="Allotments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssociateAllotment_Members" Association="Self.FK_AssociateAllotment_Members">
+            <End Role="Members" EntitySet="Members" />
+            <End Role="AssociateAllotment" EntitySet="AssociateAllotments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssociateAllotment_Plot" Association="Self.FK_AssociateAllotment_Plot">
+            <End Role="Plot" EntitySet="Plots" />
+            <End Role="AssociateAllotment" EntitySet="AssociateAllotments" />
+          </AssociationSet>
           <AssociationSet Name="FK_AssociateMember_City" Association="Self.FK_AssociateMember_City">
             <End Role="City" EntitySet="Cities" />
             <End Role="AssociateMember" EntitySet="AssociateMembers" />
@@ -3743,9 +3744,13 @@
             <End Role="PaymentCategory" EntitySet="PaymentCategories" />
             <End Role="PaymentSetup" EntitySet="PaymentSetups" />
           </AssociationSet>
-          <AssociationSet Name="FK_PaymentSubCategory_PaymentCategory" Association="Self.FK_PaymentSubCategory_PaymentCategory">
+          <AssociationSet Name="FK_PaymentSetup_Tenure" Association="Self.FK_PaymentSetup_Tenure">
             <End Role="PaymentCategory" EntitySet="PaymentCategories" />
-            <End Role="PaymentSubCategory" EntitySet="PaymentSubCategories" />
+            <End Role="PaymentSetup" EntitySet="PaymentSetups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tenure_PaymentCategory" Association="Self.FK_Tenure_PaymentCategory">
+            <End Role="PaymentCategory" EntitySet="PaymentCategories" />
+            <End Role="Tenure" EntitySet="Tenures" />
           </AssociationSet>
           <AssociationSet Name="FK_PaymentDetails_Payments" Association="Self.FK_PaymentDetails_Payments">
             <End Role="Payments" EntitySet="Payments" />
@@ -3767,21 +3772,9 @@
             <End Role="Plot" EntitySet="Plots" />
             <End Role="Payments" EntitySet="Payments" />
           </AssociationSet>
-          <AssociationSet Name="FK_PaymentSetup_PaymentSubCategory" Association="Self.FK_PaymentSetup_PaymentSubCategory">
-            <End Role="PaymentSubCategory" EntitySet="PaymentSubCategories" />
-            <End Role="PaymentSetup" EntitySet="PaymentSetups" />
-          </AssociationSet>
           <AssociationSet Name="FK_PaymentSetup_PlotType" Association="Self.FK_PaymentSetup_PlotType">
             <End Role="PlotType" EntitySet="PlotTypes" />
             <End Role="PaymentSetup" EntitySet="PaymentSetups" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PaymentSetup_Tenure" Association="Self.FK_PaymentSetup_Tenure">
-            <End Role="Tenure" EntitySet="Tenures" />
-            <End Role="PaymentSetup" EntitySet="PaymentSetups" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Tenure_PaymentSubCategory" Association="Self.FK_Tenure_PaymentSubCategory">
-            <End Role="PaymentSubCategory" EntitySet="PaymentSubCategories" />
-            <End Role="Tenure" EntitySet="Tenures" />
           </AssociationSet>
           <AssociationSet Name="FK_Plot_Plot" Association="Self.FK_Plot_Plot">
             <End Role="Plot" EntitySet="Plots" />
@@ -3827,10 +3820,6 @@
             <End Role="Role" EntitySet="Roles" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
-          <AssociationSet Name="ShareCertificateFee_Tenure" Association="Self.ShareCertificateFee_Tenure">
-            <End Role="Tenure" EntitySet="Tenures" />
-            <End Role="ShareCertificateFee" EntitySet="ShareCertificateFees" />
-          </AssociationSet>
           <AssociationSet Name="FK_SocietyPaymentDetails_SocietyPayment" Association="Self.FK_SocietyPaymentDetails_SocietyPayment">
             <End Role="SocietyPayment" EntitySet="SocietyPayments" />
             <End Role="SocietyPaymentDetails" EntitySet="SocietyPaymentDetails" />
@@ -3843,115 +3832,20 @@
             <End Role="Transfer" EntitySet="Transfers" />
             <End Role="TransferLogs" EntitySet="TransferLogs" />
           </AssociationSet>
-          <EntitySet Name="Allotments" EntityType="ShahWilayatModel.Allotment" />
-          <AssociationSet Name="FK_AllotmentOrder_Members1" Association="ShahWilayatModel.FK_AllotmentOrder_Members1">
-            <End Role="Member" EntitySet="Members" />
-            <End Role="Allotment" EntitySet="Allotments" />
-          </AssociationSet>
-          <EntitySet Name="AssociateAllotments" EntityType="ShahWilayatModel.AssociateAllotment" />
-          <AssociationSet Name="FK_Allotment_Plot" Association="ShahWilayatModel.FK_Allotment_Plot">
-            <End Role="Plot" EntitySet="Plots" />
-            <End Role="Allotment" EntitySet="Allotments" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AssociateAllotment_Members" Association="ShahWilayatModel.FK_AssociateAllotment_Members">
-            <End Role="Member" EntitySet="Members" />
-            <End Role="AssociateAllotment" EntitySet="AssociateAllotments" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AssociateAllotment_Plot" Association="ShahWilayatModel.FK_AssociateAllotment_Plot">
-            <End Role="Plot" EntitySet="Plots" />
-            <End Role="AssociateAllotment" EntitySet="AssociateAllotments" />
+          <AssociationSet Name="FK_PaymentSetup_Tenure1" Association="ShahWilayatModel.FK_PaymentSetup_Tenure1">
+            <End Role="Tenure" EntitySet="Tenures" />
+            <End Role="PaymentSetup" EntitySet="PaymentSetups" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Allotment">
-          <Key>
-            <PropertyRef Name="AllotmentId" />
-          </Key>
-          <Property Name="AllotmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MemberId" Type="Int32" Nullable="false" />
-          <Property Name="PlotId" Type="Int32" Nullable="false" />
-          <Property Name="AllotmentOrderNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="AllotmentOrderDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ProvisionalAllotmentNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ProvisionalAllotmentDate" Type="DateTime" Precision="3" />
-          <Property Name="ShareCertificateNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ShareCertificateDate" Type="DateTime" Precision="3" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
-          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ModifiedBy" Type="Int32" />
-          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Member" Relationship="ShahWilayatModel.FK_AllotmentOrder_Members1" FromRole="Allotment" ToRole="Member" />
-          <NavigationProperty Name="Plot" Relationship="ShahWilayatModel.FK_Allotment_Plot" FromRole="Allotment" ToRole="Plot" />
-          <Property Name="AllotmentApplicationDate" Type="DateTime" Precision="3" />
-          <Property Name="AllotmentOrderScan" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <Association Name="FK_AllotmentOrder_Members1">
-          <End Type="ShahWilayatModel.Member" Role="Member" Multiplicity="1" />
-          <End Type="ShahWilayatModel.Allotment" Role="Allotment" Multiplicity="*" />
+        <Association Name="FK_PaymentSetup_Tenure1">
+          <End Type="ShahWilayatModel.Tenure" Role="Tenure" Multiplicity="1" />
+          <End Type="ShahWilayatModel.PaymentSetup" Role="PaymentSetup" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Member">
-              <PropertyRef Name="MemberId" />
+            <Principal Role="Tenure">
+              <PropertyRef Name="TenureId" />
             </Principal>
-            <Dependent Role="Allotment">
-              <PropertyRef Name="MemberId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="AssociateAllotment">
-          <Key>
-            <PropertyRef Name="AssociateAllotmentId" />
-          </Key>
-          <Property Name="AssociateAllotmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MemberId" Type="Int32" Nullable="false" />
-          <Property Name="PlotId" Type="Int32" Nullable="false" />
-          <Property Name="AllotmentOrderNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="AllotmentOrderDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ProvisionalAllotmentNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ProvisionalAllotmentDate" Type="DateTime" Precision="3" />
-          <Property Name="ShareCertificateNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ShareCertificateDate" Type="DateTime" Precision="3" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
-          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ModifiedBy" Type="Int32" />
-          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Member" Relationship="ShahWilayatModel.FK_AssociateAllotment_Members" FromRole="AssociateAllotment" ToRole="Member" />
-          <NavigationProperty Name="Plot" Relationship="ShahWilayatModel.FK_AssociateAllotment_Plot" FromRole="AssociateAllotment" ToRole="Plot" />
-          <Property Name="AllotmentOrderScan" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <Association Name="FK_Allotment_Plot">
-          <End Type="ShahWilayatModel.Plot" Role="Plot" Multiplicity="1" />
-          <End Type="ShahWilayatModel.Allotment" Role="Allotment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Plot">
-              <PropertyRef Name="PlotId" />
-            </Principal>
-            <Dependent Role="Allotment">
-              <PropertyRef Name="PlotId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_AssociateAllotment_Members">
-          <End Type="ShahWilayatModel.Member" Role="Member" Multiplicity="1" />
-          <End Type="ShahWilayatModel.AssociateAllotment" Role="AssociateAllotment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Member">
-              <PropertyRef Name="MemberId" />
-            </Principal>
-            <Dependent Role="AssociateAllotment">
-              <PropertyRef Name="MemberId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_AssociateAllotment_Plot">
-          <End Type="ShahWilayatModel.Plot" Role="Plot" Multiplicity="1" />
-          <End Type="ShahWilayatModel.AssociateAllotment" Role="AssociateAllotment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Plot">
-              <PropertyRef Name="PlotId" />
-            </Principal>
-            <Dependent Role="AssociateAllotment">
-              <PropertyRef Name="PlotId" />
+            <Dependent Role="PaymentSetup">
+              <PropertyRef Name="TenureId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3961,6 +3855,49 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ShahWilayatModelStoreContainer" CdmEntityContainer="ShahWilayatEntities">
+          <EntitySetMapping Name="Allotments">
+            <EntityTypeMapping TypeName="ShahWilayatModel.Allotment">
+              <MappingFragment StoreEntitySet="Allotment">
+                <ScalarProperty Name="AllotmentId" ColumnName="AllotmentId" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="PlotId" ColumnName="PlotId" />
+                <ScalarProperty Name="AllotmentOrderNo" ColumnName="AllotmentOrderNo" />
+                <ScalarProperty Name="AllotmentOrderDate" ColumnName="AllotmentOrderDate" />
+                <ScalarProperty Name="ProvisionalAllotmentNo" ColumnName="ProvisionalAllotmentNo" />
+                <ScalarProperty Name="ProvisionalAllotmentDate" ColumnName="ProvisionalAllotmentDate" />
+                <ScalarProperty Name="ShareCertificateNo" ColumnName="ShareCertificateNo" />
+                <ScalarProperty Name="ShareCertificateDate" ColumnName="ShareCertificateDate" />
+                <ScalarProperty Name="AllotmentApplicationDate" ColumnName="AllotmentApplicationDate" />
+                <ScalarProperty Name="AllotmentOrderScan" ColumnName="AllotmentOrderScan" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AssociateAllotments">
+            <EntityTypeMapping TypeName="ShahWilayatModel.AssociateAllotment">
+              <MappingFragment StoreEntitySet="AssociateAllotment">
+                <ScalarProperty Name="AssociateAllotmentId" ColumnName="AssociateAllotmentId" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="PlotId" ColumnName="PlotId" />
+                <ScalarProperty Name="AllotmentOrderNo" ColumnName="AllotmentOrderNo" />
+                <ScalarProperty Name="AllotmentOrderDate" ColumnName="AllotmentOrderDate" />
+                <ScalarProperty Name="ProvisionalAllotmentNo" ColumnName="ProvisionalAllotmentNo" />
+                <ScalarProperty Name="ProvisionalAllotmentDate" ColumnName="ProvisionalAllotmentDate" />
+                <ScalarProperty Name="ShareCertificateNo" ColumnName="ShareCertificateNo" />
+                <ScalarProperty Name="ShareCertificateDate" ColumnName="ShareCertificateDate" />
+                <ScalarProperty Name="AllotmentOrderScan" ColumnName="AllotmentOrderScan" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="AssociateMembers">
             <EntityTypeMapping TypeName="ShahWilayatModel.AssociateMember">
               <MappingFragment StoreEntitySet="AssociateMember">
@@ -4241,9 +4178,6 @@
           <EntitySetMapping Name="Nominees">
             <EntityTypeMapping TypeName="ShahWilayatModel.Nominee">
               <MappingFragment StoreEntitySet="Nominee">
-                <ScalarProperty Name="BirthCertificate" ColumnName="BirthCertificate" />
-                <ScalarProperty Name="ProfileFile" ColumnName="ProfileFile" />
-                <ScalarProperty Name="FatherName" ColumnName="FatherName" />
                 <ScalarProperty Name="NomineeId" ColumnName="NomineeId" />
                 <ScalarProperty Name="MemberId" ColumnName="MemberId" />
                 <ScalarProperty Name="TitleId" ColumnName="TitleId" />
@@ -4251,6 +4185,7 @@
                 <ScalarProperty Name="RelationId" ColumnName="RelationId" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FatherName" ColumnName="FatherName" />
                 <ScalarProperty Name="Dob" ColumnName="Dob" />
                 <ScalarProperty Name="BirthPlace" ColumnName="BirthPlace" />
                 <ScalarProperty Name="CNIC" ColumnName="CNIC" />
@@ -4258,6 +4193,8 @@
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="CnicFront" ColumnName="CnicFront" />
                 <ScalarProperty Name="CnicBack" ColumnName="CnicBack" />
+                <ScalarProperty Name="ProfileFile" ColumnName="ProfileFile" />
+                <ScalarProperty Name="BirthCertificate" ColumnName="BirthCertificate" />
                 <ScalarProperty Name="FrcFile" ColumnName="FrcFile" />
                 <ScalarProperty Name="HereshipCertificate" ColumnName="HereshipCertificate" />
                 <ScalarProperty Name="GuardianCertificate" ColumnName="GuardianCertificate" />
@@ -4361,27 +4298,16 @@
           <EntitySetMapping Name="PaymentSetups">
             <EntityTypeMapping TypeName="ShahWilayatModel.PaymentSetup">
               <MappingFragment StoreEntitySet="PaymentSetup">
+                <ScalarProperty Name="SizeTo" ColumnName="SizeTo" />
+                <ScalarProperty Name="SizeFrom" ColumnName="SizeFrom" />
+                <ScalarProperty Name="HasSizeBase" ColumnName="HasSizeBase" />
                 <ScalarProperty Name="PaymentSetupId" ColumnName="PaymentSetupId" />
                 <ScalarProperty Name="PaymentCategoryId" ColumnName="PaymentCategoryId" />
-                <ScalarProperty Name="PaymentSubCategoryId" ColumnName="PaymentSubCategoryId" />
                 <ScalarProperty Name="TenureId" ColumnName="TenureId" />
-                <ScalarProperty Name="Rate" ColumnName="Rate" />
                 <ScalarProperty Name="PlotTypeId" ColumnName="PlotTypeId" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
                 <ScalarProperty Name="PlotId" ColumnName="PlotId" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PaymentSubCategories">
-            <EntityTypeMapping TypeName="ShahWilayatModel.PaymentSubCategory">
-              <MappingFragment StoreEntitySet="PaymentSubCategory">
-                <ScalarProperty Name="PaymentSubCategoryId" ColumnName="PaymentSubCategoryId" />
-                <ScalarProperty Name="PaymentCategoryId" ColumnName="PaymentCategoryId" />
-                <ScalarProperty Name="PaymentSubCategory1" ColumnName="PaymentSubCategory" />
+                <ScalarProperty Name="IsFixed" ColumnName="IsFixed" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
@@ -4604,7 +4530,7 @@
             <EntityTypeMapping TypeName="ShahWilayatModel.Tenure">
               <MappingFragment StoreEntitySet="Tenure">
                 <ScalarProperty Name="TenureId" ColumnName="TenureId" />
-                <ScalarProperty Name="PaymentSubCategoryId" ColumnName="PaymentSubCategoryId" />
+                <ScalarProperty Name="PaymentCategoryId" ColumnName="PaymentCategoryId" />
                 <ScalarProperty Name="Tenure1" ColumnName="Tenure" />
                 <ScalarProperty Name="StartYear" ColumnName="StartYear" />
                 <ScalarProperty Name="EndYear" ColumnName="EndYear" />
@@ -4632,18 +4558,18 @@
           <EntitySetMapping Name="Transfers">
             <EntityTypeMapping TypeName="ShahWilayatModel.Transfer">
               <MappingFragment StoreEntitySet="Transfer">
-                <ScalarProperty Name="TransferOrderScan" ColumnName="TransferOrderScan" />
                 <ScalarProperty Name="TransferId" ColumnName="TransferId" />
                 <ScalarProperty Name="PlotId" ColumnName="PlotId" />
                 <ScalarProperty Name="MemberId" ColumnName="MemberId" />
                 <ScalarProperty Name="TransferOrderNo" ColumnName="TransferOrderNo" />
                 <ScalarProperty Name="TransferDate" ColumnName="TransferDate" />
                 <ScalarProperty Name="MCMDate" ColumnName="MCMDate" />
-                <ScalarProperty Name="IsTransfered" ColumnName="IsTransfered" />
                 <ScalarProperty Name="NewspaperAdvDate" ColumnName="NewspaperAdvDate" />
                 <ScalarProperty Name="NewspaperName" ColumnName="NewspaperName" />
                 <ScalarProperty Name="NewspaperScan" ColumnName="NewspaperScan" />
                 <ScalarProperty Name="IndemnityBondScan" ColumnName="IndemnityBondScan" />
+                <ScalarProperty Name="TransferOrderScan" ColumnName="TransferOrderScan" />
+                <ScalarProperty Name="IsTransfered" ColumnName="IsTransfered" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
@@ -4696,49 +4622,6 @@
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Allotments">
-            <EntityTypeMapping TypeName="ShahWilayatModel.Allotment">
-              <MappingFragment StoreEntitySet="Allotment">
-                <ScalarProperty Name="AllotmentOrderScan" ColumnName="AllotmentOrderScan" />
-                <ScalarProperty Name="AllotmentApplicationDate" ColumnName="AllotmentApplicationDate" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="ShareCertificateDate" ColumnName="ShareCertificateDate" />
-                <ScalarProperty Name="ShareCertificateNo" ColumnName="ShareCertificateNo" />
-                <ScalarProperty Name="ProvisionalAllotmentDate" ColumnName="ProvisionalAllotmentDate" />
-                <ScalarProperty Name="ProvisionalAllotmentNo" ColumnName="ProvisionalAllotmentNo" />
-                <ScalarProperty Name="AllotmentOrderDate" ColumnName="AllotmentOrderDate" />
-                <ScalarProperty Name="AllotmentOrderNo" ColumnName="AllotmentOrderNo" />
-                <ScalarProperty Name="PlotId" ColumnName="PlotId" />
-                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
-                <ScalarProperty Name="AllotmentId" ColumnName="AllotmentId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AssociateAllotments">
-            <EntityTypeMapping TypeName="ShahWilayatModel.AssociateAllotment">
-              <MappingFragment StoreEntitySet="AssociateAllotment">
-                <ScalarProperty Name="AllotmentOrderScan" ColumnName="AllotmentOrderScan" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="ShareCertificateDate" ColumnName="ShareCertificateDate" />
-                <ScalarProperty Name="ShareCertificateNo" ColumnName="ShareCertificateNo" />
-                <ScalarProperty Name="ProvisionalAllotmentDate" ColumnName="ProvisionalAllotmentDate" />
-                <ScalarProperty Name="ProvisionalAllotmentNo" ColumnName="ProvisionalAllotmentNo" />
-                <ScalarProperty Name="AllotmentOrderDate" ColumnName="AllotmentOrderDate" />
-                <ScalarProperty Name="AllotmentOrderNo" ColumnName="AllotmentOrderNo" />
-                <ScalarProperty Name="PlotId" ColumnName="PlotId" />
-                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
-                <ScalarProperty Name="AssociateAllotmentId" ColumnName="AssociateAllotmentId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -26,17 +26,17 @@ namespace ShahWilayat
         public string TransferOrderNo { get; set; }
         public System.DateTime TransferDate { get; set; }
         public Nullable<System.DateTime> MCMDate { get; set; }
-        public bool IsTransfered { get; set; }
         public Nullable<System.DateTime> NewspaperAdvDate { get; set; }
         public string NewspaperName { get; set; }
         public string NewspaperScan { get; set; }
         public string IndemnityBondScan { get; set; }
+        public string TransferOrderScan { get; set; }
+        public bool IsTransfered { get; set; }
         public bool IsActive { get; set; }
         public int CreatedBy { get; set; }
         public System.DateTime CreatedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
-        public string TransferOrderScan { get; set; }
     
         public virtual Member Member { get; set; }
         public virtual Plot Plot { get; set; }

@@ -4,49 +4,54 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="bbf577851ec64090a2787de0736c0b6c" Name="Diagram1" ZoomLevel="37">
-        <EntityTypeShape EntityType="ShahWilayatModel.AssociateMember" Width="1.5" PointX="3" PointY="27.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShahWilayatModel.Charge" Width="1.5" PointX="12" PointY="13.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShahWilayatModel.City" Width="1.5" PointX="0.75" PointY="25.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShahWilayatModel.CnicHistory" Width="1.5" PointX="8.25" PointY="35.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShahWilayatModel.Country" Width="1.5" PointX="1.5" PointY="17.875" IsExpanded="true" />
+      <Diagram DiagramId="615c2cea40a447ab9c7b954613fc28bc" Name="Diagram1">
+        <EntityTypeShape EntityType="ShahWilayatModel.Allotment" Width="1.5" PointX="8.25" PointY="33.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShahWilayatModel.AssociateAllotment" Width="1.5" PointX="11.25" PointY="33.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShahWilayatModel.AssociateMember" Width="1.5" PointX="3" PointY="30.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShahWilayatModel.Charge" Width="1.5" PointX="12" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShahWilayatModel.City" Width="1.5" PointX="0.75" PointY="29.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShahWilayatModel.CnicHistory" Width="1.5" PointX="8.25" PointY="44.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShahWilayatModel.Country" Width="1.5" PointX="1.5" PointY="21.125" IsExpanded="true" />
         <EntityTypeShape EntityType="ShahWilayatModel.FileManagement" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShahWilayatModel.Gender" Width="1.5" PointX="0.75" PointY="34.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShahWilayatModel.InstallmentPlan" Width="1.5" PointX="9" PointY="39.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShahWilayatModel.Installment" Width="1.5" PointX="11.25" PointY="29.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShahWilayatModel.Invoice" Width="1.5" PointX="8.25" PointY="25.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShahWilayatModel.MemberRelation" Width="1.5" PointX="0.75" PointY="30.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShahWilayatModel.Member" Width="1.5" PointX="6" PointY="25.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShahWilayatModel.MembershipFee" Width="1.5" PointX="4.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShahWilayatModel.Gender" Width="1.5" PointX="0.75" PointY="38" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShahWilayatModel.InstallmentPlan" Width="1.5" PointX="6" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShahWilayatModel.Installment" Width="1.5" PointX="8.25" PointY="26.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShahWilayatModel.Invoice" Width="1.5" PointX="8.25" PointY="38.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShahWilayatModel.MemberRelation" Width="1.5" PointX="0.75" PointY="33.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShahWilayatModel.Member" Width="1.5" PointX="6" PointY="29" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShahWilayatModel.MembershipFee" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ShahWilayatModel.MenuItem" Width="1.5" PointX="5.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShahWilayatModel.Nominee" Width="1.5" PointX="14.25" PointY="28.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShahWilayatModel.PaymentCategory" Width="1.5" PointX="7.5" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShahWilayatModel.PaymentDetail" Width="1.5" PointX="13.5" PointY="42.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShahWilayatModel.PaymentMethod" Width="1.5" PointX="12" PointY="20.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShahWilayatModel.PaymentPlan" Width="1.5" PointX="11.25" PointY="24" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShahWilayatModel.Payment" Width="1.5" PointX="11.25" PointY="35.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShahWilayatModel.PaymentSetup" Width="1.5" PointX="9.75" PointY="12.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShahWilayatModel.PaymentSubCategory" Width="1.5" PointX="7.5" PointY="11" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShahWilayatModel.Plot" Width="1.5" PointX="12" PointY="50.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShahWilayatModel.PlotCategory" Width="1.5" PointX="4.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShahWilayatModel.PlotCategoryPercent" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShahWilayatModel.PlotSize" Width="1.5" PointX="9.75" PointY="48.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShahWilayatModel.PlotSubType" Width="1.5" PointX="9.75" PointY="52.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShahWilayatModel.PlotType" Width="1.5" PointX="7.5" PointY="14.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShahWilayatModel.Province" Width="1.5" PointX="1.5" PointY="21.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShahWilayatModel.Relation" Width="1.5" PointX="12" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShahWilayatModel.Nominee" Width="1.5" PointX="14.25" PointY="32" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShahWilayatModel.PaymentCategory" Width="1.5" PointX="7.5" PointY="18.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShahWilayatModel.PaymentDetail" Width="1.5" PointX="13.5" PointY="45.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShahWilayatModel.PaymentMethod" Width="1.5" PointX="12" PointY="24.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShahWilayatModel.PaymentPlan" Width="1.5" PointX="11.25" PointY="28.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShahWilayatModel.Payment" Width="1.5" PointX="11.25" PointY="39.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShahWilayatModel.PaymentSetup" Width="1.5" PointX="9.75" PointY="19.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShahWilayatModel.Plot" Width="1.5" PointX="12" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShahWilayatModel.PlotCategory" Width="1.5" PointX="4.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShahWilayatModel.PlotCategoryPercent" Width="1.5" PointX="6.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShahWilayatModel.PlotSize" Width="1.5" PointX="9.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShahWilayatModel.PlotSubType" Width="1.5" PointX="9.75" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShahWilayatModel.PlotType" Width="1.5" PointX="7.5" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShahWilayatModel.Province" Width="1.5" PointX="1.5" PointY="25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShahWilayatModel.Relation" Width="1.5" PointX="12" PointY="52" IsExpanded="true" />
         <EntityTypeShape EntityType="ShahWilayatModel.Role" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="ShahWilayatModel.RoleMenuMapping" Width="1.5" PointX="8" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShahWilayatModel.ShareCertificateFee" Width="1.5" PointX="9.75" PointY="9" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShahWilayatModel.SocietyPayment" Width="1.5" PointX="14.25" PointY="22.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShahWilayatModel.SocietyPaymentDetail" Width="1.5" PointX="16.5" PointY="23" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShahWilayatModel.TempTable" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShahWilayatModel.Tenure" Width="1.5" PointX="7.5" PointY="18.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShahWilayatModel.Title" Width="1.5" PointX="3.75" PointY="23.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShahWilayatModel.Transfer" Width="1.5" PointX="14.25" PointY="36.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShahWilayatModel.TransferLog" Width="1.5" PointX="16.5" PointY="31.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShahWilayatModel.Unit" Width="1.5" PointX="9.75" PointY="55.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShahWilayatModel.ShareCertificateFee" Width="1.5" PointX="2.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShahWilayatModel.SocietyPayment" Width="1.5" PointX="14.25" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShahWilayatModel.SocietyPaymentDetail" Width="1.5" PointX="16.5" PointY="26.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShahWilayatModel.TempTable" Width="1.5" PointX="8.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShahWilayatModel.Tenure" Width="1.5" PointX="14.25" PointY="20.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShahWilayatModel.Title" Width="1.5" PointX="3.75" PointY="26.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShahWilayatModel.Transfer" Width="1.5" PointX="14.25" PointY="39.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShahWilayatModel.TransferLog" Width="1.5" PointX="16.5" PointY="35.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShahWilayatModel.Unit" Width="1.5" PointX="9.75" PointY="16" IsExpanded="true" />
         <EntityTypeShape EntityType="ShahWilayatModel.User" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="ShahWilayatModel.FK_Allotment_Plot" ManuallyRouted="false" />
+        <AssociationConnector Association="ShahWilayatModel.FK_AllotmentOrder_Members" ManuallyRouted="false" />
+        <AssociationConnector Association="ShahWilayatModel.FK_AssociateAllotment_Members" ManuallyRouted="false" />
+        <AssociationConnector Association="ShahWilayatModel.FK_AssociateAllotment_Plot" ManuallyRouted="false" />
         <AssociationConnector Association="ShahWilayatModel.FK_AssociateMember_City" ManuallyRouted="false" />
         <AssociationConnector Association="ShahWilayatModel.FK_AssociateMember_Country" ManuallyRouted="false" />
         <AssociationConnector Association="ShahWilayatModel.FK_AssociateMember_Gender" ManuallyRouted="false" />
@@ -88,16 +93,14 @@
         <AssociationConnector Association="ShahWilayatModel.FK_Nominee_Relation" ManuallyRouted="false" />
         <AssociationConnector Association="ShahWilayatModel.FK_Nominee_Title" ManuallyRouted="false" />
         <AssociationConnector Association="ShahWilayatModel.FK_PaymentSetup_PaymentCategory" ManuallyRouted="false" />
-        <AssociationConnector Association="ShahWilayatModel.FK_PaymentSubCategory_PaymentCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="ShahWilayatModel.FK_PaymentSetup_Tenure" ManuallyRouted="false" />
+        <AssociationConnector Association="ShahWilayatModel.FK_Tenure_PaymentCategory" ManuallyRouted="false" />
         <AssociationConnector Association="ShahWilayatModel.FK_PaymentDetails_Payments" ManuallyRouted="false" />
         <AssociationConnector Association="ShahWilayatModel.FK_Payments_PaymentMethods" ManuallyRouted="false" />
         <AssociationConnector Association="ShahWilayatModel.FK_SocietyPayment_PaymentMethods" ManuallyRouted="false" />
         <AssociationConnector Association="ShahWilayatModel.FK_PaymentPlan_Plot" ManuallyRouted="false" />
         <AssociationConnector Association="ShahWilayatModel.FK_Payments_Plot" ManuallyRouted="false" />
-        <AssociationConnector Association="ShahWilayatModel.FK_PaymentSetup_PaymentSubCategory" ManuallyRouted="false" />
         <AssociationConnector Association="ShahWilayatModel.FK_PaymentSetup_PlotType" ManuallyRouted="false" />
-        <AssociationConnector Association="ShahWilayatModel.FK_PaymentSetup_Tenure" ManuallyRouted="false" />
-        <AssociationConnector Association="ShahWilayatModel.FK_Tenure_PaymentSubCategory" ManuallyRouted="false" />
         <AssociationConnector Association="ShahWilayatModel.FK_Plot_Plot" ManuallyRouted="false" />
         <AssociationConnector Association="ShahWilayatModel.FK_Plot_Plot1" ManuallyRouted="false" />
         <AssociationConnector Association="ShahWilayatModel.FK_Plot_PlotSize" ManuallyRouted="false" />
@@ -109,16 +112,10 @@
         <AssociationConnector Association="ShahWilayatModel.FK_TransferLogs_Plot" ManuallyRouted="false" />
         <AssociationConnector Association="ShahWilayatModel.FK_PlotSubType_PlotType" ManuallyRouted="false" />
         <AssociationConnector Association="ShahWilayatModel.FK_Users_Role" ManuallyRouted="false" />
-        <AssociationConnector Association="ShahWilayatModel.ShareCertificateFee_Tenure" ManuallyRouted="false" />
         <AssociationConnector Association="ShahWilayatModel.FK_SocietyPaymentDetails_SocietyPayment" ManuallyRouted="false" />
         <AssociationConnector Association="ShahWilayatModel.FK_SocietyPaymentDetails_Tenure" ManuallyRouted="false" />
         <AssociationConnector Association="ShahWilayatModel.FK_TransferLogs_Transfer" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="ShahWilayatModel.Allotment" Width="1.5" PointX="8.25" PointY="60.25" />
-        <AssociationConnector Association="ShahWilayatModel.FK_AllotmentOrder_Members1" />
-        <EntityTypeShape EntityType="ShahWilayatModel.AssociateAllotment" Width="1.5" PointX="16.25" PointY="42.5" />
-        <AssociationConnector Association="ShahWilayatModel.FK_Allotment_Plot" />
-        <AssociationConnector Association="ShahWilayatModel.FK_AssociateAllotment_Members" />
-        <AssociationConnector Association="ShahWilayatModel.FK_AssociateAllotment_Plot" />
+        <AssociationConnector Association="ShahWilayatModel.FK_PaymentSetup_Tenure1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

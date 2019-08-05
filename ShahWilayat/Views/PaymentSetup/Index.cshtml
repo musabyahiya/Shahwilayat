@@ -66,13 +66,13 @@
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel16">Create New Plot</h4>
+                <h4 class="modal-title" id="myModalLabel16">Create New Payment Setup</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <div class="form-body frmPlot">
+                <div class="form-body frmPaymentSetup">
                     <h4 class="form-section"><i class="la la-gears"></i> Payment Setup Detail</h4>
                     <hr>
                     <div class="row">
@@ -100,12 +100,7 @@
                                 <select class="form-control ddlPlot"></select>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="txtRate">Rate</label>
-                                <input type="text" class="form-control txtRate" placeholder="Enter rate">
-                            </div>
-                        </div>
+
 
                         <div class="col-md-4">
                             <div class="form-group">
@@ -118,6 +113,35 @@
 
                             </div>
                         </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="txtRate">Rate</label>
+                                <input type="text" class="form-control txtRate" placeholder="Enter rate">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="ddlHasSizeBase">Has Size Base</label>
+                                <select class="form-control ddlHasSizeBase notrequired">
+                                    <option value="0">--Select--</option>
+                                    <option value="1">Yes</option>
+                                    <option value="0">No</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="txtSizeFrom">Size From</label>
+                                <input type="text" class="form-control txtSizeFrom numericOnly" value="0" disabled placeholder="Enter size from">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="txtSizeTo">Size To</label>
+                                <input type="text" class="form-control txtSizeTo" value="0" disabled placeholder="Enter size to">
+                            </div>
+                        </div>
+                        
 
                     </div>
 
@@ -145,7 +169,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="form-body frmPlot">
+                <div class="form-body frmPaymentSetup_upd">
                     <h4 class="form-section"><i class="la la-gears"></i> Payment Setup Detail</h4>
                     <hr>
                     <div class="row">
@@ -173,12 +197,7 @@
                                 <select class="form-control ddlPlot_upd"></select>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="txtRate_upd">Rate</label>
-                                <input type="text" class="form-control txtRate_upd" placeholder="Enter rate">
-                            </div>
-                        </div>
+                       
 
                         <div class="col-md-4">
                             <div class="form-group">
@@ -191,7 +210,35 @@
 
                             </div>
                         </div>
-
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="txtRate_upd">Rate</label>
+                                <input type="text" class="form-control txtRate_upd" placeholder="Enter rate">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="ddlHasSizeBase_upd">Has Size Base</label>
+                                <select class="form-control ddlHasSizeBase_upd notrequired">
+                                    <option value="0">--Select--</option>
+                                    <option value="1">Yes</option>
+                                    <option value="0">No</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="txtSizeFrom_upd">Size From</label>
+                                <input type="text" class="form-control txtSizeFrom_upd numericOnly"  placeholder="Enter size from">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="txtSizeTo_upd">Size To</label>
+                                <input type="text" class="form-control txtSizeTo_upd"  placeholder="Enter size to">
+                            </div>
+                        </div>
+                   
                     </div>
 
 
@@ -305,19 +352,22 @@
             <input type="hidden" class="hdnRate" value="${Rate}" />
             <input type="hidden" class="hdnPlotTypeId" value="${PlotTypeId}" />
             <input type="hidden" class="hdnPlotId" value="${PlotId}" />
+            <input type="hidden" class="hdnHasSizeBase" value="${HasSizeBase}" />
             <input type="hidden" class="hdnIsFixed" value="${IsFixed}" />
+            <input type="hidden" class="hdnSizeFrom" value="${SizeFrom}" />
+            <input type="hidden" class="hdnSizeTo" value="${SizeTo}" />
 
 
             <td></td>
-            <td class="project-title tdPlotType">${PlotType}</td>
+            <td class="project-title tdPaymentCategory">${PaymentCategory}</td>
             <td class="project-title tdTenure">${Tenure}</td>
             <td class="project-title tdRate">${Rate}</td>
             <td class="project-title tdPlotType" align="center">${PlotType}</td>
             <td class="project-title tdPlot">${Plot}</td>
-            <td class="project-title tdIsFixed">${IsFixed}</td>
+
 
             <td class="project-title tdIsFixed">
-                <div class="${IsFixed==true?'badge badge-success badge-pill': 'badge badge-warning badge-pill'}">${IsFixed==true?'Allotted': 'Not Allotted'}</div>
+                <div class="${IsFixed==true?'badge badge-success badge-pill': 'badge badge-warning badge-pill'}">${IsFixed==true?'Fixed': 'Per Sqyd'}</div>
             </td>
             <td class="project-title" nowrap>
                 <a href="javascript:void(0)" data-toggle="modal" data-target="#EditPaymentSetup" onclick="EditPaymentSetup(this)" data-toggle="tooltip" data-placement="top" data-original-title="Edit Plot"><i class="la la-pencil-square success"></i></a>

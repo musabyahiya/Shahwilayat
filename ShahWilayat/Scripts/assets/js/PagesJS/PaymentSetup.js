@@ -1,13 +1,15 @@
-﻿//GetAllPaymentSetup();
-//GetAllPaymentCategory();
-//GetAllTenure();
-//GetAllPlotType();
-//GetAllPlots();
+﻿GetAllPaymentSetup();
+GetAllPaymentCategory();
+GetAllTenure();
+GetAllPlotType();
+GetAllPlots();
+GetAllPlotSize();
 AllClickFunction();
 AllChangeFunction();
 var objEditRow;
 var TenureList;
 var PlotList;
+var PaymentSetupList;
 var PaymentSetup =
 [{
     PaymentSetupId: 0,
@@ -16,11 +18,14 @@ var PaymentSetup =
     Rate: 0,
     PlotTypeId: 0,
     PlotId: 0,
-    IsFixed:false
+    IsFixed: false,
+    HasSizeBase: false,
+    SizeFrom: 0,
+    SizeTo: 0,
 }]
 
 function AllChangeFunction() {
-    
+
 
     $(".ddlPaymentCategory").change(function () {
         var PaymentCategoryId = $(this).val();
@@ -63,6 +68,54 @@ function AllChangeFunction() {
             onGetAllPlots_upd(obj);
         }
     });
+
+    $(".ddlHasSizeBase").change(function () {
+        var HasSizeBaseId = $(this).val();
+
+        if (HasSizeBaseId == 2 || HasSizeBaseId == 0) {
+            $('.txtSizeFrom').prop("disabled", true);
+            $('.txtSizeFrom').addClass("notrequired");
+
+            $('.txtSizeTo').prop("disabled", true);
+            $('.txtSizeTo').addClass("notrequired");
+
+            $('.txtSizeTo').val(0);
+            $('.txtSizeFrom').val(0);
+        }
+        else {
+            $('.txtSizeFrom').prop("disabled", false);
+            $('.txtSizeFrom').removeClass("notrequired");
+
+            $('.txtSizeTo').prop("disabled", false);
+            $('.txtSizeTo').removeClass("notrequired");
+
+        }
+
+    });
+
+    $(".ddlHasSizeBase_upd").change(function () {
+        var HasSizeBaseId = $(this).val();
+
+        if (HasSizeBaseId == 2 || HasSizeBaseId == 0) {
+            $('.txtSizeFrom_upd').prop("disabled", true);
+            $('.txtSizeFrom_upd').addClass("notrequired");
+
+            $('.txtSizeTo_upd').prop("disabled", true);
+            $('.txtSizeTo_upd').addClass("notrequired");
+
+            $('.txtSizeTo_upd').val(0);
+            $('.txtSizeFrom_upd').val(0);
+        }
+        else {
+            $('.txtSizeFrom_upd').prop("disabled", false);
+            $('.txtSizeFrom_upd').removeClass("notrequired");
+
+            $('.txtSizeTo_upd').prop("disabled", false);
+            $('.txtSizeTo_upd').removeClass("notrequired");
+
+        }
+
+    });
 }
 
 function AllClickFunction() {
@@ -71,27 +124,28 @@ function AllClickFunction() {
         if (!validateForm(".frmPaymentSetup")) return;
 
         PaymentSetup[0].PaymentCategoryId = $('.ddlPaymentCategory').val();
-        PaymentSetup[0].PaymentSubCategoryId = $('.ddlPaymentSubCategory').val();
         PaymentSetup[0].TenureId = $('.ddlTenure').val();
         PaymentSetup[0].Rate = $('.txtRate').val();
         PaymentSetup[0].PlotTypeId = $('.ddlPlotType').val();
         PaymentSetup[0].PlotId = $('.ddlPlot').val();
+        PaymentSetup[0].IsFixed = $('.ddlFixed').val() == 1 ? false : true;
+        PaymentSetup[0].HasSizeBase = $('.ddlHasSizeBase').val() == 1 ? true : false;
+        PaymentSetup[0].SizeFrom = $('.txtSizeFrom').val();
+        PaymentSetup[0].SizeTo = $('.txtSizeTo').val();
+        PaymentSetup[0].IsFixed = $('.ddlFixed').val() == 1 ? false : true;
 
-        $('.trPaymentSetup').each(function () {
-            if ($(this).children('.hdnPaymentCategoryId').val() == PaymentSetup[0].PaymentCategoryId &&
-                $(this).children('.hdnTenureId').val() == PaymentSetup[0].TenureId &&
-                $(this).children('.hdnPaymentSubCategoryId').val() == PaymentSetup[0].PaymentSubCategoryId &&
-                $(this).children('.hdnPlotTypeId').val() == PaymentSetup[0].PlotTypeId &&
-                (PaymentSetup[0].PlotTypeId == 4 ?
-                true : $(this).children('.hdnPlotId').val() == PaymentSetup[0].PlotId)
-                ) {
-                duplicationPaymentSetup = true;
-            }
-        });
+
+        var obj = PaymentSetupList.filter(x=> (x.PaymentCategoryId == PaymentSetup[0].PaymentCategoryId) && (x.TenureId == PaymentSetup[0].TenureId)
+            && (x.PlotTypeId == PaymentSetup[0].PlotTypeId) && (x.SizeFrom == PaymentSetup[0].SizeFrom) && (x.SizeTo == PaymentSetup[0].SizeTo));
+
+        if (obj.length > 0)
+            duplicationPaymentSetup = true;
+
         if (duplicationPaymentSetup) {
             showError("This Payment Category and selected Tenure is already exist.");
             return;
         }
+
         CreateNewPaymentSetup();
     });
 
@@ -100,26 +154,24 @@ function AllClickFunction() {
         if (!validateForm(".frmPaymentSetup_upd")) return;
 
         PaymentSetup[0].PaymentCategoryId = $('.ddlPaymentCategory_upd').val();
-        PaymentSetup[0].PaymentSubCategoryId = $('.ddlPaymentSubCategory_upd').val();
         PaymentSetup[0].TenureId = $('.ddlTenure_upd').val();
         PaymentSetup[0].Rate = $('.txtRate_upd').val();
         PaymentSetup[0].PlotTypeId = $('.ddlPlotType_upd').val();
         PaymentSetup[0].PlotId = $('.ddlPlot_upd').val();
-        var i = 0;
-        $('.trPaymentSetup').each(function () {
-            if (
-                ($(this).children('.hdnPaymentCategoryId').val() == PaymentSetup[0].PaymentCategoryId) &&
-                ($(this).children('.hdnTenureId').val() == PaymentSetup[0].TenureId) &&
-                ($(this).children('.hdnPaymentSubCategoryId').val() == PaymentSetup[0].PaymentSubCategoryId) &&
-                ($(this).children('.hdnPlotTypeId').val() == PaymentSetup[0].PlotTypeId) &&
-                (PaymentSetup[0].PlotTypeId == 4 ?
-                true : $(this).children('.hdnPlotId').val() == PaymentSetup[0].PlotId) &&
-                ($(this).children('.hdnPaymentSetupId').val() != PaymentSetup[0].PaymentSetupId)) {
-                duplicationPaymentSetup = true;
-                i++;
-            }
-        });
-        if (duplicationPaymentSetup && i == 1) {
+        PaymentSetup[0].PlotSizeId = $('.ddlPlotSize_upd').val();
+        PaymentSetup[0].IsFixed = $('.ddlFixed_upd').val() == 1 ? false : true;
+        PaymentSetup[0].HasSizeBase = $('.ddlHasSizeBase_upd').val() == 1 ? true : false;
+        PaymentSetup[0].SizeFrom = $('.txtSizeFrom_upd').val();
+        PaymentSetup[0].SizeTo = $('.txtSizeTo_upd').val();
+        var obj = PaymentSetupList.filter(x=> (x.PaymentCategoryId == PaymentSetup[0].PaymentCategoryId) && (x.TenureId == PaymentSetup[0].TenureId)
+            && (x.PlotTypeId == PaymentSetup[0].PlotTypeId) && (x.PaymentSetupId != PaymentSetup[0].PaymentSetupId)
+            && (x.SizeFrom == PaymentSetup[0].SizeFrom) && (x.SizeTo == PaymentSetup[0].SizeTo)
+            )
+
+        if (obj.length > 0)
+            duplicationPaymentSetup = true;
+
+        if (duplicationPaymentSetup) {
             showError("This Payment Category and selected Tenure is already exist.");
             return;
         }
@@ -163,7 +215,38 @@ function onGetAllPlotType(data) {
     }
 
 }
+function GetAllPlotSize() {
 
+    var request = $.ajax({
+        method: "POST",
+        url: "/PaymentSetup/GetAllPlotSize",
+        data: {}
+    });
+    request.done(function (data) {
+
+        onGetAllPlotSize(data);
+
+    });
+    request.fail(function (jqXHR, Status) {
+        console.log(jqXHR.responseText);
+
+    });
+}
+
+function onGetAllPlotSize(data) {
+    try {
+
+
+        var res = data;
+        FillDropDownByReference('.ddlPlotSize', res);
+        FillDropDownByReference('.ddlPlotSize_upd', res);
+
+    }
+    catch (Err) {
+        console.log(Err);
+    }
+
+}
 function GetAllPlots() {
 
     var request = $.ajax({
@@ -384,129 +467,80 @@ function onGetAllPaymentSetup(data) {
 
     try {
         var res = data;
-        var html = '';
-        var counter = 0;
-        $('.AppendedPanel').remove();
-        $.each(res, function (key, value) {
-            var PlotTypeId = value.PlotTypeId;
+        PaymentSetupList = res;
+        var divTbodyGoalFund = $(".PaymentSetupListing").html("");
+        $("#PaymentSetupListing").tmpl(res).appendTo(divTbodyGoalFund);
 
-            if (CheckExistingPlotType(PlotTypeId)) {
-                html += "<div class='panel panel-default AppendedPanel'>";
-                html += "<div class='panel-heading blue-heading'>";
-                html += "<h4 class='panel-title'>";
-                html += "<a class='accordion-toggle hdnPlotTypeId' hdnplottypeid='" + value.PlotTypeId + "'  data-toggle='collapse' data-parent='#accordion' href='#" + value.PlotType.replace(/ /g, '') + "'>";
-                html += value.PlotType;
-                html += "</a>";
-                html += "</h4>";
-                html += "</div>";
-
-                var childPlotType = res.filter(x=> x.PlotTypeId == value.PlotTypeId);
-
-
-
-                html += "<div id='" + value.PlotType.replace(/ /g, '') + "' class='panel-collapse collapse'>";
-                html += "<div class='panel-body' style='overflow: auto;'>";
-
-                // only print one time
-                html += "<table class='table table-hover' >";
-                html += "<thead>";
-                html += "<tr>";
-                html += "<th nowrap>Sr No.</th>";
-                html += "<th nowrap>Payment Category</th>";
-                html += "<th nowrap>Payment SubCategory</th>";
-                html += "<th nowrap>Tenure</th>";
-                html += "<th nowrap>Plot Type</th>";
-                html += "<th nowrap>Plot</th>"; // If residential plot hide
-                html += "<th nowrap>Rate / Unit (PKR)</th>";
-                html += "<th nowrap>Action</th>";
-                html += "</tr>";
-                html += "</thead>";
-                html += "<tbody>";
-
-                /*Binding rows Payment setup*/
-                var index = 1;
-                $.each(childPlotType, function (key3, value3) {
-
-
-
-                    html += "<tr class='trPaymentSetup'>";
-                    html += "<input type='hidden' class='hdnPaymentSetupId' value='" + value3.PaymentSetupId + "' />";
-                    html += "<input type='hidden' class='hdnPaymentCategoryId' value='" + value3.PaymentCategoryId + "' />";
-                    html += "<input type='hidden' class='hdnPaymentSubCategoryId' value='" + value3.PaymentSubCategoryId + "' />";
-                    html += "<input type='hidden' class='hdnTenureId' value='" + value3.TenureId + "' />";
-                    html += "<input type='hidden' class='hdnPlotTypeId' value='" + value3.PlotTypeId + "' />";
-                    html += "<input type='hidden' class='hdnPlotId' value='" + value3.PlotId + "' />";
-                    html += "<input type='hidden' class='hdnRate' value='" + value3.Rate + "' />";
-                    html += "<td>" + index + "</td>";
-                    html += "<td class='tdPaymentCategory'>" + value3.PaymentCategory + "</td>";
-                    html += "<td class='tdPaymentSubCategory'>" + value3.PaymentSubCategory + "</td>";
-                    html += "<td class='tdTenure'>" + value3.Tenure + "</td>";
-                    html += "<td class='tdPlotType' nowrap>" + value3.PlotType + "</td>";
-                    html += "<td class='tdPlot' nowrap>" + value3.Plot + "</td>"; // If residential plot hide
-                    html += "<td class='tdRate' nowrap>" + moneyFormat(value3.Rate) + "</td>";
-
-
-
-
-
-
-                    html += "<td class='project-title' nowrap=''>";
-                    html += "<input type='button' onclick='EditPaymentSetup(this)' data-toggle='modal' data-target='#EditPaymentSetup' value='Edit Details' class='btn btn-group btn-xs btn-info'>&nbsp;&nbsp;";
-                    html += "<input type='button' data-toggle='modal' data-target='#DeletePaymentSetup' onclick='EditPaymentSetup(this)' value='Delete' class='btn btn-group btn-xs btn-danger'>";
-                    html += "</td>";
-                    html += "</tr>";
-
-                    index++;
-
-
-
-                })
-                /*Binding Child Nominee*/
-                html += "</tbody>";
-                html += "</table>";
-                html += "</div>";
-                html += "</div>";
-
-
-                html += "</div>";
-
-                counter == 0 ? $('.AppendInside').append(html) : $(".AppendInside:last").after($(html));;
-                html = '';
-                counter++;
-            }
-            else {
-                html = '';
-            }
-
-
+        var i = 1;
+        $('.trPaymentSetup').each(function () {
+            $(this).find('td').first().text(i);
+            i++;
         });
+       // paginateTable('.tblPaymentSetup', 10);
         ProgressBarHide();
     }
     catch (Err) {
         console.log(Err);
     }
 }
-function CheckExistingPlotType(PlotTypeId) {
-    var bool = true;
-    $('.AppendedPanel').find('.hdnPlotTypeId').each(function () {
-        if (PlotTypeId == $(this).attr('hdnplottypeid')) {
-            bool = false;
+
+function SearchTable() {
+    $(".txtSearch").keyup(function () {
+        ProgressBarShow();
+        _this = this; SearchTable()
+
+        var search = $(_this).val();
+
+        if (search == '') {
+            onGetAllPaymentSetup(PaymentSetupList);
         }
-    })
+        else {
+            var obj = PaymentSetupList.filter(x=> x.PaymentCategory.toLowerCase().includes(search.toLowerCase()) ||
 
-    return bool;
+				x.Tenure.toLowerCase().includes(search.toLowerCase()) ||
+				x.PlotType.toLowerCase().includes(search.toLowerCase())
+				)
+            onGetAllPaymentSetup(obj);
+
+        }
+        ProgressBarHide();
+    });
 }
-
 function EditPaymentSetup(selector) {
     objEditRow = $(selector).closest('tr');
     PaymentSetup[0].PaymentSetupId = objEditRow.find('.hdnPaymentSetupId').val();
     $('.ddlPaymentCategory_upd').val(objEditRow.find('.hdnPaymentCategoryId').val()).change();
-    $('.ddlPaymentSubCategory_upd').val(objEditRow.find('.hdnPaymentSubCategoryId').val()).change();;
     $('.ddlTenure_upd').val(objEditRow.find('.hdnTenureId').val());
     $('.txtRate_upd').val(objEditRow.find('.hdnRate').val());
 
     $('.ddlPlotType_upd').val(objEditRow.find('.hdnPlotTypeId').val()).change();
     $('.ddlPlot_upd').val(objEditRow.find('.hdnPlotId').val());
+    $('.ddlPlotSize_upd').val(objEditRow.find('.hdnPlotSizeId').val());
+    $('.ddlFixed_upd').val(objEditRow.find('.hdnIsFixed').val() == 1 ? 1 : 2);
+    $('.ddlHasSizeBase_upd').val(objEditRow.find('.hdnHasSizeBase').val() == "true" ? 1 : 0);
+    $('.txtSizeFrom_upd').val(objEditRow.find('.hdnSizeFrom').val());
+    $('.txtSizeTo_upd').val(objEditRow.find('.hdnSizeTo').val());
+
+    var HasSizeBaseId = objEditRow.find('.hdnHasSizeBase').val() == "true" ? 1 : 0;
+
+    if (HasSizeBaseId == 2 || HasSizeBaseId == 0) {
+        $('.txtSizeFrom_upd').prop("disabled", true);
+        $('.txtSizeFrom_upd').addClass("notrequired");
+
+        $('.txtSizeTo_upd').prop("disabled", true);
+        $('.txtSizeTo_upd').addClass("notrequired");
+
+        $('.txtSizeTo_upd').val(0);
+        $('.txtSizeFrom_upd').val(0);
+    }
+    else {
+        $('.txtSizeFrom_upd').prop("disabled", false);
+        $('.txtSizeFrom_upd').removeClass("notrequired");
+
+        $('.txtSizeTo_upd').prop("disabled", false);
+        $('.txtSizeTo_upd').removeClass("notrequired");
+        
+    }
 
     var PlotTypeId = objEditRow.find('.hdnPlotTypeId').val();
     if (PlotTypeId == 4 || PlotTypeId == 0) {
@@ -520,54 +554,5 @@ function EditPaymentSetup(selector) {
     }
 }
 
-function GetAllPaymentSubCategory() {
-
-    var request = $.ajax({
-        method: "POST",
-        url: "/PaymentSetup/GetAllPaymentSubCategory",
-        data: {}
-    });
-    request.done(function (data) {
-
-        var res = data;
-        PaymentSubCategoryList = res;
-    });
-    request.fail(function (jqXHR, Status) {
-        console.log(jqXHR.responseText);
-    });
-}
-
-function onGetAllPaymentSubCategory(data) {
-    try {
-        var res = data;
-        FillDropDownByReference('.ddlPaymentSubCategory', res);
-        FillDropDownByReference('.ddlPaymentSubCategory_upd', res);
-
-    }
-    catch (Err) {
-        console.log(Err);
-    }
-
-}
-
-function onGetAllPaymentSubCategory_upd(data) {
-    try {
-        var res = data;
-        FillDropDownByReference('.ddlPaymentSubCategory_upd', res);
-    }
-    catch (Err) {
-        console.log(Err);
-    }
-
-}
-
-function CalculateTotal() {
-    var TotalRate = 0;
-    $('.trPaymentSetup').each(function () {
-        var rate = $(this).children('.hdnRate').val();
-        TotalRate += parseInt(rate);
-    });
-    BindTextToSelector($('.tdTotalRate'), moneyFormat(TotalRate) + ' PKR');
 
 
-}

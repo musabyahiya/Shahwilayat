@@ -304,9 +304,6 @@
     <Compile Include="PaymentSetup.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="PaymentSubCategory.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Plot.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

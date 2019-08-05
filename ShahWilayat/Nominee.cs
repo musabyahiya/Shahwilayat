@@ -21,6 +21,7 @@ namespace ShahWilayat
         public int RelationId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string FatherName { get; set; }
         public System.DateTime Dob { get; set; }
         public string BirthPlace { get; set; }
         public string CNIC { get; set; }
@@ -28,6 +29,8 @@ namespace ShahWilayat
         public string Address { get; set; }
         public string CnicFront { get; set; }
         public string CnicBack { get; set; }
+        public string ProfileFile { get; set; }
+        public string BirthCertificate { get; set; }
         public string FrcFile { get; set; }
         public string HereshipCertificate { get; set; }
         public string GuardianCertificate { get; set; }
@@ -37,9 +40,6 @@ namespace ShahWilayat
         public System.DateTime CreatedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
-        public string FatherName { get; set; }
-        public string ProfileFile { get; set; }
-        public string BirthCertificate { get; set; }
     
         public virtual MemberRelation MemberRelation { get; set; }
         public virtual Member Member { get; set; }

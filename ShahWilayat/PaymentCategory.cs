@@ -18,7 +18,8 @@ namespace ShahWilayat
         public PaymentCategory()
         {
             this.PaymentSetups = new HashSet<PaymentSetup>();
-            this.PaymentSubCategories = new HashSet<PaymentSubCategory>();
+            this.PaymentSetups1 = new HashSet<PaymentSetup>();
+            this.Tenures = new HashSet<Tenure>();
         }
     
         public int PaymentCategoryId { get; set; }
@@ -32,6 +33,8 @@ namespace ShahWilayat
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PaymentSetup> PaymentSetups { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PaymentSubCategory> PaymentSubCategories { get; set; }
+        public virtual ICollection<PaymentSetup> PaymentSetups1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tenure> Tenures { get; set; }
     }
 }

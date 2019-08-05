@@ -25,6 +25,8 @@ namespace ShahWilayat
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Allotment> Allotments { get; set; }
+        public virtual DbSet<AssociateAllotment> AssociateAllotments { get; set; }
         public virtual DbSet<AssociateMember> AssociateMembers { get; set; }
         public virtual DbSet<Charge> Charges { get; set; }
         public virtual DbSet<City> Cities { get; set; }
@@ -46,7 +48,6 @@ namespace ShahWilayat
         public virtual DbSet<PaymentPlan> PaymentPlans { get; set; }
         public virtual DbSet<Payment> Payments { get; set; }
         public virtual DbSet<PaymentSetup> PaymentSetups { get; set; }
-        public virtual DbSet<PaymentSubCategory> PaymentSubCategories { get; set; }
         public virtual DbSet<Plot> Plots { get; set; }
         public virtual DbSet<PlotCategory> PlotCategories { get; set; }
         public virtual DbSet<PlotCategoryPercent> PlotCategoryPercents { get; set; }
@@ -67,7 +68,5 @@ namespace ShahWilayat
         public virtual DbSet<TransferLog> TransferLogs { get; set; }
         public virtual DbSet<Unit> Units { get; set; }
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<Allotment> Allotments { get; set; }
-        public virtual DbSet<AssociateAllotment> AssociateAllotments { get; set; }
     }
 }

@@ -36,6 +36,25 @@ namespace ShahWilayat.Controllers
             }
         }
 
+        public JsonResult GetAllPlotSize()
+        {
+            try
+            {
+                var lst = context.PlotSizes.Where(x => x.IsActive == true)
+             .Select(x => new
+             {
+                 Id = x.PlotSizeId,
+                 Value = x.PlotSize1
+             }).ToList();
+
+                return Json(lst, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                return Json(e, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         public JsonResult GetAllPlots()
         {
             try
@@ -80,11 +99,16 @@ namespace ShahWilayat.Controllers
             {
                 var obj = context.PaymentSetups.FirstOrDefault(x => x.PaymentSetupId == ps.PaymentSetupId);
                 obj.PaymentCategoryId = ps.PaymentCategoryId;
-                obj.PaymentSubCategoryId = ps.PaymentSubCategoryId;
+
                 obj.TenureId = ps.TenureId;
                 obj.Rate = ps.Rate;
                 obj.PlotTypeId = ps.PlotTypeId;
                 obj.PlotId = ps.PlotId;
+                obj.PaymentCategoryId = ps.PaymentCategoryId;
+                obj.HasSizeBase = ps.HasSizeBase;
+                obj.SizeFrom = ps.SizeFrom;
+                obj.SizeTo = ps.SizeTo;
+                obj.IsFixed = ps.IsFixed;
                 obj.IsActive = true;
                 obj.ModifiedDate = DateTime.Now;
                 obj.ModifiedBy = (int)HttpContext.Session["UserId"];
@@ -129,7 +153,7 @@ namespace ShahWilayat.Controllers
              {
                  Id = x.TenureId,
                  Value = x.Tenure1,
-                 x.PaymentSubCategoryId
+                 x.PaymentCategory.PaymentCategoryId
              }).ToList();
 
                 return Json(lst, JsonRequestBehavior.AllowGet);
@@ -149,18 +173,20 @@ namespace ShahWilayat.Controllers
              {
                  x.PaymentSetupId,
                  x.PaymentCategoryId,
-                 x.PaymentSubCategoryId,
                  PaymentCategory = x.PaymentCategory.PaymentCategory1,
                  x.TenureId,
                  Tenure = x.Tenure.Tenure1,
-                 PaymentSubCategory = x.PaymentSubCategory.PaymentSubCategory1,
                  x.PlotTypeId,
                  PlotType = x.PlotType.PlotType1,
                  x.PlotId,
                  Plot = x.PlotId == 0 ? "NULL" : context.Plots.FirstOrDefault(m => m.IsActive == true && x.PlotId == m.PlotId).PlotNo,
-                 x.Rate
-                 
-             }).OrderBy(x => x.PlotType).OrderBy(x => x.PaymentCategory).ThenBy(x => x.PaymentSubCategory).ToList();
+                 x.Rate,
+                 x.IsFixed,
+                 x.HasSizeBase,
+                 x.SizeTo,
+                 x.SizeFrom
+
+             }).OrderBy(x => x.PlotType).OrderBy(x => x.PaymentCategory).ToList();
 
                 return Json(lst, JsonRequestBehavior.AllowGet);
             }

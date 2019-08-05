@@ -17,28 +17,25 @@ namespace ShahWilayat
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Tenure()
         {
-            this.PaymentSetups = new HashSet<PaymentSetup>();
-            this.ShareCertificateFees = new HashSet<ShareCertificateFee>();
             this.SocietyPaymentDetails = new HashSet<SocietyPaymentDetail>();
+            this.PaymentSetups = new HashSet<PaymentSetup>();
         }
     
         public int TenureId { get; set; }
-        public int PaymentSubCategoryId { get; set; }
+        public int PaymentCategoryId { get; set; }
         public string Tenure1 { get; set; }
-        public Nullable<int> StartYear { get; set; }
-        public Nullable<int> EndYear { get; set; }
+        public Nullable<System.DateTime> StartYear { get; set; }
+        public Nullable<System.DateTime> EndYear { get; set; }
         public bool IsActive { get; set; }
         public int CreatedBy { get; set; }
         public System.DateTime CreatedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PaymentSetup> PaymentSetups { get; set; }
-        public virtual PaymentSubCategory PaymentSubCategory { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ShareCertificateFee> ShareCertificateFees { get; set; }
+        public virtual PaymentCategory PaymentCategory { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SocietyPaymentDetail> SocietyPaymentDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PaymentSetup> PaymentSetups { get; set; }
     }
 }

@@ -22,21 +22,24 @@ namespace ShahWilayat
     
         public int PaymentSetupId { get; set; }
         public int PaymentCategoryId { get; set; }
-        public int PaymentSubCategoryId { get; set; }
         public int TenureId { get; set; }
-        public long Rate { get; set; }
         public int PlotTypeId { get; set; }
+        public double Rate { get; set; }
         public int PlotId { get; set; }
+        public bool IsFixed { get; set; }
         public bool IsActive { get; set; }
         public int CreatedBy { get; set; }
         public System.DateTime CreatedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
+        public bool HasSizeBase { get; set; }
+        public int SizeFrom { get; set; }
+        public int SizeTo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Charge> Charges { get; set; }
         public virtual PaymentCategory PaymentCategory { get; set; }
-        public virtual PaymentSubCategory PaymentSubCategory { get; set; }
+        public virtual PaymentCategory PaymentCategory1 { get; set; }
         public virtual PlotType PlotType { get; set; }
         public virtual Tenure Tenure { get; set; }
     }

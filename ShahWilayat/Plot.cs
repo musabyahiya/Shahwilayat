@@ -17,6 +17,8 @@ namespace ShahWilayat
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Plot()
         {
+            this.Allotments = new HashSet<Allotment>();
+            this.AssociateAllotments = new HashSet<AssociateAllotment>();
             this.Installments = new HashSet<Installment>();
             this.Invoices = new HashSet<Invoice>();
             this.PaymentPlans = new HashSet<PaymentPlan>();
@@ -24,8 +26,6 @@ namespace ShahWilayat
             this.SocietyPayments = new HashSet<SocietyPayment>();
             this.Transfers = new HashSet<Transfer>();
             this.TransferLogs = new HashSet<TransferLog>();
-            this.Allotments = new HashSet<Allotment>();
-            this.AssociateAllotments = new HashSet<AssociateAllotment>();
         }
     
         public int PlotId { get; set; }
@@ -43,6 +43,10 @@ namespace ShahWilayat
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Allotment> Allotments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AssociateAllotment> AssociateAllotments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Installment> Installments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -65,9 +69,5 @@ namespace ShahWilayat
         public virtual ICollection<Transfer> Transfers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TransferLog> TransferLogs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Allotment> Allotments { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AssociateAllotment> AssociateAllotments { get; set; }
     }
 }
