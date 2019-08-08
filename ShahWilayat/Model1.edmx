@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ShahWilayatModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ShahWilayatModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Allotment">
           <Key>
             <PropertyRef Name="AllotmentId" />
@@ -442,6 +442,18 @@
           <Property Name="ModifiedBy" Type="int" />
           <Property Name="ModifiedDate" Type="datetime" />
         </EntityType>
+        <EntityType Name="PaymentType">
+          <Key>
+            <PropertyRef Name="PaymentTypeId" />
+          </Key>
+          <Property Name="PaymentTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaymentType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
         <EntityType Name="Plot">
           <Key>
             <PropertyRef Name="PlotId" />
@@ -597,7 +609,8 @@
           <Property Name="PaymentMethodId" Type="int" Nullable="false" />
           <Property Name="MemberId" Type="int" Nullable="false" />
           <Property Name="PlotId" Type="int" Nullable="false" />
-          <Property Name="PaymentDate" Type="datetime" />
+          <Property Name="PaymentTypeId" Type="int" Nullable="false" />
+          <Property Name="PaymentDate" Type="datetime" Nullable="false" />
           <Property Name="PaymentAmount" Type="float" Nullable="false" />
           <Property Name="PaymentCategoryId" Type="int" Nullable="false" />
           <Property Name="PaymentSubCategoryId" Type="int" Nullable="false" />
@@ -1403,6 +1416,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SocietyPayment_PaymentType">
+          <End Role="PaymentType" Type="Self.PaymentType" Multiplicity="1" />
+          <End Role="SocietyPayment" Type="Self.SocietyPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentType">
+              <PropertyRef Name="PaymentTypeId" />
+            </Principal>
+            <Dependent Role="SocietyPayment">
+              <PropertyRef Name="PaymentTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SocietyPayment_Plot">
           <End Role="Plot" Type="Self.Plot" Multiplicity="1" />
           <End Role="SocietyPayment" Type="Self.SocietyPayment" Multiplicity="*" />
@@ -1547,6 +1572,7 @@
           <EntitySet Name="PaymentPlan" EntityType="Self.PaymentPlan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PaymentSetup" EntityType="Self.PaymentSetup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentType" EntityType="Self.PaymentType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Plot" EntityType="Self.Plot" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PlotCategory" EntityType="Self.PlotCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PlotCategoryPercent" EntityType="Self.PlotCategoryPercent" Schema="dbo" store:Type="Tables" />
@@ -1791,6 +1817,10 @@
             <End Role="PaymentMethods" EntitySet="PaymentMethods" />
             <End Role="SocietyPayment" EntitySet="SocietyPayment" />
           </AssociationSet>
+          <AssociationSet Name="FK_SocietyPayment_PaymentType" Association="Self.FK_SocietyPayment_PaymentType">
+            <End Role="PaymentType" EntitySet="PaymentType" />
+            <End Role="SocietyPayment" EntitySet="SocietyPayment" />
+          </AssociationSet>
           <AssociationSet Name="FK_SocietyPayment_Plot" Association="Self.FK_SocietyPayment_Plot">
             <End Role="Plot" EntitySet="Plot" />
             <End Role="SocietyPayment" EntitySet="SocietyPayment" />
@@ -1832,8 +1862,7 @@
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ShahWilayatModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -2539,7 +2568,7 @@
           <Property Name="PaymentMethodId" Type="Int32" Nullable="false" />
           <Property Name="MemberId" Type="Int32" Nullable="false" />
           <Property Name="PlotId" Type="Int32" Nullable="false" />
-          <Property Name="PaymentDate" Type="DateTime" Precision="3" />
+          <Property Name="PaymentDate" Type="DateTime" Precision="3" Nullable="false" />
           <Property Name="PaymentAmount" Type="Double" Nullable="false" />
           <Property Name="PaymentCategoryId" Type="Int32" Nullable="false" />
           <Property Name="PaymentSubCategoryId" Type="Int32" Nullable="false" />
@@ -2556,6 +2585,8 @@
           <NavigationProperty Name="PaymentMethod" Relationship="Self.FK_SocietyPayment_PaymentMethods" FromRole="SocietyPayment" ToRole="PaymentMethods" />
           <NavigationProperty Name="Plot" Relationship="Self.FK_SocietyPayment_Plot" FromRole="SocietyPayment" ToRole="Plot" />
           <NavigationProperty Name="SocietyPaymentDetails" Relationship="Self.FK_SocietyPaymentDetails_SocietyPayment" FromRole="SocietyPayment" ToRole="SocietyPaymentDetails" />
+          <Property Name="PaymentTypeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PaymentType" Relationship="ShahWilayatModel.FK_SocietyPayment_PaymentType" FromRole="SocietyPayment" ToRole="PaymentType" />
         </EntityType>
         <EntityType Name="SocietyPaymentDetail">
           <Key>
@@ -3795,7 +3826,37 @@
             <End Role="Transfer" EntitySet="Transfers" />
             <End Role="TransferLogs" EntitySet="TransferLogs" />
           </AssociationSet>
+          <EntitySet Name="PaymentTypes" EntityType="ShahWilayatModel.PaymentType" />
+          <AssociationSet Name="FK_SocietyPayment_PaymentType" Association="ShahWilayatModel.FK_SocietyPayment_PaymentType">
+            <End Role="PaymentType" EntitySet="PaymentTypes" />
+            <End Role="SocietyPayment" EntitySet="SocietyPayments" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="PaymentType">
+          <Key>
+            <PropertyRef Name="PaymentTypeId" />
+          </Key>
+          <Property Name="PaymentTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaymentType1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="SocietyPayments" Relationship="ShahWilayatModel.FK_SocietyPayment_PaymentType" FromRole="PaymentType" ToRole="SocietyPayment" />
+        </EntityType>
+        <Association Name="FK_SocietyPayment_PaymentType">
+          <End Type="ShahWilayatModel.PaymentType" Role="PaymentType" Multiplicity="1" />
+          <End Type="ShahWilayatModel.SocietyPayment" Role="SocietyPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentType">
+              <PropertyRef Name="PaymentTypeId" />
+            </Principal>
+            <Dependent Role="SocietyPayment">
+              <PropertyRef Name="PaymentTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4422,6 +4483,7 @@
           <EntitySetMapping Name="SocietyPayments">
             <EntityTypeMapping TypeName="ShahWilayatModel.SocietyPayment">
               <MappingFragment StoreEntitySet="SocietyPayment">
+                <ScalarProperty Name="PaymentTypeId" ColumnName="PaymentTypeId" />
                 <ScalarProperty Name="SocietyPaymentId" ColumnName="SocietyPaymentId" />
                 <ScalarProperty Name="ChargeId" ColumnName="ChargeId" />
                 <ScalarProperty Name="PaymentMethodId" ColumnName="PaymentMethodId" />
@@ -4568,6 +4630,19 @@
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentTypes">
+            <EntityTypeMapping TypeName="ShahWilayatModel.PaymentType">
+              <MappingFragment StoreEntitySet="PaymentType">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="PaymentType1" ColumnName="PaymentType" />
+                <ScalarProperty Name="PaymentTypeId" ColumnName="PaymentTypeId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -19,8 +19,8 @@ var PaymentSetup =
     PlotId: 0,
     IsFixed: false,
     HasSizeBase: false,
-    SizeFrom: 0,
     SizeTo: 0,
+    SizeFrom: 0,
 }]
 
 function AllChangeFunction() {

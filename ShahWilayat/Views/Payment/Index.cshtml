@@ -1,0 +1,181 @@
+﻿
+@{
+    ViewBag.Title = "Payment - Shah Wilayat Cooperative Housing Society";
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="content-header row">
+        <div class="content-header-left col-md-6 col-12 mb-2">
+            <h3 class="content-header-title">Payment</h3>
+        </div>
+    </div>
+    <div class="content-body">
+
+        <section id="add-payments">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Add Payment Information</h2>
+                </div>
+                <div class="card-body frmMakePayment">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="ddlMember">Member</label>
+                                <select class="form-control ddlMember select2" style="width:100%"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="ddlPlotType">Plot Type</label>
+                                <select class="form-control ddlPlotType select2" style="width:100%"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="ddlPlot">Plot</label>
+                                <select class="form-control ddlPlot select2" style="width:100%"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="txtPaymentDate">Payment Date</label>
+                                <input type="text" class="form-control DatePickerComplete txtPaymentDate" placeholder="mm/dd/yyyy">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="ddlCharges">Charges</label>
+                                <select class="form-control ddlCharges"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="ddlPaymentType">Payment Type</label>
+                                <select class="form-control ddlPaymentType"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="ddlPaymentMethod">Payment Method</label>
+                                <select class="form-control ddlPaymentMethod"></select>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card-footer ml-auto">
+                    <span>
+                        <button class="btn btn-outline-success mr-1 waves-effect waves-light btnGetPaymentAmount">View Payment</button> <button class="btn btn-outline-danger waves-effect waves-light" onclick="Init()">Reset</button>
+                    </span>
+                </div>
+            </div>
+            <div class="card">
+
+                <div class="card-content collapse show">
+                    <div class="card-body">
+
+                        <div class="table-responsive DivPaymentInfo">
+                            <table class="table">
+
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">Tenure</th>
+                                        <th class="text-center">Remaining Balance</th>
+                                        <th class="text-center">Paid Amount Till</th>
+                                        <th class="text-center">Paid %</th>
+                                        <th class="text-center">Due Date</th>
+                                        <th class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="trMakePayment">
+                                        <input type="hidden" class="hdnPaymentAmount" value="" />
+                                        <input type="hidden" class="hdnDueDate" value="" />
+                                        <input type="hidden" class="hdnCategoryPercent" value="" />
+                                        <input type="hidden" class="hdnTenureId" value="" />
+                                        <input type="hidden" class="hdnPaymentCategoryId" value="" />
+                                        <input type="hidden" class="hdnPaymentSubCategoryId" value="" />
+                                        <input type="hidden" class="hdnRate" value="" />
+                                        <input type="hidden" class="hdnSize" value="" />
+                                        <input type="hidden" class="hdnTotalAmount" value="" />
+                                        <input type="hidden" class="hdnRemainingBalance" value="" />
+                                        <input type="hidden" class="hdnPaidPercentBefore" value="" />
+
+
+                                        <td class="tdTenure text-center">-</td>
+                                        <td class="tdBalance text-center">-</td>
+                                        <td class="tdPaidAmount text-center">-</td>
+                                        <td class="tdPaidPercent text-center">-</td>
+                                        <td class="tdDueDate text-center">-</td>
+                                        <td class="text-center">
+                                            <a href="javascript:void(0)" data-toggle="modal" data-target="#CreatePaymentAmount"  title="Make Payment"><i class="la la-money success"></i></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+@*modal start*@
+
+
+
+<div class="modal fade text-left" id="CreatePaymentAmount" role="dialog" aria-labelledby="myModalLabel16" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel16">Make Payment</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-body">
+                    <div class="frmPaymentAmount">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for="txtPayableAmount">Enter Payable Amount</label>
+                                    <input type="text" class="form-control txtPayableAmount numericOnly" />
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn grey btn-outline-info" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline-dark btnMakePayment">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+@*modal end*@
+@section Scripts
+{
+
+
+    <script src="~/Scripts/assets/js/PagesJS/Payments.js"></script>
+
+
+}

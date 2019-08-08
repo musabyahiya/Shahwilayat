@@ -778,6 +778,12 @@ function PickADatePicker() {
         formatSubmit: 'yyyy-mm-dd',
         selectYears: true,
         selectMonths: true
-    });
+      
+    }
+
+    );
 
 }
+
+
+// https://stackoverflow.com/questions/31331062/disable-previous-dates-when-using-pickadate-js

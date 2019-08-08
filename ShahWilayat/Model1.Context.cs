@@ -68,5 +68,6 @@ namespace ShahWilayat
         public virtual DbSet<TransferLog> TransferLogs { get; set; }
         public virtual DbSet<Unit> Units { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<PaymentType> PaymentTypes { get; set; }
     }
 }

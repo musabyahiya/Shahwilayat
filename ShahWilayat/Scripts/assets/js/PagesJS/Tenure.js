@@ -4,6 +4,7 @@ GetAllPaymentCategory();
 
 AllChangeFunction();
 AllClickFunction();
+
 var PaymentCategoryList;
 var TenureList;
 SearchTable();

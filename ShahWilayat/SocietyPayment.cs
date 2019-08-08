@@ -25,7 +25,7 @@ namespace ShahWilayat
         public int PaymentMethodId { get; set; }
         public int MemberId { get; set; }
         public int PlotId { get; set; }
-        public Nullable<System.DateTime> PaymentDate { get; set; }
+        public System.DateTime PaymentDate { get; set; }
         public double PaymentAmount { get; set; }
         public int PaymentCategoryId { get; set; }
         public int PaymentSubCategoryId { get; set; }
@@ -37,6 +37,7 @@ namespace ShahWilayat
         public System.DateTime CreatedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
+        public int PaymentTypeId { get; set; }
     
         public virtual Charge Charge { get; set; }
         public virtual Member Member { get; set; }
@@ -44,5 +45,6 @@ namespace ShahWilayat
         public virtual Plot Plot { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SocietyPaymentDetail> SocietyPaymentDetails { get; set; }
+        public virtual PaymentType PaymentType { get; set; }
     }
 }

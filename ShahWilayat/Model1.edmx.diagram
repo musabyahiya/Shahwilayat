@@ -114,6 +114,8 @@
         <AssociationConnector Association="ShahWilayatModel.FK_SocietyPaymentDetails_SocietyPayment" ManuallyRouted="false" />
         <AssociationConnector Association="ShahWilayatModel.FK_SocietyPaymentDetails_Tenure" ManuallyRouted="false" />
         <AssociationConnector Association="ShahWilayatModel.FK_TransferLogs_Transfer" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ShahWilayatModel.PaymentType" Width="1.5" PointX="10.375" PointY="1" />
+        <AssociationConnector Association="ShahWilayatModel.FK_SocietyPayment_PaymentType" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
