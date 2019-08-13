@@ -467,6 +467,7 @@
           <Property Name="HasExtraSize" Type="bit" Nullable="false" />
           <Property Name="ExtraSize" Type="int" />
           <Property Name="HasAlotted" Type="bit" Nullable="false" />
+          <Property Name="HasAssociateAlollted" Type="bit" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedBy" Type="int" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
@@ -2418,6 +2419,7 @@
           <NavigationProperty Name="SocietyPayments" Relationship="Self.FK_SocietyPayment_Plot" FromRole="Plot" ToRole="SocietyPayment" />
           <NavigationProperty Name="Transfers" Relationship="Self.FK_Transfer_Plot" FromRole="Plot" ToRole="Transfer" />
           <NavigationProperty Name="TransferLogs" Relationship="Self.FK_TransferLogs_Plot" FromRole="Plot" ToRole="TransferLogs" />
+          <Property Name="HasAssociateAlollted" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="PlotCategory">
           <Key>
@@ -4326,6 +4328,7 @@
           <EntitySetMapping Name="Plots">
             <EntityTypeMapping TypeName="ShahWilayatModel.Plot">
               <MappingFragment StoreEntitySet="Plot">
+                <ScalarProperty Name="HasAssociateAlollted" ColumnName="HasAssociateAlollted" />
                 <ScalarProperty Name="PlotId" ColumnName="PlotId" />
                 <ScalarProperty Name="PlotTypeId" ColumnName="PlotTypeId" />
                 <ScalarProperty Name="PlotSubTypeId" ColumnName="PlotSubTypeId" />

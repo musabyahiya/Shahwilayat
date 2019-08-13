@@ -95,7 +95,7 @@ namespace ShahWilayat.Controllers
             }
         }
 
-        public string GetAllPlots()
+        public string GetAllPlots(int AllotmentTypeId)
         {
             try
             {
@@ -106,6 +106,7 @@ namespace ShahWilayat.Controllers
                 SqlConnection con = new SqlConnection(dbConnectionString);
                 SqlDataAdapter da = new SqlDataAdapter("GetPlotsForPayment", con);
                 da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                da.SelectCommand.Parameters.Add("@IsOrignalAllotment", SqlDbType.Int).Value = AllotmentTypeId;
                 da.Fill(dt);
 
                 return JsonConvert.SerializeObject(dt);
@@ -122,7 +123,7 @@ namespace ShahWilayat.Controllers
 
         public string CreateNewPayment(int ChargeId, int PaymentMethodId, string PaymentDate, int MemberId,
             int PlotId, int Size, double PaymentAmount, double RemainingBalance, double PaidPercentBefore,
-            double TotalAmount, string DueDate, int PaymentCategoryId, int TenureId, int Rate, int PaymentTypeId)
+            double TotalAmount, string DueDate, int PaymentCategoryId, int TenureId, int Rate, int PaymentTypeId, int AllotmentTypeId)
         {
             try
             {
@@ -147,6 +148,7 @@ namespace ShahWilayat.Controllers
                 da.SelectCommand.Parameters.Add("@TenureId", SqlDbType.Int).Value = TenureId;
                 da.SelectCommand.Parameters.Add("@Rate", SqlDbType.Int).Value = Rate;
                 da.SelectCommand.Parameters.Add("@PaymentTypeId", SqlDbType.Int).Value = PaymentTypeId;
+                da.SelectCommand.Parameters.Add("@IsOrignalAllotment", SqlDbType.Int).Value = AllotmentTypeId;
                 da.SelectCommand.Parameters.Add("@CreatedBy", SqlDbType.Int).Value = (int)HttpContext.Session["UserId"];
                 da.Fill(dt);
 

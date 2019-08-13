@@ -217,6 +217,7 @@
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AllotmentController.cs" />
+    <Compile Include="Controllers\AssociateAllotmentController.cs" />
     <Compile Include="Controllers\AssociateMemberController.cs" />
     <Compile Include="Controllers\ChargesController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
@@ -5370,6 +5371,7 @@
     <Content Include="Scripts\assets\js\jquery.tmpl.min.js" />
     <Content Include="Scripts\assets\js\PagesJS\Allotment.js" />
     <Content Include="Scripts\assets\js\PagesJS\AllotmentRegister.js" />
+    <Content Include="Scripts\assets\js\PagesJS\AssociateAllotment.js" />
     <Content Include="Scripts\assets\js\PagesJS\AssociateMember.js" />
     <Content Include="Scripts\assets\js\PagesJS\Certificates.js" />
     <Content Include="Scripts\assets\js\PagesJS\Charges.js" />
@@ -6007,6 +6009,7 @@
     <Content Include="Views\Tenure\Index.cshtml" />
     <Content Include="Views\Charges\Index.cshtml" />
     <Content Include="Views\Payment\Index.cshtml" />
+    <Content Include="Views\AssociateAllotment\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,7 +1,7 @@
 ﻿
 GetAllCharges();
 GetAllMembers();
-GetAllPlots();
+
 GetAllPlotType();
 GetAllPaymentMethod();
 AllClickFunction();
@@ -29,6 +29,12 @@ function AllChangeFunction() {
         var PlotTypeId = $(this).val();
         var obj = MemberPlotList.filter(x => x.PlotTypeId == PlotTypeId);
         onGetAllPlots(obj);
+
+    });
+
+    $(".ddlAllotmentType").change(function () {
+        var AllotmentTypeId = $(this).val();
+        GetAllPlots(AllotmentTypeId);
 
     });
 
@@ -87,6 +93,7 @@ function AllClickFunction() {
         var ChargeId = $('.ddlCharges').val();
         var PaymentMethodId = $('.ddlPaymentMethod').val();
         var PaymentTypeId = $('.ddlPaymentType').val();
+        var AllotmentTypeId = $('.ddlAllotmentType').val() == 1 ? 1 : 0;
         var PaymentDate = formatDate($('.txtPaymentDate').val());
         var MemberId = $('.ddlMember').val();
         var PlotId = $('.ddlPlot').val();
@@ -111,7 +118,7 @@ function AllClickFunction() {
 
 
         CreateNewPayment(ChargeId, PaymentMethodId, PaymentDate, MemberId, PlotId, Size, PaymentAmount, RemainingBalance, PaidPercentBefore,
-            TotalAmount, DueDate, PaymentCategoryId, PaymentSubCategoryId, CategoryPercent, TenureId, Rate, PaymentTypeId);
+            TotalAmount, DueDate, PaymentCategoryId, PaymentSubCategoryId, CategoryPercent, TenureId, Rate, PaymentTypeId, AllotmentTypeId);
 
         // Init();
     });
@@ -328,12 +335,12 @@ function onGetAllPaymentType(data) {
 }
 
 
-function GetAllPlots() {
+function GetAllPlots(AllotmentTypeId) {
 
     var request = $.ajax({
         method: "POST",
         url: "/Payment/GetAllPlots",
-        data: {}
+        data: { AllotmentTypeId: AllotmentTypeId }
     });
     request.done(function (data) {
 
@@ -495,7 +502,7 @@ function FillDropDownByReferenceCharges(DropDownReference, res) {
     });
 }
 
-function CreateNewPayment(ChargeId, PaymentMethodId, PaymentDate, MemberId, PlotId, Size, PaymentAmount, RemainingBalance, PaidPercentBefore, TotalAmount, DueDate, PaymentCategoryId, PaymentSubCategoryId, CategoryPercent, TenureId, Rate, PaymentTypeId) {
+function CreateNewPayment(ChargeId, PaymentMethodId, PaymentDate, MemberId, PlotId, Size, PaymentAmount, RemainingBalance, PaidPercentBefore, TotalAmount, DueDate, PaymentCategoryId, PaymentSubCategoryId, CategoryPercent, TenureId, Rate, PaymentTypeId, AllotmentTypeId) {
     ProgressBarShow();
 
     var request = $.ajax({
@@ -504,7 +511,7 @@ function CreateNewPayment(ChargeId, PaymentMethodId, PaymentDate, MemberId, Plot
         data: {
             ChargeId: ChargeId, PaymentMethodId: PaymentMethodId, PaymentDate: PaymentDate,
             MemberId: MemberId, PlotId: PlotId, Size: Size, PaymentAmount: PaymentAmount, RemainingBalance: RemainingBalance, PaidPercentBefore: PaidPercentBefore, TotalAmount: TotalAmount,
-            DueDate: DueDate, PaymentCategoryId: PaymentCategoryId, PaymentSubCategoryId: PaymentSubCategoryId, CategoryPercent: CategoryPercent, TenureId: TenureId, Rate: Rate, PaymentTypeId: PaymentTypeId
+            DueDate: DueDate, PaymentCategoryId: PaymentCategoryId, PaymentSubCategoryId: PaymentSubCategoryId, CategoryPercent: CategoryPercent, TenureId: TenureId, Rate: Rate, PaymentTypeId: PaymentTypeId, AllotmentTypeId: AllotmentTypeId
         }
     });
     request.done(function (data) {
@@ -519,9 +526,9 @@ function CreateNewPayment(ChargeId, PaymentMethodId, PaymentDate, MemberId, Plot
             var PlotId = $('.ddlPlot').val();
 
             GetPaymentAmount(ChargeId, MemberId, PlotId);
-            setTimeout(function () {
-                SendInvoiceEmail(CreateInvoiceHtml(), Email, $('.tdHead').text().trim());
-            }, 2000);
+            //setTimeout(function () {
+            //    SendInvoiceEmail(CreateInvoiceHtml(), Email, $('.tdHead').text().trim());
+            //}, 2000);
 
         }
     });

@@ -172,24 +172,38 @@ function getUrlVars() {
 function validateForm(selector) {
     check = true;
     $(selector).find('select').each(function () {
-        if (($(this).val() == 0 || $(this).val() == null) && this.className.includes('notrequired') == false) {
-            CSS_BorderAndColor(this, 'red');
-            showError('Check All Mandatory Fields');
-            check = false;
+
+        if ($(this).hasClass('mySelect')) {
+            if (($(selector).find(this).val() == 0 || $(selector).find(this).val() == null) && this.className.includes('notrequired') == false) {
+                $(this).find('.select2-selection').attr('style', 'border-color : red !important; border-style: solid');
+                showError('Check All Mandatory Fields');
+                check = false;
+            }
+            else
+                $(this).attr('style', 'border-color : green !important; border-style: solid');
         }
-        else
-            CSS_BorderAndColor(this, 'green');
+        else {
+
+            if (($(this).val() == 0 || $(this).val() == null) && this.className.includes('notrequired') == false) {
+                CSS_BorderAndColor(this, 'red');
+                showError('Check All Mandatory Fields');
+                check = false;
+            }
+            else
+                CSS_BorderAndColor(this, 'green');
+        }
+
     });
 
-    $(selector).find('.select2-selection').each(function () {
-        if (($(this).val() == 0 || $(this).val() == null) && this.className.includes('notrequired') == false) {
-            $('.select2-selection').attr('style', 'border-color : red !important; border-style: solid');
-            showError('Check All Mandatory Fields');
-            check = false;
-        }
-        else
-            $('.select2-selection').attr('style', 'border-color : green !important; border-style: solid');
-    });
+    //$(selector).find('.select2-selection').each(function () {
+    //    if (($(selector).find(this).val() == 0 || $(selector).find(this).val() == null) && this.className.includes('notrequired') == false) {
+    //        $(this).find('.select2-selection').attr('style', 'border-color : red !important; border-style: solid');
+    //        showError('Check All Mandatory Fields');
+    //        check = false;
+    //    }
+    //    else
+    //        $('.select2-selection').attr('style', 'border-color : green !important; border-style: solid');
+    //});
 
     $(selector).find('input, textarea').each(function () {
         if ($(this).val() == "" && this.type != "hidden" && this.className.includes('notrequired') == false) {
@@ -778,7 +792,7 @@ function PickADatePicker() {
         formatSubmit: 'yyyy-mm-dd',
         selectYears: true,
         selectMonths: true
-      
+
     }
 
     );
