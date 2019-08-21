@@ -16,7 +16,8 @@ var Transfer =
     NewspaperName: null,
     NewspaperScan: null,
     IndemnityBondScan: null,
-    IsTransfered: false
+    TransferOrderScan: null,
+    IsTransfered: true
 
 }]
 
@@ -89,9 +90,11 @@ function AllClickFunction() {
         Transfer[0].TransferDate = $('.txtTransferDate').val();
         Transfer[0].MCMDate = $('.txtMCMDate').val();
         Transfer[0].NewspaperAdvDate = formatDate($('.txtNewspaperAdvDate').val());
-        Transfer[0].NewspaperName = formatDate($('.txtNewspaperName').val());
+        Transfer[0].NewspaperName = $('.txtNewspaperName').val();
         Transfer[0].NewspaperScan = FileUpload('.txtNewspaperScan');
         Transfer[0].IndemnityBondScan = FileUpload('.txtIndemnityBondScan');
+        Transfer[0].TransferOrderScan = FileUpload('.txtTransferOrderScan');
+        
 
 
 

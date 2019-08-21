@@ -43,12 +43,10 @@
                         <thead>
                             <tr>
                                 <th nowrap>Sr No.</th>
-                                <th>Membership No</th>
+                                <th>Transfer Order No</th>
                                 <th>Member</th>
-                                <th>Transfer</th>
-                                <th>Relation</th>
-                                <th>Member Relation</th>
-                                <th>Father/ Husband Name</th>
+                                <th>Plot</th>
+                                <th>Transfer Date</th>
                                 <th>Action</th>
 
                             </tr>
@@ -131,7 +129,7 @@
                                 <span class="btn btn-block btn-outline btn-info btn-file">
                                     <span class="fileinput-new">Attach Newspaper Scan</span>
                                     <i class="fa fa-upload"></i>&nbsp;&nbsp;
-                                    <span class="fileinput-exists">Change</span><input type="file" class="txtNewspaperScan" accept="image/*" />
+                                    <span class="fileinput-exists">Change</span><input type="file" class="txtNewspaperScan notrequired" accept="image/*" />
                                 </span>
                                 <span class="fileinput-filename"></span>
                                 <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
@@ -287,31 +285,23 @@
 
             <input type="hidden" class="hdnTransferId" value="${TransferId}" />
             <input type="hidden" class="hdnMemberId" value="${MemberId}" />
-            <input type="hidden" class="hdnTitleId" value="${TitleId}" />
-            <input type="hidden" class="hdnMemberRelationId" value="${MemberRelationId}" />
-            <input type="hidden" class="hdnRelationId" value="${RelationId}" />
-            <input type="hidden" class="hdnFirstName" value="${FirstName}" />
-            <input type="hidden" class="hdnLastName" value="${LastName}" />
-            <input type="hidden" class="hdnFatherName" value="${FatherName}" />
-            <input type="hidden" class="hdnDob" value="${ToJavaScriptDate(Dob)}" />
-            <input type="hidden" class="hdnBirthPlace" value="${BirthPlace}" />
-            <input type="hidden" class="hdnCNIC" value="${CNIC}" />
-            <input type="hidden" class="hdnCellNo" value="${CellNo}" />
-            <input type="hidden" class="hdnAddress" value="${Address}" />
-            <input type="hidden" class="hdnCnicFront" value="${CnicFront}" />
-            <input type="hidden" class="hdnCnicBack" value="${CnicBack}" />
-            <input type="hidden" class="hdnFrcFile" value="${FrcFile}" />
-            <input type="hidden" class="hdnHereshipCertificate" value="${HereshipCertificate}" />
-            <input type="hidden" class="hdnGuardianCertificate" value="${GuardianCertificate}" />
-            <input type="hidden" class="hdnDeathCertificate" value="${DeathCertificate}" />
+            <input type="hidden" class="hdnPlotId" value="${PlotId}" />
+            <input type="hidden" class="hdnTransferOrderNo" value="${TransferOrderNo}" />
+            <input type="hidden" class="hdnTransferDate" value="${ToJavaScriptDate(TransferDate)}" />
+            <input type="hidden" class="hdnMCMDate" value="${ToJavaScriptDate(MCMDate)}" />
+            <input type="hidden" class="hdnNewspaperAdvDate" value="${ToJavaScriptDate(NewspaperAdvDate)}" />
+            <input type="hidden" class="hdnNewspaperName" value="${NewspaperName}" />
+            <input type="hidden" class="hdnNewspaperScan" value="${NewspaperScan}" />
+            <input type="hidden" class="hdnIndemnityBondScan" value="${IndemnityBondScan}" />
+            <input type="hidden" class="hdnTransferOrderScan" value="${TransferOrderScan}" />
+            <input type="hidden" class="hdnIsTransfered" value="${IsTransfered}" />
 
             <td></td>
-            <td class="project-title tdMemberShipNo" nowrap>${MembershipNo}</td>
-            <td class="project-title tdMemberName" nowrap>${MemberName}</td>
-            <td class="project-title tdName" nowrap>${FirstName + ' ' + LastName}</td>
-            <td class="project-title tdRelation" nowrap>${Relation}</td>
-            <td class="project-title tdMemberRelation" nowrap>${MemberRelation}</td>
-            <td class="project-title tdFatherName" nowrap>${FatherName}</td>
+            <td class="project-title tdTransferOrderNo" nowrap>${TransferOrderNo}</td>
+            <td class="project-title tdMember" nowrap>${Member}</td>
+            <td class="project-title tdPlot" nowrap>${Plot}</td>
+            <td class="project-title tdTransferDate" nowrap>${ToJavaScriptDate(TransferDate)}</td>
+          
 
 
             <td class="project-title" nowrap>

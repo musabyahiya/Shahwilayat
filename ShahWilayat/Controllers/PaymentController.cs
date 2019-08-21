@@ -122,8 +122,8 @@ namespace ShahWilayat.Controllers
 
 
         public string CreateNewPayment(int ChargeId, int PaymentMethodId, string PaymentDate, int MemberId,
-            int PlotId, int Size, double PaymentAmount, double RemainingBalance, double PaidPercentBefore,
-            double TotalAmount, string DueDate, int PaymentCategoryId, int TenureId, int Rate, int PaymentTypeId, int AllotmentTypeId)
+            int PlotId, double PaymentAmount, double RemainingBalance, double PaidPercentBefore,
+            double TotalAmount, string DueDate, int PaymentCategoryId, int TenureId, double Rate, int PaymentTypeId, int AllotmentTypeId)
         {
             try
             {
@@ -138,7 +138,7 @@ namespace ShahWilayat.Controllers
                 da.SelectCommand.Parameters.Add("@PaymentDate", SqlDbType.DateTime).Value = PaymentDate;
                 da.SelectCommand.Parameters.Add("@MemberId", SqlDbType.Int).Value = MemberId;
                 da.SelectCommand.Parameters.Add("@PlotId", SqlDbType.Int).Value = PlotId;
-                da.SelectCommand.Parameters.Add("@Size", SqlDbType.Int).Value = Size;
+     
                 da.SelectCommand.Parameters.Add("@PaymentAmount", SqlDbType.Float).Value = PaymentAmount;
                 da.SelectCommand.Parameters.Add("@RemainingBalance", SqlDbType.Float).Value = RemainingBalance;
                 da.SelectCommand.Parameters.Add("@PaidPercentBefore", SqlDbType.Float).Value = PaidPercentBefore;
@@ -146,7 +146,7 @@ namespace ShahWilayat.Controllers
                 da.SelectCommand.Parameters.Add("@DueDate", SqlDbType.DateTime).Value = DueDate;
                 da.SelectCommand.Parameters.Add("@PaymentCategoryId", SqlDbType.Int).Value = PaymentCategoryId;
                 da.SelectCommand.Parameters.Add("@TenureId", SqlDbType.Int).Value = TenureId;
-                da.SelectCommand.Parameters.Add("@Rate", SqlDbType.Int).Value = Rate;
+                da.SelectCommand.Parameters.Add("@Rate", SqlDbType.Float).Value = Rate;
                 da.SelectCommand.Parameters.Add("@PaymentTypeId", SqlDbType.Int).Value = PaymentTypeId;
                 da.SelectCommand.Parameters.Add("@IsOrignalAllotment", SqlDbType.Int).Value = AllotmentTypeId;
                 da.SelectCommand.Parameters.Add("@CreatedBy", SqlDbType.Int).Value = (int)HttpContext.Session["UserId"];
@@ -218,7 +218,7 @@ namespace ShahWilayat.Controllers
             }
         }
 
-        public string GetPaymentAmount(int ChargeId, int MemberId, int PlotId)
+        public string GetPaymentAmount(int ChargeId, int MemberId, int PlotId, int AllotmentTypeId)
         {
             DataSet ds = new DataSet();
             DataTable dt = new DataTable();
@@ -229,6 +229,7 @@ namespace ShahWilayat.Controllers
             da.SelectCommand.Parameters.Add("@ChargeId", SqlDbType.Int).Value = ChargeId;
             da.SelectCommand.Parameters.Add("@MemberId", SqlDbType.Int).Value = MemberId;
             da.SelectCommand.Parameters.Add("@PlotId", SqlDbType.Int).Value = PlotId;
+            da.SelectCommand.Parameters.Add("@IsOriginalAllotment", SqlDbType.Int).Value = AllotmentTypeId;
             da.Fill(dt);
 
             return JsonConvert.SerializeObject(dt);

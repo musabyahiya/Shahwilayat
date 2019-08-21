@@ -38,6 +38,7 @@ namespace ShahWilayat
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public int PaymentTypeId { get; set; }
+        public bool IsOrignalAllotment { get; set; }
     
         public virtual Charge Charge { get; set; }
         public virtual Member Member { get; set; }

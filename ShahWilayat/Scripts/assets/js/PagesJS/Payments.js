@@ -79,8 +79,9 @@ function AllClickFunction() {
         var ChargeId = $('.ddlCharges').val();
         var MemberId = $('.ddlMember').val();
         var PlotId = $('.ddlPlot').val();
+        var AllotmentTypeId = $('.ddlAllotmentType').val() == 1 ? 1 : 0;
 
-        GetPaymentAmount(ChargeId, MemberId, PlotId);
+        GetPaymentAmount(ChargeId, MemberId, PlotId, AllotmentTypeId);
     });
 
     $('.picker__day').click(function () {
@@ -97,13 +98,13 @@ function AllClickFunction() {
         var PaymentDate = formatDate($('.txtPaymentDate').val());
         var MemberId = $('.ddlMember').val();
         var PlotId = $('.ddlPlot').val();
-        var Size = $('.hdnSize').val();
+       
         var PaymentAmount = $('.txtPayableAmount').val();
         var TotalAmount = $('.hdnTotalAmount').val();
         var DueDate = $('.hdnDueDate').val();
         var PaymentCategoryId = $('.hdnPaymentCategoryId').val();
-        var PaymentSubCategoryId = $('.hdnPaymentSubCategoryId').val();
-        var CategoryPercent = $('.hdnCategoryPercent').val();
+
+        
         var TenureId = $('.hdnTenureId').val();
         var Rate = $('.hdnRate').val();
         var RemainingBalance = $('.hdnRemainingBalance').val();
@@ -117,8 +118,8 @@ function AllClickFunction() {
         BindTextToSelector($('.printPaymentAmount'), moneyFormat(PaymentAmount) + '&nbsp;');
 
 
-        CreateNewPayment(ChargeId, PaymentMethodId, PaymentDate, MemberId, PlotId, Size, PaymentAmount, RemainingBalance, PaidPercentBefore,
-            TotalAmount, DueDate, PaymentCategoryId, PaymentSubCategoryId, CategoryPercent, TenureId, Rate, PaymentTypeId, AllotmentTypeId);
+        CreateNewPayment(ChargeId, PaymentMethodId, PaymentDate, MemberId, PlotId, PaymentAmount, RemainingBalance, PaidPercentBefore,
+            TotalAmount, DueDate, PaymentCategoryId, TenureId, Rate, PaymentTypeId, AllotmentTypeId);
 
         // Init();
     });
@@ -134,11 +135,11 @@ function AllClickFunction() {
 }
 
 
-function GetPaymentAmount(ChargeId, MemberId, PlotId) {
+function GetPaymentAmount(ChargeId, MemberId, PlotId, AllotmentTypeId) {
     var request = $.ajax({
         method: "POST",
         url: "/Payment/GetPaymentAmount",
-        data: { "ChargeId": ChargeId, "MemberId": MemberId, "PlotId": PlotId }
+        data: { "ChargeId": ChargeId, "MemberId": MemberId, "PlotId": PlotId, "AllotmentTypeId": AllotmentTypeId }
     });
     request.done(function (data) {
 
@@ -146,9 +147,9 @@ function GetPaymentAmount(ChargeId, MemberId, PlotId) {
         $('.hdnPaymentAmount').val(res[0].PaymentAmount);
         $('.hdnTenureId').val(res[0].TenureId);
         $('.hdnDueDate').val(res[0].DueDate);
-        $('.hdnCategoryPercent').val(res[0].CategoryPercent);
+       
         $('.hdnPaymentCategoryId').val(res[0].PaymentCategoryId);
-        $('.hdnPaymentSubCategoryId').val(res[0].PaymentSubCategoryId);
+      
         $('.hdnRate').val(res[0].Rate);
         $('.hdnSize').val(res[0].Size);
         $('.hdnTotalAmount').val(res[0].PaymentAmount + res[0].PaidAmount);
@@ -169,12 +170,12 @@ function GetPaymentAmount(ChargeId, MemberId, PlotId) {
         if (res[0].HasPaid == 1) {
 
             // showError('This charge has paid!');
-            $(".btnEnterAmount").prop("disabled", true);
+            $(".btnEnterAmount").css("pointer-events", 'none');
         }
         else {
-            $(".btnGetaymentAmount").prop("disabled", false);
+            $(".btnGetPaymentAmount").prop("disabled", false);
 
-            $(".btnEnterAmount").prop("disabled", false);
+            $(".btnEnterAmount").css("pointer-events", 'auto');
 
         }
 
@@ -198,7 +199,7 @@ function GetPaymentAmount(ChargeId, MemberId, PlotId) {
 
         // For Sending Payment Recept
 
-
+      //  DisableInputs();
 
 
 
@@ -502,7 +503,7 @@ function FillDropDownByReferenceCharges(DropDownReference, res) {
     });
 }
 
-function CreateNewPayment(ChargeId, PaymentMethodId, PaymentDate, MemberId, PlotId, Size, PaymentAmount, RemainingBalance, PaidPercentBefore, TotalAmount, DueDate, PaymentCategoryId, PaymentSubCategoryId, CategoryPercent, TenureId, Rate, PaymentTypeId, AllotmentTypeId) {
+function CreateNewPayment(ChargeId, PaymentMethodId, PaymentDate, MemberId, PlotId, PaymentAmount, RemainingBalance, PaidPercentBefore, TotalAmount, DueDate, PaymentCategoryId,  TenureId, Rate, PaymentTypeId, AllotmentTypeId) {
     ProgressBarShow();
 
     var request = $.ajax({
@@ -510,8 +511,8 @@ function CreateNewPayment(ChargeId, PaymentMethodId, PaymentDate, MemberId, Plot
         url: "/Payment/CreateNewPayment",
         data: {
             ChargeId: ChargeId, PaymentMethodId: PaymentMethodId, PaymentDate: PaymentDate,
-            MemberId: MemberId, PlotId: PlotId, Size: Size, PaymentAmount: PaymentAmount, RemainingBalance: RemainingBalance, PaidPercentBefore: PaidPercentBefore, TotalAmount: TotalAmount,
-            DueDate: DueDate, PaymentCategoryId: PaymentCategoryId, PaymentSubCategoryId: PaymentSubCategoryId, CategoryPercent: CategoryPercent, TenureId: TenureId, Rate: Rate, PaymentTypeId: PaymentTypeId, AllotmentTypeId: AllotmentTypeId
+            MemberId: MemberId, PlotId: PlotId, PaymentAmount: PaymentAmount, RemainingBalance: RemainingBalance, PaidPercentBefore: PaidPercentBefore, TotalAmount: TotalAmount,
+            DueDate: DueDate, PaymentCategoryId: PaymentCategoryId, TenureId: TenureId, Rate: Rate, PaymentTypeId: PaymentTypeId, AllotmentTypeId: AllotmentTypeId
         }
     });
     request.done(function (data) {
@@ -525,7 +526,8 @@ function CreateNewPayment(ChargeId, PaymentMethodId, PaymentDate, MemberId, Plot
             var MemberId = $('.ddlMember').val();
             var PlotId = $('.ddlPlot').val();
 
-            GetPaymentAmount(ChargeId, MemberId, PlotId);
+            var AllotmentTypeId = $('.ddlAllotmentType').val() == 1 ? 1 : 0;
+            GetPaymentAmount(ChargeId, MemberId, PlotId, AllotmentTypeId);
             //setTimeout(function () {
             //    SendInvoiceEmail(CreateInvoiceHtml(), Email, $('.tdHead').text().trim());
             //}, 2000);
@@ -540,17 +542,36 @@ function CreateNewPayment(ChargeId, PaymentMethodId, PaymentDate, MemberId, Plot
 }
 
 function Init() {
-
+    alert('Init');
     // $(".DivPaymentInfo").css("display", "none");
     $(".ddlCharges").val(0);
+    $(".ddlAllotmentType").val(0);
     $(".ddlPaymentMethod").val(0);
     $(".ddlPlot").val(0);
     $('.txtPaymentDate').val('');
     $(".ddlMember").val(0);
     $(".btnPayment").prop("disabled", true);
     $(".btnGetPaymentAmount").prop("disabled", false);
+
+    $(".btnEnterAmount").css("pointer-events", 'auto');
+
+
+    EnableInputs();
 }
 
+function DisableInputs() {
+
+    $('.frmMakePayment').find('input, select').each(function () {
+        $(this).prop("disabled", true);
+    });
+}
+
+function EnableInputs() {
+
+    $('.frmMakePayment').find('input, select').each(function () {
+        $(this).prop("disabled", false);
+    });
+}
 function SetPaidAmount(selector) {
     objEditRow = $(selector).closest('tr');
     $('.txtPayableAmount').val(objEditRow.find('.hdnPaymentAmount').val());

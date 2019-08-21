@@ -28,7 +28,7 @@ namespace ShahWilayat.Controllers
                 int MemberId = obj.MemberId;
 
 
-                if ((CheckFullPaid(tr.PlotId) == "true") && (CheckDuplicateAllotment(tr.MemberId, tr.PlotId) == "true"))
+                if (CheckDuplicateAllotment(tr.MemberId, tr.PlotId) == "true")
                 {
 
                     UpdateTransferedFile(tr, "Create");
@@ -103,16 +103,23 @@ namespace ShahWilayat.Controllers
         }
         public void GetCurrentAllottees()
         {
+            try
+            {
+                DataSet ds = new DataSet();
+                DataTable dt = new DataTable();
+                string dbConnectionString = context.Database.Connection.ConnectionString;
+        
+                SqlConnection con = new SqlConnection(dbConnectionString);
+                SqlDataAdapter da = new SqlDataAdapter("GetCurrentAllottees", con);
+                da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                da.Fill(dt);
+            }
 
 
-            DataSet ds = new DataSet();
-            DataTable dt = new DataTable();
-            string dbConnectionString = context.Database.Connection.ConnectionString;
-            SqlConnection con = new SqlConnection(dbConnectionString);
-            SqlDataAdapter da = new SqlDataAdapter("GetCurrentAllottees", con);
-            da.SelectCommand.CommandType = CommandType.StoredProcedure;
-            da.Fill(dt);
+            catch (Exception e)
+            {
 
+            }
         }
         public string UpdateTransfer(Transfer tr)
         {
@@ -139,16 +146,25 @@ namespace ShahWilayat.Controllers
 
         public string UpdateAttachments(Transfer tr)
         {
-            var obj = context.Transfers.FirstOrDefault(x => x.TransferId == tr.TransferId);
-            obj.NewspaperScan = tr.NewspaperScan;
-            obj.IndemnityBondScan = tr.IndemnityBondScan;
-            obj.MCMDate = tr.MCMDate;
-          
-            obj.ModifiedDate = DateTime.Now;
-            obj.ModifiedBy = (int)HttpContext.Session["UserId"];
-            context.Entry(obj).State = EntityState.Modified;
-            context.SaveChanges();
-            return "true";
+            try
+            {
+                var obj = context.Transfers.FirstOrDefault(x => x.TransferId == tr.TransferId);
+                obj.NewspaperScan = tr.NewspaperScan;
+                obj.IndemnityBondScan = tr.IndemnityBondScan;
+                obj.MCMDate = tr.MCMDate;
+
+                obj.ModifiedDate = DateTime.Now;
+                obj.ModifiedBy = (int)HttpContext.Session["UserId"];
+                context.Entry(obj).State = EntityState.Modified;
+                context.SaveChanges();
+                return "true";
+            }
+
+            catch (Exception e)
+            {
+                return e.ToString();
+            }
+         
         }
 
         public string UpdateTransferedFile(Transfer tr, string Action)
@@ -300,29 +316,7 @@ namespace ShahWilayat.Controllers
             }
         }
 
-        public string CheckFullPaid(int PlotId)
-        {
-            try
-            {
 
-                DataSet ds = new DataSet();
-                DataTable dt = new DataTable();
-                string dbConnectionString = context.Database.Connection.ConnectionString;
-                SqlConnection con = new SqlConnection(dbConnectionString);
-                SqlDataAdapter da = new SqlDataAdapter("CheckFullPaid", con);
-                da.SelectCommand.Parameters.Add("@PlotId", SqlDbType.Int).Value = PlotId;
-                da.SelectCommand.CommandType = CommandType.StoredProcedure;
-                da.Fill(ds);
-                dt = ds.Tables[1];
-                string result = dt.Rows[0]["HasPaid"].ToString() == "1" ? "true" : "false";
-                return result;
-
-            }
-            catch (Exception e)
-            {
-                return e.ToString();
-            }
-        }
 
         public string CheckAllotteeIsTransfered(int PlotId)
         {

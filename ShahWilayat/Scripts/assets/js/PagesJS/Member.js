@@ -59,9 +59,9 @@ var Members =
 function AllClickFunction() {
     $('.btnSaveChanges').click(function () {
         ProgressBarShow();
-        var duplicationMember = false;
+        
         if (!validateForm(".frmMember")) return;
-        if (!isValidEmailAddress($('.txtEmail').val())) return;
+
 
         Members[0].TitleId = $('.ddlTitle').val();
         Members[0].MemberRelationId = $('.ddlMemberRelation').val();
@@ -99,12 +99,7 @@ function AllClickFunction() {
             showError('Please attach all the attachments');
             return;
         }
-        duplicationMember = CheckDuplicateMembershipNo(Members[0].MembershipNo);
-
-        if (duplicationMember) {
-            showError("Membership No or CNIC has already exist.");
-            return;
-        }
+       
 
         CreateNewMember()
         ProgressBarHide();

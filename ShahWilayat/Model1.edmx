@@ -465,9 +465,10 @@
           <Property Name="UnitId" Type="int" Nullable="false" />
           <Property Name="PlotNo" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="HasExtraSize" Type="bit" Nullable="false" />
-          <Property Name="ExtraSize" Type="int" />
+          <Property Name="ExtraSize" Type="float" />
           <Property Name="HasAlotted" Type="bit" Nullable="false" />
           <Property Name="HasAssociateAlollted" Type="bit" Nullable="false" />
+          <Property Name="SitePlan" Type="text" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedBy" Type="int" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
@@ -618,6 +619,7 @@
           <Property Name="ReceiptNo" Type="varchar" MaxLength="50" />
           <Property Name="HasPaid" Type="bit" Nullable="false" />
           <Property Name="IsTransfered" Type="bit" Nullable="false" />
+          <Property Name="IsOrignalAllotment" Type="bit" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedBy" Type="int" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
@@ -2395,7 +2397,7 @@
           <Property Name="UnitId" Type="Int32" Nullable="false" />
           <Property Name="PlotNo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="HasExtraSize" Type="Boolean" Nullable="false" />
-          <Property Name="ExtraSize" Type="Int32" />
+          <Property Name="ExtraSize" Type="Double" />
           <Property Name="HasAlotted" Type="Boolean" Nullable="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="CreatedBy" Type="Int32" Nullable="false" />
@@ -2420,6 +2422,7 @@
           <NavigationProperty Name="Transfers" Relationship="Self.FK_Transfer_Plot" FromRole="Plot" ToRole="Transfer" />
           <NavigationProperty Name="TransferLogs" Relationship="Self.FK_TransferLogs_Plot" FromRole="Plot" ToRole="TransferLogs" />
           <Property Name="HasAssociateAlollted" Type="Boolean" Nullable="false" />
+          <Property Name="SitePlan" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="PlotCategory">
           <Key>
@@ -2589,6 +2592,7 @@
           <NavigationProperty Name="SocietyPaymentDetails" Relationship="Self.FK_SocietyPaymentDetails_SocietyPayment" FromRole="SocietyPayment" ToRole="SocietyPaymentDetails" />
           <Property Name="PaymentTypeId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="PaymentType" Relationship="ShahWilayatModel.FK_SocietyPayment_PaymentType" FromRole="SocietyPayment" ToRole="PaymentType" />
+          <Property Name="IsOrignalAllotment" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="SocietyPaymentDetail">
           <Key>
@@ -4328,6 +4332,7 @@
           <EntitySetMapping Name="Plots">
             <EntityTypeMapping TypeName="ShahWilayatModel.Plot">
               <MappingFragment StoreEntitySet="Plot">
+                <ScalarProperty Name="SitePlan" ColumnName="SitePlan" />
                 <ScalarProperty Name="HasAssociateAlollted" ColumnName="HasAssociateAlollted" />
                 <ScalarProperty Name="PlotId" ColumnName="PlotId" />
                 <ScalarProperty Name="PlotTypeId" ColumnName="PlotTypeId" />
@@ -4486,6 +4491,7 @@
           <EntitySetMapping Name="SocietyPayments">
             <EntityTypeMapping TypeName="ShahWilayatModel.SocietyPayment">
               <MappingFragment StoreEntitySet="SocietyPayment">
+                <ScalarProperty Name="IsOrignalAllotment" ColumnName="IsOrignalAllotment" />
                 <ScalarProperty Name="PaymentTypeId" ColumnName="PaymentTypeId" />
                 <ScalarProperty Name="SocietyPaymentId" ColumnName="SocietyPaymentId" />
                 <ScalarProperty Name="ChargeId" ColumnName="ChargeId" />

@@ -35,7 +35,7 @@ namespace ShahWilayat
         public int UnitId { get; set; }
         public string PlotNo { get; set; }
         public bool HasExtraSize { get; set; }
-        public Nullable<int> ExtraSize { get; set; }
+        public Nullable<double> ExtraSize { get; set; }
         public bool HasAlotted { get; set; }
         public bool IsActive { get; set; }
         public int CreatedBy { get; set; }
@@ -43,6 +43,7 @@ namespace ShahWilayat
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public bool HasAssociateAlollted { get; set; }
+        public string SitePlan { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Allotment> Allotments { get; set; }
