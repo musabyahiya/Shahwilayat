@@ -11,7 +11,7 @@ AllChangeFunction();
 var PlotList;
 var PlotSubTypeList;
 var objEditRow;
-
+var SitePlan;
 
 var Plot =
 [{
@@ -21,11 +21,10 @@ var Plot =
     PlotSizeId: 0,
     UnitId: 0,
     PlotNo: null,
-
     HasExtraSize: false,
     ExtraSize: null,
-
     HasAlotted: false,
+    SitePlan: null
 
 }]
 
@@ -55,9 +54,9 @@ function AllClickFunction() {
         Plot[0].PlotSizeId = $('.ddlPlotSize').val();
         Plot[0].UnitId = $('.ddlUnit').val();
         Plot[0].PlotNo = $('.txtPlotNo').val();
-
         Plot[0].HasExtraSize = $('.ddlHasExtraSize').val() == "1" ? true : false;
         Plot[0].ExtraSize = $('.txtExtraSize').val();
+        Plot[0].SitePlan = FileUpload('.txtSitePlan');
 
 
         CreateNewPlot()
@@ -77,7 +76,7 @@ function AllClickFunction() {
         Plot[0].PlotNo = $('.txtPlotNo_upd').val();
         Plot[0].HasExtraSize = $('.ddlHasExtraSize_upd').val() == "1" ? true : false;
         Plot[0].ExtraSize = $('.txtExtraSize_upd').val();
-
+        Plot[0].SitePlan = FileUpload('.txtSitePlan_upd');
 
 
         UpdatePlot();
@@ -434,6 +433,7 @@ function onGetAllPlot(data) {
 }
 function EditPlot(selector) {
     objEditRow = $(selector).closest('tr');
+    SitePlan = objEditRow.find('.hdnSitePlan').val();
     Plot[0].PlotId = objEditRow.find('.hdnPlotId').val();
     $('.ddlPlotType_upd').val(objEditRow.find('.hdnPlotTypeId').val()).change();
     $('.ddlPlotSubType_upd').val(objEditRow.find('.hdnPlotSubTypeId').val());

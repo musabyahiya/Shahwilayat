@@ -37,9 +37,8 @@ namespace ShahWilayat.Controllers
                    x.HasExtraSize,
                    x.ExtraSize,
                    x.PlotNo,
-                 
                    x.HasAlotted,
-                   
+                   x.SitePlan,
                    TotalSize = x.HasExtraSize == true ? (x.ExtraSize + x.PlotSize.PlotSize1) : x.PlotSize.PlotSize1
                }).OrderByDescending(x => x.PlotId).ToList();
 
@@ -157,11 +156,10 @@ namespace ShahWilayat.Controllers
                 obj.PlotSizeId = plot.PlotSizeId;
                 obj.UnitId = plot.UnitId;
                 obj.PlotNo = plot.PlotNo;
-        
                 obj.HasExtraSize = plot.HasExtraSize;
                 obj.ExtraSize = plot.ExtraSize;
                 obj.PlotSize = plot.PlotSize;
-    
+                obj.SitePlan = plot.SitePlan;
                 obj.IsActive = true;
                 obj.CreatedDate = DateTime.Now;
                 obj.CreatedBy = (int)HttpContext.Session["UserId"];

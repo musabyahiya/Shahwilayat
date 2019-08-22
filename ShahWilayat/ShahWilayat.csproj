@@ -224,6 +224,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ManualPaymentController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\MenusController.cs" />
     <Compile Include="Controllers\NomineeController.cs" />
@@ -5385,6 +5386,7 @@
     <Content Include="Scripts\assets\js\PagesJS\Letters.js" />
     <Content Include="Scripts\assets\js\PagesJS\Login.js" />
     <Content Include="Scripts\assets\js\PagesJS\MakePayment.js" />
+    <Content Include="Scripts\assets\js\PagesJS\ManualPayment.js" />
     <Content Include="Scripts\assets\js\PagesJS\Member.js" />
     <Content Include="Scripts\assets\js\PagesJS\Nav.js" />
     <Content Include="Scripts\assets\js\PagesJS\Nominee.js" />
@@ -5395,7 +5397,6 @@
     <Content Include="Scripts\assets\js\PagesJS\PaymentPlotWise.js" />
     <Content Include="Scripts\assets\js\PagesJS\Payments.js" />
     <Content Include="Scripts\assets\js\PagesJS\PaymentSetup.js" />
-    <Content Include="Scripts\assets\js\PagesJS\PaymentSubCategory.js" />
     <Content Include="Scripts\assets\js\PagesJS\Plot.js" />
     <Content Include="Scripts\assets\js\PagesJS\PlotTransfer.js" />
     <Content Include="Scripts\assets\js\PagesJS\ShareRegister.js" />
@@ -6010,6 +6011,7 @@
     <Content Include="Views\Charges\Index.cshtml" />
     <Content Include="Views\Payment\Index.cshtml" />
     <Content Include="Views\AssociateAllotment\Index.cshtml" />
+    <Content Include="Views\ManualPayment\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
