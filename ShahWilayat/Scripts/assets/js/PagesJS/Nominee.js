@@ -556,12 +556,12 @@ function SearchTable() {
         var search = $(_this).val();
 
         if (search == '') {
-            onGetAllNominees(MemberList);
+            onGetAllNominees(NomineeList);
         }
         else {
             var obj = NomineeList.filter(x=> x.FirstName.toLowerCase().includes(search.toLowerCase()) ||
 				x.LastName.toLowerCase().includes(search.toLowerCase()) ||
-
+                x.MemberName.toLowerCase().includes(search.toLowerCase()) ||
 			    x.MembershipNo.toLowerCase().includes(search.toLowerCase()) ||
                 x.FatherName.toLowerCase().includes(search.toLowerCase()) ||
                 x.CellNo.toLowerCase().includes(search.toLowerCase())

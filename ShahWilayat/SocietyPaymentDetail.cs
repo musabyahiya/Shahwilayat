@@ -22,7 +22,6 @@ namespace ShahWilayat
         public Nullable<double> TotalAmount { get; set; }
         public Nullable<double> PaidPercent { get; set; }
         public Nullable<double> RemainingPercent { get; set; }
-        public Nullable<int> CategoryPercent { get; set; }
         public bool IsActive { get; set; }
         public int CreatedBy { get; set; }
         public System.DateTime CreatedDate { get; set; }

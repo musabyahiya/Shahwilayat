@@ -86,6 +86,38 @@
           <Property Name="ModifiedBy" Type="int" />
           <Property Name="ModifiedDate" Type="datetime" />
         </EntityType>
+        <EntityType Name="AssociateTempTable">
+          <Key>
+            <PropertyRef Name="AssociateTempTableId" />
+          </Key>
+          <Property Name="AssociateTempTableId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberId" Type="int" Nullable="false" />
+          <Property Name="PlotId" Type="int" Nullable="false" />
+          <Property Name="PlotNo" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="AssociateTransfer">
+          <Key>
+            <PropertyRef Name="AssociateTransferId" />
+          </Key>
+          <Property Name="AssociateTransferId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PlotId" Type="int" Nullable="false" />
+          <Property Name="MemberId" Type="int" Nullable="false" />
+          <Property Name="TransferOrderNo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TransferDate" Type="datetime" Nullable="false" />
+          <Property Name="MCMDate" Type="date" />
+          <Property Name="SaleAgreementDate" Type="datetime" />
+          <Property Name="NewspaperAdvDate" Type="datetime" />
+          <Property Name="NewspaperName" Type="varchar" MaxLength="50" />
+          <Property Name="NewspaperScan" Type="text" />
+          <Property Name="IndemnityBondScan" Type="text" />
+          <Property Name="TransferOrderScan" Type="text" />
+          <Property Name="IsTransfered" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
         <EntityType Name="Charges">
           <Key>
             <PropertyRef Name="ChargeId" />
@@ -615,11 +647,12 @@
           <Property Name="PaymentDate" Type="datetime" Nullable="false" />
           <Property Name="PaymentAmount" Type="float" Nullable="false" />
           <Property Name="PaymentCategoryId" Type="int" Nullable="false" />
-          <Property Name="PaymentSubCategoryId" Type="int" Nullable="false" />
           <Property Name="ReceiptNo" Type="varchar" MaxLength="50" />
           <Property Name="HasPaid" Type="bit" Nullable="false" />
           <Property Name="IsTransfered" Type="bit" Nullable="false" />
           <Property Name="IsOrignalAllotment" Type="bit" Nullable="false" />
+          <Property Name="IsManualEntry" Type="bit" Nullable="false" />
+          <Property Name="Remarks" Type="varchar(max)" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedBy" Type="int" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
@@ -633,12 +666,11 @@
           <Property Name="SocietyPaymentDetailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SocietyPaymentId" Type="int" Nullable="false" />
           <Property Name="TenureId" Type="int" Nullable="false" />
-          <Property Name="Rate" Type="int" Nullable="false" />
+          <Property Name="Rate" Type="float" Nullable="false" />
           <Property Name="Balance" Type="float" />
           <Property Name="TotalAmount" Type="float" />
           <Property Name="PaidPercent" Type="float" />
           <Property Name="RemainingPercent" Type="float" />
-          <Property Name="CategoryPercent" Type="int" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedBy" Type="int" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
@@ -691,6 +723,7 @@
           <Property Name="TransferOrderNo" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="TransferDate" Type="datetime" Nullable="false" />
           <Property Name="MCMDate" Type="date" />
+          <Property Name="SaleAgreementDate" Type="datetime" />
           <Property Name="NewspaperAdvDate" Type="datetime" />
           <Property Name="NewspaperName" Type="varchar" MaxLength="50" />
           <Property Name="NewspaperScan" Type="text" />
@@ -876,6 +909,30 @@
             </Principal>
             <Dependent Role="AssociateMember">
               <PropertyRef Name="TitleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssociateTransfer_Members">
+          <End Role="Members" Type="Self.Members" Multiplicity="1" />
+          <End Role="AssociateTransfer" Type="Self.AssociateTransfer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Members">
+              <PropertyRef Name="MemberId" />
+            </Principal>
+            <Dependent Role="AssociateTransfer">
+              <PropertyRef Name="MemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssociateTransfer_Plot">
+          <End Role="Plot" Type="Self.Plot" Multiplicity="1" />
+          <End Role="AssociateTransfer" Type="Self.AssociateTransfer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plot">
+              <PropertyRef Name="PlotId" />
+            </Principal>
+            <Dependent Role="AssociateTransfer">
+              <PropertyRef Name="PlotId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1383,18 +1440,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SocietyPayment_Charges">
-          <End Role="Charges" Type="Self.Charges" Multiplicity="1" />
-          <End Role="SocietyPayment" Type="Self.SocietyPayment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Charges">
-              <PropertyRef Name="ChargeId" />
-            </Principal>
-            <Dependent Role="SocietyPayment">
-              <PropertyRef Name="ChargeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SocietyPayment_Members">
           <End Role="Members" Type="Self.Members" Multiplicity="1" />
           <End Role="SocietyPayment" Type="Self.SocietyPayment" Multiplicity="*" />
@@ -1527,18 +1572,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TransferLogs_Transfer">
-          <End Role="Transfer" Type="Self.Transfer" Multiplicity="1" />
-          <End Role="TransferLogs" Type="Self.TransferLogs" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Transfer">
-              <PropertyRef Name="TransferId" />
-            </Principal>
-            <Dependent Role="TransferLogs">
-              <PropertyRef Name="TransferId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Users_Role">
           <End Role="Role" Type="Self.Role" Multiplicity="1" />
           <End Role="Users" Type="Self.Users" Multiplicity="*" />
@@ -1555,6 +1588,8 @@
           <EntitySet Name="Allotment" EntityType="Self.Allotment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AssociateAllotment" EntityType="Self.AssociateAllotment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AssociateMember" EntityType="Self.AssociateMember" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AssociateTempTable" EntityType="Self.AssociateTempTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AssociateTransfer" EntityType="Self.AssociateTransfer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Charges" EntityType="Self.Charges" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CnicHistory" EntityType="Self.CnicHistory" Schema="dbo" store:Type="Tables" />
@@ -1639,6 +1674,14 @@
           <AssociationSet Name="FK_AssociateMember_Title" Association="Self.FK_AssociateMember_Title">
             <End Role="Title" EntitySet="Title" />
             <End Role="AssociateMember" EntitySet="AssociateMember" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssociateTransfer_Members" Association="Self.FK_AssociateTransfer_Members">
+            <End Role="Members" EntitySet="Members" />
+            <End Role="AssociateTransfer" EntitySet="AssociateTransfer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssociateTransfer_Plot" Association="Self.FK_AssociateTransfer_Plot">
+            <End Role="Plot" EntitySet="Plot" />
+            <End Role="AssociateTransfer" EntitySet="AssociateTransfer" />
           </AssociationSet>
           <AssociationSet Name="FK_Charges_PaymentSetup" Association="Self.FK_Charges_PaymentSetup">
             <End Role="PaymentSetup" EntitySet="PaymentSetup" />
@@ -1808,10 +1851,6 @@
             <End Role="MenuItems" EntitySet="MenuItems" />
             <End Role="RoleMenuMapping" EntitySet="RoleMenuMapping" />
           </AssociationSet>
-          <AssociationSet Name="FK_SocietyPayment_Charges" Association="Self.FK_SocietyPayment_Charges">
-            <End Role="Charges" EntitySet="Charges" />
-            <End Role="SocietyPayment" EntitySet="SocietyPayment" />
-          </AssociationSet>
           <AssociationSet Name="FK_SocietyPayment_Members" Association="Self.FK_SocietyPayment_Members">
             <End Role="Members" EntitySet="Members" />
             <End Role="SocietyPayment" EntitySet="SocietyPayment" />
@@ -1854,10 +1893,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_TransferLogs_Plot" Association="Self.FK_TransferLogs_Plot">
             <End Role="Plot" EntitySet="Plot" />
-            <End Role="TransferLogs" EntitySet="TransferLogs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TransferLogs_Transfer" Association="Self.FK_TransferLogs_Transfer">
-            <End Role="Transfer" EntitySet="Transfer" />
             <End Role="TransferLogs" EntitySet="TransferLogs" />
           </AssociationSet>
           <AssociationSet Name="FK_Users_Role" Association="Self.FK_Users_Role">
@@ -2201,6 +2236,7 @@
           <NavigationProperty Name="SocietyPayments" Relationship="Self.FK_SocietyPayment_Members" FromRole="Members" ToRole="SocietyPayment" />
           <NavigationProperty Name="Transfers" Relationship="Self.FK_Transfer_Members" FromRole="Members" ToRole="Transfer" />
           <NavigationProperty Name="TransferLogs" Relationship="Self.FK_TransferLogs_Members" FromRole="Members" ToRole="TransferLogs" />
+          <NavigationProperty Name="AssociateTransfers" Relationship="ShahWilayatModel.FK_AssociateTransfer_Members" FromRole="Member" ToRole="AssociateTransfer" />
         </EntityType>
         <EntityType Name="MembershipFee">
           <Key>
@@ -2423,6 +2459,7 @@
           <NavigationProperty Name="TransferLogs" Relationship="Self.FK_TransferLogs_Plot" FromRole="Plot" ToRole="TransferLogs" />
           <Property Name="HasAssociateAlollted" Type="Boolean" Nullable="false" />
           <Property Name="SitePlan" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AssociateTransfers" Relationship="ShahWilayatModel.FK_AssociateTransfer_Plot" FromRole="Plot" ToRole="AssociateTransfer" />
         </EntityType>
         <EntityType Name="PlotCategory">
           <Key>
@@ -2576,7 +2613,6 @@
           <Property Name="PaymentDate" Type="DateTime" Precision="3" Nullable="false" />
           <Property Name="PaymentAmount" Type="Double" Nullable="false" />
           <Property Name="PaymentCategoryId" Type="Int32" Nullable="false" />
-          <Property Name="PaymentSubCategoryId" Type="Int32" Nullable="false" />
           <Property Name="ReceiptNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="HasPaid" Type="Boolean" Nullable="false" />
           <Property Name="IsTransfered" Type="Boolean" Nullable="false" />
@@ -2593,6 +2629,8 @@
           <Property Name="PaymentTypeId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="PaymentType" Relationship="ShahWilayatModel.FK_SocietyPayment_PaymentType" FromRole="SocietyPayment" ToRole="PaymentType" />
           <Property Name="IsOrignalAllotment" Type="Boolean" Nullable="false" />
+          <Property Name="IsManualEntry" Type="Boolean" Nullable="false" />
+          <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="SocietyPaymentDetail">
           <Key>
@@ -2606,7 +2644,6 @@
           <Property Name="TotalAmount" Type="Double" />
           <Property Name="PaidPercent" Type="Double" />
           <Property Name="RemainingPercent" Type="Double" />
-          <Property Name="CategoryPercent" Type="Int32" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="CreatedBy" Type="Int32" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
@@ -2682,6 +2719,7 @@
           <NavigationProperty Name="Member" Relationship="Self.FK_Transfer_Members" FromRole="Transfer" ToRole="Members" />
           <NavigationProperty Name="Plot" Relationship="Self.FK_Transfer_Plot" FromRole="Transfer" ToRole="Plot" />
           <NavigationProperty Name="TransferLogs" Relationship="Self.FK_TransferLogs_Transfer" FromRole="Transfer" ToRole="TransferLogs" />
+          <Property Name="SaleAgreementDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="TransferLog">
           <Key>
@@ -3837,6 +3875,16 @@
             <End Role="PaymentType" EntitySet="PaymentTypes" />
             <End Role="SocietyPayment" EntitySet="SocietyPayments" />
           </AssociationSet>
+          <EntitySet Name="AssociateTempTables" EntityType="ShahWilayatModel.AssociateTempTable" />
+          <EntitySet Name="AssociateTransfers" EntityType="ShahWilayatModel.AssociateTransfer" />
+          <AssociationSet Name="FK_AssociateTransfer_Members" Association="ShahWilayatModel.FK_AssociateTransfer_Members">
+            <End Role="Member" EntitySet="Members" />
+            <End Role="AssociateTransfer" EntitySet="AssociateTransfers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssociateTransfer_Plot" Association="ShahWilayatModel.FK_AssociateTransfer_Plot">
+            <End Role="Plot" EntitySet="Plots" />
+            <End Role="AssociateTransfer" EntitySet="AssociateTransfers" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="PaymentType">
           <Key>
@@ -3860,6 +3908,64 @@
             </Principal>
             <Dependent Role="SocietyPayment">
               <PropertyRef Name="PaymentTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AssociateTempTable">
+          <Key>
+            <PropertyRef Name="AssociateTempTableId" />
+          </Key>
+          <Property Name="AssociateTempTableId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberId" Type="Int32" Nullable="false" />
+          <Property Name="PlotId" Type="Int32" Nullable="false" />
+          <Property Name="PlotNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="AssociateTransfer">
+          <Key>
+            <PropertyRef Name="AssociateTransferId" />
+          </Key>
+          <Property Name="AssociateTransferId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PlotId" Type="Int32" Nullable="false" />
+          <Property Name="MemberId" Type="Int32" Nullable="false" />
+          <Property Name="TransferOrderNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TransferDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MCMDate" Type="DateTime" Precision="0" />
+          <Property Name="SaleAgreementDate" Type="DateTime" Precision="3" />
+          <Property Name="NewspaperAdvDate" Type="DateTime" Precision="3" />
+          <Property Name="NewspaperName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NewspaperScan" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IndemnityBondScan" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TransferOrderScan" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsTransfered" Type="Boolean" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Member" Relationship="ShahWilayatModel.FK_AssociateTransfer_Members" FromRole="AssociateTransfer" ToRole="Member" />
+          <NavigationProperty Name="Plot" Relationship="ShahWilayatModel.FK_AssociateTransfer_Plot" FromRole="AssociateTransfer" ToRole="Plot" />
+        </EntityType>
+        <Association Name="FK_AssociateTransfer_Members">
+          <End Type="ShahWilayatModel.Member" Role="Member" Multiplicity="1" />
+          <End Type="ShahWilayatModel.AssociateTransfer" Role="AssociateTransfer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="MemberId" />
+            </Principal>
+            <Dependent Role="AssociateTransfer">
+              <PropertyRef Name="MemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssociateTransfer_Plot">
+          <End Type="ShahWilayatModel.Plot" Role="Plot" Multiplicity="1" />
+          <End Type="ShahWilayatModel.AssociateTransfer" Role="AssociateTransfer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plot">
+              <PropertyRef Name="PlotId" />
+            </Principal>
+            <Dependent Role="AssociateTransfer">
+              <PropertyRef Name="PlotId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -4491,6 +4597,8 @@
           <EntitySetMapping Name="SocietyPayments">
             <EntityTypeMapping TypeName="ShahWilayatModel.SocietyPayment">
               <MappingFragment StoreEntitySet="SocietyPayment">
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="IsManualEntry" ColumnName="IsManualEntry" />
                 <ScalarProperty Name="IsOrignalAllotment" ColumnName="IsOrignalAllotment" />
                 <ScalarProperty Name="PaymentTypeId" ColumnName="PaymentTypeId" />
                 <ScalarProperty Name="SocietyPaymentId" ColumnName="SocietyPaymentId" />
@@ -4501,7 +4609,6 @@
                 <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
                 <ScalarProperty Name="PaymentAmount" ColumnName="PaymentAmount" />
                 <ScalarProperty Name="PaymentCategoryId" ColumnName="PaymentCategoryId" />
-                <ScalarProperty Name="PaymentSubCategoryId" ColumnName="PaymentSubCategoryId" />
                 <ScalarProperty Name="ReceiptNo" ColumnName="ReceiptNo" />
                 <ScalarProperty Name="HasPaid" ColumnName="HasPaid" />
                 <ScalarProperty Name="IsTransfered" ColumnName="IsTransfered" />
@@ -4524,7 +4631,6 @@
                 <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
                 <ScalarProperty Name="PaidPercent" ColumnName="PaidPercent" />
                 <ScalarProperty Name="RemainingPercent" ColumnName="RemainingPercent" />
-                <ScalarProperty Name="CategoryPercent" ColumnName="CategoryPercent" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
@@ -4575,6 +4681,7 @@
           <EntitySetMapping Name="Transfers">
             <EntityTypeMapping TypeName="ShahWilayatModel.Transfer">
               <MappingFragment StoreEntitySet="Transfer">
+                <ScalarProperty Name="SaleAgreementDate" ColumnName="SaleAgreementDate" />
                 <ScalarProperty Name="TransferId" ColumnName="TransferId" />
                 <ScalarProperty Name="PlotId" ColumnName="PlotId" />
                 <ScalarProperty Name="MemberId" ColumnName="MemberId" />
@@ -4652,6 +4759,40 @@
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="PaymentType1" ColumnName="PaymentType" />
                 <ScalarProperty Name="PaymentTypeId" ColumnName="PaymentTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AssociateTempTables">
+            <EntityTypeMapping TypeName="ShahWilayatModel.AssociateTempTable">
+              <MappingFragment StoreEntitySet="AssociateTempTable">
+                <ScalarProperty Name="PlotNo" ColumnName="PlotNo" />
+                <ScalarProperty Name="PlotId" ColumnName="PlotId" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="AssociateTempTableId" ColumnName="AssociateTempTableId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AssociateTransfers">
+            <EntityTypeMapping TypeName="ShahWilayatModel.AssociateTransfer">
+              <MappingFragment StoreEntitySet="AssociateTransfer">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsTransfered" ColumnName="IsTransfered" />
+                <ScalarProperty Name="TransferOrderScan" ColumnName="TransferOrderScan" />
+                <ScalarProperty Name="IndemnityBondScan" ColumnName="IndemnityBondScan" />
+                <ScalarProperty Name="NewspaperScan" ColumnName="NewspaperScan" />
+                <ScalarProperty Name="NewspaperName" ColumnName="NewspaperName" />
+                <ScalarProperty Name="NewspaperAdvDate" ColumnName="NewspaperAdvDate" />
+                <ScalarProperty Name="SaleAgreementDate" ColumnName="SaleAgreementDate" />
+                <ScalarProperty Name="MCMDate" ColumnName="MCMDate" />
+                <ScalarProperty Name="TransferDate" ColumnName="TransferDate" />
+                <ScalarProperty Name="TransferOrderNo" ColumnName="TransferOrderNo" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="PlotId" ColumnName="PlotId" />
+                <ScalarProperty Name="AssociateTransferId" ColumnName="AssociateTransferId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

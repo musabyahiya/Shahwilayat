@@ -29,6 +29,7 @@ namespace ShahWilayat
             this.SocietyPayments = new HashSet<SocietyPayment>();
             this.Transfers = new HashSet<Transfer>();
             this.TransferLogs = new HashSet<TransferLog>();
+            this.AssociateTransfers = new HashSet<AssociateTransfer>();
         }
     
         public int MemberId { get; set; }
@@ -104,5 +105,7 @@ namespace ShahWilayat
         public virtual ICollection<Transfer> Transfers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TransferLog> TransferLogs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AssociateTransfer> AssociateTransfers { get; set; }
     }
 }

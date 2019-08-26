@@ -1,0 +1,324 @@
+﻿
+@{
+    ViewBag.Title = "Shah Wilayat Cooperative Housing Society";
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+}
+
+
+<div class="content-header row">
+    <div class="content-header-left col-md-6 col-12 mb-2">
+        <h3 class="content-header-title">Transfer</h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#CreateTransfer">
+                    Add New Transfer
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Both borders end-->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <fieldset>
+                    <div class="input-group">
+                        <input type="text" class="form-control txtSearch" placeholder="Search..." aria-describedby="basic-addon4">
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="basic-addon4"><i class="la la-search"></i></span>
+                        </div>
+                    </div>
+                </fieldset>
+
+            </div>
+            <div class="card-content">
+
+                <div class="table-responsive">
+                    <table class="table table-bordered mb-0 tblTransfer">
+                        <thead>
+                            <tr>
+                                <th nowrap>Sr No.</th>
+                                <th>Transfer Order No</th>
+                                <th>Member</th>
+                                <th>Plot</th>
+                                <th>Transfer Date</th>
+                                <th>Action</th>
+
+                            </tr>
+                        </thead>
+                        <tbody class="TransferListing"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Create Modal Start*@
+<div class="modal fade text-left" id="CreateTransfer" role="dialog" aria-labelledby="myModalLabel16" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel16">Create New Transfer</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-body frmTransfer">
+                    <h4 class="form-section"><i class="la la-exchange"></i> Transfer Details</h4>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ddlMember">Member</label>
+                                <select id="ddlMember" class="form-control ddlMember mySelect select2" style="width:100%"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ddlPlot">Plot</label>
+                                <select id="ddlPlot" class="form-control ddlPlot mySelect select2" style="width:100%"></select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtTransferOrderNo">Transfer Order No</label>
+                                <input type="text" id="txtTransferOrderNo" class="form-control txtTransferOrderNo" placeholder="Enter transfer no">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtTransferDate">Transfer Date</label>
+                                <input type="text" id="txtTransferDate" class="form-control DatePicker txtTransferDate" placeholder="yyyy-mm-dd">
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtMCMDate">MCM Date</label>
+                                <input type="text" id="txtMCMDate" class="form-control DatePicker txtMCMDate" placeholder="yyyy-mm-dd">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtNewspaperName">Newspaper Name </label>
+                                <input type="text" id="txtNewspaperName" class="form-control txtNewspaperName" placeholder="Enter newspaper name">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtNewspaperAdvDate">Newspaper Advertisement Date</label>
+                                <input type="text" id="txtNewspaperAdvDate" class="form-control DatePicker txtNewspaperAdvDate" placeholder="yyyy-mm-dd">
+                            </div>
+                        </div>
+
+                    </div>
+                    <h4 class="form-section"><i class="ft-paperclip"></i> Attachments</h4>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+
+                                <span class="btn btn-block btn-outline btn-info btn-file">
+                                    <span class="fileinput-new">Attach Newspaper Scan</span>
+                                    <i class="fa fa-upload"></i>&nbsp;&nbsp;
+                                    <span class="fileinput-exists">Change</span><input type="file" class="txtNewspaperScan notrequired" accept="image/*" />
+                                </span>
+                                <span class="fileinput-filename"></span>
+                                <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+
+                                <span class="btn btn-block btn-outline btn-info btn-file">
+                                    <span class="fileinput-new">Attach Indemnity Bond Scan </span>
+                                    <i class="fa fa-upload"></i>&nbsp;&nbsp;
+                                    <span class="fileinput-exists">Change</span><input type="file" class="txtIndemnityBondScan notrequired" accept="image/*" />
+                                </span>
+                                <span class="fileinput-filename"></span>
+                                <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+
+                                <span class="btn btn-block btn-outline btn-info btn-file">
+                                    <span class="fileinput-new">Attach Transfer Order Scan</span>
+                                    <i class="fa fa-upload"></i>&nbsp;&nbsp;
+                                    <span class="fileinput-exists">Change</span><input type="file" class="txtTransferOrderScan notrequired" accept="image/*" />
+                                </span>
+                                <span class="fileinput-filename"></span>
+                                <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn grey btn-outline-info" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline-dark btnSaveChanges">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Create Modal End*@
+
+@*Edit Modal Start*@
+<div class="modal fade text-left" id="EditTransfer" role="dialog" aria-labelledby="myModalLabel16" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel16">Edit Transfer</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-body frmTransfer_upd">
+                    <h4 class="form-section"><i class="ft-user"></i> Personal Info</h4>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ddlMember_upd">Member</label>
+                                <select id="ddlMember_upd" class="form-control ddlMember_upd select2 mySelect" style="width:100%"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ddlTitle_upd">Title</label>
+                                <select id="ddlTitle_upd" class="form-control ddlTitle_upd"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ddlRelation_upd">Relation</label>
+                                <select id="ddlRelation_upd" class="form-control ddlRelation_upd"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtFirstName_upd">First Name</label>
+                                <input type="text" id="txtFirstName_upd" class="form-control txtFirstName_upd" placeholder="Enter first name">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtLastName_upd">Last Name</label>
+                                <input type="text" id="txtLastName_upd" class="form-control txtLastName_upd" placeholder="Enter last name">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ddlMemberRelation_upd">Member Relation</label>
+                                <select id="ddlMemberRelation_upd" class="form-control ddlMemberRelation_upd"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtFatherName_upd">Father Name</label>
+                                <input type="text" id="txtFatherName_upd" class="form-control txtFatherName_upd" placeholder="Enter father name">
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtDob_upd">Date of Birth</label>
+                                <input type="text" id="txtDob_upd" class="form-control DatePicker txtDob_upd" placeholder="yyyy-mm-dd">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtBirthPlace_upd">Place of Birth</label>
+                                <input type="text" id="txtBirthPlace_upd" class="form-control txtBirthPlace_upd" placeholder="Enter birth place">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtCellNo_upd">Cell No</label>
+                                <input type="text" id="txtCellNo_upd" class="form-control txtCellNo_upd numbericOnly" placeholder="Enter cell number">
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtCNIC_upd">CNIC</label>
+                                <input type="text" id="txtCNIC_upd" class="form-control txtCNIC_upd " placeholder="Enter CNIC without dash">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtAddress_upd">Address</label>
+                                <textarea class="form-control txtAddress_upd" id="txtAddress_upd" rows="1" placeholder="Enter permanent address"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn grey btn-outline-info" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline-dark btnUpdateChanges">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Edit Modal Start*@
+
+@section Scripts
+{
+    <script type="text/x-jQuery-tmpl" id="TransferListing">
+        <tr class="trTransfer">
+
+            <input type="hidden" class="hdnAssociateTransferId" value="${AssociateTransferId}" />
+            <input type="hidden" class="hdnMemberId" value="${MemberId}" />
+            <input type="hidden" class="hdnPlotId" value="${PlotId}" />
+            <input type="hidden" class="hdnTransferOrderNo" value="${TransferOrderNo}" />
+            <input type="hidden" class="hdnTransferDate" value="${ToJavaScriptDate(TransferDate)}" />
+            <input type="hidden" class="hdnMCMDate" value="${ToJavaScriptDate(MCMDate)}" />
+            <input type="hidden" class="hdnNewspaperAdvDate" value="${ToJavaScriptDate(NewspaperAdvDate)}" />
+            <input type="hidden" class="hdnNewspaperName" value="${NewspaperName}" />
+            <input type="hidden" class="hdnNewspaperScan" value="${NewspaperScan}" />
+            <input type="hidden" class="hdnIndemnityBondScan" value="${IndemnityBondScan}" />
+            <input type="hidden" class="hdnTransferOrderScan" value="${TransferOrderScan}" />
+            <input type="hidden" class="hdnIsTransfered" value="${IsTransfered}" />
+
+            <td></td>
+            <td class="project-title tdTransferOrderNo" nowrap>${TransferOrderNo}</td>
+            <td class="project-title tdMember" nowrap>${Member}</td>
+            <td class="project-title tdPlot" nowrap>${Plot}</td>
+            <td class="project-title tdTransferDate" nowrap>${ToJavaScriptDate(TransferDate)}</td>
+
+
+
+            <td class="project-title" nowrap>
+
+                <a href="javascript:void(0)" data-toggle="modal" data-target="#EditTransfer" onclick="EditTransfer(this)" data-toggle="tooltip" data-placement="top" data-original-title="Edit Transfer"><i class="la la-pencil-square success"></i></a>
+                <a href="javascript:void(0)" data-toggle="modal" data-target="#EditAttachment" onclick="EditTransfer(this)" title="Edit Attachment"><i class="ft-paperclip"></i></a>
+                <a href="javascript:void(0)" data-toggle="modal" data-target="#DeleteTransfer" onclick="EditTransfer(this)" data-toggle="tooltip" data-placement="top" data-original-title="Delete Transfer"><i class="la la-trash danger"></i></a>
+
+            </td>
+
+
+        </tr>
+    </script>
+
+    <script src="~/Scripts/assets/js/PagesJS/AssociateTransfer.js"></script>
+
+}
+
+

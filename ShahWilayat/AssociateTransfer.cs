@@ -12,20 +12,15 @@ namespace ShahWilayat
     using System;
     using System.Collections.Generic;
     
-    public partial class Transfer
+    public partial class AssociateTransfer
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Transfer()
-        {
-            this.TransferLogs = new HashSet<TransferLog>();
-        }
-    
-        public int TransferId { get; set; }
+        public int AssociateTransferId { get; set; }
         public int PlotId { get; set; }
         public int MemberId { get; set; }
         public string TransferOrderNo { get; set; }
         public System.DateTime TransferDate { get; set; }
         public Nullable<System.DateTime> MCMDate { get; set; }
+        public Nullable<System.DateTime> SaleAgreementDate { get; set; }
         public Nullable<System.DateTime> NewspaperAdvDate { get; set; }
         public string NewspaperName { get; set; }
         public string NewspaperScan { get; set; }
@@ -37,11 +32,8 @@ namespace ShahWilayat
         public System.DateTime CreatedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
-        public Nullable<System.DateTime> SaleAgreementDate { get; set; }
     
         public virtual Member Member { get; set; }
         public virtual Plot Plot { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TransferLog> TransferLogs { get; set; }
     }
 }

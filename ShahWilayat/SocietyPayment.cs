@@ -28,7 +28,6 @@ namespace ShahWilayat
         public System.DateTime PaymentDate { get; set; }
         public double PaymentAmount { get; set; }
         public int PaymentCategoryId { get; set; }
-        public int PaymentSubCategoryId { get; set; }
         public string ReceiptNo { get; set; }
         public bool HasPaid { get; set; }
         public bool IsTransfered { get; set; }
@@ -39,6 +38,8 @@ namespace ShahWilayat
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public int PaymentTypeId { get; set; }
         public bool IsOrignalAllotment { get; set; }
+        public bool IsManualEntry { get; set; }
+        public string Remarks { get; set; }
     
         public virtual Charge Charge { get; set; }
         public virtual Member Member { get; set; }

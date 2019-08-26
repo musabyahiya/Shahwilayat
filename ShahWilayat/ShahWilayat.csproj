@@ -206,6 +206,12 @@
     <Compile Include="AssociateMember.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="AssociateTempTable.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AssociateTransfer.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Charge.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -219,6 +225,7 @@
     <Compile Include="Controllers\AllotmentController.cs" />
     <Compile Include="Controllers\AssociateAllotmentController.cs" />
     <Compile Include="Controllers\AssociateMemberController.cs" />
+    <Compile Include="Controllers\AssociateTransferController.cs" />
     <Compile Include="Controllers\ChargesController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -5374,6 +5381,7 @@
     <Content Include="Scripts\assets\js\PagesJS\AllotmentRegister.js" />
     <Content Include="Scripts\assets\js\PagesJS\AssociateAllotment.js" />
     <Content Include="Scripts\assets\js\PagesJS\AssociateMember.js" />
+    <Content Include="Scripts\assets\js\PagesJS\AssociateTransfer.js" />
     <Content Include="Scripts\assets\js\PagesJS\Certificates.js" />
     <Content Include="Scripts\assets\js\PagesJS\Charges.js" />
     <Content Include="Scripts\assets\js\PagesJS\CnicHistory.js" />
@@ -6012,6 +6020,7 @@
     <Content Include="Views\Payment\Index.cshtml" />
     <Content Include="Views\AssociateAllotment\Index.cshtml" />
     <Content Include="Views\ManualPayment\Index.cshtml" />
+    <Content Include="Views\AssociateTransfer\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

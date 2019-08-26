@@ -10,21 +10,21 @@ using System.Web.Mvc;
 namespace ShahWilayat.Controllers
 {
     [SessionCheck]
-    public class TransferController : Controller
+    public class AssociateTransferController : Controller
     {
         ShahWilayatEntities context = new ShahWilayatEntities();
-        // GET: Transfer
+        // GET: AssociateTransfer
         public ActionResult Index()
         {
             return View();
         }
 
-        public string CreateNewTransfer(Transfer tr)
+        public string CreateNewTransfer(AssociateTransfer tr)
         {
             try
             {
-                GetCurrentAllottees();
-                var obj = context.TempTables.FirstOrDefault(x => x.PlotId == tr.PlotId);
+                GetCurrentAssociateAllottees();
+                var obj = context.AssociateTempTables.FirstOrDefault(x => x.PlotId == tr.PlotId);
                 int MemberId = obj.MemberId;
 
 
@@ -35,14 +35,11 @@ namespace ShahWilayat.Controllers
                     tr.IsActive = true;
                     tr.CreatedDate = DateTime.Now;
                     tr.CreatedBy = (int)HttpContext.Session["UserId"];
-                    context.Transfers.Add(tr);
+                    context.AssociateTransfers.Add(tr);
                     context.SaveChanges();
-
-                    ActivateGoneMember(MemberId, tr.PlotId);
+                    ActivateAssociateGoneMember(MemberId, tr.PlotId);
                     SetPaymentTransfered(MemberId, tr.PlotId);
                     return "true";
-
-
                 }
                 else
                 {
@@ -57,7 +54,7 @@ namespace ShahWilayat.Controllers
             }
         }
 
-        public string ActivateGoneMember(int MemberId, int PlotId)
+        public string ActivateAssociateGoneMember(int MemberId, int PlotId)
         {
             try
             {
@@ -65,11 +62,12 @@ namespace ShahWilayat.Controllers
                 DataTable dt = new DataTable();
                 string dbConnectionString = context.Database.Connection.ConnectionString;
                 SqlConnection con = new SqlConnection(dbConnectionString);
-                SqlDataAdapter da = new SqlDataAdapter("ActivateGoneMember", con);
+                SqlDataAdapter da = new SqlDataAdapter("ActivateAssociateGoneMember", con);
                 da.SelectCommand.CommandType = CommandType.StoredProcedure;
                 da.SelectCommand.Parameters.Add("@MemberId", SqlDbType.Int).Value = MemberId;
                 da.SelectCommand.Parameters.Add("@PlotId", SqlDbType.Int).Value = PlotId;
                 da.Fill(ds);
+
                 return "true";
             }
             catch (Exception e)
@@ -99,16 +97,16 @@ namespace ShahWilayat.Controllers
 
           ;
         }
-        public void GetCurrentAllottees()
+        public void GetCurrentAssociateAllottees()
         {
             try
             {
                 DataSet ds = new DataSet();
                 DataTable dt = new DataTable();
                 string dbConnectionString = context.Database.Connection.ConnectionString;
-        
+
                 SqlConnection con = new SqlConnection(dbConnectionString);
-                SqlDataAdapter da = new SqlDataAdapter("GetCurrentAllottees", con);
+                SqlDataAdapter da = new SqlDataAdapter("GetCurrentAssociateAllottees", con);
                 da.SelectCommand.CommandType = CommandType.StoredProcedure;
                 da.Fill(dt);
             }
@@ -142,15 +140,15 @@ namespace ShahWilayat.Controllers
             }
         }
 
-        public string UpdateAttachments(Transfer tr)
+        public string UpdateAttachments(AssociateTransfer tr)
         {
             try
             {
-                var obj = context.Transfers.FirstOrDefault(x => x.TransferId == tr.TransferId);
+                var obj = context.AssociateTransfers.FirstOrDefault(x => x.AssociateTransferId == tr.AssociateTransferId);
                 obj.NewspaperScan = tr.NewspaperScan;
                 obj.IndemnityBondScan = tr.IndemnityBondScan;
                 obj.MCMDate = tr.MCMDate;
-      
+
                 obj.ModifiedDate = DateTime.Now;
                 obj.ModifiedBy = (int)HttpContext.Session["UserId"];
                 context.Entry(obj).State = EntityState.Modified;
@@ -162,10 +160,10 @@ namespace ShahWilayat.Controllers
             {
                 return e.ToString();
             }
-         
+
         }
 
-        public string UpdateTransferedFile(Transfer tr, string Action)
+        public string UpdateTransferedFile(AssociateTransfer tr, string Action)
         {
             try
             {
@@ -173,7 +171,7 @@ namespace ShahWilayat.Controllers
                 {
                     using (var db = new ShahWilayatEntities())
                     {
-                        var rows = db.Transfers.Where(x => x.PlotId == tr.PlotId).ToList();
+                        var rows = db.AssociateTransfers.Where(x => x.PlotId == tr.PlotId).ToList();
                         rows.ForEach(a => a.IsTransfered = false);
                         db.SaveChanges();
                     }
@@ -182,7 +180,7 @@ namespace ShahWilayat.Controllers
                 {
                     using (var db = new ShahWilayatEntities())
                     {
-                        var rows = db.Transfers.Where(x => x.PlotId == tr.PlotId && x.TransferId != tr.TransferId).ToList();
+                        var rows = db.AssociateTransfers.Where(x => x.PlotId == tr.PlotId && x.AssociateTransferId != tr.AssociateTransferId).ToList();
                         rows.ForEach(a => a.IsTransfered = false);
                         db.SaveChanges();
                     }
@@ -198,13 +196,13 @@ namespace ShahWilayat.Controllers
         }
 
 
- 
 
-        public string DeleteTransfer(Transfer tr)
+
+        public string DeleteTransfer(AssociateTransfer tr)
         {
             try
             {
-                var obj = context.Transfers.FirstOrDefault(x => x.TransferId == tr.TransferId);
+                var obj = context.AssociateTransfers.FirstOrDefault(x => x.AssociateTransferId == tr.AssociateTransferId);
                 obj.IsActive = false;
                 obj.ModifiedDate = DateTime.Now;
                 obj.ModifiedBy = (int)HttpContext.Session["UserId"];
@@ -242,10 +240,10 @@ namespace ShahWilayat.Controllers
         {
             try
             {
-                var lst = context.Transfers.Where(x => x.IsActive == true && x.IsTransfered == true)
+                var lst = context.AssociateTransfers.Where(x => x.IsActive == true && x.IsTransfered == true)
              .Select(x => new
              {
-                 x.TransferId,
+                 x.AssociateTransferId,
                  x.PlotId,
                  x.TransferOrderNo,
                  Plot = x.Plot.PlotNo + " (" + x.Plot.PlotSize.PlotSize1 + " - " + x.Plot.Unit.Unit1 + ")",
@@ -273,8 +271,8 @@ namespace ShahWilayat.Controllers
         {
             try
             {
-                GetCurrentAllottees();
-                var lst = context.TempTables.FirstOrDefault(x => x.MemberId == MemberId && x.PlotId == PlotId);
+                GetCurrentAssociateAllottees();
+                var lst = context.AssociateTempTables.FirstOrDefault(x => x.MemberId == MemberId && x.PlotId == PlotId);
 
                 if (lst == null)
                 {
@@ -299,8 +297,7 @@ namespace ShahWilayat.Controllers
         {
             try
             {
-
-                var obj = context.Transfers.FirstOrDefault(x => x.PlotId == PlotId && x.IsActive == true);
+                var obj = context.AssociateTransfers.FirstOrDefault(x => x.PlotId == PlotId && x.IsActive == true);
                 if (obj == null)
                 {
                     return "false";
