@@ -123,7 +123,7 @@ namespace ShahWilayat.Controllers
 
         public string CreateNewPayment(int ChargeId, int PaymentMethodId, string PaymentDate, int MemberId,
             int PlotId, double PaymentAmount, double RemainingBalance, double PaidPercentBefore,
-            double TotalAmount, string DueDate, int PaymentCategoryId, int TenureId, double Rate, int PaymentTypeId, int AllotmentTypeId)
+            double TotalAmount, string DueDate, int PaymentCategoryId, int TenureId, double Rate, int PaymentTypeId, int AllotmentTypeId, string ReceiptNo, string ChequeNo)
         {
             try
             {
@@ -149,6 +149,8 @@ namespace ShahWilayat.Controllers
                 da.SelectCommand.Parameters.Add("@Rate", SqlDbType.Float).Value = Rate;
                 da.SelectCommand.Parameters.Add("@PaymentTypeId", SqlDbType.Int).Value = PaymentTypeId;
                 da.SelectCommand.Parameters.Add("@IsOrignalAllotment", SqlDbType.Int).Value = AllotmentTypeId;
+                da.SelectCommand.Parameters.Add("@ReceiptNo", SqlDbType.VarChar).Value = ReceiptNo;
+                da.SelectCommand.Parameters.Add("@ChequeNo", SqlDbType.VarChar).Value = ChequeNo;
                 da.SelectCommand.Parameters.Add("@CreatedBy", SqlDbType.Int).Value = (int)HttpContext.Session["UserId"];
                 da.Fill(dt);
 

@@ -7,6 +7,7 @@ GetAllMemberRelations();
 GetAllTitle();
 GetAllCity();
 GetAllProvince();
+SearchTable();
 
 AllChangeFunction();
 
@@ -82,16 +83,6 @@ function AllClickFunction() {
         AssociateMember[0].PermanentAddress = $('.txtPermanentAddress').val();
         AssociateMember[0].Occupation = $('.txtOccupation').val();
         AssociateMember[0].CnicExpiryDate = $('.txtCnicExpiryDate').val()
-        AssociateMember[0].CnicFrontFile = FileUpload('.txtCnicFrontFile');
-        AssociateMember[0].CnicBackFile = FileUpload('.txtCnicBackFile');
-        AssociateMember[0].ProfileFile = FileUpload('.txtProfileFile');
-
-
-
-        if (AssociateMember[0].CnicFrontFile == "" || AssociateMember[0].CnicBackFile == "" || AssociateMember[0].ProfileFile == "") {
-            showError('Please attach all the attachments');
-            return;
-        }
 
 
         CreateNewMember()
@@ -424,6 +415,7 @@ function onGetAllMembers(data) {
 
 
         var res = data;
+   
         FillDropDownByReference('.ddlMember', res);
         FillDropDownByReference('.ddlMember_upd', res);
     }
@@ -476,7 +468,7 @@ function CreateNewMember() {
         if (res == "true") {
             showSuccess('Successfully Created!');
             $('#CreateMember').modal('hide');
-            GetAllMembership();
+            GetAllAssociateMembers();
         }
     });
     request.fail(function (jqXHR, Status) {
@@ -497,7 +489,7 @@ function UpdateMember() {
         if (res == "true") {
             showSuccess('Successfully Updated!');
             $('#EditMember').modal('hide');
-            GetAllMembership();
+            GetAllAssociateMembers();
         }
     });
     request.fail(function (jqXHR, Status) {
@@ -517,8 +509,8 @@ function UpdateAttachment() {
         var res = data;
         if (res == "true") {
             showSuccess('Successfully Updated!');
-            $('#EditMemberAttachment').modal('hide');
-            GetAllMembership();
+            $('#EditAttachment').modal('hide');
+            GetAllAssociateMembers();
         }
     });
     request.fail(function (jqXHR, Status) {
@@ -539,7 +531,7 @@ function DeleteMember() {
         if (res == "true") {
             showSuccess('Successfully Deleted!');
             $('#DeleteMember').modal('hide');
-            GetAllMembership();
+            GetAllAssociateMembers();
         }
     });
     request.fail(function (jqXHR, Status) {
@@ -570,7 +562,7 @@ function onGetAllAssociateMembers(data) {
     try {
 
         var res = data;
-
+        MemberList = data;
         var divTbodyGoalFund = $(".MemberListing").html("");
         $("#MemberListing").tmpl(res).appendTo(divTbodyGoalFund);
 
@@ -596,7 +588,7 @@ function SearchTable() {
         var search = $(_this).val();
 
         if (search == '') {
-            onGetAllMembership(MemberList);
+            onGetAllAssociateMembers(MemberList);
         }
         else {
             var obj = MemberList.filter(x=> x.FirstName.toLowerCase().includes(search.toLowerCase()) ||
@@ -607,7 +599,7 @@ function SearchTable() {
                 x.FolioNo.toLowerCase().includes(search.toLowerCase()) ||
                 x.ReferenceNo.toLowerCase().includes(search.toLowerCase())
 				)
-            onGetAllMembership(obj);
+            onGetAllAssociateMembers(obj);
 
         }
         ProgressBarHide();

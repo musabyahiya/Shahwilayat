@@ -50,6 +50,7 @@
                                 <th>Cell No</th>
                                 <th>Status</th>
                                 <th class="align-middle">Action</th>
+                                <th class="align-middle">Attachments</th>
                             </tr>
                         </thead>
                         <tbody class="MemberListing"></tbody>
@@ -476,7 +477,7 @@
                                 <span class="btn btn-block btn-outline btn-info btn-file">
                                     <span class="fileinput-new">Attach CNIC Front</span>
                                     <i class="fa fa-upload"></i>&nbsp;&nbsp;
-                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtCnicFrontFile_upd" accept="image/*" />
+                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtCnicFrontFile_upd notrequired" accept="image/*" />
                                 </span>
                                 <span class="fileinput-filename"></span>
                                 <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
@@ -488,7 +489,7 @@
                                 <span class="btn btn-block btn-outline btn-info btn-file">
                                     <span class="fileinput-new">Attach CNIC Back</span>
                                     <i class="fa fa-upload"></i>&nbsp;&nbsp;
-                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtCnicBackFile_upd" accept="image/*" />
+                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtCnicBackFile_upd notrequired" accept="image/*" />
                                 </span>
                                 <span class="fileinput-filename"></span>
                                 <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
@@ -496,11 +497,10 @@
                         </div>
                         <div class="col-md-4">
                             <div class="fileinput fileinput-new" data-provides="fileinput">
-
                                 <span class="btn btn-block btn-outline btn-info btn-file">
                                     <span class="fileinput-new">Attach Recent Profile Picture</span>
                                     <i class="fa fa-upload"></i>&nbsp;&nbsp;
-                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtProfileFile_upd" accept="image/*" />
+                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtProfileFile_upd notrequired" accept="image/*" />
                                 </span>
                                 <span class="fileinput-filename"></span>
                                 <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
@@ -569,11 +569,11 @@
             <input type="hidden" class="hdnBloodGroup" value="${BloodGroup}" />
             <input type="hidden" class="hdnPostalCode" value="${PostalCode}" />
             <input type="hidden" class="hdnOccupation" value="${Occupation}" />
-            <input type="hidden" class="hdnPermanentAddress" value="${PermanentAddress}" />
+            <input type="hidden" class="hdnPermanentAddress" value="${PermanentAddress}" />s
             <input type="hidden" class="hdnOccupation" value="${Occupation}" />
-            <input type="hidden" class="hdnCnicFrontFile" value="../Uploads/${JSON.parse(CnicFrontFile)[0]}" />
-            <input type="hidden" class="hdnCnicBackFile" value="../Uploads/${JSON.parse(CnicBackFile)[0]}" />
-            <input type="hidden" class="hdnProfileFile" value="../Uploads/${JSON.parse(ProfileFile)[0]}" />
+            <input type="hidden" class="hdnCnicFrontFile" value="${CnicFrontFile}" />
+            <input type="hidden" class="hdnCnicBackFile" value="${CnicBackFile}" />
+            <input type="hidden" class="hdnProfileFile" value="${ProfileFile}" />
 
             <td align="center"></td>
             <td class="project-title tdMembershipNo">${MembershipNo}</td>
@@ -589,7 +589,11 @@
                 <a href="javascript:void(0)" data-toggle="modal" data-target="#DeleteMember" onclick="EditMember(this)" data-toggle="tooltip" data-placement="top" data-original-title="Delete Member"><i class="la la-trash danger"></i></a>
             </td>
 
-
+            <td align="center" class="project-title">
+                <a href="${CnicFrontFile==''? '': '../Uploads/'+JSON.parse(CnicFrontFile)[0]}" download="" data-toggle="tooltip" title="CNIC Front"><i class="la la-cloud-download warning"></i></a>&nbsp;
+                <a href="${CnicBackFile==''? '': '../Uploads/'+JSON.parse(CnicBackFile)[0]}" download="" data-toggle="tooltip" title="CNIC Back"><i class="la la-cloud-download success"></i></a>&nbsp;
+                <a href="${ProfileFile==''? '': '../Uploads/'+JSON.parse(ProfileFile)[0]}" download="" data-toggle="tooltip" title="Profile Picture"><i class="la la-cloud-download info"></i></a>
+            </td>
         </tr>
     </script>
 

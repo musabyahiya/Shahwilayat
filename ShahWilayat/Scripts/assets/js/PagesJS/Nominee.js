@@ -6,6 +6,15 @@ GetAllMemberRelation();
 GetAllTitle();
 SearchTable();
 var NomineeList;
+
+var ProfileFile;
+var FrcFile;
+var CnicFront;
+var CnicBack;
+var BirthCertificate;
+var GuardianCertificate;
+var DeathCertificate;
+
 var Nominee =
 [{
     NomineeId: 0,
@@ -100,18 +109,16 @@ function AllClickFunction() {
     });
 
     $('.btnUpdateAttachment').click(function () {
-        if (!validateForm(".frmAttachment_upd")) return;
+     
 
-        Nominee[0].ProfileFile = FileUpload('.txtProfileFile');
-        Nominee[0].FrcFile = FileUpload('.txtFrcFile');
-        Nominee[0].CnicFront = FileUpload('.txtCnicFront');
-        Nominee[0].CnicBack = FileUpload('.txtCnicBack');
-        Nominee[0].HereshipCertificate = FileUpload('.txtHereshipCertificate');
-        Nominee[0].BirthCertificate = FileUpload('.txtBirthCertificate');
-        Nominee[0].GuardianCertificate = FileUpload('.txtGuardianCertificate');
-        Nominee[0].DeathCertificate = FileUpload('.txtDeathCertificate');
-        Nominee[0].AttachmentFile = FileUpload('.txtAttachmentFile_upd');
-        Nominee[0].FrcFile = FileUpload('.txtFrcFile_upd');
+        Nominee[0].ProfileFile = FileUpload('.txtProfileFile_upd') == ''? ProfileFile : FileUpload('.txtProfileFile_upd');
+        Nominee[0].FrcFile = FileUpload('.txtFrcFile_upd') == '' ? FrcFile : FileUpload('.txtFrcFile_upd');
+        Nominee[0].CnicFront = FileUpload('.txtCnicFront_upd') == '' ? CnicFront : FileUpload('.txtCnicFront_upd');
+        Nominee[0].CnicBack = FileUpload('.txtCnicBack_upd') == '' ? CnicBack : FileUpload('.txtCnicBack_upd');
+        Nominee[0].HereshipCertificate = FileUpload('.txtHereshipCertificate_upd') == '' ? HereshipCertificate : FileUpload('.txtHereshipCertificate_upd');
+        Nominee[0].BirthCertificate = FileUpload('.txtBirthCertificate_upd') == '' ? BirthCertificate : FileUpload('.txtBirthCertificate_upd');
+        Nominee[0].GuardianCertificate = FileUpload('.txtGuardianCertificate_upd') == '' ? GuardianCertificate : FileUpload('.txtGuardianCertificate_upd');
+        Nominee[0].DeathCertificate = FileUpload('.txtDeathCertificate_upd') == '' ? DeathCertificate : FileUpload('.txtDeathCertificate_upd');
         UpdateAttachment();
     });
 
@@ -170,7 +177,7 @@ function DeleteNominee() {
 
         var res = data;
         if (res == "true") {
-            showSuccess('Successfully Created!');
+            showSuccess('Successfully Updated!');
             $('#DeleteNominee').modal('hide');
             GetAllNominees();
         }
@@ -544,8 +551,15 @@ function EditNominee(selector) {
     $('.txtAddress_upd').val(objEditRow.find('.hdnAddress').val());
 
 
-    Nominee[0].ProfileFile = objEditRow.find('.hdnProfileFile').val();
-    Nominee[0].FrcFile = objEditRow.find('.hdnFrcFile').val();
+    ProfileFile = objEditRow.find('.hdnProfileFile').val();
+    FrcFile = objEditRow.find('.hdnFrcFile').val();
+    CnicFront = objEditRow.find('.hdnCnicFront').val();
+    CnicBack = objEditRow.find('.hdnCnicBack').val();
+    HereshipCertificate = objEditRow.find('.hdnHereshipCertificate').val();
+    BirthCertificate = objEditRow.find('.hdnBirthCertificate').val();
+    GuardianCertificate = objEditRow.find('.hdnGuardianCertificate').val();
+    DeathCertificate = objEditRow.find('.hdnDeathCertificate').val();
+
 }
 
 function SearchTable() {
@@ -567,7 +581,6 @@ function SearchTable() {
                 x.CellNo.toLowerCase().includes(search.toLowerCase())
 				)
             onGetAllNominees(obj);
-
         }
         ProgressBarHide();
     });

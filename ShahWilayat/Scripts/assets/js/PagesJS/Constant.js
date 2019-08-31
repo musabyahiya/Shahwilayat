@@ -511,7 +511,11 @@ function FileUpload(fileselector) {
     var files = fileUpload.files;
     var data = new FormData();
     if (files.length <= 0) {
-        showError('No File Uploaded!');
+        if (!$(fileselector).hasClass('notrequired')) {
+            showError('No File Uploaded!');
+        }
+
+
         ProgressBarHide();
         return '';
     }

@@ -7,7 +7,7 @@ GetAllUnits();
 
 GetAllPlotSubType();
 AllChangeFunction();
-
+SearchTable();
 var PlotList;
 var PlotSubTypeList;
 var objEditRow;
@@ -27,7 +27,27 @@ var Plot =
     SitePlan: null
 
 }]
+function SearchTable() {
+    $(".txtSearch").keyup(function () {
+        ProgressBarShow();
+        _this = this;
 
+        var search = $(_this).val();
+
+        if (search == '') {
+            onGetAllPlot(PlotList);
+        }
+        else {
+            var obj = PlotList.filter(x=> x.PlotType.toLowerCase().includes(search.toLowerCase()) ||
+				x.PlotNo.includes(search.toLowerCase()) ||
+				x.PlotSubType.toLowerCase().includes(search.toLowerCase())
+				)
+            onGetAllPlot(obj);
+
+        }
+        ProgressBarHide();
+    });
+}
 function AllClickFunction() {
 
     $('.btnSaveChanges').click(function () {
@@ -415,6 +435,7 @@ function onGetAllPlot(data) {
 
     try {
         var res = data;
+        PlotList = data;
         var divTbodyGoalFund = $(".PlotListing").html("");
         $("#PlotListing").tmpl(res).appendTo(divTbodyGoalFund);
 

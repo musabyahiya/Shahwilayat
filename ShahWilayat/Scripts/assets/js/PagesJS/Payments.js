@@ -38,6 +38,13 @@ function AllChangeFunction() {
 
     });
 
+    $('.ddlPaymentMethod').change(function () {
+        if ($('.ddlPaymentMethod').val() == 0) {
+            $('.txtChequeNo').val('0');
+        }
+        ActivateChequeNo();
+    });
+
 
 
     //$('.DatePicker').pickadate().on('changeDate', function (ev) {
@@ -84,9 +91,6 @@ function AllClickFunction() {
         GetPaymentAmount(ChargeId, MemberId, PlotId, AllotmentTypeId);
     });
 
-    $('.picker__day').click(function () {
-        alert('hello world')
-    });
 
     $('.btnMakePayment').click(function () {
         if (!validateForm(".frmCreatePayment")) return;
@@ -98,13 +102,15 @@ function AllClickFunction() {
         var PaymentDate = formatDate($('.txtPaymentDate').val());
         var MemberId = $('.ddlMember').val();
         var PlotId = $('.ddlPlot').val();
-       
+
         var PaymentAmount = $('.txtPayableAmount').val();
         var TotalAmount = $('.hdnTotalAmount').val();
         var DueDate = $('.hdnDueDate').val();
         var PaymentCategoryId = $('.hdnPaymentCategoryId').val();
+        var ReceiptNo = $('.txtReceiptNo').val();
+        var ChequeNo = $('.txtChequeNo').val();
 
-        
+
         var TenureId = $('.hdnTenureId').val();
         var Rate = $('.hdnRate').val();
         var RemainingBalance = $('.hdnRemainingBalance').val();
@@ -119,7 +125,7 @@ function AllClickFunction() {
 
 
         CreateNewPayment(ChargeId, PaymentMethodId, PaymentDate, MemberId, PlotId, PaymentAmount, RemainingBalance, PaidPercentBefore,
-            TotalAmount, DueDate, PaymentCategoryId, TenureId, Rate, PaymentTypeId, AllotmentTypeId);
+            TotalAmount, DueDate, PaymentCategoryId, TenureId, Rate, PaymentTypeId, AllotmentTypeId, ReceiptNo, ChequeNo);
 
         // Init();
     });
@@ -147,9 +153,9 @@ function GetPaymentAmount(ChargeId, MemberId, PlotId, AllotmentTypeId) {
         $('.hdnPaymentAmount').val(res[0].PaymentAmount);
         $('.hdnTenureId').val(res[0].TenureId);
         $('.hdnDueDate').val(res[0].DueDate);
-       
+
         $('.hdnPaymentCategoryId').val(res[0].PaymentCategoryId);
-      
+
         $('.hdnRate').val(res[0].Rate);
         $('.hdnSize').val(res[0].Size);
         $('.hdnTotalAmount').val(res[0].PaymentAmount + res[0].PaidAmount);
@@ -199,7 +205,7 @@ function GetPaymentAmount(ChargeId, MemberId, PlotId, AllotmentTypeId) {
 
         // For Sending Payment Recept
 
-      //  DisableInputs();
+        //  DisableInputs();
 
 
 
@@ -503,7 +509,7 @@ function FillDropDownByReferenceCharges(DropDownReference, res) {
     });
 }
 
-function CreateNewPayment(ChargeId, PaymentMethodId, PaymentDate, MemberId, PlotId, PaymentAmount, RemainingBalance, PaidPercentBefore, TotalAmount, DueDate, PaymentCategoryId,  TenureId, Rate, PaymentTypeId, AllotmentTypeId) {
+function CreateNewPayment(ChargeId, PaymentMethodId, PaymentDate, MemberId, PlotId, PaymentAmount, RemainingBalance, PaidPercentBefore, TotalAmount, DueDate, PaymentCategoryId, TenureId, Rate, PaymentTypeId, AllotmentTypeId, ReceiptNo, ChequeNo) {
     ProgressBarShow();
 
     var request = $.ajax({
@@ -512,7 +518,7 @@ function CreateNewPayment(ChargeId, PaymentMethodId, PaymentDate, MemberId, Plot
         data: {
             ChargeId: ChargeId, PaymentMethodId: PaymentMethodId, PaymentDate: PaymentDate,
             MemberId: MemberId, PlotId: PlotId, PaymentAmount: PaymentAmount, RemainingBalance: RemainingBalance, PaidPercentBefore: PaidPercentBefore, TotalAmount: TotalAmount,
-            DueDate: DueDate, PaymentCategoryId: PaymentCategoryId, TenureId: TenureId, Rate: Rate, PaymentTypeId: PaymentTypeId, AllotmentTypeId: AllotmentTypeId
+            DueDate: DueDate, PaymentCategoryId: PaymentCategoryId, TenureId: TenureId, Rate: Rate, PaymentTypeId: PaymentTypeId, AllotmentTypeId: AllotmentTypeId, ReceiptNo: ReceiptNo, ChequeNo: ChequeNo
         }
     });
     request.done(function (data) {
@@ -647,4 +653,16 @@ function Init() {
             $(this).html('-');
         i++;
     });
+}
+
+function ActivateChequeNo() {
+    if ($('.ddlPaymentMethod').val() == 2) {
+        $('.txtChequeNo').prop("disabled", false);
+        $('.txtChequeNo').removeClass("notrequired");
+    }
+    else {
+        $('.txtChequeNo').prop("disabled", true);
+        $('.txtChequeNo').addClass("notrequired");
+
+    }
 }

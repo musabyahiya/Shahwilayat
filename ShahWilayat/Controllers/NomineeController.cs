@@ -187,6 +187,32 @@ namespace ShahWilayat.Controllers
             }
         }
 
+        public string UpdateAttachment(Nominee nominee)
+        {
+            try
+            {
+                var obj = context.Nominees.FirstOrDefault(x => x.NomineeId == nominee.NomineeId);
+                obj.ProfileFile = nominee.ProfileFile;
+                obj.FrcFile = nominee.FrcFile;
+                obj.CnicFront = nominee.CnicFront;
+                obj.CnicBack = nominee.CnicBack;
+                obj.HereshipCertificate = nominee.HereshipCertificate;
+                obj.BirthCertificate = nominee.BirthCertificate;
+                obj.GuardianCertificate = nominee.GuardianCertificate;
+                obj.DeathCertificate = nominee.DeathCertificate;
+      
+                obj.ModifiedDate = DateTime.Now;
+                obj.ModifiedBy = (int)HttpContext.Session["UserId"];
+                context.Entry(obj).State = EntityState.Modified;
+                context.SaveChanges();
+                return "true";
+            }
+            catch (Exception e)
+            {
+                return e.ToString();
+            }
+        }
+
         public string DeleteNominee(int NomineeId)
         {
             try

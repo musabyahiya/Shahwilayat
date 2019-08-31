@@ -155,7 +155,6 @@ function AllClickFunction() {
 
     $('.btnUpdateAttachment').click(function () {
 
-        if (!validateForm(".frmAttachment")) return;
         Members[0].CnicFrontFile = FileUpload('.txtCnicFrontFile_upd') == '' ? CnicFrontFile : FileUpload('.txtCnicFrontFile_upd');
         Members[0].CnicBackFile = FileUpload('.txtCnicBackFile_upd') == '' ? CnicBackFile : FileUpload('.txtCnicBackFile_upd');
         Members[0].ProfileFile = FileUpload('.txtProfileFile_upd') == '' ? ProfileFile : FileUpload('.txtProfileFile_upd');

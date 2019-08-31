@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Nominee - Shah Wilayat Cooperative Housing Society";
     Layout = "~/Views/Shared/_MasterPage.cshtml";
 }
 
@@ -51,6 +51,7 @@
                                 <th>Member Relation</th>
                                 <th>Father/ Husband Name</th>
                                 <th>Action</th>
+                                <th style="text-align:center">Attachments</th>
 
                             </tr>
                         </thead>
@@ -61,9 +62,6 @@
         </div>
     </div>
 </div>
-
-
-
 
 
 @*Create Modal Start*@
@@ -123,7 +121,7 @@
                                 <input type="text" id="txtFatherName" class="form-control txtFatherName" placeholder="Enter father name">
                             </div>
                         </div>
-                     
+
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="txtDob">Date of Birth</label>
@@ -142,7 +140,7 @@
                                 <input type="text" id="txtCellNo" class="form-control txtCellNo numbericOnly" placeholder="Enter cell number">
                             </div>
                         </div>
-                   
+
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="txtCNIC">CNIC</label>
@@ -165,7 +163,7 @@
                                 <span class="btn btn-block btn-outline btn-info btn-file">
                                     <span class="fileinput-new">Attach CNIC Front</span>
                                     <i class="fa fa-upload"></i>&nbsp;&nbsp;
-                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtCnicFront" accept="image/*" />
+                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtCnicFront notrequired" accept="image/*" />
                                 </span>
                                 <span class="fileinput-filename"></span>
                                 <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
@@ -177,7 +175,7 @@
                                 <span class="btn btn-block btn-outline btn-info btn-file">
                                     <span class="fileinput-new">Attach CNIC Back</span>
                                     <i class="fa fa-upload"></i>&nbsp;&nbsp;
-                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtCnicBack" accept="image/*" />
+                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtCnicBack notrequired" accept="image/*" />
                                 </span>
                                 <span class="fileinput-filename"></span>
                                 <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
@@ -189,7 +187,7 @@
                                 <span class="btn btn-block btn-outline btn-info btn-file">
                                     <span class="fileinput-new">Attach Recent Profile Picture</span>
                                     <i class="fa fa-upload"></i>&nbsp;&nbsp;
-                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtProfileFile" accept="image/*" />
+                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtProfileFile notrequired" accept="image/*" />
                                 </span>
                                 <span class="fileinput-filename"></span>
                                 <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
@@ -201,7 +199,7 @@
                                 <span class="btn btn-block btn-outline btn-info btn-file">
                                     <span class="fileinput-new">Attach Birth Certificate</span>
                                     <i class="fa fa-upload"></i>&nbsp;&nbsp;
-                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtBirthCertificate" accept="image/*" />
+                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtBirthCertificate notrequired" accept="image/*" />
                                 </span>
                                 <span class="fileinput-filename"></span>
                                 <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
@@ -213,7 +211,7 @@
                                 <span class="btn btn-block btn-outline btn-info btn-file">
                                     <span class="fileinput-new">Attach Hereship Certificate</span>
                                     <i class="fa fa-upload"></i>&nbsp;&nbsp;
-                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtHereshipCertificate" accept="image/*" />
+                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtHereshipCertificate notrequired" accept="image/*" />
                                 </span>
                                 <span class="fileinput-filename"></span>
                                 <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
@@ -225,7 +223,7 @@
                                 <span class="btn btn-block btn-outline btn-info btn-file">
                                     <span class="fileinput-new">Attach FRC </span>
                                     <i class="fa fa-upload"></i>&nbsp;&nbsp;
-                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtFrcFile" accept="image/*" />
+                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtFrcFile notrequired" accept="image/*" />
                                 </span>
                                 <span class="fileinput-filename"></span>
                                 <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
@@ -233,11 +231,10 @@
                         </div>
                         <div class="col-md-3">
                             <div class="fileinput fileinput-new" data-provides="fileinput">
-
                                 <span class="btn btn-block btn-outline btn-info btn-file">
                                     <span class="fileinput-new">Attach Guardian Certificate </span>
                                     <i class="fa fa-upload"></i>&nbsp;&nbsp;
-                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtGuardianCertificate" accept="image/*" />
+                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtGuardianCertificate notrequired" accept="image/*" />
                                 </span>
                                 <span class="fileinput-filename"></span>
                                 <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
@@ -249,15 +246,13 @@
                                 <span class="btn btn-block btn-outline btn-info btn-file">
                                     <span class="fileinput-new">Attach Death Certificate </span>
                                     <i class="fa fa-upload"></i>&nbsp;&nbsp;
-                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtDeathCertificate" accept="image/*" />
+                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtDeathCertificate notrequired" accept="image/*" />
                                 </span>
                                 <span class="fileinput-filename"></span>
                                 <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
                             </div>
                         </div>
-
                     </div>
-
                 </div>
             </div>
             <div class="modal-footer">
@@ -360,7 +355,7 @@
                             </div>
                         </div>
                     </div>
-                  
+
 
                 </div>
             </div>
@@ -373,7 +368,127 @@
 </div>
 
 @*Edit Modal Start*@
+@*Edit Attachment Start*@
+<div class="modal fade text-left" id="EditAttachment" role="dialog" aria-labelledby="myModalLabel16" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel16">Edit Attachment</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-body frmAttachment">
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
 
+                                <span class="btn btn-block btn-outline btn-info btn-file">
+                                    <span class="fileinput-new">Attach CNIC Front</span>
+                                    <i class="fa fa-upload"></i>&nbsp;&nbsp;
+                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtCnicFront_upd notrequired" accept="image/*" />
+                                </span>
+                                <span class="fileinput-filename"></span>
+                                <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+
+                                <span class="btn btn-block btn-outline btn-info btn-file">
+                                    <span class="fileinput-new">Attach CNIC Back</span>
+                                    <i class="fa fa-upload"></i>&nbsp;&nbsp;
+                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtCnicBack_upd notrequired" accept="image/*" />
+                                </span>
+                                <span class="fileinput-filename"></span>
+                                <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+
+                                <span class="btn btn-block btn-outline btn-info btn-file">
+                                    <span class="fileinput-new">Attach Recent Profile Picture</span>
+                                    <i class="fa fa-upload"></i>&nbsp;&nbsp;
+                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtProfileFile_upd notrequired" accept="image/*" />
+                                </span>
+                                <span class="fileinput-filename"></span>
+                                <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+
+                                <span class="btn btn-block btn-outline btn-info btn-file">
+                                    <span class="fileinput-new">Attach Birth Certificate</span>
+                                    <i class="fa fa-upload"></i>&nbsp;&nbsp;
+                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtBirthCertificate_upd notrequired" accept="image/*" />
+                                </span>
+                                <span class="fileinput-filename"></span>
+                                <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+
+                                <span class="btn btn-block btn-outline btn-info btn-file">
+                                    <span class="fileinput-new">Attach Hereship Certificate</span>
+                                    <i class="fa fa-upload"></i>&nbsp;&nbsp;
+                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtHereshipCertificate_upd notrequired" accept="image/*" />
+                                </span>
+                                <span class="fileinput-filename"></span>
+                                <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+
+                                <span class="btn btn-block btn-outline btn-info btn-file">
+                                    <span class="fileinput-new">Attach FRC </span>
+                                    <i class="fa fa-upload"></i>&nbsp;&nbsp;
+                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtFrcFile_upd notrequired" accept="image/*" />
+                                </span>
+                                <span class="fileinput-filename"></span>
+                                <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                <span class="btn btn-block btn-outline btn-info btn-file">
+                                    <span class="fileinput-new">Attach Guardian Certificate </span>
+                                    <i class="fa fa-upload"></i>&nbsp;&nbsp;
+                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtGuardianCertificate_upd notrequired" accept="image/*" />
+                                </span>
+                                <span class="fileinput-filename"></span>
+                                <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+
+                                <span class="btn btn-block btn-outline btn-info btn-file">
+                                    <span class="fileinput-new">Attach Death Certificate </span>
+                                    <i class="fa fa-upload"></i>&nbsp;&nbsp;
+                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtDeathCertificate_upd notrequired" accept="image/*" />
+                                </span>
+                                <span class="fileinput-filename"></span>
+                                <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn grey btn-outline-info" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline-dark btnUpdateAttachment">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+@*Edit Attachment Start*@
 @section Scripts
 {
     <script type="text/x-jQuery-tmpl" id="NomineeListing">
@@ -392,12 +507,14 @@
             <input type="hidden" class="hdnCNIC" value="${CNIC}" />
             <input type="hidden" class="hdnCellNo" value="${CellNo}" />
             <input type="hidden" class="hdnAddress" value="${Address}" />
+            <input type="hidden" class="hdnProfileFile" value="${ProfileFile}" />
             <input type="hidden" class="hdnCnicFront" value="${CnicFront}" />
             <input type="hidden" class="hdnCnicBack" value="${CnicBack}" />
             <input type="hidden" class="hdnFrcFile" value="${FrcFile}" />
             <input type="hidden" class="hdnHereshipCertificate" value="${HereshipCertificate}" />
             <input type="hidden" class="hdnGuardianCertificate" value="${GuardianCertificate}" />
             <input type="hidden" class="hdnDeathCertificate" value="${DeathCertificate}" />
+            <input type="hidden" class="hdnBirthCertificate" value="${BirthCertificate}" />
 
             <td></td>
             <td class="project-title tdMemberShipNo" nowrap>${MembershipNo}</td>
@@ -412,11 +529,21 @@
 
                 <a href="javascript:void(0)" data-toggle="modal" data-target="#EditNominee" onclick="EditNominee(this)" data-toggle="tooltip" data-placement="top" data-original-title="Edit Nominee"><i class="la la-pencil-square success"></i></a>
                 <a href="javascript:void(0)" data-toggle="modal" data-target="#EditAttachment" onclick="EditNominee(this)" title="Edit Attachment"><i class="ft-paperclip"></i></a>
-                 <a href="javascript:void(0)" data-toggle="modal" data-target="#DeleteNominee" onclick="EditNominee(this)" data-toggle="tooltip" data-placement="top" data-original-title="Delete Nominee"><i class="la la-trash danger"></i></a>
+                <a href="javascript:void(0)" data-toggle="modal" data-target="#DeleteNominee" onclick="EditNominee(this)" data-toggle="tooltip" data-placement="top" data-original-title="Delete Nominee"><i class="la la-trash danger"></i></a>
 
-             </td>
+            </td>
 
+            <td align="center" class="project-title" nowrap>
+                <a href="${ProfileFile==''? '': '../Uploads/'+JSON.parse(ProfileFile)[0]}" download="" data-toggle="tooltip" title="Profile Picture"><i class="la la-cloud-download warning"></i></a>&nbsp;
+                <a href="${FrcFile==''? '': '../Uploads/'+JSON.parse(FrcFile)[0]}" download="" data-toggle="tooltip" title="FRC"><i class="la la-cloud-download success"></i></a>&nbsp;
+                <a href="${CnicFront==''? '': '../Uploads/'+JSON.parse(CnicFront)[0]}" download="" data-toggle="tooltip" title="CNIC Front"><i class="la la-cloud-download info"></i></a>&nbsp;
+                <a href="${CnicBack==''? '': '../Uploads/'+JSON.parse(CnicBack)[0]}" download="" data-toggle="tooltip" title="CNIC Back"><i class="la la-cloud-download dark"></i></a>&nbsp;
+                <a href="${HereshipCertificate==''? '': '../Uploads/'+JSON.parse(HereshipCertificate)[0]}" download="" data-toggle="tooltip" title="Hereship Certificate"><i class="la la-cloud-download primary"></i></a>&nbsp;
+                <a href="${BirthCertificate==''? '': '../Uploads/'+JSON.parse(BirthCertificate)[0]}" download="" data-toggle="tooltip" title="Birth Certificate"><i class="la la-cloud-download danger"></i></a>&nbsp;
+                <a href="${GuardianCertificate==''? '': '../Uploads/'+JSON.parse(GuardianCertificate)[0]}" download="" data-toggle="tooltip" title="Guardian Certificate"><i class="la la-cloud-download warning"></i></a>&nbsp;
+                <a href="${DeathCertificate==''? '': '../Uploads/'+JSON.parse(DeathCertificate)[0]}" download="" data-toggle="tooltip" title="Death Certificate"><i class="la la-cloud-download default"></i></a>
 
+            </td>
         </tr>
     </script>
 

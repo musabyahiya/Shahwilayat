@@ -17,75 +17,75 @@
                 <div class="card-header">
                     <h2 class="card-title">Add Payment Information</h2>
                 </div>
-                <div class="card-body frmMakePayment">
+                <div class="card-body frmPayment">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label for="ddlAllotmentType">Allotment Type</label>
-                                <select class="form-control ddlAllotmentType" >
+                                <select class="form-control ddlAllotmentType">
                                     <option value="0">--Select--</option>
                                     <option value="1">Original Allotment</option>
                                     <option value="2">Doubling Allotment</option>
                                 </select>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label for="ddlMember">Member</label>
                                 <select class="form-control ddlMember select2" style="width:100%"></select>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label for="ddlPlotType">Plot Type</label>
                                 <select class="form-control ddlPlotType select2" style="width:100%"></select>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label for="ddlPlot">Plot</label>
                                 <select class="form-control ddlPlot select2" style="width:100%"></select>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label for="txtPaymentDate">Payment Date</label>
                                 <input type="text" class="form-control DatePickerComplete txtPaymentDate" placeholder="mm/dd/yyyy">
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label for="ddlCharges">Charges</label>
                                 <select class="form-control ddlCharges"></select>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label for="ddlPaymentType">Payment Type</label>
                                 <select class="form-control ddlPaymentType"></select>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label for="ddlPaymentMethod">Payment Method</label>
                                 <select class="form-control ddlPaymentMethod"></select>
                             </div>
                         </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="txtReceiptNo">Receipt No</label>
+                                <input type="text" class="form-control txtReceiptNo" placeholder="Enter receipt no" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="txtChequeNo">Cheque No</label>
+                                <input type="text" class="form-control txtChequeNo notrequired" disabled="" placeholder="Enter cheque no" />
+                            </div>
+                        </div>
+
                     </div>
+
 
                 </div>
                 <div class="card-footer ml-auto">
@@ -133,7 +133,7 @@
                                         <td class="tdPaidPercent text-center">-</td>
                                         <td class="tdDueDate text-center">-</td>
                                         <td class="text-center">
-                                            <a href="javascript:void(0)" style="pointer-events: none;" class="btnEnterAmount" data-toggle="modal" data-target="#CreatePaymentAmount" onclick="SetPaidAmount(this)"  title="Make Payment"><i class="la la-money success"></i></a>
+                                            <a href="javascript:void(0)" style="pointer-events: none;" class="btnEnterAmount" data-toggle="modal" data-target="#CreatePaymentAmount" onclick="SetPaidAmount(this)" title="Make Payment"><i class="la la-money success"></i></a>
                                         </td>
                                     </tr>
                                 </tbody>
