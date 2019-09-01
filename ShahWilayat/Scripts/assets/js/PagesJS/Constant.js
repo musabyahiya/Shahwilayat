@@ -4,7 +4,7 @@ ProgressBarHide();
 //DatePicker();
 //DatePickerMonth();
 //DatePickerMonthComplete();
-//DatePickerComplete();
+DatePickerComplete();
 //DatePickerYear();
 //DatePickerMulti();
 //stopKeyPress();
@@ -53,6 +53,34 @@ function formatDate(_date) {
             date = '0' + date;
 
         return d.getFullYear() + '-' + month + '-' + date;
+        //return  month + '/' + date + '/' + d.getFullYear();
+    }
+}
+
+function formatDatePakFormat(_date) {
+    if (_date == null)
+        return;
+
+    if (_date.indexOf('/') != -1) {
+        var retDate = _date.substr(6, 4) + '-' + _date.substr(0, 2) + '-' + _date.substr(3, 2);
+        return retDate;
+    }
+    else {
+        if (_date == '' || _date == null || _date == undefined)
+            return "";
+
+        var d = new Date(_date);
+        var month = (d.getMonth() + 1);
+        var date = d.getDate();
+
+        if (month >= 1 && month <= 9)
+            month = '0' + month;
+
+        if (date >= 1 && date <= 9)
+            date = '0' + date;
+
+
+        return date + '-' + month + '-' + d.getFullYear()
         //return  month + '/' + date + '/' + d.getFullYear();
     }
 }
@@ -691,6 +719,24 @@ function GetCurrentDate() {
     today = yyyy + '-' + mm + '-' + dd;
     return today;
 }
+
+function GetCurrentDatePakFormat() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    if (dd < 10) {
+        dd = '0' + dd
+    }
+
+    if (mm < 10) {
+        mm = '0' + mm
+    }
+
+    today = dd + '-' + mm + '-' + yyyy;
+    return today;
+}
 var tableToExcelFormatted = (function () {
     var uri = 'data:application/vnd.ms-excel;base64,'
 	, template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>{table}</table></body></html>'
@@ -729,23 +775,7 @@ function nth(d) {
         default: return "th";
     }
 }
-function GetCurrentDatePakFormat() {
-    var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth() + 1; //January is 0!
-    var yyyy = today.getFullYear();
 
-    if (dd < 10) {
-        dd = '0' + dd
-    }
-
-    if (mm < 10) {
-        mm = '0' + mm
-    }
-
-    today = dd + '-' + mm + '-' + yyyy;
-    return today;
-}
 
 function GetCurrentTime() {
     var dt = new Date();
@@ -803,5 +833,23 @@ function PickADatePicker() {
 
 }
 
+function GetAmountInWords(num) {
+    var a = ['', 'one ', 'two ', 'three ', 'four ', 'five ', 'six ', 'seven ', 'eight ', 'nine ', 'ten ', 'eleven ', 'twelve ', 'thirteen ', 'fourteen ', 'fifteen ', 'sixteen ', 'seventeen ', 'eighteen ', 'nineteen '];
+    var b = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+
+    if ((num = num.toString()).length > 9) return 'overflow';
+    n = ('000000000' + num).substr(-9).match(/^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/);
+    if (!n) return; var str = '';
+    str += (n[1] != 0) ? (a[Number(n[1])] || b[n[1][0]] + ' ' + a[n[1][1]]) + 'crore ' : '';
+    str += (n[2] != 0) ? (a[Number(n[2])] || b[n[2][0]] + ' ' + a[n[2][1]]) + 'lakh ' : '';
+    str += (n[3] != 0) ? (a[Number(n[3])] || b[n[3][0]] + ' ' + a[n[3][1]]) + 'thousand ' : '';
+    str += (n[4] != 0) ? (a[Number(n[4])] || b[n[4][0]] + ' ' + a[n[4][1]]) + 'hundred ' : '';
+    str += (n[5] != 0) ? ((str != '') ? 'and ' : '') + (a[Number(n[5])] || b[n[5][0]] + ' ' + a[n[5][1]]) + 'only ' : '';
+    return str;
+}
+
+String.prototype.capitalize = function () {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}
 
 // https://stackoverflow.com/questions/31331062/disable-previous-dates-when-using-pickadate-js

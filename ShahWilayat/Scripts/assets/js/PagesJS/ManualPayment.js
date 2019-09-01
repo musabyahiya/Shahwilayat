@@ -36,7 +36,13 @@ function AllChangeFunction() {
 
     });
 
-
+    $('.ddlPaymentMethod').change(function () {
+        if ($('.ddlPaymentMethod').val() != 2) {
+            $('.txtChequeNo').val('');
+            $('.txtChequeDate').val('');
+        }
+        ActivateChequeNo();
+    });
 
 }
 
@@ -55,10 +61,12 @@ function AllClickFunction() {
         var PaymentAmount = $('.txtPayableAmount').val();
         var PaymentTypeId = $('.ddlPaymentType').val();
         var AllotmentTypeId = $('.ddlAllotmentType').val() == 1 ? 1 : 0;
+        var ReceiptNo = $('.txtReceiptNo').val();
+        var ChequeNo = $('.txtChequeNo').val();
+        var ChequeDate = PaymentMethodId == 2 ? formatDate($('.txtChequeDate').val()) : '';
+        var Remarks = $('.txtRemarks').val();
 
-
-
-        CreateNewPayment(PaymentMethodId, PaymentCategoryId, PaymentDate, MemberId, PlotId, PaymentAmount, PaymentTypeId, AllotmentTypeId);
+        CreateNewPayment(PaymentMethodId, PaymentCategoryId, PaymentDate, MemberId, PlotId, PaymentAmount, PaymentTypeId, AllotmentTypeId,ReceiptNo, ChequeNo, ChequeDate, Remarks);
 
         // Init();
     });
@@ -273,7 +281,7 @@ function onGetAllPaymentMethod(data) {
 }
 
 
-function CreateNewPayment(PaymentMethodId, PaymentCategoryId, PaymentDate, MemberId, PlotId, PaymentAmount, PaymentTypeId, AllotmentTypeId) {
+function CreateNewPayment(PaymentMethodId, PaymentCategoryId, PaymentDate, MemberId, PlotId, PaymentAmount, PaymentTypeId, AllotmentTypeId, ReceiptNo, ChequeNo, ChequeDate, Remarks) {
     ProgressBarShow();
 
     var request = $.ajax({
@@ -281,7 +289,7 @@ function CreateNewPayment(PaymentMethodId, PaymentCategoryId, PaymentDate, Membe
         url: "/ManualPayment/CreateNewPayment",
         data: {
             PaymentMethodId: PaymentMethodId, PaymentCategoryId: PaymentCategoryId,
-            PaymentDate: PaymentDate, MemberId: MemberId, PlotId: PlotId, PaymentAmount: PaymentAmount, PaymentTypeId: PaymentTypeId, AllotmentTypeId: AllotmentTypeId
+            PaymentDate: PaymentDate, MemberId: MemberId, PlotId: PlotId, PaymentAmount: PaymentAmount, PaymentTypeId: PaymentTypeId, AllotmentTypeId: AllotmentTypeId, ReceiptNo: ReceiptNo, ChequeNo: ChequeNo, ChequeDate: ChequeDate, Remarks: Remarks
         }
     });
     request.done(function (data) {
@@ -392,4 +400,22 @@ function Init() {
     });
 
 
+}
+
+function ActivateChequeNo() {
+    if ($('.ddlPaymentMethod').val() == 2) {
+        $('.txtChequeNo').prop("disabled", false);
+        $('.txtChequeNo').removeClass("notrequired");
+
+        $('.txtChequeDate').prop("disabled", false);
+        $('.txtChequeDate').removeClass("notrequired");
+    }
+    else {
+        $('.txtChequeNo').prop("disabled", true);
+        $('.txtChequeNo').addClass("notrequired");
+
+        $('.txtChequeDate').prop("disabled", true);
+        $('.txtChequeDate').addClass("notrequired");
+
+    }
 }

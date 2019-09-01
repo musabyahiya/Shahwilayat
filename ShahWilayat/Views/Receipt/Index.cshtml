@@ -1,0 +1,293 @@
+﻿
+@{
+    ViewBag.Title = "Receipt - Shah Wilayat Cooperative Society";
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+}
+
+<div class="content-header row">
+    <div class="content-header-left col-md-6 col-12 mb-2">
+        <h3 class="content-header-title">Plot</h3>
+    </div>
+
+</div>
+
+<!-- Both borders end-->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <fieldset>
+                    <div class="input-group">
+                        <input type="text" class="form-control txtSearch" placeholder="Search..." aria-describedby="basic-addon4">
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="basic-addon4"><i class="la la-search"></i></span>
+                        </div>
+                    </div>
+                </fieldset>
+
+            </div>
+            <div class="card-content">
+                <div class="table-responsive">
+                    <table class="table table-bordered mb-0 tblPlot">
+                        <thead>
+                            <tr>
+                                <th nowrap>Sr No.</th>
+                                <th>Receipt No</th>
+                                <th>Membership No</th>
+                                <th>Plot No</th>
+                                <th style="text-align:center">Size (SqYd)</th>
+                                <th style="text-align:center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="ReceiptListing"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Create Modal Start*@
+<div class="modal fade text-left" id="Receipt" role="dialog" aria-labelledby="myModalLabel16" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel16">Create New Plot</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-body frmReceipt">
+                    <div id="Print">
+
+                        <table style="width: 100%;color: black;font-size:15px;">
+                            <thead>
+                                <tr style="height:160px;"></tr>
+                            </thead>
+
+                            <tbody style="width: 100%; height: 100%; ">
+                                <tr style="line-height:1.5;">
+                                    <td style="width: 15%;"></td>
+                                    <td>
+                                        <label>Issue date:</label>
+                                        <span><u><b class="printIssueDate"></b></u></span>
+                                    </td>
+                                    <td></td>
+                                    <td style="width:10%;"></td>
+                                </tr>
+                                <tr style="line-height:1.5;">
+                                    <td style="width: 15%;"></td>
+                                    <td>
+                                        <label>Receipt No: </label>
+                                        <span><u><b class="printReceiptNo"></b></u></span>
+                                    </td>
+
+                                    <td align="right">
+                                        <label>Date:</label>
+                                        <span><u><b class="printPaymentDate"></b></u></span>
+                                    </td>
+                                    <td style="width:10%;"></td>
+                                </tr>
+                                <tr style="line-height:1.5;">
+                                    <td style="width: 15%;"></td>
+                                    <td>
+                                        <label>Membership no.</label>
+                                        <span><u><b class="printMembershipNo"></b></u></span>
+                                    </td>
+
+                                    <td align="right">
+                                        <label>Plot no:</label>
+                                        <span><u><b class="printPlotNo"></b></u></span>
+                                    </td>
+                                    <td style="width:10%;"></td>
+                                </tr>
+                                <tr style="line-height:1.5;">
+                                    <td style="width: 15%;"></td>
+                                    <td>
+                                        <label>Received from <span class="printTitle"></span></label>
+                                        <span><u><b class="printFullName"></b></u></span>
+                                    </td>
+                                    <td align="right"></td>
+                                    <td style="width:10%;"></td>
+                                </tr>
+                                <tr style="line-height:1.5;">
+                                    <td style="width: 15%;"></td>
+                                    <td>
+                                        <label class="printMemberRelation"></label>
+                                        <span><u><b class="printFatherName"></b></u></span>
+                                    </td>
+                                    <td align="right"></td>
+                                    <td style="width:10%;"></td>
+                                </tr>
+                                <tr style="line-height:1.5;">
+                                    <td style="width: 15%;"></td>
+                                    <td>
+                                        <label>A Sum of Rs:</label>
+                                        <span><u><b class="printAmount"></b></u></span>
+                                    </td>
+                                    <td align="right"></td>
+                                    <td style="width:10%;"></td>
+                                </tr>
+                                <tr style="line-height:1.5;">
+                                    <td style="width: 15%;"></td>
+                                    <td>
+                                        <label class="printPaymentMethod"></label>
+                                        <span><u><b class="printChequeNo"></b></u></span>
+                                    </td>
+                                    <td align="right">
+                                        <label>Dated:&nbsp;</label>
+                                        <span><u><b class="printChequeDate"></b></u></span>
+                                    </td>
+                                    <td style="width:10%;"></td>
+                                </tr>
+                                <tr style="line-height:1.5;">
+                                    <td style="width: 15%;"></td>
+                                    <td>
+                                        <label>on account of <span class="printPlotType"></span> Plot of:</label>
+                                        <span><u><b class="printSize"></b></u></span>
+                                        Sq.Yards.
+                                    </td>
+                                    <td align="right"></td>
+                                    <td style="width:10%;"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!--End of Table-->
+
+                        <table align="center" style="width:80%; height: 100%; color: black;font-size:15px;">
+                            <thead>
+                                <tr style="font-weight:600;font-size: 14px; height:30px;background:#005aa1;color:#fff;text-align: center;">
+                                    <!-- <td style="width: 15%;"></td> -->
+                                    <td>S No</td>
+                                    <td>Description</td>
+                                    <td>Amount (Rs)</td>
+                                </tr>
+                            </thead>
+                            <tbody class="ReceiptEntityListing" style="width: 100%; height: 100%;">
+                                @*<tr style="line-height:1.5;">
+                                        <td style="text-align: center;"><span>1</span></td>
+                                        <td><span>Cost of Land</span></td>
+                                        <td style="text-align: center;"><span>4000/-<span></td>
+                                    </tr>*@
+
+
+
+
+                            </tbody>
+                            <tbody style="width: 100%; height: 100%;">
+                                <tr style="line-height:1.5;background: #dad9da;">
+                                    <td></td>
+                                    <td style="text-align:right;"><span style="font-weight:600;">Total Rs. &nbsp;&nbsp;</span></td>
+                                    <td style="text-align: center;"><span style="font-weight:600;" class="printTotalAmount"></span></td>
+                                </tr>
+                                <tr style="height:50px;"></tr>
+                                <tr style="line-height:1.5;">
+                                    <td style="width:15%;"></td>
+                                    <td>
+                                        <span>_____________________</span><br><span style="font-size:14px;">&nbsp;&nbsp;Hon. Secretary</span>
+                                    </td>
+                                    <td>
+                                        <span>_____________________</span><br><span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Accountant</span>
+                                    </td>
+                                </tr>
+                                <tr style="height:40px;"></tr>
+                            </tbody>
+                        </table>
+                        <!--End of Table-->
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn grey btn-outline-info" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline-dark btnGenerateReceipt">Print Material</button>
+            </div>
+        </div>
+    </div>
+</div>
+@*Create Modal End*@
+
+
+
+
+
+
+@*Delete Modal Start*@
+<div class="modal fade text-left" id="DeleteAllotment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel10"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-danger white">
+                <h4 class="modal-title white" id="myModalLabel10">Are you sure to delete this item?</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline-danger btnDelete">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+@*Delete Modal Start*@
+@*<link href="~/Content/assets/css/PrintMaterial/Receipt.css" rel="stylesheet" />*@
+@section Scripts
+{
+    <script type="text/x-jQuery-tmpl" id="ReceiptListing">
+        <tr class="trReceipt">
+
+            <input type="hidden" class="hdnPlotId" value="${PlotId}" />
+            <input type="hidden" class="hdnMemberId" value="${MemberId}" />
+            <input type="hidden" class="hdnPlotNo" value="${PlotNo}" />
+            <input type="hidden" class="hdnPaymentAmount" value="${PaymentAmount}" />
+            <input type="hidden" class="hdnPaymentCategory" value="${PaymentCategory}" />
+
+            <input type="hidden" class="hdnChequeDate" value="${ChequeDate}" />
+            <input type="hidden" class="hdnChequeNo" value="${ChequeNo}" />
+            <input type="hidden" class="hdnPaymentDate" value="${PaymentDate}" />
+            <input type="hidden" class="hdnPlotType" value="${PlotType}" />
+            <input type="hidden" class="hdnFullName" value="${FullName}" />
+            <input type="hidden" class="hdnPaymentMethodId" value="${PaymentMethodId}" />
+            <input type="hidden" class="hdnPaymentMethod" value="${PaymentMethod}" />
+            <input type="hidden" class="hdnMemberRelation" value="${MemberRelation}" />
+            <input type="hidden" class="hdnMembershipNo" value="${MembershipNo}" />
+            <input type="hidden" class="hdnReceiptNo" value="${ReceiptNo}" />
+
+
+            <td></td>
+            <td class="project-title tdReceiptNo">${ReceiptNo}</td>
+            <td class="project-title tdMembershipNo">${MembershipNo}</td>
+            <td class="project-title tdPlotNo">${PlotNo}</td>
+            <td class="project-title tdSize" align="center">${Size.toFixed(1)}</td>
+
+            <td class="project-title" nowrap align="center">
+                <a href="javascript:void(0)" data-toggle="modal" onclick="EditReceipt(this)" data-target="#Receipt" data-toggle="tooltip" data-placement="top" data-original-title="Delete Plot"><i class="la la-print warning"></i></a>
+            </td>
+
+        </tr>
+    </script>
+    <script type="text/x-jQuery-tmpl" id="ReceiptEntityListing">
+        <tr class="trReceiptEntity" style="line-height:1.5;">
+
+            <td style="text-align: center;"></td>
+            <td class="project-title tdPaymentCategory">${PaymentCategory}</td>
+            <td class="project-title tdPaymentAmount" style="text-align: center;">${PaymentAmount}</td>
+
+
+        </tr>
+
+    </script>
+    <script src="~/Scripts/assets/js/PagesJS/Receipt.js"></script>
+
+
+}
+
+
+
+
+
+

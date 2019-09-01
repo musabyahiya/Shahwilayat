@@ -123,7 +123,7 @@ namespace ShahWilayat.Controllers
 
         public string CreateNewPayment(int ChargeId, int PaymentMethodId, string PaymentDate, int MemberId,
             int PlotId, double PaymentAmount, double RemainingBalance, double PaidPercentBefore,
-            double TotalAmount, string DueDate, int PaymentCategoryId, int TenureId, double Rate, int PaymentTypeId, int AllotmentTypeId, string ReceiptNo, string ChequeNo)
+            double TotalAmount, string DueDate, int PaymentCategoryId, int TenureId, double Rate, int PaymentTypeId, int AllotmentTypeId, string ReceiptNo, string ChequeNo, string ChequeDate, string Remarks)
         {
             try
             {
@@ -138,7 +138,7 @@ namespace ShahWilayat.Controllers
                 da.SelectCommand.Parameters.Add("@PaymentDate", SqlDbType.DateTime).Value = PaymentDate;
                 da.SelectCommand.Parameters.Add("@MemberId", SqlDbType.Int).Value = MemberId;
                 da.SelectCommand.Parameters.Add("@PlotId", SqlDbType.Int).Value = PlotId;
-     
+
                 da.SelectCommand.Parameters.Add("@PaymentAmount", SqlDbType.Float).Value = PaymentAmount;
                 da.SelectCommand.Parameters.Add("@RemainingBalance", SqlDbType.Float).Value = RemainingBalance;
                 da.SelectCommand.Parameters.Add("@PaidPercentBefore", SqlDbType.Float).Value = PaidPercentBefore;
@@ -151,6 +151,15 @@ namespace ShahWilayat.Controllers
                 da.SelectCommand.Parameters.Add("@IsOrignalAllotment", SqlDbType.Int).Value = AllotmentTypeId;
                 da.SelectCommand.Parameters.Add("@ReceiptNo", SqlDbType.VarChar).Value = ReceiptNo;
                 da.SelectCommand.Parameters.Add("@ChequeNo", SqlDbType.VarChar).Value = ChequeNo;
+                if (ChequeDate == "")
+                {
+                    da.SelectCommand.Parameters.Add("ChequeDate", SqlDbType.DateTime).Value = "2019-08-27";
+                }
+                else
+                {
+                    da.SelectCommand.Parameters.Add("ChequeDate", SqlDbType.DateTime).Value = ChequeDate;
+                }
+                da.SelectCommand.Parameters.Add("@Remarks", SqlDbType.VarChar).Value = Remarks;
                 da.SelectCommand.Parameters.Add("@CreatedBy", SqlDbType.Int).Value = (int)HttpContext.Session["UserId"];
                 da.Fill(dt);
 
@@ -169,7 +178,7 @@ namespace ShahWilayat.Controllers
              .Select(x => new
              {
                  Id = x.ChargeId,
-                 Value = x.Description.Substring(0, 20) + "..." + " (" + x.PaymentSetup.Tenure.PaymentCategory.PaymentCategory1 + ") "+ " (" + x.PaymentSetup.Rate + " " + "PKR | " + x.PaymentSetup.Tenure.Tenure1 + ")",
+                 Value = x.Description.Substring(0, 20) + "..." + " (" + x.PaymentSetup.Tenure.PaymentCategory.PaymentCategory1 + ") " + " (" + x.PaymentSetup.Rate + " " + "PKR | " + x.PaymentSetup.Tenure.Tenure1 + ")",
                  x.DueDate,
                  x.PaymentSetup.Tenure.StartDate,
                  x.PaymentSetup.Tenure.EndDate,
@@ -181,7 +190,7 @@ namespace ShahWilayat.Controllers
                  x.PaymentSetup.SizeFrom,
                  x.PaymentSetup.SizeTo
 
-               
+
              }).ToList();
 
                 return Json(lst, JsonRequestBehavior.AllowGet);

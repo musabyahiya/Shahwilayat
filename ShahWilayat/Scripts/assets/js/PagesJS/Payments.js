@@ -39,41 +39,20 @@ function AllChangeFunction() {
     });
 
     $('.ddlPaymentMethod').change(function () {
-        if ($('.ddlPaymentMethod').val() == 0) {
-            $('.txtChequeNo').val('0');
+        if ($('.ddlPaymentMethod').val() != 2) {
+            $('.txtChequeNo').val('');
+            $('.txtChequeDate').val('');
         }
         ActivateChequeNo();
     });
 
 
 
-    //$('.DatePicker').pickadate().on('changeDate', function (ev) {
-    //    var dt = new Date($('.txtPaymentDate').val());
-    //    var Year = dt.getFullYear();
-    //    var PlotId = $('.ddlPlot').val();
-    //    var PlotTypeId = $('.ddlPlotType').val();
-    //    PlotId = (
-    //    PlotTypeId == 0 ? 0 : // if
-    //    PlotTypeId == 4 ? 0 : // else if
-    //    PlotId // else
-    //            );
-    //    var obj = ChargesList.filter(x=> Year >= x.StartDate && Year <= x.EndDate && x.PlotId == PlotId);
-    //    onGetAllCharges(obj);
-    //});
-
     $('.txtPaymentDate').datepicker().on('changeDate', function (ev) {
 
 
         var SelectedDate = formatDate($('.txtPaymentDate').val());
         var PlotId = $('.ddlPlot').val();
-        //var PlotTypeId = $('.ddlPlotType').val();
-        //PlotId = (
-        //PlotTypeId == 0 ? 0 : // if
-        //PlotTypeId == 4 ? 0 : // else if
-        //PlotId // else
-        //        );
-        //var obj = ChargesList.filter(x=> SelectedDate <= ToJavaScriptDate(x.StartDate) && SelectedDate <= ToJavaScriptDate(x.EndDate));
-        //onGetAllCharges(obj);
         GetChargesForPayment(SelectedDate, PlotId);
     });
 
@@ -109,8 +88,8 @@ function AllClickFunction() {
         var PaymentCategoryId = $('.hdnPaymentCategoryId').val();
         var ReceiptNo = $('.txtReceiptNo').val();
         var ChequeNo = $('.txtChequeNo').val();
-
-
+        var ChequeDate = PaymentMethodId == 2 ? formatDate($('.txtChequeDate').val()) : '';
+        var Remarks = $('.txtRemarks').val();
         var TenureId = $('.hdnTenureId').val();
         var Rate = $('.hdnRate').val();
         var RemainingBalance = $('.hdnRemainingBalance').val();
@@ -125,7 +104,7 @@ function AllClickFunction() {
 
 
         CreateNewPayment(ChargeId, PaymentMethodId, PaymentDate, MemberId, PlotId, PaymentAmount, RemainingBalance, PaidPercentBefore,
-            TotalAmount, DueDate, PaymentCategoryId, TenureId, Rate, PaymentTypeId, AllotmentTypeId, ReceiptNo, ChequeNo);
+            TotalAmount, DueDate, PaymentCategoryId, TenureId, Rate, PaymentTypeId, AllotmentTypeId, ReceiptNo, ChequeNo, ChequeDate, Remarks);
 
         // Init();
     });
@@ -509,7 +488,7 @@ function FillDropDownByReferenceCharges(DropDownReference, res) {
     });
 }
 
-function CreateNewPayment(ChargeId, PaymentMethodId, PaymentDate, MemberId, PlotId, PaymentAmount, RemainingBalance, PaidPercentBefore, TotalAmount, DueDate, PaymentCategoryId, TenureId, Rate, PaymentTypeId, AllotmentTypeId, ReceiptNo, ChequeNo) {
+function CreateNewPayment(ChargeId, PaymentMethodId, PaymentDate, MemberId, PlotId, PaymentAmount, RemainingBalance, PaidPercentBefore, TotalAmount, DueDate, PaymentCategoryId, TenureId, Rate, PaymentTypeId, AllotmentTypeId, ReceiptNo, ChequeNo, ChequeDate, Remarks) {
     ProgressBarShow();
 
     var request = $.ajax({
@@ -518,7 +497,7 @@ function CreateNewPayment(ChargeId, PaymentMethodId, PaymentDate, MemberId, Plot
         data: {
             ChargeId: ChargeId, PaymentMethodId: PaymentMethodId, PaymentDate: PaymentDate,
             MemberId: MemberId, PlotId: PlotId, PaymentAmount: PaymentAmount, RemainingBalance: RemainingBalance, PaidPercentBefore: PaidPercentBefore, TotalAmount: TotalAmount,
-            DueDate: DueDate, PaymentCategoryId: PaymentCategoryId, TenureId: TenureId, Rate: Rate, PaymentTypeId: PaymentTypeId, AllotmentTypeId: AllotmentTypeId, ReceiptNo: ReceiptNo, ChequeNo: ChequeNo
+            DueDate: DueDate, PaymentCategoryId: PaymentCategoryId, TenureId: TenureId, Rate: Rate, PaymentTypeId: PaymentTypeId, AllotmentTypeId: AllotmentTypeId, ReceiptNo: ReceiptNo, ChequeNo: ChequeNo, ChequeDate: ChequeDate, Remarks: Remarks
         }
     });
     request.done(function (data) {
@@ -659,10 +638,16 @@ function ActivateChequeNo() {
     if ($('.ddlPaymentMethod').val() == 2) {
         $('.txtChequeNo').prop("disabled", false);
         $('.txtChequeNo').removeClass("notrequired");
+
+        $('.txtChequeDate').prop("disabled", false);
+        $('.txtChequeDate').removeClass("notrequired");
     }
     else {
         $('.txtChequeNo').prop("disabled", true);
         $('.txtChequeNo').addClass("notrequired");
+
+        $('.txtChequeDate').prop("disabled", true);
+        $('.txtChequeDate').addClass("notrequired");
 
     }
 }

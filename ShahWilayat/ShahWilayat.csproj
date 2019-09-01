@@ -238,6 +238,7 @@
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\PaymentSetupController.cs" />
     <Compile Include="Controllers\PlotController.cs" />
+    <Compile Include="Controllers\ReceiptController.cs" />
     <Compile Include="Controllers\SessionCheck.cs" />
     <Compile Include="Controllers\TenureController.cs" />
     <Compile Include="Controllers\TransferController.cs" />
@@ -2045,6 +2046,7 @@
     <Content Include="Content\app-assets\vendors\css\ui\prism.min.css" />
     <Content Include="Content\app-assets\vendors\css\weather-icons\climacons.min.css" />
     <Content Include="Content\assets\css\PrintMaterial\MemberProfile.css" />
+    <Content Include="Content\assets\css\PrintMaterial\Receipt.css" />
     <Content Include="Content\assets\css\style-rtl.css" />
     <Content Include="Content\assets\css\style.css" />
     <Content Include="Content\bootstrap.css" />
@@ -5407,6 +5409,7 @@
     <Content Include="Scripts\assets\js\PagesJS\PaymentSetup.js" />
     <Content Include="Scripts\assets\js\PagesJS\Plot.js" />
     <Content Include="Scripts\assets\js\PagesJS\PlotTransfer.js" />
+    <Content Include="Scripts\assets\js\PagesJS\Receipt.js" />
     <Content Include="Scripts\assets\js\PagesJS\ShareRegister.js" />
     <Content Include="Scripts\assets\js\PagesJS\Tenure.js" />
     <Content Include="Scripts\assets\js\PagesJS\Transfer.js" />
@@ -6022,6 +6025,7 @@
     <Content Include="Views\AssociateAllotment\Index.cshtml" />
     <Content Include="Views\ManualPayment\Index.cshtml" />
     <Content Include="Views\AssociateTransfer\Index.cshtml" />
+    <Content Include="Views\Receipt\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
