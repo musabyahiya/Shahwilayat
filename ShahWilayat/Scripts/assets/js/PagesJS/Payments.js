@@ -1,5 +1,4 @@
-﻿
-GetAllCharges();
+﻿GetAllCharges();
 GetAllMembers();
 
 GetAllPlotType();
@@ -186,9 +185,6 @@ function GetPaymentAmount(ChargeId, MemberId, PlotId, AllotmentTypeId) {
 
         //  DisableInputs();
 
-
-
-
     });
     request.fail(function (jqXHR, Status) {
         console.log(jqXHR.responseText);
@@ -234,6 +230,24 @@ function GetAllMembers() {
     });
 }
 
+function onGetAllMembers(data) {
+    try {
+
+        var res = JSON.parse(data);
+        FillDropDownByReferenceMember('.ddlMember', res);
+
+    }
+    catch (Err) {
+        console.log(Err);
+    }
+}
+function FillDropDownByReferenceMember(DropDownReference, res) {
+    $(DropDownReference).empty().append('<option selected="selected" value="0">--Select--</option>');
+    $(res).each(function () {
+        $(DropDownReference).append($("<option></option>").val(this.MemberId).html(this.FirstName + ' ' + this.LastName + ' (' + this.MembershipNo + ' - ' + this.PlotNo + ')'));
+    });
+}
+
 function GetMonthDifference(DueDate) {
     var request = $.ajax({
         method: "POST",
@@ -250,17 +264,6 @@ function GetMonthDifference(DueDate) {
     });
 }
 
-function onGetAllMembers(data) {
-    try {
-
-        var res = data;
-        FillDropDownByReference('.ddlMember', res);
-        FillDropDownByReference('.ddlMember_upd', res);
-    }
-    catch (Err) {
-        console.log(Err);
-    }
-}
 
 function GetAllPlotType() {
 

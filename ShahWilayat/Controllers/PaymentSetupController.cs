@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -184,7 +187,29 @@ namespace ShahWilayat.Controllers
         }
 
 
+        public string GetMemberByAllotmentType(int AllotmentTypeId)
+        {
+            try
+            {
 
+                DataSet ds = new DataSet();
+                DataTable dt = new DataTable();
+                string dbConnectionString = context.Database.Connection.ConnectionString;
+                SqlConnection con = new SqlConnection(dbConnectionString);
+                SqlDataAdapter da = new SqlDataAdapter("GetMemberByAllotmentType", con);
+                da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                da.SelectCommand.Parameters.Add("@AllotmentTypeId", SqlDbType.Int).Value = AllotmentTypeId;
+                da.Fill(dt);
+
+                return JsonConvert.SerializeObject(dt);
+
+            }
+            catch (Exception e)
+            {
+                return e.ToString();
+            }
+
+        }
 
         public JsonResult GetAllPaymentSetup()
         {

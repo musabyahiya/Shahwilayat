@@ -119,6 +119,30 @@ namespace ShahWilayat.Controllers
 
         }
 
+        public string GetMemberByAllotmentType(int AllotmentTypeId)
+        {
+            try
+            {
+
+                DataSet ds = new DataSet();
+                DataTable dt = new DataTable();
+                string dbConnectionString = context.Database.Connection.ConnectionString;
+                SqlConnection con = new SqlConnection(dbConnectionString);
+                SqlDataAdapter da = new SqlDataAdapter("GetMemberByAllotmentType", con);
+                da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                da.SelectCommand.Parameters.Add("@AllotmentTypeId", SqlDbType.Int).Value = AllotmentTypeId;
+                da.Fill(dt);
+
+                return JsonConvert.SerializeObject(dt);
+
+            }
+            catch (Exception e)
+            {
+                return e.ToString();
+            }
+
+        }
+
 
 
         public string CreateNewPayment(int PaymentMethodId,int PaymentCategoryId,string PaymentDate,int MemberId,int PlotId,double PaymentAmount,int PaymentTypeId,int AllotmentTypeId, string ReceiptNo, string ChequeNo, string ChequeDate, string Remarks)

@@ -1,5 +1,4 @@
-﻿GetAllMembers();
-GetAllPaymentCategory();
+﻿GetAllPaymentCategory();
 GetAllPlotType();
 GetAllPaymentMethod();
 AllClickFunction();
@@ -32,6 +31,7 @@ function AllChangeFunction() {
 
     $(".ddlAllotmentType").change(function () {
         var AllotmentTypeId = $(this).val();
+        GetAllMembers(AllotmentTypeId);
         GetAllPlots(AllotmentTypeId);
 
     });
@@ -66,7 +66,7 @@ function AllClickFunction() {
         var ChequeDate = PaymentMethodId == 2 ? formatDate($('.txtChequeDate').val()) : '';
         var Remarks = $('.txtRemarks').val();
 
-        CreateNewPayment(PaymentMethodId, PaymentCategoryId, PaymentDate, MemberId, PlotId, PaymentAmount, PaymentTypeId, AllotmentTypeId,ReceiptNo, ChequeNo, ChequeDate, Remarks);
+        CreateNewPayment(PaymentMethodId, PaymentCategoryId, PaymentDate, MemberId, PlotId, PaymentAmount, PaymentTypeId, AllotmentTypeId, ReceiptNo, ChequeNo, ChequeDate, Remarks);
 
         // Init();
     });
@@ -82,12 +82,12 @@ function AllClickFunction() {
 }
 
 
-function GetAllMembers() {
+function GetAllMembers(AllotmentTypeId) {
 
     var request = $.ajax({
         method: "POST",
-        url: "/ManualPayment/GetAllMembers",
-        data: {}
+        url: "/ManualPayment/GetMemberByAllotmentType",
+        data: { AllotmentTypeId: AllotmentTypeId }
     });
     request.done(function (data) {
 
@@ -100,18 +100,7 @@ function GetAllMembers() {
 }
 
 
-function onGetAllMembers(data) {
-    try {
-
-        var res = data;
-        FillDropDownByReference('.ddlMember', res);
-        FillDropDownByReference('.ddlMember_upd', res);
-    }
-    catch (Err) {
-        console.log(Err);
-    }
-}
-
+c
 function GetAllPlotType() {
 
     var request = $.ajax({
