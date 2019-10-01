@@ -100,7 +100,7 @@ function GetAllMembers(AllotmentTypeId) {
 }
 
 
-c
+
 function GetAllPlotType() {
 
     var request = $.ajax({

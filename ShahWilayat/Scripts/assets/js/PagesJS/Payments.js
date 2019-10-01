@@ -1,38 +1,57 @@
 ﻿GetAllCharges();
-GetAllMembers();
+//GetAllMembers();
 
 GetAllPlotType();
 GetAllPaymentMethod();
 AllClickFunction();
 GetAllPaymentType();
 AllChangeFunction();
-
+GetCurrentAssociateAllottees();
+GetCurrentAllottees()
 var objEditRow;
 var ChargesList;
 var MonthDifference;
 var PlotList;
 var MemberPlotList;
+var OrignalAllotment;
+var AssociateAllotment;
 var AmountPayable;
 var Email;
 
 function AllChangeFunction() {
-    $(".ddlMember").change(function () {
-        var MemberId = $(this).val();
-        var obj = PlotList.filter(x => x.MemberId == MemberId);
-        MemberPlotList = obj;
 
-        onGetAllPlots(obj);
-    });
+    //$(".ddlMember").change(function () {
+    //    var MemberId = $(this).val();
+    //    var obj = PlotList.filter(x => x.MemberId == MemberId);
+    //    MemberPlotList = obj;
+
+    //    onGetAllPlots(obj);
+    //});
 
     $(".ddlPlotType").change(function () {
+        var AllotmentTypeId = $('.ddlAllotmentType').val();
+        var MemberId = $('.ddlMember').val();
         var PlotTypeId = $(this).val();
-        var obj = MemberPlotList.filter(x => x.PlotTypeId == PlotTypeId);
-        onGetAllPlots(obj);
+        if (AllotmentTypeId == 1) {
+            var obj = OrignalAllotment.filter(x => x.PlotTypeId == PlotTypeId && x.MemberId == MemberId);
+            FillDropDownByReferencePlot('.ddlPlot', OrignalAllotment);
+        }
+        else {
+            var obj = AssociateAllotment.filter(x => x.PlotTypeId == PlotTypeId && x.MemberId == MemberId);
+            FillDropDownByReferencePlot('.ddlPlot', AssociateAllotment);
+        }
+
 
     });
 
     $(".ddlAllotmentType").change(function () {
         var AllotmentTypeId = $(this).val();
+        if (AllotmentTypeId == 1) {
+            FillDropDownByReferenceMember('.ddlMember', OrignalAllotment);
+        }
+        else {
+            FillDropDownByReferenceMember('.ddlMember', AssociateAllotment);
+        }
         GetAllPlots(AllotmentTypeId);
 
     });
@@ -213,34 +232,34 @@ function UpdatePaymentPlan() {
     });
 }
 
-function GetAllMembers() {
+//function GetAllMembers() {
 
-    var request = $.ajax({
-        method: "POST",
-        url: "/Payment/GetAllMembers",
-        data: {}
-    });
-    request.done(function (data) {
+//    var request = $.ajax({
+//        method: "POST",
+//        url: "/Payment/GetAllMembers",
+//        data: {}
+//    });
+//    request.done(function (data) {
 
-        onGetAllMembers(data);
-    });
-    request.fail(function (jqXHR, Status) {
-        console.log(jqXHR.responseText);
+//        onGetAllMembers(data);
+//    });
+//    request.fail(function (jqXHR, Status) {
+//        console.log(jqXHR.responseText);
 
-    });
-}
+//    });
+//}
 
-function onGetAllMembers(data) {
-    try {
+//function onGetAllMembers(data) {
+//    try {
 
-        var res = JSON.parse(data);
-        FillDropDownByReferenceMember('.ddlMember', res);
+//        var res = JSON.parse(data);
+//        FillDropDownByReferenceMember('.ddlMember', res);
 
-    }
-    catch (Err) {
-        console.log(Err);
-    }
-}
+//    }
+//    catch (Err) {
+//        console.log(Err);
+//    }
+//}
 function FillDropDownByReferenceMember(DropDownReference, res) {
     $(DropDownReference).empty().append('<option selected="selected" value="0">--Select--</option>');
     $(res).each(function () {
@@ -248,6 +267,45 @@ function FillDropDownByReferenceMember(DropDownReference, res) {
     });
 }
 
+function FillDropDownByReferencePlot(DropDownReference, res) {
+    $(DropDownReference).empty().append('<option selected="selected" value="0">--Select--</option>');
+    $(res).each(function () {
+        $(DropDownReference).append($("<option></option>").val(this.PlotId).html(this.PlotNo + ' (' + this.MembershipNo + ')'));
+    });
+}
+function GetCurrentAssociateAllottees() {
+
+    var request = $.ajax({
+        method: "POST",
+        url: "/Payment/GetCurrentAssociateAllottees",
+        data: {}
+    });
+    request.done(function (data) {
+        var res = JSON.parse(data);
+        AssociateAllotment = res;
+    });
+    request.fail(function (jqXHR, Status) {
+        console.log(jqXHR.responseText);
+
+    });
+}
+
+function GetCurrentAllottees() {
+
+    var request = $.ajax({
+        method: "POST",
+        url: "/Payment/GetCurrentAllottees",
+        data: {}
+    });
+    request.done(function (data) {
+        var res = JSON.parse(data);
+        OrignalAllotment = res;
+    });
+    request.fail(function (jqXHR, Status) {
+        console.log(jqXHR.responseText);
+
+    });
+}
 function GetMonthDifference(DueDate) {
     var request = $.ajax({
         method: "POST",

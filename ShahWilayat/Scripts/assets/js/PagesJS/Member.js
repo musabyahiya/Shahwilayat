@@ -59,8 +59,12 @@ var Members =
 function AllClickFunction() {
     $('.btnSaveChanges').click(function () {
         ProgressBarShow();
-        
-        if (!validateForm(".frmMember")) return;
+
+        if (!validateForm(".frmMember")) {
+            ProgressBarHide();
+            return;
+
+        }
 
 
         Members[0].TitleId = $('.ddlTitle').val();
@@ -99,7 +103,7 @@ function AllClickFunction() {
             showError('Please attach all the attachments');
             return;
         }
-       
+
 
         CreateNewMember()
         ProgressBarHide();
