@@ -4,6 +4,8 @@ GetAllPaymentMethod();
 AllClickFunction();
 GetAllPaymentType();
 AllChangeFunction();
+GetCurrentAssociateAllottees();
+GetCurrentAllottees();
 
 var objEditRow;
 var ChargesList;
@@ -12,26 +14,42 @@ var PlotList;
 var MemberPlotList;
 var AmountPayable;
 var Email;
+var OrignalAllotment;
+var AssociateAllotment;
 
 function AllChangeFunction() {
-    $(".ddlMember").change(function () {
-        var MemberId = $(this).val();
-        var obj = PlotList.filter(x => x.MemberId == MemberId);
-        MemberPlotList = obj;
+    //$(".ddlMember").change(function () {
+    //    var MemberId = $(this).val();
+    //    var obj = PlotList.filter(x => x.MemberId == MemberId);
+    //    MemberPlotList = obj;
 
-        onGetAllPlots(obj);
-    });
+    //    onGetAllPlots(obj);
+    //});
 
     $(".ddlPlotType").change(function () {
+        var AllotmentTypeId = $('.ddlAllotmentType').val();
+        var MemberId = $('.ddlMember').val();
         var PlotTypeId = $(this).val();
-        var obj = MemberPlotList.filter(x => x.PlotTypeId == PlotTypeId);
-        onGetAllPlots(obj);
+        if (AllotmentTypeId == 1) {
+            var obj = OrignalAllotment.filter(x => x.PlotTypeId == PlotTypeId && x.MemberId == MemberId);
+            FillDropDownByReferencePlot('.ddlPlot', OrignalAllotment);
+        }
+        else {
+            var obj = AssociateAllotment.filter(x => x.PlotTypeId == PlotTypeId && x.MemberId == MemberId);
+            FillDropDownByReferencePlot('.ddlPlot', AssociateAllotment);
+        }
+
 
     });
 
     $(".ddlAllotmentType").change(function () {
         var AllotmentTypeId = $(this).val();
-        GetAllMembers(AllotmentTypeId);
+        if (AllotmentTypeId == 1) {
+            FillDropDownByReferenceMember('.ddlMember', OrignalAllotment);
+        }
+        else {
+            FillDropDownByReferenceMember('.ddlMember', AssociateAllotment);
+        }
         GetAllPlots(AllotmentTypeId);
 
     });
@@ -99,6 +117,19 @@ function GetAllMembers(AllotmentTypeId) {
     });
 }
 
+function FillDropDownByReferenceMember(DropDownReference, res) {
+    $(DropDownReference).empty().append('<option selected="selected" value="0">--Select--</option>');
+    $(res).each(function () {
+        $(DropDownReference).append($("<option></option>").val(this.MemberId).html(this.FirstName + ' ' + this.LastName + ' (' + this.MembershipNo + ' - ' + this.PlotNo + ')'));
+    });
+}
+
+function FillDropDownByReferencePlot(DropDownReference, res) {
+    $(DropDownReference).empty().append('<option selected="selected" value="0">--Select--</option>');
+    $(res).each(function () {
+        $(DropDownReference).append($("<option></option>").val(this.PlotId).html(this.PlotNo + ' (' + this.MembershipNo + ')'));
+    });
+}
 
 
 function GetAllPlotType() {
@@ -407,4 +438,36 @@ function ActivateChequeNo() {
         $('.txtChequeDate').addClass("notrequired");
 
     }
+}
+
+function GetCurrentAssociateAllottees() {
+    var request = $.ajax({
+        method: "POST",
+        url: "/ManualPayment/GetCurrentAssociateAllottees",
+        data: {}
+    });
+    request.done(function (data) {
+        var res = JSON.parse(data);
+        AssociateAllotment = res;
+    });
+    request.fail(function (jqXHR, Status) {
+        console.log(jqXHR.responseText);
+
+    });
+}
+
+function GetCurrentAllottees() {
+    var request = $.ajax({
+        method: "POST",
+        url: "/ManualPayment/GetCurrentAllottees",
+        data: {}
+    });
+    request.done(function (data) {
+        var res = JSON.parse(data);
+        OrignalAllotment = res;
+    });
+    request.fail(function (jqXHR, Status) {
+        console.log(jqXHR.responseText);
+
+    });
 }

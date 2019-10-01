@@ -270,5 +270,31 @@ namespace ShahWilayat.Controllers
                 return Json(e, JsonRequestBehavior.AllowGet);
             }
         }
+
+        public string GetCurrentAssociateAllottees()
+        {
+            DataSet ds = new DataSet();
+            DataTable dt = new DataTable();
+            string dbConnectionString = context.Database.Connection.ConnectionString;
+            SqlConnection con = new SqlConnection(dbConnectionString);
+            SqlDataAdapter da = new SqlDataAdapter("GetCurrentAssociateAllottees", con);
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+            da.Fill(dt);
+
+            return JsonConvert.SerializeObject(dt);
+        }
+
+        public string GetCurrentAllottees()
+        {
+            DataSet ds = new DataSet();
+            DataTable dt = new DataTable();
+            string dbConnectionString = context.Database.Connection.ConnectionString;
+            SqlConnection con = new SqlConnection(dbConnectionString);
+            SqlDataAdapter da = new SqlDataAdapter("GetCurrentAllottees", con);
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+            da.Fill(dt);
+
+            return JsonConvert.SerializeObject(dt);
+        }
     }
 }
