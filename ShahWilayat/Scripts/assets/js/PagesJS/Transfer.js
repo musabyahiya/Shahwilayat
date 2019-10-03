@@ -136,7 +136,7 @@ function CreateNewTransfer() {
             GetAllTransfers();
         }
         else if (res == "false") {
-            showError('Please before transfer, make sure all the dues must be clear!');
+            showError("You're the existing owner of this property...!");
 
         }
     });
