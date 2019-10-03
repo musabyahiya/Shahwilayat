@@ -19,7 +19,9 @@
           <Property Name="ShareCertificateNo" Type="varchar" MaxLength="50" />
           <Property Name="ShareCertificateDate" Type="datetime" />
           <Property Name="AllotmentApplicationDate" Type="datetime" />
-          <Property Name="AllotmentOrderScan" Type="text" />
+          <Property Name="ScanAllotmentOrder" Type="text" />
+          <Property Name="ScanProvisionalOrder" Type="text" />
+          <Property Name="ScanShareCertificate" Type="text" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedBy" Type="int" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
@@ -39,7 +41,9 @@
           <Property Name="ProvisionalAllotmentDate" Type="datetime" />
           <Property Name="ShareCertificateNo" Type="varchar" MaxLength="50" />
           <Property Name="ShareCertificateDate" Type="datetime" />
-          <Property Name="AllotmentOrderScan" Type="text" />
+          <Property Name="ScanAllotmentOrder" Type="text" />
+          <Property Name="ScanProvisionalOrder" Type="text" />
+          <Property Name="ScanShareCertificate" Type="text" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedBy" Type="int" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
@@ -280,7 +284,7 @@
           <Property Name="ProvinceId" Type="int" Nullable="false" />
           <Property Name="CityId" Type="int" Nullable="false" />
           <Property Name="FirstName" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="LastName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="100" />
           <Property Name="FatherName" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="CellNo" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Landline" Type="varchar" MaxLength="50" />
@@ -292,7 +296,7 @@
           <Property Name="CNIC" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="CnicExpiryDate" Type="datetime" Nullable="false" />
           <Property Name="BloodGroup" Type="varchar" MaxLength="50" />
-          <Property Name="PostalCode" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="PostalCode" Type="varchar" MaxLength="100" />
           <Property Name="PermanentAddress" Type="varchar" MaxLength="500" Nullable="false" />
           <Property Name="Occupation" Type="varchar" MaxLength="100" />
           <Property Name="MembershipNo" Type="varchar" MaxLength="100" Nullable="false" />
@@ -648,6 +652,8 @@
           <Property Name="PaymentAmount" Type="float" Nullable="false" />
           <Property Name="PaymentCategoryId" Type="int" Nullable="false" />
           <Property Name="ReceiptNo" Type="varchar" MaxLength="50" />
+          <Property Name="ChequeNo" Type="varchar" MaxLength="100" />
+          <Property Name="ChequeDate" Type="datetime" />
           <Property Name="HasPaid" Type="bit" Nullable="false" />
           <Property Name="IsTransfered" Type="bit" Nullable="false" />
           <Property Name="IsOrignalAllotment" Type="bit" Nullable="false" />
@@ -1918,7 +1924,6 @@
           <Property Name="ShareCertificateNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ShareCertificateDate" Type="DateTime" Precision="3" />
           <Property Name="AllotmentApplicationDate" Type="DateTime" Precision="3" />
-          <Property Name="AllotmentOrderScan" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="CreatedBy" Type="Int32" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
@@ -1926,6 +1931,9 @@
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Plot" Relationship="Self.FK_Allotment_Plot" FromRole="Allotment" ToRole="Plot" />
           <NavigationProperty Name="Member" Relationship="Self.FK_AllotmentOrder_Members" FromRole="Allotment" ToRole="Members" />
+          <Property Name="ScanAllotmentOrder" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ScanProvisionalOrder" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ScanShareCertificate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="AssociateAllotment">
           <Key>
@@ -1940,7 +1948,6 @@
           <Property Name="ProvisionalAllotmentDate" Type="DateTime" Precision="3" />
           <Property Name="ShareCertificateNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ShareCertificateDate" Type="DateTime" Precision="3" />
-          <Property Name="AllotmentOrderScan" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="CreatedBy" Type="Int32" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
@@ -1948,6 +1955,9 @@
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Member" Relationship="Self.FK_AssociateAllotment_Members" FromRole="AssociateAllotment" ToRole="Members" />
           <NavigationProperty Name="Plot" Relationship="Self.FK_AssociateAllotment_Plot" FromRole="AssociateAllotment" ToRole="Plot" />
+          <Property Name="ScanAllotmentOrder" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ScanProvisionalOrder" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ScanShareCertificate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="AssociateMember">
           <Key>
@@ -2184,7 +2194,7 @@
           <Property Name="ProvinceId" Type="Int32" Nullable="false" />
           <Property Name="CityId" Type="Int32" Nullable="false" />
           <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="FatherName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CellNo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Landline" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -2196,7 +2206,7 @@
           <Property Name="CNIC" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CnicExpiryDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="BloodGroup" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="PostalCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PostalCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="PermanentAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Occupation" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="MembershipNo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
@@ -2631,6 +2641,8 @@
           <Property Name="IsOrignalAllotment" Type="Boolean" Nullable="false" />
           <Property Name="IsManualEntry" Type="Boolean" Nullable="false" />
           <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ChequeNo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ChequeDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="SocietyPaymentDetail">
           <Key>
@@ -3978,6 +3990,9 @@
           <EntitySetMapping Name="Allotments">
             <EntityTypeMapping TypeName="ShahWilayatModel.Allotment">
               <MappingFragment StoreEntitySet="Allotment">
+                <ScalarProperty Name="ScanShareCertificate" ColumnName="ScanShareCertificate" />
+                <ScalarProperty Name="ScanProvisionalOrder" ColumnName="ScanProvisionalOrder" />
+                <ScalarProperty Name="ScanAllotmentOrder" ColumnName="ScanAllotmentOrder" />
                 <ScalarProperty Name="AllotmentId" ColumnName="AllotmentId" />
                 <ScalarProperty Name="MemberId" ColumnName="MemberId" />
                 <ScalarProperty Name="PlotId" ColumnName="PlotId" />
@@ -3988,7 +4003,6 @@
                 <ScalarProperty Name="ShareCertificateNo" ColumnName="ShareCertificateNo" />
                 <ScalarProperty Name="ShareCertificateDate" ColumnName="ShareCertificateDate" />
                 <ScalarProperty Name="AllotmentApplicationDate" ColumnName="AllotmentApplicationDate" />
-                <ScalarProperty Name="AllotmentOrderScan" ColumnName="AllotmentOrderScan" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
@@ -4000,6 +4014,9 @@
           <EntitySetMapping Name="AssociateAllotments">
             <EntityTypeMapping TypeName="ShahWilayatModel.AssociateAllotment">
               <MappingFragment StoreEntitySet="AssociateAllotment">
+                <ScalarProperty Name="ScanShareCertificate" ColumnName="ScanShareCertificate" />
+                <ScalarProperty Name="ScanProvisionalOrder" ColumnName="ScanProvisionalOrder" />
+                <ScalarProperty Name="ScanAllotmentOrder" ColumnName="ScanAllotmentOrder" />
                 <ScalarProperty Name="AssociateAllotmentId" ColumnName="AssociateAllotmentId" />
                 <ScalarProperty Name="MemberId" ColumnName="MemberId" />
                 <ScalarProperty Name="PlotId" ColumnName="PlotId" />
@@ -4009,7 +4026,6 @@
                 <ScalarProperty Name="ProvisionalAllotmentDate" ColumnName="ProvisionalAllotmentDate" />
                 <ScalarProperty Name="ShareCertificateNo" ColumnName="ShareCertificateNo" />
                 <ScalarProperty Name="ShareCertificateDate" ColumnName="ShareCertificateDate" />
-                <ScalarProperty Name="AllotmentOrderScan" ColumnName="AllotmentOrderScan" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
@@ -4597,6 +4613,8 @@
           <EntitySetMapping Name="SocietyPayments">
             <EntityTypeMapping TypeName="ShahWilayatModel.SocietyPayment">
               <MappingFragment StoreEntitySet="SocietyPayment">
+                <ScalarProperty Name="ChequeDate" ColumnName="ChequeDate" />
+                <ScalarProperty Name="ChequeNo" ColumnName="ChequeNo" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
                 <ScalarProperty Name="IsManualEntry" ColumnName="IsManualEntry" />
                 <ScalarProperty Name="IsOrignalAllotment" ColumnName="IsOrignalAllotment" />

@@ -96,7 +96,8 @@ function AllClickFunction() {
         Plot[0].PlotNo = $('.txtPlotNo_upd').val();
         Plot[0].HasExtraSize = $('.ddlHasExtraSize_upd').val() == "1" ? true : false;
         Plot[0].ExtraSize = $('.txtExtraSize_upd').val();
-        Plot[0].SitePlan = FileUpload('.txtSitePlan_upd');
+        Plot[0].SitePlan = FileUpload('.txtSitePlan_upd') == '' ? SitePlan : FileUpload('.txtSitePlan_upd');
+
 
 
         UpdatePlot();

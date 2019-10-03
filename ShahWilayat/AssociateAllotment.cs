@@ -23,12 +23,14 @@ namespace ShahWilayat
         public Nullable<System.DateTime> ProvisionalAllotmentDate { get; set; }
         public string ShareCertificateNo { get; set; }
         public Nullable<System.DateTime> ShareCertificateDate { get; set; }
-        public string AllotmentOrderScan { get; set; }
         public bool IsActive { get; set; }
         public int CreatedBy { get; set; }
         public System.DateTime CreatedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
+        public string ScanAllotmentOrder { get; set; }
+        public string ScanProvisionalOrder { get; set; }
+        public string ScanShareCertificate { get; set; }
     
         public virtual Member Member { get; set; }
         public virtual Plot Plot { get; set; }

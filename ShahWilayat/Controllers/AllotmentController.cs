@@ -36,6 +36,30 @@ namespace ShahWilayat.Controllers
             }
         }
 
+        public string UpdateAttachment(Allotment ao)
+        {
+            try
+            {
+                var obj = context.Allotments.FirstOrDefault(x => x.AllotmentId == ao.AllotmentId);
+
+               
+                obj.ScanAllotmentOrder = ao.ScanAllotmentOrder;
+                obj.ScanProvisionalOrder = ao.ScanProvisionalOrder;
+                obj.ScanShareCertificate = ao.ScanShareCertificate;        
+                obj.ModifiedDate = DateTime.Now;
+                obj.ModifiedBy = (int)HttpContext.Session["UserId"];
+                context.Entry(obj).State = EntityState.Modified;
+                context.SaveChanges();
+
+                return "true";
+
+            }
+            catch (Exception e)
+            {
+                return e.ToString();
+            }
+        }
+
         public string UpdateAllotment(Allotment ao)
         {
             try
@@ -49,7 +73,7 @@ namespace ShahWilayat.Controllers
                 obj.ShareCertificateDate = ao.ShareCertificateDate;
                 obj.ProvisionalAllotmentNo = ao.ProvisionalAllotmentNo;
                 obj.ProvisionalAllotmentDate = ao.ProvisionalAllotmentDate;
-               
+
                 obj.CreatedDate = DateTime.Now;
                 obj.CreatedBy = (int)HttpContext.Session["UserId"];
                 context.Entry(obj).State = EntityState.Modified;
@@ -156,6 +180,9 @@ namespace ShahWilayat.Controllers
                    x.ShareCertificateDate,
                    x.ProvisionalAllotmentNo,
                    x.ProvisionalAllotmentDate,
+                   x.ScanAllotmentOrder,
+                   x.ScanProvisionalOrder,
+                   x.ScanShareCertificate
                
 
                }).ToList();

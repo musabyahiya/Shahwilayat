@@ -40,6 +40,8 @@ namespace ShahWilayat
         public bool IsOrignalAllotment { get; set; }
         public bool IsManualEntry { get; set; }
         public string Remarks { get; set; }
+        public string ChequeNo { get; set; }
+        public Nullable<System.DateTime> ChequeDate { get; set; }
     
         public virtual Charge Charge { get; set; }
         public virtual Member Member { get; set; }

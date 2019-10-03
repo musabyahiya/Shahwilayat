@@ -19,16 +19,23 @@ var Allotment =
     AllotmentOrderDate: null,
     ProvisionalAllotmentNo: null,
     ProvisionalAllotmentDate: null,
-    ShareCertificateOrderNo: null,
-    ShareCertificateDate: null
+    ShareCertificateNo: null,
+    ShareCertificateDate: null,
+    ScanAllotmentOrder: null,
+    ScanProvisionalOrder: null,
+    ScanShareCertificate: null
 
 }]
+var ScanAllotmentOrder;
+var ScanProvisionalOrder;
+var ScanShareCertificate;
+
 
 function AllClickFunction() {
     $('.btnSaveChanges').click(function () {
         var duplicationAllotment = false;
         if (!validateForm(".frmAllotment")) return;
-       
+
         Allotment[0].MemberId = $('.ddlMember').val();
         Allotment[0].PlotId = $('.ddlPlot').val();
         Allotment[0].AllotmentOrderNo = $('.txtAllotmentOrderNo').val();
@@ -37,7 +44,9 @@ function AllClickFunction() {
         Allotment[0].ProvisionalAllotmentDate = formatDate($('.txtProvisionalAllotmentDate').val());
         Allotment[0].ShareCertificateNo = $('.txtShareCertificateNo').val();
         Allotment[0].ShareCertificateDate = formatDate($('.txtShareCertificateDate').val());
-
+        Allotment[0].ScanAllotmentOrder = FileUpload('.txtScanAllotmentOrder');
+        Allotment[0].ScanProvisionalOrder = FileUpload('.txtScanProvisionalOrder');
+        Allotment[0].ScanShareCertificate = FileUpload('.txtScanShareCertificate');
 
 
         $('.trAllotment').each(function () {
@@ -82,7 +91,14 @@ function AllClickFunction() {
 
         UpdateAllotment();
     });
+    $('.btnUpdateAttachment').click(function () {
 
+        Allotment[0].ScanAllotmentOrder = FileUpload('.txtScanAllotmentOrder_upd') == '' ? ScanAllotmentOrder : FileUpload('.txtScanAllotmentOrder_upd');
+        Allotment[0].ScanProvisionalOrder = FileUpload('.txtScanProvisionalOrder_upd') == '' ? ScanProvisionalOrder : FileUpload('.txtScanProvisionalOrder_upd');
+        Allotment[0].ScanShareCertificate = FileUpload('.txtScanShareCertificate_upd') == '' ? ScanShareCertificate : FileUpload('.txtScanShareCertificate_upd');
+
+        UpdateAttachment();
+    });
 
 
     $('.btnDelete').click(function () {
@@ -235,11 +251,14 @@ function onGetAllAllotment(data) {
 function EditAllotment(selector) {
 
     objEditRow = $(selector).closest('tr');
+    ScanAllotmentOrder = objEditRow.find('.hdnScanAllotmentOrder').val();
+    ScanProvisionalOrder = objEditRow.find('.hdnScanProvisionalOrder').val();
+    ScanShareCertificate = objEditRow.find('.hdnScanShareCertificate').val();
+
 
     Allotment[0].AllotmentId = objEditRow.find('.hdnAllotmentId').val();
     Allotment[0].PlotId = objEditRow.find('.hdnPlotId').val();
-    //$('.ddlMember_upd').val(objEditRow.find('.hdnMemberId').val());
-    //$('.ddlPlot_upd').val(objEditRow.find('.hdnPlotId').val());
+
     $('.txtAllotmentOrderNo_upd').val(objEditRow.find('.hdnAllotmentOrderNo').val());
     $('.txtAllotmentOrderDate_upd').val(objEditRow.find('.hdnAllotmentOrderDate').val());
     $('.txtShareCertificateNo_upd').val(objEditRow.find('.hdnShareCertificateNo').val());
@@ -251,7 +270,26 @@ function EditAllotment(selector) {
 
 }
 
+function UpdateAttachment() {
+    var request = $.ajax({
+        method: "POST",
+        url: "/Allotment/UpdateAttachment",
+        data: Allotment[0]
+    });
+    request.done(function (data) {
 
+        var res = data;
+        if (res == "true") {
+            showSuccess('Successfully Updated!');
+            $('#EditAttachment').modal('hide');
+            GetAllAllotment();
+        }
+    });
+    request.fail(function (jqXHR, Status) {
+        console.log(jqXHR.responseText);
+
+    });
+}
 function GetAllPlots() {
 
     var request = $.ajax({

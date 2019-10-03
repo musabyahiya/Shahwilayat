@@ -47,9 +47,8 @@
                                 <th>Plot No</th>
                                 <th>Allotment Order No</th>
                                 <th>Allotment Order Date</th>
-                          
+                                <th>Attachments</th>
                                 <th>Action</th>
-                              
                             </tr>
                         </thead>
                         <tbody class="AllotmentListing"></tbody>
@@ -75,8 +74,8 @@
             </div>
             <div class="modal-body">
                 <div class="form-body frmAllotment">
-                      <h4 class="form-section"><i class="la la-file-text"></i> Allotment Details</h4>
-                     <hr> 
+                    <h4 class="form-section"><i class="la la-file-text"></i> Allotment Details</h4>
+                    <hr>
                     <div class="row">
                         <div class="col-md-3">
                             <div class="form-group">
@@ -127,9 +126,48 @@
                                 <input type="text" id="txtShareCertificateDate" class="form-control DatePicker txtShareCertificateDate " placeholder="yyyy-mm-dd">
                             </div>
                         </div>
+                    </div>
+                    <h4 class="form-section"><i class="la la-paperclip"></i> Attachments</h4>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+
+                                <span class="btn btn-block btn-outline btn-info btn-file">
+                                    <span class="fileinput-new">Attach Allotment Order</span>
+                                    <i class="fa fa-upload"></i>&nbsp;&nbsp;
+                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtScanAllotmentOrder" accept="image/*" />
+                                </span>
+                                <span class="fileinput-filename"></span>
+                                <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+
+                                <span class="btn btn-block btn-outline btn-info btn-file">
+                                    <span class="fileinput-new">Attach Provisional Allotment Order</span>
+                                    <i class="fa fa-upload"></i>&nbsp;&nbsp;
+                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtScanProvisionalOrder" accept="image/*" />
+                                </span>
+                                <span class="fileinput-filename"></span>
+                                <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+
+                                <span class="btn btn-block btn-outline btn-info btn-file">
+                                    <span class="fileinput-new">Attach Share Certificate</span>
+                                    <i class="fa fa-upload"></i>&nbsp;&nbsp;
+                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtScanShareCertificate" accept="image/*" />
+                                </span>
+                                <span class="fileinput-filename"></span>
+                                <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
+                            </div>
+                        </div>
 
                     </div>
-
                 </div>
             </div>
             <div class="modal-footer">
@@ -221,6 +259,70 @@
 
 @*Edit Modal Start*@
 
+@*Edit Attachment Start*@
+<div class="modal fade text-left" id="EditAttachment" role="dialog" aria-labelledby="myModalLabel16" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel16">Edit Attachment</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-body frmAttachment">
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+
+                                <span class="btn btn-block btn-outline btn-info btn-file">
+                                    <span class="fileinput-new">Attach Allotment Order</span>
+                                    <i class="fa fa-upload"></i>&nbsp;&nbsp;
+                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtScanAllotmentOrder_upd notrequired" accept="image/*" />
+                                </span>
+                                <span class="fileinput-filename"></span>
+                                <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+
+                                <span class="btn btn-block btn-outline btn-info btn-file">
+                                    <span class="fileinput-new">Attach Provisional Allotment Order</span>
+                                    <i class="fa fa-upload"></i>&nbsp;&nbsp;
+                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtScanProvisionalOrder_upd notrequired" accept="image/*" />
+                                </span>
+                                <span class="fileinput-filename"></span>
+                                <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+
+                                <span class="btn btn-block btn-outline btn-info btn-file">
+                                    <span class="fileinput-new">Attach Share Certificate</span>
+                                    <i class="fa fa-upload"></i>&nbsp;&nbsp;
+                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtScanShareCertificate_upd notrequired" accept="image/*" />
+                                </span>
+                                <span class="fileinput-filename"></span>
+                                <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn grey btn-outline-info" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline-dark btnUpdateAttachment">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+@*Edit Attachment Start*@
+
 @section Scripts
 {
     <script type="text/x-jQuery-tmpl" id="AllotmentListing">
@@ -236,16 +338,26 @@
             <input type="hidden" class="hdnProvisionalAllotmentNo" value="${ProvisionalAllotmentNo}" />
             <input type="hidden" class="hdnProvisionalAllotmentDate" value="${ToJavaScriptDate(ProvisionalAllotmentDate)}" />
 
+            <input type="hidden" class="hdnScanAllotmentOrder" value="${ScanAllotmentOrder}" />
+            <input type="hidden" class="hdnScanProvisionalOrder" value="${ScanProvisionalOrder}" />
+            <input type="hidden" class="hdnScanShareCertificate" value="${ScanShareCertificate}" />
             <td></td>
             <td class="project-title tdMember" nowrap>${FirstName + ' ' + LastName}</td>
             <td class="project-title tdPlot" nowrap>${Plot}</td>
             <td class="project-title tdAllotmentOrderNo" nowrap>${AllotmentOrderNo}</td>
             <td class="project-title tdAllotmentOrderDate" nowrap>${ToJavaScriptDate(AllotmentOrderDate)}</td>
-     
-           
+
+
             <td class="project-title">
-               <a href="javascript:void(0)" data-toggle="modal" data-target="#EditAllotment" onclick="EditAllotment(this)" data-toggle="tooltip" data-placement="top" data-original-title="Edit Allotment"><i class="la la-pencil-square success"></i></a>
-           </td>
+                <a href="${ScanAllotmentOrder==''? '': '../Uploads/'+JSON.parse(ScanAllotmentOrder)[0]}" download="" data-toggle="tooltip" title="Allotment Order"><i class="la la-cloud-download warning"></i></a>&nbsp;
+                <a href="${ScanProvisionalOrder==''? '': '../Uploads/'+JSON.parse(ScanProvisionalOrder)[0]}" download="" data-toggle="tooltip" title="Provisional Allotment Order"><i class="la la-cloud-download success"></i></a>&nbsp;
+                <a href="${ScanShareCertificate==''? '': '../Uploads/'+JSON.parse(ScanShareCertificate)[0]}" download="" data-toggle="tooltip" title="Share Certificate"><i class="la la-cloud-download info"></i></a>
+            </td>
+
+            <td class="project-title">
+                <a href="javascript:void(0)" data-toggle="modal" data-target="#EditAttachment" onclick="EditAllotment(this)" title="Edit Attachment"><i class="ft-paperclip"></i></a> &nbsp;
+                <a href="javascript:void(0)" data-toggle="modal" data-target="#EditAllotment" onclick="EditAllotment(this)" data-toggle="tooltip" data-placement="top" data-original-title="Edit Allotment"><i class="la la-pencil-square success"></i></a>
+            </td>
 
 
         </tr>
