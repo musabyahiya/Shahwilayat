@@ -2056,6 +2056,11 @@
     <Content Include="Content\assets\css\PrintMaterial\MembershipSingle\MemCopy.JPG" />
     <Content Include="Content\assets\css\PrintMaterial\MembershipSingle\user.jpg" />
     <Content Include="Content\assets\css\PrintMaterial\Receipt.css" />
+    <Content Include="Content\assets\css\PrintMaterial\TransferOrder\Bottom-img.png" />
+    <Content Include="Content\assets\css\PrintMaterial\TransferOrder\download.png" />
+    <Content Include="Content\assets\css\PrintMaterial\TransferOrder\Top-img.png" />
+    <Content Include="Content\assets\css\PrintMaterial\TransferOrder\TransferOrder.css" />
+    <Content Include="Content\assets\css\PrintMaterial\TransferOrder\user.jpg" />
     <Content Include="Content\assets\css\style-rtl.css" />
     <Content Include="Content\assets\css\style.css" />
     <Content Include="Content\bootstrap.css" />
