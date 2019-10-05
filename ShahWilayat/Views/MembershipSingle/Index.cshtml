@@ -1,0 +1,240 @@
+﻿
+@{
+    ViewBag.Title = "Membership Single - Shah Wilayat Cooperative Housing Society";
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+}
+
+<div class="content-header row">
+    <div class="content-header-left col-md-6 col-12 mb-2">
+        <h3 class="content-header-title">MembershipFormSingle</h3>
+    </div>
+
+</div>
+
+<!-- Both borders end-->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <fieldset>
+                    <div class="input-group">
+                        <input type="text" class="form-control txtSearch" placeholder="Search..." aria-describedby="basic-addon4">
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="basic-addon4"><i class="la la-search"></i></span>
+                        </div>
+                    </div>
+                </fieldset>
+
+            </div>
+            <div class="card-content">
+
+                <div class="table-responsive">
+                    <table class="table table-bordered mb-0 tblMembershipFormSingle">
+                        <thead>
+                            <tr>
+                                <th nowrap>Sr No.</th>
+                                <th>Membership No</th>
+                                <th>Member</th>
+                                <th>Nominee</th>
+                                <th>Relation</th>
+                                <th>Plot No</th>
+                                <th>Action</th>
+
+                            </tr>
+                        </thead>
+                        <tbody class="MembershipFormSingleListing"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*Print Modal Start*@
+<div class="modal fade text-left" id="PrintMember" role="dialog" aria-labelledby="myModalLabel16" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel16">Membership Profile</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-body frmMember">
+                    <div id="PrintMembershipSingle">
+                        <div class="container">
+                            <table>
+                                <tr>
+                                <tr>
+                                    <td>
+                                        <img src="~/Content/assets/css/PrintMaterial/MembershipSingle/Form.jpg" style="width:100%;">
+                                        <div class="RefNo">
+                                            <span><b>SWCHSL/R-120/2019</b></span>
+                                        </div>
+                                        <div class="MembershipDate">
+                                            <span><b>17th November, 2006</b></span>
+                                        </div>
+                                        <div class="MemberName">
+                                            <span><b>Muhammad Fahad</b></span>
+                                        </div>
+                                        <div class="MemberFatherName">
+                                            <span><b>Muhammad Nizam Uddin</b></span>
+                                        </div>
+                                        <div class="NomineeName">
+                                            <span><b>Muhammad Faisal</b></span>
+                                        </div>
+                                        <div class="NomineeFatherName">
+                                            <span><b>Muhammad Nizam Uddin</b></span>
+                                        </div>
+                                        <div class="MemberDOB">
+                                            <span><b>05-07-1996</b></span>
+                                        </div>
+                                        <div class="MemberBirthPlace">
+                                            <span><b>Karachi</b></span>
+                                        </div>
+
+                                        <div class="NomineeDOB">
+                                            <span><b>21-03-1972</b></span>
+                                        </div>
+                                        <div class="NomineeBirthPlace">
+                                            <span><b>Karachi</b></span>
+                                        </div>
+                                        <div class="MemberImage">
+                                            <img src="~/Content/assets/css/PrintMaterial/MembershipSingle/user.jpg" style="width:111px; height: 153px;">
+                                        </div>
+                                        <div class="NomineeImage">
+                                            <img src="~/Content/assets/css/PrintMaterial/MembershipSingle/Fahad.jpg" style="width:111px; height: 153px;border-radius:0px 16px 0px 0px;">
+                                        </div>
+                                        <div class="MemberAddress">
+                                            <span> House # A-188, Block 13, Gulistan-e-Jouhar, Karachi.</span>
+                                        </div>
+                                        <div class="NomineeAddress">
+                                            <span> House # A-188, Block 13, Gulistan-e-Jouhar, Karachi.</span>
+                                        </div>
+                                        <div class="MemberCNIC">
+                                            <span>42101-5762826-3</span>
+                                        </div>
+                                        <div class="NomineeCNIC">
+                                            <span>43201-7882702-8</span>
+                                        </div>
+
+                                        <div class="MemberLandline">
+                                            <span><b>021-34423977</b></span>
+                                        </div>
+                                        <div class="NomineeLandline">
+                                            <span><b>021-34423977</b></span>
+                                        </div>
+
+                                        <div class="MemberOffLandline">
+                                            <span><b>021-34423977</b></span>
+                                        </div>
+                                        <div class="NomineeOffLandline">
+                                            <span><b>021-34423977</b></span>
+                                        </div>
+
+                                        <div class="MemberBloodGroup">
+                                            <span><b>A+</b></span>
+                                        </div>
+                                        <div class="NomineeBloodRelation">
+                                            <span><b>Mother</b></span>
+                                        </div>
+                                        <div class="MemberMobile">
+                                            <span><b>021-34423977</b></span>
+                                        </div>
+                                        <div class="NomineeMobile">
+                                            <span><b>021-34423977</b></span>
+                                        </div>
+                                        <div class="MemberEmail">
+                                            <span><b>Musabyahiya@hotmail.com</b></span>
+                                        </div>
+                                        <div class="NomineeEmail">
+                                            <span><b>m.fahad2016@gmail.com</b></span>
+                                        </div>
+                                        <div class="NomineeRelation">
+                                            <span><b>Mother</b></span>
+                                        </div>
+                                        <div class="NomineeRelationName">
+                                            <span><b>Msab Yahiya</b></span>
+                                        </div>
+                                        <div class="PlotTitle">
+                                            <span><b>Residential</b></span>
+                                        </div>
+                                        <div class="MembershipNo">
+                                            <span><b>SWC/192/06</b></span>
+                                        </div>
+                                        <div class="PlotNo">
+                                            <span><b>R-120</b></span>
+                                        </div>
+                                        <div class="PlotSize">
+                                            <span><b>120</b></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn grey btn-outline-info" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline-warning btnPrint" onclick="PrintMembershipSingle();">Print</button>
+            </div>
+        </div>
+    </div>
+</div>
+@*Print Modal Start*@
+@section Scripts
+{
+    <script type="text/x-jQuery-tmpl" id="MembershipFormSingleListing">
+        <tr class="trMembershipFormSingle">
+            <input type="hidden" class="hdnFullName" value="${FirstName +' '+LastName}" />
+            <input type="hidden" class="hdnFatherName" value="${FatherName}" />
+            <input type="hidden" class="hdnDob" value="${Dob}" />
+            <input type="hidden" class="hdnBirthPlace" value="${BirthPlace}" />
+            <input type="hidden" class="hdnPermanentAddress" value="${PermanentAddress}" />
+            <input type="hidden" class="hdnCNIC" value="${CNIC}" />
+            <input type="hidden" class="hdnCellNo" value="${CellNo}" />
+            <input type="hidden" class="hdnLandline" value="${Landline}" />
+            <input type="hidden" class="hdnOfficePhone" value="${OfficePhone}" />
+            <input type="hidden" class="hdnBloodGroup" value="${BloodGroup}" />
+            <input type="hidden" class="hdnEmail" value="${Email}" />
+            <input type="hidden" class="hdnRelationId" value="${RelationId}" />
+            <input type="hidden" class="hdnRelation" value="${Relation}" />
+            <input type="hidden" class="hdnNomineeName" value="${NomineeName}" />
+            <input type="hidden" class="hdnNomineeFatherName" value="${NomineeFatherName}" />
+            <input type="hidden" class="hdnNomineeDob" value="${NomineeDob}" />
+            <input type="hidden" class="hdnNomineeBirthPlace" value="${NomineeBirthPlace}" />
+            <input type="hidden" class="hdnNomineeAddress" value="${NomineeAddress}" />
+            <input type="hidden" class="hdnReferenceNo" value="${ReferenceNo}" />
+            <input type="hidden" class="hdnMembershipDate" value="${MembershipDate}" />
+            <input type="hidden" class="hdnMembershipNo" value="${MembershipNo}" />
+            <input type="hidden" class="hdnPlotNo" value="${PlotNo}" />
+            <input type="hidden" class="hdnPlotSize" value="${PlotSize}" />
+            <td></td>
+            <td class="project-title tdMemberShipNo" nowrap>${MembershipNo}</td>
+            <td class="project-title tdName" nowrap>${FirstName+' '+LastName}</td>
+            <td class="project-title tdNomineeName" nowrap>${NomineeName}</td>
+            <td class="project-title tdRelation" nowrap>${Relation}</td>
+
+            <td class="project-title tdPlotNo" nowrap>${PlotNo}</td>
+
+
+            <td class="project-title" nowrap>
+
+                <a href="javascript:void(0)" data-toggle="modal" data-target="#PrintMember" onclick="PrintIndividualMember(this)" title="Print Profile"><i class="la la-user warning"></i></a>
+            </td>
+
+
+        </tr>
+    </script>
+
+    <script src="~/Scripts/assets/js/PagesJS/MembershipSingle.js"></script>
+
+
+}
+
+
+

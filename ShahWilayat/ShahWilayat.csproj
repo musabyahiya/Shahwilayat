@@ -233,6 +233,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ManualPaymentController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
+    <Compile Include="Controllers\MembershipSingleController.cs" />
     <Compile Include="Controllers\MenusController.cs" />
     <Compile Include="Controllers\NomineeController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
@@ -2045,7 +2046,15 @@
     <Content Include="Content\app-assets\vendors\css\ui\prism-treeview.css" />
     <Content Include="Content\app-assets\vendors\css\ui\prism.min.css" />
     <Content Include="Content\app-assets\vendors\css\weather-icons\climacons.min.css" />
+    <Content Include="Content\assets\css\PrintMaterial\IDCard.css" />
+    <Content Include="Content\assets\css\PrintMaterial\ID_Back.png" />
+    <Content Include="Content\assets\css\PrintMaterial\ID_Front.png" />
     <Content Include="Content\assets\css\PrintMaterial\MemberProfile.css" />
+    <Content Include="Content\assets\css\PrintMaterial\MembershipSingle\Fahad.jpg" />
+    <Content Include="Content\assets\css\PrintMaterial\MembershipSingle\Form.jpg" />
+    <Content Include="Content\assets\css\PrintMaterial\MembershipSingle\MembershipSingle.css" />
+    <Content Include="Content\assets\css\PrintMaterial\MembershipSingle\MemCopy.JPG" />
+    <Content Include="Content\assets\css\PrintMaterial\MembershipSingle\user.jpg" />
     <Content Include="Content\assets\css\PrintMaterial\Receipt.css" />
     <Content Include="Content\assets\css\style-rtl.css" />
     <Content Include="Content\assets\css\style.css" />
@@ -5398,6 +5407,7 @@
     <Content Include="Scripts\assets\js\PagesJS\MakePayment.js" />
     <Content Include="Scripts\assets\js\PagesJS\ManualPayment.js" />
     <Content Include="Scripts\assets\js\PagesJS\Member.js" />
+    <Content Include="Scripts\assets\js\PagesJS\MembershipSingle.js" />
     <Content Include="Scripts\assets\js\PagesJS\Nav.js" />
     <Content Include="Scripts\assets\js\PagesJS\Nominee.js" />
     <Content Include="Scripts\assets\js\PagesJS\NomineeMemberWise.js" />
@@ -6026,6 +6036,7 @@
     <Content Include="Views\ManualPayment\Index.cshtml" />
     <Content Include="Views\AssociateTransfer\Index.cshtml" />
     <Content Include="Views\Receipt\Index.cshtml" />
+    <Content Include="Views\MembershipSingle\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

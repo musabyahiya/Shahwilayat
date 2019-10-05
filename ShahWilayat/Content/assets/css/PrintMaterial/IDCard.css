@@ -1,0 +1,103 @@
+﻿@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+body {
+}
+
+html, body {
+}
+
+@page {
+    size: A4 portrait;
+    width: 100%;
+    height: 100%;
+}
+
+
+body {
+    -webkit-print-color-adjust: exact !important;
+}
+
+
+table {
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+.container {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.MembershipNo {
+    position: absolute;
+    top: 47.5%;
+    left: 19%;
+    color: red;
+    font-size: 12.5px;
+    font-weight: 700;
+}
+
+.MemberName {
+    position: absolute;
+    top: 60%;
+    left: 6%;
+    color: red;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.MemberImage {
+    position: absolute;
+    top: 35.5%;
+    left: 32%;
+}
+
+
+.MemberAddress {
+    position: absolute;
+    top: 22%;
+    left: 57%;
+    font-size: 10px;
+    color: red;
+}
+
+.MemberCNIC {
+    position: absolute;
+    top: 9%;
+    left: 57%;
+    letter-spacing: 1px;
+    font-size: 11px;
+    color: red;
+}
+
+.MemberBloodGroup {
+    position: absolute;
+    top: 35.5%;
+    left: 88%;
+    font-size: 11px;
+    color: red;
+    /*  transform: translate(-50%, -50%);*/
+}
+
+.MemberMobile {
+    position: absolute;
+    top: 9%;
+    left: 80%;
+    font-size: 11px;
+    color: red;
+}
+
+.ValidityDate {
+    position: absolute;
+    top: 35.5%;
+    left: 57%;
+    font-size: 11px;
+    color: red;
+}
+
+span {
+    /*  font-size: 12px;*/
+    font-weight: 700;
+    font-family: "Arial";
+}
