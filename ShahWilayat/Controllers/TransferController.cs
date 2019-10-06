@@ -56,7 +56,25 @@ namespace ShahWilayat.Controllers
                 return e.ToString();
             }
         }
+        public JsonResult GetAllManagementCommittee()
+        {
+            try
+            {
+                var lst = context.ManagementCommittees.Where(x => x.IsActive == true)
+             .Select(x => new
+             {
+                 Id = x.ManagementCommitteeId,
+                 Value = x.FirstName + " " + x.LastName + " (" + x.ManagementCommitteeTenure.Description + ")"
 
+             }).ToList();
+
+                return Json(lst, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                return Json(e, JsonRequestBehavior.AllowGet);
+            }
+        }
         public string ActivateGoneMember(int MemberId, int PlotId)
         {
             try
@@ -129,6 +147,7 @@ namespace ShahWilayat.Controllers
                 obj.MCMDate = tr.MCMDate;
                 obj.NewspaperAdvDate = tr.NewspaperAdvDate;
                 obj.NewspaperName = tr.NewspaperName;
+                obj.ManagementCommitteeId = tr.ManagementCommitteeId;
                 obj.ModifiedDate = DateTime.Now;
                 obj.ModifiedBy = (int)HttpContext.Session["UserId"];
                 context.Entry(obj).State = EntityState.Modified;
@@ -257,7 +276,8 @@ namespace ShahWilayat.Controllers
                  x.NewspaperAdvDate,
                  x.NewspaperName,
                  x.NewspaperScan,
-                 x.IndemnityBondScan
+                 x.IndemnityBondScan,
+                 x.ManagementCommitteeId
 
              }).ToList();
 

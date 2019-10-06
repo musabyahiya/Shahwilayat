@@ -48,7 +48,6 @@
                                 <th>Plot</th>
                                 <th>Transfer Date</th>
                                 <th>Action</th>
-
                             </tr>
                         </thead>
                         <tbody class="TransferListing"></tbody>
@@ -184,88 +183,57 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body">s
                 <div class="form-body frmTransfer_upd">
-                    <h4 class="form-section"><i class="ft-user"></i> Personal Info</h4>
+                    <h4 class="form-section"><i class="la la-exchange"></i> Transfer Details</h4>
                     <hr>
                     <div class="row">
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="ddlMember_upd">Member</label>
-                                <select id="ddlMember_upd" class="form-control ddlMember_upd select2 mySelect" style="width:100%"></select>
+                                <select id="ddlMember_upd"  disabled class="form-control ddlMember_upd notrequired" style="width:100%"></select>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="ddlTitle_upd">Title</label>
-                                <select id="ddlTitle_upd" class="form-control ddlTitle_upd"></select>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="ddlRelation_upd">Relation</label>
-                                <select id="ddlRelation_upd" class="form-control ddlRelation_upd"></select>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="txtFirstName_upd">First Name</label>
-                                <input type="text" id="txtFirstName_upd" class="form-control txtFirstName_upd" placeholder="Enter first name">
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="txtLastName_upd">Last Name</label>
-                                <input type="text" id="txtLastName_upd" class="form-control txtLastName_upd" placeholder="Enter last name">
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="ddlMemberRelation_upd">Member Relation</label>
-                                <select id="ddlMemberRelation_upd" class="form-control ddlMemberRelation_upd"></select>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="txtFatherName_upd">Father Name</label>
-                                <input type="text" id="txtFatherName_upd" class="form-control txtFatherName_upd" placeholder="Enter father name">
+                                <label for="ddlPlot">Plot</label>
+                                <select id="ddlPlot" disabled class="form-control ddlPlot notrequired" style="width:100%"></select>
                             </div>
                         </div>
 
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="txtDob_upd">Date of Birth</label>
-                                <input type="text" id="txtDob_upd" class="form-control DatePicker txtDob_upd" placeholder="yyyy-mm-dd">
+                                <label for="txtTransferOrderNo_upd">Transfer Order No</label>
+                                <input type="text" id="txtTransferOrderNo_upd" class="form-control txtTransferOrderNo_upd" placeholder="Enter transfer no">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="txtBirthPlace_upd">Place of Birth</label>
-                                <input type="text" id="txtBirthPlace_upd" class="form-control txtBirthPlace_upd" placeholder="Enter birth place">
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="txtCellNo_upd">Cell No</label>
-                                <input type="text" id="txtCellNo_upd" class="form-control txtCellNo_upd numbericOnly" placeholder="Enter cell number">
+                                <label for="txtTransferDate_upd">Transfer Date</label>
+                                <input type="text" id="txtTransferDate_upd" class="form-control DatePicker txtTransferDate_upd" placeholder="yyyy-mm-dd">
                             </div>
                         </div>
 
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="txtCNIC_upd">CNIC</label>
-                                <input type="text" id="txtCNIC_upd" class="form-control txtCNIC_upd " placeholder="Enter CNIC without dash">
+                                <label for="txtMCMDate_upd">MCM Date</label>
+                                <input type="text" id="txtMCMDate_upd" class="form-control DatePicker txtMCMDate_upd" placeholder="yyyy-mm-dd">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="txtAddress_upd">Address</label>
-                                <textarea class="form-control txtAddress_upd" id="txtAddress_upd" rows="1" placeholder="Enter permanent address"></textarea>
+                                <label for="txtNewspaperName_upd">Newspaper Name </label>
+                                <input type="text" id="txtNewspaperName_upd" class="form-control txtNewspaperName_upd" placeholder="Enter newspaper name">
                             </div>
                         </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtNewspaperAdvDate_upd">Newspaper Advertisement Date</label>
+                                <input type="text" id="txtNewspaperAdvDate_upd" class="form-control DatePicker txtNewspaperAdvDate_upd" placeholder="yyyy-mm-dd">
+                            </div>
+                        </div>
+
                     </div>
-
-
                 </div>
             </div>
             <div class="modal-footer">

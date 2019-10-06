@@ -2,6 +2,7 @@
 GetAllTransfers();
 GetAllMembers();
 GetAllPlots();
+GetAllManagementCommittee();
 var objEditRow;
 
 var Transfer =
@@ -17,7 +18,8 @@ var Transfer =
     NewspaperScan: null,
     IndemnityBondScan: null,
     TransferOrderScan: null,
-    IsTransfered: true
+    IsTransfered: true,
+    ManagementCommitteeId: 0
 
 }]
 
@@ -94,8 +96,7 @@ function AllClickFunction() {
         Transfer[0].NewspaperScan = FileUpload('.txtNewspaperScan');
         Transfer[0].IndemnityBondScan = FileUpload('.txtIndemnityBondScan');
         Transfer[0].TransferOrderScan = FileUpload('.txtTransferOrderScan');
-        
-
+        Transfer[0].ManagementCommitteeId = $('.ddlManagementCommittee').val();
 
 
         CreateNewTransfer();
@@ -112,7 +113,7 @@ function AllClickFunction() {
         Transfer[0].MCMDate = $('.txtMCMDate_upd').val();
         Transfer[0].NewspaperAdvDate = formatDate($('.txtNewspaperAdvDate_upd').val());
         Transfer[0].NewspaperName = formatDate($('.txtNewspaperName_upd').val());
-
+        Transfer[0].ManagementCommitteeId = $('.ddlManagementCommittee_upd').val();
         UpdateTransfer();
     });
 
@@ -262,6 +263,10 @@ function EditTransfer(selector) {
     $('.ddlMember_upd').val(objEditRow.find('.hdnMemberId').val());
     $('.txtTransferDate_upd').val(objEditRow.find('.tdTransferDate').text());
     $('.txtTransferOrderNo_upd').val(objEditRow.find('.tdTransferOrderNo').text());
+    $('.txtMCMDate_upd').val(objEditRow.find('.hdnMCMDate').val());
+    $('.txtNewspaperAdvDate_upd').val(objEditRow.find('.hdnNewspaperAdvDate').val());
+    $('.txtNewspaperName_upd').val(objEditRow.find('.hdnNewspaperName').val());
+    $('.ddlManagementCommittee_upd').val(objEditRow.find('.hdnManagementCommitteeId').val());
 }
 
 
@@ -292,4 +297,37 @@ function PrintTransferOrder() {
         window.frames["frame1"].print();
         frame1.remove();
     }, 700);
+}
+
+function GetAllManagementCommittee() {
+
+    var request = $.ajax({
+        method: "POST",
+        url: "/Transfer/GetAllManagementCommittee",
+        data: {}
+    });
+    request.done(function (data) {
+
+        onGetAllManagementCommittee(data);
+
+
+    });
+    request.fail(function (jqXHR, Status) {
+        console.log(jqXHR.responseText);
+
+    });
+}
+
+function onGetAllManagementCommittee(data) {
+    try {
+
+
+        var res = data;
+        FillDropDownByReference('.ddlManagementCommittee', res);
+        FillDropDownByReference('.ddlManagementCommittee_upd', res);
+    }
+    catch (Err) {
+        console.log(Err);
+    }
+
 }
