@@ -89,6 +89,7 @@ namespace ShahWilayat.Controllers
                 obj.MembershipDate = member.MembershipDate;
                 obj.ReferenceNo = member.ReferenceNo;
                 obj.FolioNo = member.FolioNo;
+                obj.ManagementCommitteeId = member.ManagementCommitteeId;
                 obj.ModifiedDate = DateTime.Now;
                 obj.ModifiedBy = (int)HttpContext.Session["UserId"];
                 context.Entry(obj).State = EntityState.Modified;
@@ -100,7 +101,25 @@ namespace ShahWilayat.Controllers
                 return e.ToString();
             }
         }
+        public JsonResult GetAllManagementCommittee()
+        {
+            try
+            {
+                var lst = context.ManagementCommittees.Where(x => x.IsActive == true)
+             .Select(x => new
+             {
+                 Id = x.ManagementCommitteeId,
+                 Value = x.FirstName + " " + x.LastName + " (" + x.ManagementCommitteeTenure.Description + ")"
 
+             }).ToList();
+
+                return Json(lst, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                return Json(e, JsonRequestBehavior.AllowGet);
+            }
+        }
         public string DeleteMember(int MemberId)
         {
             try
@@ -294,6 +313,7 @@ namespace ShahWilayat.Controllers
                    x.MembershipDate,
                    x.ReferenceNo,
                    x.FolioNo,
+                   x.ManagementCommitteeId,
                    x.CnicBackFile,
                    x.CnicFrontFile,
                    x.ProfileFile

@@ -241,6 +241,12 @@
                                 <input type="text" id="txtFolioNo" class="form-control txtFolioNo" placeholder="Enter folio number">
                             </div>
                         </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ddlManagementCommittee">Created By</label>
+                                <select class="form-control ddlManagementCommittee"></select>
+                            </div>
+                        </div>
                     </div>
                     <h4 class="form-section"><i class="ft-paperclip"></i> Attachments</h4>
                     <hr>
@@ -473,6 +479,12 @@
                             <div class="form-group">
                                 <label for="txtFolioNo_upd">Folio No</label>
                                 <input type="text" id="txtFolioNo_upd" class="form-control txtFolioNo_upd" placeholder="Enter folio number">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ddlManagementCommittee_upd">Created By</label>
+                                <select class="form-control ddlManagementCommittee_upd"></select>
                             </div>
                         </div>
                     </div>
@@ -829,7 +841,7 @@
             </div>
             <div class="modal-body">
                 <div class="form-body frmMember">
-                    <div id="IDCard" >
+                    <div id="IDCard">
                         <div class="container">
                             <table>
                                 <tr>
@@ -865,7 +877,7 @@
                                 </tr>
                             </table>
                         </div>
-                     
+
                     </div>
 
                 </div>
@@ -922,6 +934,7 @@
             <input type="hidden" class="hdnCnicFrontFile" value="${CnicFrontFile}" />
             <input type="hidden" class="hdnCnicBackFile" value="${CnicBackFile}" />
             <input type="hidden" class="hdnProfileFile" value="${ProfileFile}" />
+            <input type="hidden" class="hdnManagementCommitteeId" value="${ManagementCommitteeId}" />
 
             <td align="center"></td>
             <td class="project-title tdMembershipNo">${MembershipNo}</td>
@@ -932,7 +945,7 @@
                 <div class="badge badge-success badge-pill">Active</div>
             </td>
             <td class="project-title" nowrap>
-                <a href="javascript:void(0)"  onclick="PrintIDCard()" data-toggle="tooltip" title="ID Card"><i class="la la-credit-card primary"></i></a>
+                <a href="javascript:void(0)" onclick="PrintIDCard()" data-toggle="tooltip" title="ID Card"><i class="la la-credit-card primary"></i></a>
                 <a href="javascript:void(0)" data-toggle="modal" data-target="#PrintMember" onclick="PrintIndividualMember(this)" data-toggle="tooltip" title="Print Profile"><i class="la la-user warning"></i></a>
                 <a href="javascript:void(0)" data-toggle="modal" data-target="#EditMember" onclick="EditMember(this)" data-toggle="tooltip" title="Edit Member"><i class="la la-pencil-square success"></i></a>
                 <a href="javascript:void(0)" data-toggle="modal" data-target="#EditAttachment" onclick="EditMember(this)" data-toggle="tooltip" title="Edit Attachment"><i class="ft-paperclip"></i></a>

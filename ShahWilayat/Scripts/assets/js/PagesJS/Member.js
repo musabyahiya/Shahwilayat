@@ -9,6 +9,8 @@ GetAllProvince();
 SearchTable();
 GetAllCurrentAllottee();
 AllChangeFunction();
+GetAllManagementCommittee();
+
 
 var ProvonceList;
 var CityList;
@@ -52,7 +54,8 @@ var Members =
     CnicFrontFile: null,
     CnicBackFile: null,
     ProfileFile: null,
-    IsMember: true
+    IsMember: true,
+    ManagementCommitteeId: 0
 
 }]
 
@@ -92,6 +95,7 @@ function AllClickFunction() {
         Members[0].MembershipDate = $('.txtMembershipDate').val();
         Members[0].ReferenceNo = $('.txtReferenceNo').val();
         Members[0].FolioNo = $('.txtFolioNo').val();
+        Members[0].ManagementCommitteeId = $('.ddlManagementCommittee').val();
         Members[0].CnicExpiryDate = $('.txtCnicExpiryDate').val()
         Members[0].CnicFrontFile = FileUpload('.txtCnicFrontFile');
         Members[0].CnicBackFile = FileUpload('.txtCnicBackFile');
@@ -139,6 +143,7 @@ function AllClickFunction() {
         Members[0].MembershipDate = $('.txtMembershipDate_upd').val();
         Members[0].ReferenceNo = $('.txtReferenceNo_upd').val();
         Members[0].FolioNo = $('.txtFolioNo_upd').val();
+        Members[0].ManagementCommitteeId = $('.ddlManagementCommittee_upd').val();
         Members[0].CnicExpiryDate = $('.txtCnicExpiryDate_upd').val()
 
 
@@ -695,7 +700,7 @@ function EditMember(selector) {
     $('.txtMembershipDate_upd').val(objEditRow.find('.hdnMembershipDate').val());
     $('.txtReferenceNo_upd').val(objEditRow.find('.hdnReferenceNo').val());
     $('.txtFolioNo_upd').val(objEditRow.find('.hdnFolioNo').val());
-
+    $('.ddlManagementCommittee_upd').val(objEditRow.find('.hdnManagementCommitteeId').val());
     // for attachments
 
     CnicFrontFile = objEditRow.find('.hdnCnicFrontFile').val();
@@ -743,4 +748,37 @@ function PrintIndividualMember(selector) {
         $(this).find('td').first().text(i);
         i++;
     });
+}
+
+function GetAllManagementCommittee() {
+
+    var request = $.ajax({
+        method: "POST",
+        url: "/Member/GetAllManagementCommittee",
+        data: {}
+    });
+    request.done(function (data) {
+
+        onGetAllManagementCommittee(data);
+
+
+    });
+    request.fail(function (jqXHR, Status) {
+        console.log(jqXHR.responseText);
+
+    });
+}
+
+function onGetAllManagementCommittee(data) {
+    try {
+
+
+        var res = data;
+        FillDropDownByReference('.ddlManagementCommittee', res);
+        FillDropDownByReference('.ddlManagementCommittee_upd', res);
+    }
+    catch (Err) {
+        console.log(Err);
+    }
+
 }
