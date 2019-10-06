@@ -2,7 +2,7 @@
 AllClickFunction();
 GetAllMembers();
 GetAllPlots();
-
+GetAllManagementCommittee();
 AllChangeFunction();
 
 
@@ -15,6 +15,7 @@ var Allotment =
     AllotmentId: 0,
     MemberId: 0,
     PlotId: 0,
+    ManagementCommitteeId: 0,
     AllotmentOrderNo: null,
     AllotmentOrderDate: null,
     ProvisionalAllotmentNo: null,
@@ -47,7 +48,7 @@ function AllClickFunction() {
         Allotment[0].ScanAllotmentOrder = FileUpload('.txtScanAllotmentOrder');
         Allotment[0].ScanProvisionalOrder = FileUpload('.txtScanProvisionalOrder');
         Allotment[0].ScanShareCertificate = FileUpload('.txtScanShareCertificate');
-
+        Allotment[0].ManagementCommitteeId = $('.ddlManagementCommittee').val();
 
         $('.trAllotment').each(function () {
             if (($(this).children('.tdAllotmentOrderNo').text() == Allotment[0].AllotmentOrderNo) &&
@@ -76,7 +77,7 @@ function AllClickFunction() {
         Allotment[0].ProvisionalAllotmentDate = formatDate($('.txtProvisionalAllotmentDate_upd').val());
         Allotment[0].ShareCertificateNo = $('.txtShareCertificateNo_upd').val();
         Allotment[0].ShareCertificateDate = formatDate($('.txtShareCertificateDate_upd').val());
-
+        Allotment[0].ManagementCommitteeId = $('.ddlManagementCommittee_upd').val();
 
         $('.trAllotment').each(function () {
             if (($(this).children('.tdAllotmentOrderNo').text() == Allotment[0].AllotmentOrderNo) && ($(this).children('.hdnAllotmentId').val() != Allotment[0].AllotmentId)) {
@@ -265,7 +266,7 @@ function EditAllotment(selector) {
     $('.txtShareCertificateDate_upd').val(objEditRow.find('.hdnShareCertificateDate').val());
     $('.txtProvisionalAllotmentNo_upd').val(objEditRow.find('.hdnProvisionalAllotmentNo').val());
     $('.txtProvisionalAllotmentDate_upd').val(objEditRow.find('.hdnProvisionalAllotmentDate').val());
-
+    $('.ddlManagementCommittee_upd').val(objEditRow.find('.hdnManagementCommitteeId').val());
 
 
 }
@@ -319,3 +320,36 @@ function onGetAllPlots(data) {
 }
 
 
+
+function GetAllManagementCommittee() {
+
+    var request = $.ajax({
+        method: "POST",
+        url: "/Allotment/GetAllManagementCommittee",
+        data: {}
+    });
+    request.done(function (data) {
+
+        onGetAllManagementCommittee(data);
+
+
+    });
+    request.fail(function (jqXHR, Status) {
+        console.log(jqXHR.responseText);
+
+    });
+}
+
+function onGetAllManagementCommittee(data) {
+    try {
+
+
+        var res = data;
+        FillDropDownByReference('.ddlManagementCommittee', res);
+        FillDropDownByReference('.ddlManagementCommittee_upd', res);
+    }
+    catch (Err) {
+        console.log(Err);
+    }
+
+}

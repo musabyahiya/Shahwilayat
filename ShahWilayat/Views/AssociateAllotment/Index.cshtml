@@ -129,7 +129,18 @@
                                 <input type="text" id="txtShareCertificateDate" class="form-control DatePicker txtShareCertificateDate " placeholder="yyyy-mm-dd">
                             </div>
                         </div>
-
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ddlManagementCommittee">Created By</label>
+                                <select class="form-control ddlManagementCommittee"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ddlManagementCommittee_upd">Created By</label>
+                                <select class="form-control ddlManagementCommittee_upd"></select>
+                            </div>
+                        </div>
                     </div>
 
                     <hr>
@@ -344,7 +355,7 @@
             <input type="hidden" class="hdnShareCertificateDate" value="${ToJavaScriptDate(ShareCertificateDate)}" />
             <input type="hidden" class="hdnProvisionalAllotmentNo" value="${ProvisionalAllotmentNo}" />
             <input type="hidden" class="hdnProvisionalAllotmentDate" value="${ToJavaScriptDate(ProvisionalAllotmentDate)}" />
-
+            <input type="hidden" class="hdnManagementCommitteeId" value="${ManagementCommitteeId}" />
             <td></td>
             <td class="project-title tdMember" nowrap>${FirstName + ' ' + LastName}</td>
             <td class="project-title tdPlot" nowrap>${Plot}</td>

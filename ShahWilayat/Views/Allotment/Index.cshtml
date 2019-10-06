@@ -126,6 +126,12 @@
                                 <input type="text" id="txtShareCertificateDate" class="form-control DatePicker txtShareCertificateDate " placeholder="yyyy-mm-dd">
                             </div>
                         </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ddlManagementCommittee">Created By</label>
+                                <select class="form-control ddlManagementCommittee"></select>
+                            </div>
+                        </div>
                     </div>
                     <h4 class="form-section"><i class="la la-paperclip"></i> Attachments</h4>
                     <hr>
@@ -244,7 +250,12 @@
                                 <input type="text" id="txtShareCertificateDate_upd" class="form-control DatePicker txtShareCertificateDate_upd " placeholder="yyyy-mm-dd">
                             </div>
                         </div>
-
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ddlManagementCommittee_upd">Created By</label>
+                                <select class="form-control ddlManagementCommittee_upd"></select>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
@@ -341,6 +352,7 @@
             <input type="hidden" class="hdnScanAllotmentOrder" value="${ScanAllotmentOrder}" />
             <input type="hidden" class="hdnScanProvisionalOrder" value="${ScanProvisionalOrder}" />
             <input type="hidden" class="hdnScanShareCertificate" value="${ScanShareCertificate}" />
+            <input type="hidden" class="hdnManagementCommitteeId" value="${ManagementCommitteeId}" />
             <td></td>
             <td class="project-title tdMember" nowrap>${FirstName + ' ' + LastName}</td>
             <td class="project-title tdPlot" nowrap>${Plot}</td>

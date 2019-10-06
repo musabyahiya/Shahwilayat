@@ -35,7 +35,25 @@ namespace ShahWilayat.Controllers
                 return e.ToString();
             }
         }
+        public JsonResult GetAllManagementCommittee()
+        {
+            try
+            {
+                var lst = context.ManagementCommittees.Where(x => x.IsActive == true)
+             .Select(x => new
+             {
+                 Id = x.ManagementCommitteeId,
+                 Value = x.FirstName + " " + x.LastName + " (" + x.ManagementCommitteeTenure.Description + ")"
 
+             }).ToList();
+
+                return Json(lst, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                return Json(e, JsonRequestBehavior.AllowGet);
+            }
+        }
         public string UpdateAttachment(Allotment ao)
         {
             try
@@ -66,14 +84,14 @@ namespace ShahWilayat.Controllers
             {
                 var obj = context.Allotments.FirstOrDefault(x => x.AllotmentId == ao.AllotmentId);
 
-                UpdatePlotAllottedStatus(obj.PlotId, "Update");
+              //  UpdatePlotAllottedStatus(obj.PlotId, "Update");
                 obj.AllotmentOrderNo = ao.AllotmentOrderNo;
                 obj.AllotmentOrderDate = ao.AllotmentOrderDate;
                 obj.ShareCertificateNo = ao.ShareCertificateNo;
                 obj.ShareCertificateDate = ao.ShareCertificateDate;
                 obj.ProvisionalAllotmentNo = ao.ProvisionalAllotmentNo;
                 obj.ProvisionalAllotmentDate = ao.ProvisionalAllotmentDate;
-
+                obj.ManagementCommitteeId = ao.ManagementCommitteeId;
                 obj.CreatedDate = DateTime.Now;
                 obj.CreatedBy = (int)HttpContext.Session["UserId"];
                 context.Entry(obj).State = EntityState.Modified;
@@ -182,7 +200,8 @@ namespace ShahWilayat.Controllers
                    x.ProvisionalAllotmentDate,
                    x.ScanAllotmentOrder,
                    x.ScanProvisionalOrder,
-                   x.ScanShareCertificate
+                   x.ScanShareCertificate,
+                   x.ManagementCommitteeId
                
 
                }).ToList();

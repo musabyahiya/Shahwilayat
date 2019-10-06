@@ -23,7 +23,6 @@ namespace ShahWilayat
         public Nullable<System.DateTime> ProvisionalAllotmentDate { get; set; }
         public string ShareCertificateNo { get; set; }
         public Nullable<System.DateTime> ShareCertificateDate { get; set; }
-        public Nullable<System.DateTime> AllotmentApplicationDate { get; set; }
         public bool IsActive { get; set; }
         public int CreatedBy { get; set; }
         public System.DateTime CreatedDate { get; set; }

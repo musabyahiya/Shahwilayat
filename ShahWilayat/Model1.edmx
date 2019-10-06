@@ -19,7 +19,6 @@
           <Property Name="ProvisionalAllotmentDate" Type="datetime" />
           <Property Name="ShareCertificateNo" Type="varchar" MaxLength="50" />
           <Property Name="ShareCertificateDate" Type="datetime" />
-          <Property Name="AllotmentApplicationDate" Type="datetime" />
           <Property Name="ScanAllotmentOrder" Type="text" />
           <Property Name="ScanProvisionalOrder" Type="text" />
           <Property Name="ScanShareCertificate" Type="text" />
@@ -2137,7 +2136,6 @@
           <Property Name="ProvisionalAllotmentDate" Type="DateTime" Precision="3" />
           <Property Name="ShareCertificateNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ShareCertificateDate" Type="DateTime" Precision="3" />
-          <Property Name="AllotmentApplicationDate" Type="DateTime" Precision="3" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="CreatedBy" Type="Int32" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
@@ -4451,7 +4449,6 @@
                 <ScalarProperty Name="ProvisionalAllotmentDate" ColumnName="ProvisionalAllotmentDate" />
                 <ScalarProperty Name="ShareCertificateNo" ColumnName="ShareCertificateNo" />
                 <ScalarProperty Name="ShareCertificateDate" ColumnName="ShareCertificateDate" />
-                <ScalarProperty Name="AllotmentApplicationDate" ColumnName="AllotmentApplicationDate" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
