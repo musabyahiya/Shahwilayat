@@ -42,6 +42,7 @@ namespace ShahWilayat
         public string Remarks { get; set; }
         public string ChequeNo { get; set; }
         public Nullable<System.DateTime> ChequeDate { get; set; }
+        public int ManagementCommitteeId { get; set; }
     
         public virtual Charge Charge { get; set; }
         public virtual Member Member { get; set; }
@@ -50,5 +51,6 @@ namespace ShahWilayat
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SocietyPaymentDetail> SocietyPaymentDetails { get; set; }
         public virtual PaymentType PaymentType { get; set; }
+        public virtual ManagementCommittee ManagementCommittee { get; set; }
     }
 }

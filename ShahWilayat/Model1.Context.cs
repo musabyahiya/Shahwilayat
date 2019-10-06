@@ -71,5 +71,8 @@ namespace ShahWilayat
         public virtual DbSet<PaymentType> PaymentTypes { get; set; }
         public virtual DbSet<AssociateTempTable> AssociateTempTables { get; set; }
         public virtual DbSet<AssociateTransfer> AssociateTransfers { get; set; }
+        public virtual DbSet<CommitteeDesignation> CommitteeDesignations { get; set; }
+        public virtual DbSet<ManagementCommittee> ManagementCommittees { get; set; }
+        public virtual DbSet<ManagementCommitteeTenure> ManagementCommitteeTenures { get; set; }
     }
 }

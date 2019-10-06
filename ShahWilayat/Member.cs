@@ -70,6 +70,7 @@ namespace ShahWilayat
         public System.DateTime CreatedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
+        public int ManagementCommitteeId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Allotment> Allotments { get; set; }
@@ -107,5 +108,6 @@ namespace ShahWilayat
         public virtual ICollection<TransferLog> TransferLogs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AssociateTransfer> AssociateTransfers { get; set; }
+        public virtual ManagementCommittee ManagementCommittee { get; set; }
     }
 }

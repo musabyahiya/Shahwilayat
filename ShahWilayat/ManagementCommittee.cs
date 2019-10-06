@@ -12,69 +12,44 @@ namespace ShahWilayat
     using System;
     using System.Collections.Generic;
     
-    public partial class Plot
+    public partial class ManagementCommittee
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Plot()
+        public ManagementCommittee()
         {
             this.Allotments = new HashSet<Allotment>();
             this.AssociateAllotments = new HashSet<AssociateAllotment>();
-            this.Installments = new HashSet<Installment>();
-            this.Invoices = new HashSet<Invoice>();
-            this.PaymentPlans = new HashSet<PaymentPlan>();
-            this.Payments = new HashSet<Payment>();
+            this.AssociateTransfers = new HashSet<AssociateTransfer>();
+            this.Members = new HashSet<Member>();
+            this.Plots = new HashSet<Plot>();
             this.SocietyPayments = new HashSet<SocietyPayment>();
             this.Transfers = new HashSet<Transfer>();
-            this.TransferLogs = new HashSet<TransferLog>();
-            this.AssociateTransfers = new HashSet<AssociateTransfer>();
         }
     
-        public int PlotId { get; set; }
-        public int PlotTypeId { get; set; }
-        public int PlotSubTypeId { get; set; }
-        public int PlotSizeId { get; set; }
-        public int UnitId { get; set; }
-        public string PlotNo { get; set; }
-        public bool HasExtraSize { get; set; }
-        public Nullable<double> ExtraSize { get; set; }
-        public bool HasAlotted { get; set; }
+        public int ManagementCommitteeId { get; set; }
+        public int CommitteeDesignationId { get; set; }
+        public int ManagementCommitteeTenureId { get; set; }
         public bool IsActive { get; set; }
         public int CreatedBy { get; set; }
         public System.DateTime CreatedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
-        public bool HasAssociateAlollted { get; set; }
-        public string SitePlan { get; set; }
-        public int ManagementCommitteeId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Allotment> Allotments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AssociateAllotment> AssociateAllotments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Installment> Installments { get; set; }
+        public virtual ICollection<AssociateTransfer> AssociateTransfers { get; set; }
+        public virtual CommitteeDesignation CommitteeDesignation { get; set; }
+        public virtual ManagementCommitteeTenure ManagementCommitteeTenure { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Invoice> Invoices { get; set; }
+        public virtual ICollection<Member> Members { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PaymentPlan> PaymentPlans { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Payment> Payments { get; set; }
-        public virtual Plot Plot1 { get; set; }
-        public virtual Plot Plot2 { get; set; }
-        public virtual Plot Plot11 { get; set; }
-        public virtual Plot Plot3 { get; set; }
-        public virtual PlotSize PlotSize { get; set; }
-        public virtual PlotSubType PlotSubType { get; set; }
-        public virtual PlotType PlotType { get; set; }
-        public virtual Unit Unit { get; set; }
+        public virtual ICollection<Plot> Plots { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SocietyPayment> SocietyPayments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Transfer> Transfers { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TransferLog> TransferLogs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AssociateTransfer> AssociateTransfers { get; set; }
-        public virtual ManagementCommittee ManagementCommittee { get; set; }
     }
 }

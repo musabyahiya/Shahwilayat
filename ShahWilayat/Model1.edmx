@@ -12,6 +12,7 @@
           <Property Name="AllotmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MemberId" Type="int" Nullable="false" />
           <Property Name="PlotId" Type="int" Nullable="false" />
+          <Property Name="ManagementCommitteeId" Type="int" Nullable="false" />
           <Property Name="AllotmentOrderNo" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="AllotmentOrderDate" Type="datetime" Nullable="false" />
           <Property Name="ProvisionalAllotmentNo" Type="varchar" MaxLength="50" />
@@ -35,6 +36,7 @@
           <Property Name="AssociateAllotmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MemberId" Type="int" Nullable="false" />
           <Property Name="PlotId" Type="int" Nullable="false" />
+          <Property Name="ManagementCommitteeId" Type="int" Nullable="false" />
           <Property Name="AllotmentOrderNo" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="AllotmentOrderDate" Type="datetime" Nullable="false" />
           <Property Name="ProvisionalAllotmentNo" Type="varchar" MaxLength="50" />
@@ -106,6 +108,7 @@
           <Property Name="AssociateTransferId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PlotId" Type="int" Nullable="false" />
           <Property Name="MemberId" Type="int" Nullable="false" />
+          <Property Name="ManagementCommitteeId" Type="int" Nullable="false" />
           <Property Name="TransferOrderNo" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="TransferDate" Type="datetime" Nullable="false" />
           <Property Name="MCMDate" Type="date" />
@@ -157,6 +160,18 @@
           <Property Name="CnicHistoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MemberId" Type="int" Nullable="false" />
           <Property Name="HistoryDetailsJson" Type="text" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CommitteeDesignation">
+          <Key>
+            <PropertyRef Name="CommitteeDesignationId" />
+          </Key>
+          <Property Name="CommitteeDesignationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CommitteeDesignation" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedBy" Type="int" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
@@ -260,6 +275,33 @@
           <Property Name="ModifiedBy" Type="int" />
           <Property Name="ModifiedDate" Type="datetime" />
         </EntityType>
+        <EntityType Name="ManagementCommittee">
+          <Key>
+            <PropertyRef Name="ManagementCommitteeId" />
+          </Key>
+          <Property Name="ManagementCommitteeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CommitteeDesignationId" Type="int" Nullable="false" />
+          <Property Name="ManagementCommitteeTenureId" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ManagementCommitteeTenure">
+          <Key>
+            <PropertyRef Name="ManagementCommitteeTenureId" />
+          </Key>
+          <Property Name="ManagementCommitteeTenureId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="EndDate" Type="datetime" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="100" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
         <EntityType Name="MemberRelation">
           <Key>
             <PropertyRef Name="MemberRelationId" />
@@ -283,6 +325,7 @@
           <Property Name="CountryId" Type="int" Nullable="false" />
           <Property Name="ProvinceId" Type="int" Nullable="false" />
           <Property Name="CityId" Type="int" Nullable="false" />
+          <Property Name="ManagementCommitteeId" Type="int" Nullable="false" />
           <Property Name="FirstName" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="LastName" Type="varchar" MaxLength="100" />
           <Property Name="FatherName" Type="varchar" MaxLength="100" Nullable="false" />
@@ -360,6 +403,9 @@
           <Property Name="Dob" Type="datetime" Nullable="false" />
           <Property Name="BirthPlace" Type="varchar" MaxLength="100" />
           <Property Name="CNIC" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Landline" Type="varchar" MaxLength="50" />
+          <Property Name="OffPhone" Type="varchar" MaxLength="50" />
           <Property Name="CellNo" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Address" Type="varchar" MaxLength="500" Nullable="false" />
           <Property Name="CnicFront" Type="text" />
@@ -499,6 +545,7 @@
           <Property Name="PlotSubTypeId" Type="int" Nullable="false" />
           <Property Name="PlotSizeId" Type="int" Nullable="false" />
           <Property Name="UnitId" Type="int" Nullable="false" />
+          <Property Name="ManagementCommitteeId" Type="int" Nullable="false" />
           <Property Name="PlotNo" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="HasExtraSize" Type="bit" Nullable="false" />
           <Property Name="ExtraSize" Type="float" />
@@ -648,6 +695,7 @@
           <Property Name="MemberId" Type="int" Nullable="false" />
           <Property Name="PlotId" Type="int" Nullable="false" />
           <Property Name="PaymentTypeId" Type="int" Nullable="false" />
+          <Property Name="ManagementCommitteeId" Type="int" Nullable="false" />
           <Property Name="PaymentDate" Type="datetime" Nullable="false" />
           <Property Name="PaymentAmount" Type="float" Nullable="false" />
           <Property Name="PaymentCategoryId" Type="int" Nullable="false" />
@@ -726,6 +774,7 @@
           <Property Name="TransferId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PlotId" Type="int" Nullable="false" />
           <Property Name="MemberId" Type="int" Nullable="false" />
+          <Property Name="ManagementCommitteeId" Type="int" Nullable="false" />
           <Property Name="TransferOrderNo" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="TransferDate" Type="datetime" Nullable="false" />
           <Property Name="MCMDate" Type="date" />
@@ -786,6 +835,18 @@
           <Property Name="ModifiedBy" Type="int" />
           <Property Name="ModifiedDate" Type="datetime" />
         </EntityType>
+        <Association Name="FK_Allotment_ManagementCommittee">
+          <End Role="ManagementCommittee" Type="Self.ManagementCommittee" Multiplicity="1" />
+          <End Role="Allotment" Type="Self.Allotment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ManagementCommittee">
+              <PropertyRef Name="ManagementCommitteeId" />
+            </Principal>
+            <Dependent Role="Allotment">
+              <PropertyRef Name="ManagementCommitteeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Allotment_Plot">
           <End Role="Plot" Type="Self.Plot" Multiplicity="1" />
           <End Role="Allotment" Type="Self.Allotment" Multiplicity="*" />
@@ -807,6 +868,18 @@
             </Principal>
             <Dependent Role="Allotment">
               <PropertyRef Name="MemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssociateAllotment_ManagementCommittee">
+          <End Role="ManagementCommittee" Type="Self.ManagementCommittee" Multiplicity="1" />
+          <End Role="AssociateAllotment" Type="Self.AssociateAllotment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ManagementCommittee">
+              <PropertyRef Name="ManagementCommitteeId" />
+            </Principal>
+            <Dependent Role="AssociateAllotment">
+              <PropertyRef Name="ManagementCommitteeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -915,6 +988,18 @@
             </Principal>
             <Dependent Role="AssociateMember">
               <PropertyRef Name="TitleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssociateTransfer_ManagementCommittee">
+          <End Role="ManagementCommittee" Type="Self.ManagementCommittee" Multiplicity="1" />
+          <End Role="AssociateTransfer" Type="Self.AssociateTransfer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ManagementCommittee">
+              <PropertyRef Name="ManagementCommitteeId" />
+            </Principal>
+            <Dependent Role="AssociateTransfer">
+              <PropertyRef Name="ManagementCommitteeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1050,6 +1135,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ManagementCommitee_CommitteeDesignation">
+          <End Role="CommitteeDesignation" Type="Self.CommitteeDesignation" Multiplicity="1" />
+          <End Role="ManagementCommittee" Type="Self.ManagementCommittee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CommitteeDesignation">
+              <PropertyRef Name="CommitteeDesignationId" />
+            </Principal>
+            <Dependent Role="ManagementCommittee">
+              <PropertyRef Name="CommitteeDesignationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ManagementCommitee_ManagementCommitteeTenure">
+          <End Role="ManagementCommitteeTenure" Type="Self.ManagementCommitteeTenure" Multiplicity="1" />
+          <End Role="ManagementCommittee" Type="Self.ManagementCommittee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ManagementCommitteeTenure">
+              <PropertyRef Name="ManagementCommitteeTenureId" />
+            </Principal>
+            <Dependent Role="ManagementCommittee">
+              <PropertyRef Name="ManagementCommitteeTenureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Members_City">
           <End Role="City" Type="Self.City" Multiplicity="1" />
           <End Role="Members" Type="Self.Members" Multiplicity="*" />
@@ -1083,6 +1192,18 @@
             </Principal>
             <Dependent Role="Members">
               <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Members_ManagementCommittee">
+          <End Role="ManagementCommittee" Type="Self.ManagementCommittee" Multiplicity="1" />
+          <End Role="Members" Type="Self.Members" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ManagementCommittee">
+              <PropertyRef Name="ManagementCommitteeId" />
+            </Principal>
+            <Dependent Role="Members">
+              <PropertyRef Name="ManagementCommitteeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1338,6 +1459,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Plot_ManagementCommitee">
+          <End Role="ManagementCommittee" Type="Self.ManagementCommittee" Multiplicity="1" />
+          <End Role="Plot" Type="Self.Plot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ManagementCommittee">
+              <PropertyRef Name="ManagementCommitteeId" />
+            </Principal>
+            <Dependent Role="Plot">
+              <PropertyRef Name="ManagementCommitteeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Plot_Plot">
           <End Role="Plot" Type="Self.Plot" Multiplicity="1" />
           <End Role="Plot1" Type="Self.Plot" Multiplicity="0..1" />
@@ -1446,6 +1579,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SocietyPayment_ManagementCommittee">
+          <End Role="ManagementCommittee" Type="Self.ManagementCommittee" Multiplicity="1" />
+          <End Role="SocietyPayment" Type="Self.SocietyPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ManagementCommittee">
+              <PropertyRef Name="ManagementCommitteeId" />
+            </Principal>
+            <Dependent Role="SocietyPayment">
+              <PropertyRef Name="ManagementCommitteeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SocietyPayment_Members">
           <End Role="Members" Type="Self.Members" Multiplicity="1" />
           <End Role="SocietyPayment" Type="Self.SocietyPayment" Multiplicity="*" />
@@ -1530,6 +1675,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Transfer_ManagementCommittee">
+          <End Role="ManagementCommittee" Type="Self.ManagementCommittee" Multiplicity="1" />
+          <End Role="Transfer" Type="Self.Transfer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ManagementCommittee">
+              <PropertyRef Name="ManagementCommitteeId" />
+            </Principal>
+            <Dependent Role="Transfer">
+              <PropertyRef Name="ManagementCommitteeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Transfer_Members">
           <End Role="Members" Type="Self.Members" Multiplicity="1" />
           <End Role="Transfer" Type="Self.Transfer" Multiplicity="*" />
@@ -1551,6 +1708,18 @@
             </Principal>
             <Dependent Role="Transfer">
               <PropertyRef Name="PlotId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transfer_Transfer">
+          <End Role="Transfer" Type="Self.Transfer" Multiplicity="1" />
+          <End Role="Transfer1" Type="Self.Transfer" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Transfer">
+              <PropertyRef Name="TransferId" />
+            </Principal>
+            <Dependent Role="Transfer1">
+              <PropertyRef Name="TransferId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1599,12 +1768,15 @@
           <EntitySet Name="Charges" EntityType="Self.Charges" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CnicHistory" EntityType="Self.CnicHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CommitteeDesignation" EntityType="Self.CommitteeDesignation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FileManagement" EntityType="Self.FileManagement" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InstallmentPlans" EntityType="Self.InstallmentPlans" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Installments" EntityType="Self.Installments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ManagementCommittee" EntityType="Self.ManagementCommittee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ManagementCommitteeTenure" EntityType="Self.ManagementCommitteeTenure" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MemberRelation" EntityType="Self.MemberRelation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Members" EntityType="Self.Members" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MembershipFee" EntityType="Self.MembershipFee" Schema="dbo" store:Type="Tables" />
@@ -1637,6 +1809,10 @@
           <EntitySet Name="TransferLogs" EntityType="Self.TransferLogs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Units" EntityType="Self.Units" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Allotment_ManagementCommittee" Association="Self.FK_Allotment_ManagementCommittee">
+            <End Role="ManagementCommittee" EntitySet="ManagementCommittee" />
+            <End Role="Allotment" EntitySet="Allotment" />
+          </AssociationSet>
           <AssociationSet Name="FK_Allotment_Plot" Association="Self.FK_Allotment_Plot">
             <End Role="Plot" EntitySet="Plot" />
             <End Role="Allotment" EntitySet="Allotment" />
@@ -1644,6 +1820,10 @@
           <AssociationSet Name="FK_AllotmentOrder_Members" Association="Self.FK_AllotmentOrder_Members">
             <End Role="Members" EntitySet="Members" />
             <End Role="Allotment" EntitySet="Allotment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssociateAllotment_ManagementCommittee" Association="Self.FK_AssociateAllotment_ManagementCommittee">
+            <End Role="ManagementCommittee" EntitySet="ManagementCommittee" />
+            <End Role="AssociateAllotment" EntitySet="AssociateAllotment" />
           </AssociationSet>
           <AssociationSet Name="FK_AssociateAllotment_Members" Association="Self.FK_AssociateAllotment_Members">
             <End Role="Members" EntitySet="Members" />
@@ -1680,6 +1860,10 @@
           <AssociationSet Name="FK_AssociateMember_Title" Association="Self.FK_AssociateMember_Title">
             <End Role="Title" EntitySet="Title" />
             <End Role="AssociateMember" EntitySet="AssociateMember" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssociateTransfer_ManagementCommittee" Association="Self.FK_AssociateTransfer_ManagementCommittee">
+            <End Role="ManagementCommittee" EntitySet="ManagementCommittee" />
+            <End Role="AssociateTransfer" EntitySet="AssociateTransfer" />
           </AssociationSet>
           <AssociationSet Name="FK_AssociateTransfer_Members" Association="Self.FK_AssociateTransfer_Members">
             <End Role="Members" EntitySet="Members" />
@@ -1725,6 +1909,14 @@
             <End Role="Plot" EntitySet="Plot" />
             <End Role="Invoice" EntitySet="Invoice" />
           </AssociationSet>
+          <AssociationSet Name="FK_ManagementCommitee_CommitteeDesignation" Association="Self.FK_ManagementCommitee_CommitteeDesignation">
+            <End Role="CommitteeDesignation" EntitySet="CommitteeDesignation" />
+            <End Role="ManagementCommittee" EntitySet="ManagementCommittee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ManagementCommitee_ManagementCommitteeTenure" Association="Self.FK_ManagementCommitee_ManagementCommitteeTenure">
+            <End Role="ManagementCommitteeTenure" EntitySet="ManagementCommitteeTenure" />
+            <End Role="ManagementCommittee" EntitySet="ManagementCommittee" />
+          </AssociationSet>
           <AssociationSet Name="FK_Members_City" Association="Self.FK_Members_City">
             <End Role="City" EntitySet="City" />
             <End Role="Members" EntitySet="Members" />
@@ -1735,6 +1927,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Members_Gender" Association="Self.FK_Members_Gender">
             <End Role="Gender" EntitySet="Gender" />
+            <End Role="Members" EntitySet="Members" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Members_ManagementCommittee" Association="Self.FK_Members_ManagementCommittee">
+            <End Role="ManagementCommittee" EntitySet="ManagementCommittee" />
             <End Role="Members" EntitySet="Members" />
           </AssociationSet>
           <AssociationSet Name="FK_Members_MemberRelation" Association="Self.FK_Members_MemberRelation">
@@ -1821,6 +2017,10 @@
             <End Role="Tenure" EntitySet="Tenure" />
             <End Role="PaymentSetup" EntitySet="PaymentSetup" />
           </AssociationSet>
+          <AssociationSet Name="FK_Plot_ManagementCommitee" Association="Self.FK_Plot_ManagementCommitee">
+            <End Role="ManagementCommittee" EntitySet="ManagementCommittee" />
+            <End Role="Plot" EntitySet="Plot" />
+          </AssociationSet>
           <AssociationSet Name="FK_Plot_Plot" Association="Self.FK_Plot_Plot">
             <End Role="Plot" EntitySet="Plot" />
             <End Role="Plot1" EntitySet="Plot" />
@@ -1857,6 +2057,10 @@
             <End Role="MenuItems" EntitySet="MenuItems" />
             <End Role="RoleMenuMapping" EntitySet="RoleMenuMapping" />
           </AssociationSet>
+          <AssociationSet Name="FK_SocietyPayment_ManagementCommittee" Association="Self.FK_SocietyPayment_ManagementCommittee">
+            <End Role="ManagementCommittee" EntitySet="ManagementCommittee" />
+            <End Role="SocietyPayment" EntitySet="SocietyPayment" />
+          </AssociationSet>
           <AssociationSet Name="FK_SocietyPayment_Members" Association="Self.FK_SocietyPayment_Members">
             <End Role="Members" EntitySet="Members" />
             <End Role="SocietyPayment" EntitySet="SocietyPayment" />
@@ -1885,6 +2089,10 @@
             <End Role="PaymentCategory" EntitySet="PaymentCategory" />
             <End Role="Tenure" EntitySet="Tenure" />
           </AssociationSet>
+          <AssociationSet Name="FK_Transfer_ManagementCommittee" Association="Self.FK_Transfer_ManagementCommittee">
+            <End Role="ManagementCommittee" EntitySet="ManagementCommittee" />
+            <End Role="Transfer" EntitySet="Transfer" />
+          </AssociationSet>
           <AssociationSet Name="FK_Transfer_Members" Association="Self.FK_Transfer_Members">
             <End Role="Members" EntitySet="Members" />
             <End Role="Transfer" EntitySet="Transfer" />
@@ -1892,6 +2100,10 @@
           <AssociationSet Name="FK_Transfer_Plot" Association="Self.FK_Transfer_Plot">
             <End Role="Plot" EntitySet="Plot" />
             <End Role="Transfer" EntitySet="Transfer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transfer_Transfer" Association="Self.FK_Transfer_Transfer">
+            <End Role="Transfer" EntitySet="Transfer" />
+            <End Role="Transfer1" EntitySet="Transfer" />
           </AssociationSet>
           <AssociationSet Name="FK_TransferLogs_Members" Association="Self.FK_TransferLogs_Members">
             <End Role="Members" EntitySet="Members" />
@@ -1934,6 +2146,8 @@
           <Property Name="ScanAllotmentOrder" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="ScanProvisionalOrder" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="ScanShareCertificate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ManagementCommitteeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ManagementCommittee" Relationship="ShahWilayatModel.FK_Allotment_ManagementCommittee" FromRole="Allotment" ToRole="ManagementCommittee" />
         </EntityType>
         <EntityType Name="AssociateAllotment">
           <Key>
@@ -1958,6 +2172,8 @@
           <Property Name="ScanAllotmentOrder" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="ScanProvisionalOrder" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="ScanShareCertificate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ManagementCommitteeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ManagementCommittee" Relationship="ShahWilayatModel.FK_AssociateAllotment_ManagementCommittee" FromRole="AssociateAllotment" ToRole="ManagementCommittee" />
         </EntityType>
         <EntityType Name="AssociateMember">
           <Key>
@@ -2247,6 +2463,8 @@
           <NavigationProperty Name="Transfers" Relationship="Self.FK_Transfer_Members" FromRole="Members" ToRole="Transfer" />
           <NavigationProperty Name="TransferLogs" Relationship="Self.FK_TransferLogs_Members" FromRole="Members" ToRole="TransferLogs" />
           <NavigationProperty Name="AssociateTransfers" Relationship="ShahWilayatModel.FK_AssociateTransfer_Members" FromRole="Member" ToRole="AssociateTransfer" />
+          <Property Name="ManagementCommitteeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ManagementCommittee" Relationship="ShahWilayatModel.FK_Members_ManagementCommittee" FromRole="Member" ToRole="ManagementCommittee" />
         </EntityType>
         <EntityType Name="MembershipFee">
           <Key>
@@ -2313,6 +2531,9 @@
           <NavigationProperty Name="Member" Relationship="Self.FK_Nominee_Members" FromRole="Nominee" ToRole="Members" />
           <NavigationProperty Name="Relation" Relationship="Self.FK_Nominee_Relation" FromRole="Nominee" ToRole="Relation" />
           <NavigationProperty Name="Title" Relationship="Self.FK_Nominee_Title" FromRole="Nominee" ToRole="Title" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Landline" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OffPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="PaymentCategory">
           <Key>
@@ -2470,6 +2691,8 @@
           <Property Name="HasAssociateAlollted" Type="Boolean" Nullable="false" />
           <Property Name="SitePlan" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="AssociateTransfers" Relationship="ShahWilayatModel.FK_AssociateTransfer_Plot" FromRole="Plot" ToRole="AssociateTransfer" />
+          <Property Name="ManagementCommitteeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ManagementCommittee" Relationship="ShahWilayatModel.FK_Plot_ManagementCommitee" FromRole="Plot" ToRole="ManagementCommittee" />
         </EntityType>
         <EntityType Name="PlotCategory">
           <Key>
@@ -2643,6 +2866,8 @@
           <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="ChequeNo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ChequeDate" Type="DateTime" Precision="3" />
+          <Property Name="ManagementCommitteeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ManagementCommittee" Relationship="ShahWilayatModel.FK_SocietyPayment_ManagementCommittee" FromRole="SocietyPayment" ToRole="ManagementCommittee" />
         </EntityType>
         <EntityType Name="SocietyPaymentDetail">
           <Key>
@@ -2732,6 +2957,10 @@
           <NavigationProperty Name="Plot" Relationship="Self.FK_Transfer_Plot" FromRole="Transfer" ToRole="Plot" />
           <NavigationProperty Name="TransferLogs" Relationship="Self.FK_TransferLogs_Transfer" FromRole="Transfer" ToRole="TransferLogs" />
           <Property Name="SaleAgreementDate" Type="DateTime" Precision="3" />
+          <Property Name="ManagementCommitteeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ManagementCommittee" Relationship="ShahWilayatModel.FK_Transfer_ManagementCommittee" FromRole="Transfer" ToRole="ManagementCommittee" />
+          <NavigationProperty Name="Transfer1" Relationship="ShahWilayatModel.FK_Transfer_Transfer" FromRole="Transfer" ToRole="Transfer1" />
+          <NavigationProperty Name="Transfer2" Relationship="ShahWilayatModel.FK_Transfer_Transfer" FromRole="Transfer1" ToRole="Transfer" />
         </EntityType>
         <EntityType Name="TransferLog">
           <Key>
@@ -3897,6 +4126,49 @@
             <End Role="Plot" EntitySet="Plots" />
             <End Role="AssociateTransfer" EntitySet="AssociateTransfers" />
           </AssociationSet>
+          <EntitySet Name="CommitteeDesignations" EntityType="ShahWilayatModel.CommitteeDesignation" />
+          <EntitySet Name="ManagementCommittees" EntityType="ShahWilayatModel.ManagementCommittee" />
+          <EntitySet Name="ManagementCommitteeTenures" EntityType="ShahWilayatModel.ManagementCommitteeTenure" />
+          <AssociationSet Name="FK_Allotment_ManagementCommittee" Association="ShahWilayatModel.FK_Allotment_ManagementCommittee">
+            <End Role="ManagementCommittee" EntitySet="ManagementCommittees" />
+            <End Role="Allotment" EntitySet="Allotments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssociateAllotment_ManagementCommittee" Association="ShahWilayatModel.FK_AssociateAllotment_ManagementCommittee">
+            <End Role="ManagementCommittee" EntitySet="ManagementCommittees" />
+            <End Role="AssociateAllotment" EntitySet="AssociateAllotments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssociateTransfer_ManagementCommittee" Association="ShahWilayatModel.FK_AssociateTransfer_ManagementCommittee">
+            <End Role="ManagementCommittee" EntitySet="ManagementCommittees" />
+            <End Role="AssociateTransfer" EntitySet="AssociateTransfers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ManagementCommitee_CommitteeDesignation" Association="ShahWilayatModel.FK_ManagementCommitee_CommitteeDesignation">
+            <End Role="CommitteeDesignation" EntitySet="CommitteeDesignations" />
+            <End Role="ManagementCommittee" EntitySet="ManagementCommittees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ManagementCommitee_ManagementCommitteeTenure" Association="ShahWilayatModel.FK_ManagementCommitee_ManagementCommitteeTenure">
+            <End Role="ManagementCommitteeTenure" EntitySet="ManagementCommitteeTenures" />
+            <End Role="ManagementCommittee" EntitySet="ManagementCommittees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Members_ManagementCommittee" Association="ShahWilayatModel.FK_Members_ManagementCommittee">
+            <End Role="ManagementCommittee" EntitySet="ManagementCommittees" />
+            <End Role="Member" EntitySet="Members" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plot_ManagementCommitee" Association="ShahWilayatModel.FK_Plot_ManagementCommitee">
+            <End Role="ManagementCommittee" EntitySet="ManagementCommittees" />
+            <End Role="Plot" EntitySet="Plots" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SocietyPayment_ManagementCommittee" Association="ShahWilayatModel.FK_SocietyPayment_ManagementCommittee">
+            <End Role="ManagementCommittee" EntitySet="ManagementCommittees" />
+            <End Role="SocietyPayment" EntitySet="SocietyPayments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transfer_ManagementCommittee" Association="ShahWilayatModel.FK_Transfer_ManagementCommittee">
+            <End Role="ManagementCommittee" EntitySet="ManagementCommittees" />
+            <End Role="Transfer" EntitySet="Transfers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transfer_Transfer" Association="ShahWilayatModel.FK_Transfer_Transfer">
+            <End Role="Transfer" EntitySet="Transfers" />
+            <End Role="Transfer1" EntitySet="Transfers" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="PaymentType">
           <Key>
@@ -3956,6 +4228,8 @@
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Member" Relationship="ShahWilayatModel.FK_AssociateTransfer_Members" FromRole="AssociateTransfer" ToRole="Member" />
           <NavigationProperty Name="Plot" Relationship="ShahWilayatModel.FK_AssociateTransfer_Plot" FromRole="AssociateTransfer" ToRole="Plot" />
+          <Property Name="ManagementCommitteeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ManagementCommittee" Relationship="ShahWilayatModel.FK_AssociateTransfer_ManagementCommittee" FromRole="AssociateTransfer" ToRole="ManagementCommittee" />
         </EntityType>
         <Association Name="FK_AssociateTransfer_Members">
           <End Type="ShahWilayatModel.Member" Role="Member" Multiplicity="1" />
@@ -3981,6 +4255,176 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="CommitteeDesignation">
+          <Key>
+            <PropertyRef Name="CommitteeDesignationId" />
+          </Key>
+          <Property Name="CommitteeDesignationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CommitteeDesignation1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ManagementCommittees" Relationship="ShahWilayatModel.FK_ManagementCommitee_CommitteeDesignation" FromRole="CommitteeDesignation" ToRole="ManagementCommittee" />
+        </EntityType>
+        <EntityType Name="ManagementCommittee">
+          <Key>
+            <PropertyRef Name="ManagementCommitteeId" />
+          </Key>
+          <Property Name="ManagementCommitteeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CommitteeDesignationId" Type="Int32" Nullable="false" />
+          <Property Name="ManagementCommitteeTenureId" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Allotments" Relationship="ShahWilayatModel.FK_Allotment_ManagementCommittee" FromRole="ManagementCommittee" ToRole="Allotment" />
+          <NavigationProperty Name="AssociateAllotments" Relationship="ShahWilayatModel.FK_AssociateAllotment_ManagementCommittee" FromRole="ManagementCommittee" ToRole="AssociateAllotment" />
+          <NavigationProperty Name="AssociateTransfers" Relationship="ShahWilayatModel.FK_AssociateTransfer_ManagementCommittee" FromRole="ManagementCommittee" ToRole="AssociateTransfer" />
+          <NavigationProperty Name="CommitteeDesignation" Relationship="ShahWilayatModel.FK_ManagementCommitee_CommitteeDesignation" FromRole="ManagementCommittee" ToRole="CommitteeDesignation" />
+          <NavigationProperty Name="ManagementCommitteeTenure" Relationship="ShahWilayatModel.FK_ManagementCommitee_ManagementCommitteeTenure" FromRole="ManagementCommittee" ToRole="ManagementCommitteeTenure" />
+          <NavigationProperty Name="Members" Relationship="ShahWilayatModel.FK_Members_ManagementCommittee" FromRole="ManagementCommittee" ToRole="Member" />
+          <NavigationProperty Name="Plots" Relationship="ShahWilayatModel.FK_Plot_ManagementCommitee" FromRole="ManagementCommittee" ToRole="Plot" />
+          <NavigationProperty Name="SocietyPayments" Relationship="ShahWilayatModel.FK_SocietyPayment_ManagementCommittee" FromRole="ManagementCommittee" ToRole="SocietyPayment" />
+          <NavigationProperty Name="Transfers" Relationship="ShahWilayatModel.FK_Transfer_ManagementCommittee" FromRole="ManagementCommittee" ToRole="Transfer" />
+        </EntityType>
+        <EntityType Name="ManagementCommitteeTenure">
+          <Key>
+            <PropertyRef Name="ManagementCommitteeTenureId" />
+          </Key>
+          <Property Name="ManagementCommitteeTenureId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ManagementCommittees" Relationship="ShahWilayatModel.FK_ManagementCommitee_ManagementCommitteeTenure" FromRole="ManagementCommitteeTenure" ToRole="ManagementCommittee" />
+        </EntityType>
+        <Association Name="FK_Allotment_ManagementCommittee">
+          <End Type="ShahWilayatModel.ManagementCommittee" Role="ManagementCommittee" Multiplicity="1" />
+          <End Type="ShahWilayatModel.Allotment" Role="Allotment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ManagementCommittee">
+              <PropertyRef Name="ManagementCommitteeId" />
+            </Principal>
+            <Dependent Role="Allotment">
+              <PropertyRef Name="ManagementCommitteeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssociateAllotment_ManagementCommittee">
+          <End Type="ShahWilayatModel.ManagementCommittee" Role="ManagementCommittee" Multiplicity="1" />
+          <End Type="ShahWilayatModel.AssociateAllotment" Role="AssociateAllotment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ManagementCommittee">
+              <PropertyRef Name="ManagementCommitteeId" />
+            </Principal>
+            <Dependent Role="AssociateAllotment">
+              <PropertyRef Name="ManagementCommitteeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssociateTransfer_ManagementCommittee">
+          <End Type="ShahWilayatModel.ManagementCommittee" Role="ManagementCommittee" Multiplicity="1" />
+          <End Type="ShahWilayatModel.AssociateTransfer" Role="AssociateTransfer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ManagementCommittee">
+              <PropertyRef Name="ManagementCommitteeId" />
+            </Principal>
+            <Dependent Role="AssociateTransfer">
+              <PropertyRef Name="ManagementCommitteeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ManagementCommitee_CommitteeDesignation">
+          <End Type="ShahWilayatModel.CommitteeDesignation" Role="CommitteeDesignation" Multiplicity="1" />
+          <End Type="ShahWilayatModel.ManagementCommittee" Role="ManagementCommittee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CommitteeDesignation">
+              <PropertyRef Name="CommitteeDesignationId" />
+            </Principal>
+            <Dependent Role="ManagementCommittee">
+              <PropertyRef Name="CommitteeDesignationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ManagementCommitee_ManagementCommitteeTenure">
+          <End Type="ShahWilayatModel.ManagementCommitteeTenure" Role="ManagementCommitteeTenure" Multiplicity="1" />
+          <End Type="ShahWilayatModel.ManagementCommittee" Role="ManagementCommittee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ManagementCommitteeTenure">
+              <PropertyRef Name="ManagementCommitteeTenureId" />
+            </Principal>
+            <Dependent Role="ManagementCommittee">
+              <PropertyRef Name="ManagementCommitteeTenureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Members_ManagementCommittee">
+          <End Type="ShahWilayatModel.ManagementCommittee" Role="ManagementCommittee" Multiplicity="1" />
+          <End Type="ShahWilayatModel.Member" Role="Member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ManagementCommittee">
+              <PropertyRef Name="ManagementCommitteeId" />
+            </Principal>
+            <Dependent Role="Member">
+              <PropertyRef Name="ManagementCommitteeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plot_ManagementCommitee">
+          <End Type="ShahWilayatModel.ManagementCommittee" Role="ManagementCommittee" Multiplicity="1" />
+          <End Type="ShahWilayatModel.Plot" Role="Plot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ManagementCommittee">
+              <PropertyRef Name="ManagementCommitteeId" />
+            </Principal>
+            <Dependent Role="Plot">
+              <PropertyRef Name="ManagementCommitteeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SocietyPayment_ManagementCommittee">
+          <End Type="ShahWilayatModel.ManagementCommittee" Role="ManagementCommittee" Multiplicity="1" />
+          <End Type="ShahWilayatModel.SocietyPayment" Role="SocietyPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ManagementCommittee">
+              <PropertyRef Name="ManagementCommitteeId" />
+            </Principal>
+            <Dependent Role="SocietyPayment">
+              <PropertyRef Name="ManagementCommitteeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transfer_ManagementCommittee">
+          <End Type="ShahWilayatModel.ManagementCommittee" Role="ManagementCommittee" Multiplicity="1" />
+          <End Type="ShahWilayatModel.Transfer" Role="Transfer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ManagementCommittee">
+              <PropertyRef Name="ManagementCommitteeId" />
+            </Principal>
+            <Dependent Role="Transfer">
+              <PropertyRef Name="ManagementCommitteeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transfer_Transfer">
+          <End Type="ShahWilayatModel.Transfer" Role="Transfer" Multiplicity="1" />
+          <End Type="ShahWilayatModel.Transfer" Role="Transfer1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Transfer">
+              <PropertyRef Name="TransferId" />
+            </Principal>
+            <Dependent Role="Transfer1">
+              <PropertyRef Name="TransferId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3990,6 +4434,7 @@
           <EntitySetMapping Name="Allotments">
             <EntityTypeMapping TypeName="ShahWilayatModel.Allotment">
               <MappingFragment StoreEntitySet="Allotment">
+                <ScalarProperty Name="ManagementCommitteeId" ColumnName="ManagementCommitteeId" />
                 <ScalarProperty Name="ScanShareCertificate" ColumnName="ScanShareCertificate" />
                 <ScalarProperty Name="ScanProvisionalOrder" ColumnName="ScanProvisionalOrder" />
                 <ScalarProperty Name="ScanAllotmentOrder" ColumnName="ScanAllotmentOrder" />
@@ -4014,6 +4459,7 @@
           <EntitySetMapping Name="AssociateAllotments">
             <EntityTypeMapping TypeName="ShahWilayatModel.AssociateAllotment">
               <MappingFragment StoreEntitySet="AssociateAllotment">
+                <ScalarProperty Name="ManagementCommitteeId" ColumnName="ManagementCommitteeId" />
                 <ScalarProperty Name="ScanShareCertificate" ColumnName="ScanShareCertificate" />
                 <ScalarProperty Name="ScanProvisionalOrder" ColumnName="ScanProvisionalOrder" />
                 <ScalarProperty Name="ScanAllotmentOrder" ColumnName="ScanAllotmentOrder" />
@@ -4238,6 +4684,7 @@
           <EntitySetMapping Name="Members">
             <EntityTypeMapping TypeName="ShahWilayatModel.Member">
               <MappingFragment StoreEntitySet="Members">
+                <ScalarProperty Name="ManagementCommitteeId" ColumnName="ManagementCommitteeId" />
                 <ScalarProperty Name="MemberId" ColumnName="MemberId" />
                 <ScalarProperty Name="TitleId" ColumnName="TitleId" />
                 <ScalarProperty Name="MemberRelationId" ColumnName="MemberRelationId" />
@@ -4314,6 +4761,9 @@
           <EntitySetMapping Name="Nominees">
             <EntityTypeMapping TypeName="ShahWilayatModel.Nominee">
               <MappingFragment StoreEntitySet="Nominee">
+                <ScalarProperty Name="OffPhone" ColumnName="OffPhone" />
+                <ScalarProperty Name="Landline" ColumnName="Landline" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="NomineeId" ColumnName="NomineeId" />
                 <ScalarProperty Name="MemberId" ColumnName="MemberId" />
                 <ScalarProperty Name="TitleId" ColumnName="TitleId" />
@@ -4454,6 +4904,7 @@
           <EntitySetMapping Name="Plots">
             <EntityTypeMapping TypeName="ShahWilayatModel.Plot">
               <MappingFragment StoreEntitySet="Plot">
+                <ScalarProperty Name="ManagementCommitteeId" ColumnName="ManagementCommitteeId" />
                 <ScalarProperty Name="SitePlan" ColumnName="SitePlan" />
                 <ScalarProperty Name="HasAssociateAlollted" ColumnName="HasAssociateAlollted" />
                 <ScalarProperty Name="PlotId" ColumnName="PlotId" />
@@ -4613,6 +5064,7 @@
           <EntitySetMapping Name="SocietyPayments">
             <EntityTypeMapping TypeName="ShahWilayatModel.SocietyPayment">
               <MappingFragment StoreEntitySet="SocietyPayment">
+                <ScalarProperty Name="ManagementCommitteeId" ColumnName="ManagementCommitteeId" />
                 <ScalarProperty Name="ChequeDate" ColumnName="ChequeDate" />
                 <ScalarProperty Name="ChequeNo" ColumnName="ChequeNo" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
@@ -4699,6 +5151,7 @@
           <EntitySetMapping Name="Transfers">
             <EntityTypeMapping TypeName="ShahWilayatModel.Transfer">
               <MappingFragment StoreEntitySet="Transfer">
+                <ScalarProperty Name="ManagementCommitteeId" ColumnName="ManagementCommitteeId" />
                 <ScalarProperty Name="SaleAgreementDate" ColumnName="SaleAgreementDate" />
                 <ScalarProperty Name="TransferId" ColumnName="TransferId" />
                 <ScalarProperty Name="PlotId" ColumnName="PlotId" />
@@ -4793,6 +5246,7 @@
           <EntitySetMapping Name="AssociateTransfers">
             <EntityTypeMapping TypeName="ShahWilayatModel.AssociateTransfer">
               <MappingFragment StoreEntitySet="AssociateTransfer">
+                <ScalarProperty Name="ManagementCommitteeId" ColumnName="ManagementCommitteeId" />
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
                 <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
@@ -4811,6 +5265,48 @@
                 <ScalarProperty Name="MemberId" ColumnName="MemberId" />
                 <ScalarProperty Name="PlotId" ColumnName="PlotId" />
                 <ScalarProperty Name="AssociateTransferId" ColumnName="AssociateTransferId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CommitteeDesignations">
+            <EntityTypeMapping TypeName="ShahWilayatModel.CommitteeDesignation">
+              <MappingFragment StoreEntitySet="CommitteeDesignation">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CommitteeDesignation1" ColumnName="CommitteeDesignation" />
+                <ScalarProperty Name="CommitteeDesignationId" ColumnName="CommitteeDesignationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ManagementCommittees">
+            <EntityTypeMapping TypeName="ShahWilayatModel.ManagementCommittee">
+              <MappingFragment StoreEntitySet="ManagementCommittee">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ManagementCommitteeTenureId" ColumnName="ManagementCommitteeTenureId" />
+                <ScalarProperty Name="CommitteeDesignationId" ColumnName="CommitteeDesignationId" />
+                <ScalarProperty Name="ManagementCommitteeId" ColumnName="ManagementCommitteeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ManagementCommitteeTenures">
+            <EntityTypeMapping TypeName="ShahWilayatModel.ManagementCommitteeTenure">
+              <MappingFragment StoreEntitySet="ManagementCommitteeTenure">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="ManagementCommitteeTenureId" ColumnName="ManagementCommitteeTenureId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

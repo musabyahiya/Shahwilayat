@@ -120,6 +120,19 @@
         <EntityTypeShape EntityType="ShahWilayatModel.AssociateTransfer" Width="1.5" PointX="17.25" PointY="20.25" />
         <AssociationConnector Association="ShahWilayatModel.FK_AssociateTransfer_Members" />
         <AssociationConnector Association="ShahWilayatModel.FK_AssociateTransfer_Plot" />
+        <EntityTypeShape EntityType="ShahWilayatModel.CommitteeDesignation" Width="1.5" PointX="12.375" PointY="1.875" />
+        <EntityTypeShape EntityType="ShahWilayatModel.ManagementCommittee" Width="1.5" PointX="14.625" PointY="1" />
+        <EntityTypeShape EntityType="ShahWilayatModel.ManagementCommitteeTenure" Width="1.5" PointX="12.375" PointY="55.75" />
+        <AssociationConnector Association="ShahWilayatModel.FK_Allotment_ManagementCommittee" />
+        <AssociationConnector Association="ShahWilayatModel.FK_AssociateAllotment_ManagementCommittee" />
+        <AssociationConnector Association="ShahWilayatModel.FK_AssociateTransfer_ManagementCommittee" />
+        <AssociationConnector Association="ShahWilayatModel.FK_ManagementCommitee_CommitteeDesignation" />
+        <AssociationConnector Association="ShahWilayatModel.FK_ManagementCommitee_ManagementCommitteeTenure" />
+        <AssociationConnector Association="ShahWilayatModel.FK_Members_ManagementCommittee" />
+        <AssociationConnector Association="ShahWilayatModel.FK_Plot_ManagementCommitee" />
+        <AssociationConnector Association="ShahWilayatModel.FK_SocietyPayment_ManagementCommittee" />
+        <AssociationConnector Association="ShahWilayatModel.FK_Transfer_ManagementCommittee" />
+        <AssociationConnector Association="ShahWilayatModel.FK_Transfer_Transfer" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

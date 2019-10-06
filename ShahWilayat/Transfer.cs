@@ -38,10 +38,14 @@ namespace ShahWilayat
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public Nullable<System.DateTime> SaleAgreementDate { get; set; }
+        public int ManagementCommitteeId { get; set; }
     
         public virtual Member Member { get; set; }
         public virtual Plot Plot { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TransferLog> TransferLogs { get; set; }
+        public virtual ManagementCommittee ManagementCommittee { get; set; }
+        public virtual Transfer Transfer1 { get; set; }
+        public virtual Transfer Transfer2 { get; set; }
     }
 }

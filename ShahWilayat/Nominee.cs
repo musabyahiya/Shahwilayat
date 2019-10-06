@@ -40,6 +40,9 @@ namespace ShahWilayat
         public System.DateTime CreatedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
+        public string Email { get; set; }
+        public string Landline { get; set; }
+        public string OffPhone { get; set; }
     
         public virtual MemberRelation MemberRelation { get; set; }
         public virtual Member Member { get; set; }

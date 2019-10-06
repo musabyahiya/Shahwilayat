@@ -31,8 +31,10 @@ namespace ShahWilayat
         public string ScanAllotmentOrder { get; set; }
         public string ScanProvisionalOrder { get; set; }
         public string ScanShareCertificate { get; set; }
+        public int ManagementCommitteeId { get; set; }
     
         public virtual Member Member { get; set; }
         public virtual Plot Plot { get; set; }
+        public virtual ManagementCommittee ManagementCommittee { get; set; }
     }
 }
