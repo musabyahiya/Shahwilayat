@@ -282,6 +282,8 @@
           <Property Name="ManagementCommitteeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CommitteeDesignationId" Type="int" Nullable="false" />
           <Property Name="ManagementCommitteeTenureId" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedBy" Type="int" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
@@ -4289,6 +4291,8 @@
           <NavigationProperty Name="Plots" Relationship="ShahWilayatModel.FK_Plot_ManagementCommitee" FromRole="ManagementCommittee" ToRole="Plot" />
           <NavigationProperty Name="SocietyPayments" Relationship="ShahWilayatModel.FK_SocietyPayment_ManagementCommittee" FromRole="ManagementCommittee" ToRole="SocietyPayment" />
           <NavigationProperty Name="Transfers" Relationship="ShahWilayatModel.FK_Transfer_ManagementCommittee" FromRole="ManagementCommittee" ToRole="Transfer" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="ManagementCommitteeTenure">
           <Key>
@@ -5284,6 +5288,8 @@
           <EntitySetMapping Name="ManagementCommittees">
             <EntityTypeMapping TypeName="ShahWilayatModel.ManagementCommittee">
               <MappingFragment StoreEntitySet="ManagementCommittee">
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
                 <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />

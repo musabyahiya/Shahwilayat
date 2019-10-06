@@ -123,7 +123,12 @@
                                 <input type="text" class="form-control txtExtraSize" disabled="disabled" placeholder="Enter extra size">
                             </div>
                         </div>
-
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ddlManagementCommittee">Created By</label>
+                                <select class="form-control ddlManagementCommittee"></select>
+                            </div>
+                        </div>
                         <div class="col-md-3">
                             <div class="fileinput fileinput-new" data-provides="fileinput">
                                 <label>Site Plan</label>
@@ -215,7 +220,12 @@
                                 <input type="text" class="form-control txtExtraSize_upd" disabled="disabled" placeholder="Enter extra size">
                             </div>
                         </div>
-
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ddlManagementCommittee_upd">Created By</label>
+                                <select class="form-control ddlManagementCommittee_upd"></select>
+                            </div>
+                        </div>
                         <div class="col-md-3">
                             <div class="fileinput fileinput-new" data-provides="fileinput">
                                 <label>Site Plan</label>
@@ -283,6 +293,8 @@
             <input type="hidden" class="hdnUnitRate" value="${UnitRate}" />
             <input type="hidden" class="hdnTotalSize" value="${TotalSize}" />
             <input type="hidden" class="hdnSitePlan" value="${SitePlan}" />
+            <input type="hidden" class="hdnManagementCommitteeId" value="${ManagementCommitteeId}" />
+           
 
             <td></td>
             <td class="project-title tdPlotType">${PlotType}</td>

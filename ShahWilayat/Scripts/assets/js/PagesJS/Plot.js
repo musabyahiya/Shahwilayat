@@ -3,7 +3,7 @@ AllClickFunction();
 GetAllPlotType();
 GetAllPlotSize();
 GetAllUnits();
-
+GetAllManagementCommittee();
 
 GetAllPlotSubType();
 AllChangeFunction();
@@ -24,7 +24,8 @@ var Plot =
     HasExtraSize: false,
     ExtraSize: null,
     HasAlotted: false,
-    SitePlan: null
+    SitePlan: null,
+    ManagementCommitteeId: 0
 
 }]
 function SearchTable() {
@@ -73,6 +74,7 @@ function AllClickFunction() {
         Plot[0].PlotNo = $('.txtPlotNo').val();
         Plot[0].PlotSizeId = $('.ddlPlotSize').val();
         Plot[0].UnitId = $('.ddlUnit').val();
+        Plot[0].ManagementCommitteeId = $('.ddlManagementCommittee').val();
         Plot[0].PlotNo = $('.txtPlotNo').val();
         Plot[0].HasExtraSize = $('.ddlHasExtraSize').val() == "1" ? true : false;
         Plot[0].ExtraSize = $('.txtExtraSize').val();
@@ -93,6 +95,7 @@ function AllClickFunction() {
         Plot[0].PlotNo = $('.txtPlotNo_upd').val();
         Plot[0].PlotSizeId = $('.ddlPlotSize_upd').val();
         Plot[0].UnitId = $('.ddlUnit_upd').val();
+        Plot[0].ManagementCommitteeId = $('.ddlManagementCommittee_upd').val();
         Plot[0].PlotNo = $('.txtPlotNo_upd').val();
         Plot[0].HasExtraSize = $('.ddlHasExtraSize_upd').val() == "1" ? true : false;
         Plot[0].ExtraSize = $('.txtExtraSize_upd').val();
@@ -313,6 +316,40 @@ function onGetAllUnits(data) {
     }
 
 }
+
+
+function GetAllManagementCommittee() {
+
+    var request = $.ajax({
+        method: "POST",
+        url: "/Plot/GetAllManagementCommittee",
+        data: {}
+    });
+    request.done(function (data) {
+
+        onGetAllManagementCommittee(data);
+
+
+    });
+    request.fail(function (jqXHR, Status) {
+        console.log(jqXHR.responseText);
+
+    });
+}
+
+function onGetAllManagementCommittee(data) {
+    try {
+
+
+        var res = data;
+        FillDropDownByReference('.ddlManagementCommittee', res);
+        FillDropDownByReference('.ddlManagementCommittee_upd', res);
+    }
+    catch (Err) {
+        console.log(Err);
+    }
+
+}
 function GetAllPlotSize() {
 
     var request = $.ajax({
@@ -462,6 +499,7 @@ function EditPlot(selector) {
     $('.txtPlotNo_upd').val(objEditRow.find('.tdPlotNo').text());
     $('.ddlPlotSize_upd').val(objEditRow.find('.hdnPlotSizeId').val());
     $('.ddlUnit_upd').val(objEditRow.find('.hdnUnitId').val());
+    $('.ddlManagementCommittee_upd').val(objEditRow.find('.hdnManagementCommitteeId').val());
     $('.ddlHasExtraSize_upd').val(objEditRow.find('.hdnHasExtraSize').val() == 'true' ? 1 : 0).change();
     $('.txtExtraSize_upd').val(objEditRow.find('.hdnExtraSize').val());
 

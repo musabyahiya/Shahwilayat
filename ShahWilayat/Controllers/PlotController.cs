@@ -39,6 +39,8 @@ namespace ShahWilayat.Controllers
                    x.PlotNo,
                    x.HasAlotted,
                    x.SitePlan,
+                   x.ManagementCommitteeId,
+                   
                    TotalSize = x.HasExtraSize == true ? (x.ExtraSize + x.PlotSize.PlotSize1) : x.PlotSize.PlotSize1
                }).OrderByDescending(x => x.PlotId).ToList();
 
@@ -61,6 +63,26 @@ namespace ShahWilayat.Controllers
                  Id = x.PlotSubTypeId,
                  Value = x.PlotSubType1,
                  x.PlotTypeId
+             }).ToList();
+
+                return Json(lst, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                return Json(e, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public JsonResult GetAllManagementCommittee()
+        {
+            try
+            {
+                var lst = context.ManagementCommittees.Where(x => x.IsActive == true)
+             .Select(x => new
+             {
+                 Id = x.ManagementCommitteeId,
+                 Value = x.FirstName + " " + x.LastName + " (" + x.ManagementCommitteeTenure.Description + ")"
+
              }).ToList();
 
                 return Json(lst, JsonRequestBehavior.AllowGet);
@@ -136,7 +158,7 @@ namespace ShahWilayat.Controllers
                 plot.CreatedBy = (int)HttpContext.Session["UserId"];
                 context.Plots.Add(plot);
                 context.SaveChanges();
-             
+
 
                 return "true";
 
@@ -160,12 +182,13 @@ namespace ShahWilayat.Controllers
                 obj.ExtraSize = plot.ExtraSize;
                 obj.PlotSize = plot.PlotSize;
                 obj.SitePlan = plot.SitePlan;
+                obj.ManagementCommitteeId = plot.ManagementCommitteeId;
                 obj.IsActive = true;
                 obj.CreatedDate = DateTime.Now;
                 obj.CreatedBy = (int)HttpContext.Session["UserId"];
                 context.Entry(obj).State = EntityState.Modified;
                 context.SaveChanges();
-          
+
                 return "true";
 
             }
