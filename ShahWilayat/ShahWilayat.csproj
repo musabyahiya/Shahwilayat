@@ -231,6 +231,7 @@
     <Compile Include="Controllers\AssociateTransferController.cs" />
     <Compile Include="Controllers\ChargesController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\GeneralPaymentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -2055,6 +2056,9 @@
     <Content Include="Content\app-assets\vendors\css\ui\prism-treeview.css" />
     <Content Include="Content\app-assets\vendors\css\ui\prism.min.css" />
     <Content Include="Content\app-assets\vendors\css\weather-icons\climacons.min.css" />
+    <Content Include="Content\assets\css\DevExpress\dx.common.css" />
+    <Content Include="Content\assets\css\DevExpress\dx.light.css" />
+    <Content Include="Content\assets\css\DevExpress\style.css" />
     <Content Include="Content\assets\css\PrintMaterial\IDCard.css" />
     <Content Include="Content\assets\css\PrintMaterial\ID_Back.png" />
     <Content Include="Content\assets\css\PrintMaterial\ID_Front.png" />
@@ -5401,6 +5405,8 @@
     <Content Include="Scripts\app-assets\vendors\js\ui\screenfull.min.js" />
     <Content Include="Scripts\app-assets\vendors\js\ui\unison.min.js" />
     <Content Include="Scripts\app-assets\vendors\js\vendors.min.js" />
+    <Content Include="Scripts\assets\js\DevExpress\dx.all.js" />
+    <Content Include="Scripts\assets\js\DevExpress\jszip.min.js" />
     <Content Include="Scripts\assets\js\jquery.tmpl.min.js" />
     <Content Include="Scripts\assets\js\PagesJS\Allotment.js" />
     <Content Include="Scripts\assets\js\PagesJS\AllotmentRegister.js" />
@@ -5985,6 +5991,9 @@
     <Content Include="Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\assets\css\DevExpress\icons\dxicons.ttf" />
+    <Content Include="Content\assets\css\DevExpress\icons\dxicons.woff" />
+    <Content Include="Content\assets\css\DevExpress\icons\dxicons.woff2" />
     <None Include="Properties\PublishProfiles\Musab.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -6051,6 +6060,7 @@
     <Content Include="Views\AssociateTransfer\Index.cshtml" />
     <Content Include="Views\Receipt\Index.cshtml" />
     <Content Include="Views\MembershipSingle\Index.cshtml" />
+    <Content Include="Views\GeneralPayment\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

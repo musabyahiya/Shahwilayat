@@ -54,6 +54,12 @@ namespace ShahWilayat
                      "~/Scripts/app-assets/vendors/js/codemirror/codemirror.js",
                      "~/Scripts/app-assets/vendors/js/codemirror/mode/xml/xml.js"));
 
+            // DevExpress
+            bundles.Add(new ScriptBundle("~/bundles/DevExpress").Include(
+                      "~/Scripts/assets/js/DevExpress/jszip.min.js",
+                      "~/Scripts/assets/js/DevExpress/dx.all.js"
+                     ));
+
             // CSS Bundle
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
@@ -94,6 +100,15 @@ namespace ShahWilayat
                 "~/Content/app-assets/vendors/css/jasny/jasny-bootstrap.min.css",
                 "~/Content/app-assets/vendors/css/codemirror/codemirror.css"
             ));
+
+            // DevExpress CSS  
+            bundles.Add(new StyleBundle("~/Content/DevExpress").Include(
+                       "~/Content/assets/css/DevExpress/dx.common.css",
+                       "~/Content/assets/css/DevExpress/dx.light.css",
+                       "~/Content/assets/css/DevExpress/style.css"
+                       ));
+
+
         }
     }
 }
