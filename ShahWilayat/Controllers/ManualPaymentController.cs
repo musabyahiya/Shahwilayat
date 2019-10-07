@@ -145,7 +145,7 @@ namespace ShahWilayat.Controllers
 
 
 
-        public string CreateNewPayment(int PaymentMethodId,int PaymentCategoryId,string PaymentDate,int MemberId,int PlotId,double PaymentAmount,int PaymentTypeId,int AllotmentTypeId, string ReceiptNo, string ChequeNo, string ChequeDate, string Remarks)
+        public string CreateNewPayment(int PaymentMethodId,int PaymentCategoryId,string PaymentDate,int MemberId,int PlotId,double PaymentAmount,int PaymentTypeId,int AllotmentTypeId, string ReceiptNo, string ChequeNo, string ChequeDate, string Remarks, int ManagementCommitteeId)
         {
             try
             {
@@ -167,6 +167,7 @@ namespace ShahWilayat.Controllers
                 da.SelectCommand.Parameters.Add("@ChequeNo", SqlDbType.VarChar).Value = ChequeNo;
                 da.SelectCommand.Parameters.Add("@ChequeDate", SqlDbType.DateTime).Value = ChequeDate;
                 da.SelectCommand.Parameters.Add("@Remarks", SqlDbType.VarChar).Value = Remarks;
+                da.SelectCommand.Parameters.Add("@ManagementCommitteeId", SqlDbType.VarChar).Value = ManagementCommitteeId;
                 da.SelectCommand.Parameters.Add("@CreatedBy", SqlDbType.Int).Value = (int)HttpContext.Session["UserId"];
                 da.Fill(dt);
 
@@ -270,7 +271,25 @@ namespace ShahWilayat.Controllers
                 return Json(e, JsonRequestBehavior.AllowGet);
             }
         }
+        public JsonResult GetAllManagementCommittee()
+        {
+            try
+            {
+                var lst = context.ManagementCommittees.Where(x => x.IsActive == true)
+             .Select(x => new
+             {
+                 Id = x.ManagementCommitteeId,
+                 Value = x.FirstName + " " + x.LastName + " (" + x.ManagementCommitteeTenure.Description + ")"
 
+             }).ToList();
+
+                return Json(lst, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                return Json(e, JsonRequestBehavior.AllowGet);
+            }
+        }
         public string GetCurrentAssociateAllottees()
         {
             DataSet ds = new DataSet();

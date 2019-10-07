@@ -25,6 +25,7 @@ namespace ShahWilayat.Controllers
                 var lst = context.Charges.Where(x => x.IsActive == true)
              .Select(x => new
              {
+               
                  x.ChargeId,
                  x.PaymentSetupId,
                  PaymentSetup = x.PaymentSetup.Tenure.PaymentCategory.PaymentCategory1 + " (" + x.PaymentSetup.Rate + " " + "PKR | " + x.PaymentSetup.Tenure.Tenure1 + ")",

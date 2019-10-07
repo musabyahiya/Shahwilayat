@@ -6,6 +6,7 @@ GetAllPaymentType();
 AllChangeFunction();
 GetCurrentAssociateAllottees();
 GetCurrentAllottees();
+GetAllManagementCommittee();
 
 var objEditRow;
 var ChargesList;
@@ -18,13 +19,7 @@ var OrignalAllotment;
 var AssociateAllotment;
 
 function AllChangeFunction() {
-    //$(".ddlMember").change(function () {
-    //    var MemberId = $(this).val();
-    //    var obj = PlotList.filter(x => x.MemberId == MemberId);
-    //    MemberPlotList = obj;
 
-    //    onGetAllPlots(obj);
-    //});
 
     $(".ddlPlotType").change(function () {
         var AllotmentTypeId = $('.ddlAllotmentType').val();
@@ -83,8 +78,9 @@ function AllClickFunction() {
         var ChequeNo = $('.txtChequeNo').val();
         var ChequeDate = PaymentMethodId == 2 ? formatDate($('.txtChequeDate').val()) : '';
         var Remarks = $('.txtRemarks').val();
+        var ManagementCommitteeId = $('.ddlManagementCommittee').val();
 
-        CreateNewPayment(PaymentMethodId, PaymentCategoryId, PaymentDate, MemberId, PlotId, PaymentAmount, PaymentTypeId, AllotmentTypeId, ReceiptNo, ChequeNo, ChequeDate, Remarks);
+        CreateNewPayment(PaymentMethodId, PaymentCategoryId, PaymentDate, MemberId, PlotId, PaymentAmount, PaymentTypeId, AllotmentTypeId, ReceiptNo, ChequeNo, ChequeDate, Remarks, ManagementCommitteeId);
 
         // Init();
     });
@@ -301,7 +297,7 @@ function onGetAllPaymentMethod(data) {
 }
 
 
-function CreateNewPayment(PaymentMethodId, PaymentCategoryId, PaymentDate, MemberId, PlotId, PaymentAmount, PaymentTypeId, AllotmentTypeId, ReceiptNo, ChequeNo, ChequeDate, Remarks) {
+function CreateNewPayment(PaymentMethodId, PaymentCategoryId, PaymentDate, MemberId, PlotId, PaymentAmount, PaymentTypeId, AllotmentTypeId, ReceiptNo, ChequeNo, ChequeDate, Remarks, ManagementCommitteeId) {
     ProgressBarShow();
 
     var request = $.ajax({
@@ -309,7 +305,7 @@ function CreateNewPayment(PaymentMethodId, PaymentCategoryId, PaymentDate, Membe
         url: "/ManualPayment/CreateNewPayment",
         data: {
             PaymentMethodId: PaymentMethodId, PaymentCategoryId: PaymentCategoryId,
-            PaymentDate: PaymentDate, MemberId: MemberId, PlotId: PlotId, PaymentAmount: PaymentAmount, PaymentTypeId: PaymentTypeId, AllotmentTypeId: AllotmentTypeId, ReceiptNo: ReceiptNo, ChequeNo: ChequeNo, ChequeDate: ChequeDate, Remarks: Remarks
+            PaymentDate: PaymentDate, MemberId: MemberId, PlotId: PlotId, PaymentAmount: PaymentAmount, PaymentTypeId: PaymentTypeId, AllotmentTypeId: AllotmentTypeId, ReceiptNo: ReceiptNo, ChequeNo: ChequeNo, ChequeDate: ChequeDate, Remarks: Remarks, ManagementCommitteeId: ManagementCommitteeId
         }
     });
     request.done(function (data) {
@@ -470,4 +466,36 @@ function GetCurrentAllottees() {
         console.log(jqXHR.responseText);
 
     });
+}
+
+function GetAllManagementCommittee() {
+
+    var request = $.ajax({
+        method: "POST",
+        url: "/ManualPayment/GetAllManagementCommittee",
+        data: {}
+    });
+    request.done(function (data) {
+
+        onGetAllManagementCommittee(data);
+
+
+    });
+    request.fail(function (jqXHR, Status) {
+        console.log(jqXHR.responseText);
+
+    });
+}
+function onGetAllManagementCommittee(data) {
+    try {
+
+
+        var res = data;
+        FillDropDownByReference('.ddlManagementCommittee', res);
+        FillDropDownByReference('.ddlManagementCommittee_upd', res);
+    }
+    catch (Err) {
+        console.log(Err);
+    }
+
 }

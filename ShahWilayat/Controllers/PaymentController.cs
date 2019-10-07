@@ -123,7 +123,7 @@ namespace ShahWilayat.Controllers
 
         public string CreateNewPayment(int ChargeId, int PaymentMethodId, string PaymentDate, int MemberId,
             int PlotId, double PaymentAmount, double RemainingBalance, double PaidPercentBefore,
-            double TotalAmount, string DueDate, int PaymentCategoryId, int TenureId, double Rate, int PaymentTypeId, int AllotmentTypeId, string ReceiptNo, string ChequeNo, string ChequeDate, string Remarks)
+            double TotalAmount, string DueDate, int PaymentCategoryId, int TenureId, double Rate, int PaymentTypeId, int AllotmentTypeId, string ReceiptNo, string ChequeNo, string ChequeDate, string Remarks, int ManagementCommitteeId)
         {
             try
             {
@@ -159,7 +159,9 @@ namespace ShahWilayat.Controllers
                 {
                     da.SelectCommand.Parameters.Add("ChequeDate", SqlDbType.DateTime).Value = ChequeDate;
                 }
+                
                 da.SelectCommand.Parameters.Add("@Remarks", SqlDbType.VarChar).Value = Remarks;
+                da.SelectCommand.Parameters.Add("@ManagementCommitteeId", SqlDbType.VarChar).Value = ManagementCommitteeId;
                 da.SelectCommand.Parameters.Add("@CreatedBy", SqlDbType.Int).Value = (int)HttpContext.Session["UserId"];
                 da.Fill(dt);
 
@@ -245,7 +247,25 @@ namespace ShahWilayat.Controllers
 
             return JsonConvert.SerializeObject(dt);
         }
+        public JsonResult GetAllManagementCommittee()
+        {
+            try
+            {
+                var lst = context.ManagementCommittees.Where(x => x.IsActive == true)
+             .Select(x => new
+             {
+                 Id = x.ManagementCommitteeId,
+                 Value = x.FirstName + " " + x.LastName + " (" + x.ManagementCommitteeTenure.Description + ")"
 
+             }).ToList();
+
+                return Json(lst, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                return Json(e, JsonRequestBehavior.AllowGet);
+            }
+        }
         public string GetChargesForPayment(string SelectedDate, int PlotId)
         {
             DataSet ds = new DataSet();

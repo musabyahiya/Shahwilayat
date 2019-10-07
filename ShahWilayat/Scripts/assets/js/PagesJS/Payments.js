@@ -1,6 +1,6 @@
 ﻿GetAllCharges();
 //GetAllMembers();
-
+GetAllManagementCommittee();
 GetAllPlotType();
 GetAllPaymentMethod();
 AllClickFunction();
@@ -20,13 +20,6 @@ var Email;
 
 function AllChangeFunction() {
 
-    //$(".ddlMember").change(function () {
-    //    var MemberId = $(this).val();
-    //    var obj = PlotList.filter(x => x.MemberId == MemberId);
-    //    MemberPlotList = obj;
-
-    //    onGetAllPlots(obj);
-    //});
 
     $(".ddlPlotType").change(function () {
         var AllotmentTypeId = $('.ddlAllotmentType').val();
@@ -112,6 +105,7 @@ function AllClickFunction() {
         var Rate = $('.hdnRate').val();
         var RemainingBalance = $('.hdnRemainingBalance').val();
         var PaidPercentBefore = $('.hdnPaidPercentBefore').val();
+        var ManagementCommitteeId = $('.ddlManagementCommittee').val();
 
         if (PaymentAmount > AmountPayable || PaymentAmount < 1) {
             showError('Please enter correct Payment Amount!');
@@ -122,7 +116,7 @@ function AllClickFunction() {
 
 
         CreateNewPayment(ChargeId, PaymentMethodId, PaymentDate, MemberId, PlotId, PaymentAmount, RemainingBalance, PaidPercentBefore,
-            TotalAmount, DueDate, PaymentCategoryId, TenureId, Rate, PaymentTypeId, AllotmentTypeId, ReceiptNo, ChequeNo, ChequeDate, Remarks);
+            TotalAmount, DueDate, PaymentCategoryId, TenureId, Rate, PaymentTypeId, AllotmentTypeId, ReceiptNo, ChequeNo, ChequeDate, Remarks, ManagementCommitteeId);
 
         // Init();
     });
@@ -549,7 +543,7 @@ function FillDropDownByReferenceCharges(DropDownReference, res) {
     });
 }
 
-function CreateNewPayment(ChargeId, PaymentMethodId, PaymentDate, MemberId, PlotId, PaymentAmount, RemainingBalance, PaidPercentBefore, TotalAmount, DueDate, PaymentCategoryId, TenureId, Rate, PaymentTypeId, AllotmentTypeId, ReceiptNo, ChequeNo, ChequeDate, Remarks) {
+function CreateNewPayment(ChargeId, PaymentMethodId, PaymentDate, MemberId, PlotId, PaymentAmount, RemainingBalance, PaidPercentBefore, TotalAmount, DueDate, PaymentCategoryId, TenureId, Rate, PaymentTypeId, AllotmentTypeId, ReceiptNo, ChequeNo, ChequeDate, Remarks, ManagementCommitteeId) {
     ProgressBarShow();
 
     var request = $.ajax({
@@ -558,7 +552,7 @@ function CreateNewPayment(ChargeId, PaymentMethodId, PaymentDate, MemberId, Plot
         data: {
             ChargeId: ChargeId, PaymentMethodId: PaymentMethodId, PaymentDate: PaymentDate,
             MemberId: MemberId, PlotId: PlotId, PaymentAmount: PaymentAmount, RemainingBalance: RemainingBalance, PaidPercentBefore: PaidPercentBefore, TotalAmount: TotalAmount,
-            DueDate: DueDate, PaymentCategoryId: PaymentCategoryId, TenureId: TenureId, Rate: Rate, PaymentTypeId: PaymentTypeId, AllotmentTypeId: AllotmentTypeId, ReceiptNo: ReceiptNo, ChequeNo: ChequeNo, ChequeDate: ChequeDate, Remarks: Remarks
+            DueDate: DueDate, PaymentCategoryId: PaymentCategoryId, TenureId: TenureId, Rate: Rate, PaymentTypeId: PaymentTypeId, AllotmentTypeId: AllotmentTypeId, ReceiptNo: ReceiptNo, ChequeNo: ChequeNo, ChequeDate: ChequeDate, Remarks: Remarks, ManagementCommitteeId: ManagementCommitteeId
         }
     });
     request.done(function (data) {
@@ -711,4 +705,36 @@ function ActivateChequeNo() {
         $('.txtChequeDate').addClass("notrequired");
 
     }
+}
+
+function GetAllManagementCommittee() {
+
+    var request = $.ajax({
+        method: "POST",
+        url: "/Payment/GetAllManagementCommittee",
+        data: {}
+    });
+    request.done(function (data) {
+
+        onGetAllManagementCommittee(data);
+
+
+    });
+    request.fail(function (jqXHR, Status) {
+        console.log(jqXHR.responseText);
+
+    });
+}
+function onGetAllManagementCommittee(data) {
+    try {
+
+
+        var res = data;
+        FillDropDownByReference('.ddlManagementCommittee', res);
+        FillDropDownByReference('.ddlManagementCommittee_upd', res);
+    }
+    catch (Err) {
+        console.log(Err);
+    }
+
 }
