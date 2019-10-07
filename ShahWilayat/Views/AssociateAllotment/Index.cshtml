@@ -8,7 +8,7 @@
 
 <div class="content-header row">
     <div class="content-header-left col-md-6 col-12 mb-2">
-        <h3 class="content-header-title">Allotment</h3>
+        <h3 class="content-header-title">Associate Allotment</h3>
     </div>
 
 </div>
@@ -17,7 +17,7 @@
         <div class="card">
             <div class="card-header">
                 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#CreateAllotment">
-                    Add New Allotment
+                    Add New Associate Allotment
                 </button>
             </div>
         </div>
@@ -49,7 +49,6 @@
                                 <th>Plot No</th>
                                 <th>Allotment Order No</th>
                                 <th>Allotment Order Date</th>
-
                                 <th>Action</th>
 
                             </tr>
@@ -135,12 +134,7 @@
                                 <select class="form-control ddlManagementCommittee"></select>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="ddlManagementCommittee_upd">Created By</label>
-                                <select class="form-control ddlManagementCommittee_upd"></select>
-                            </div>
-                        </div>
+                      
                     </div>
 
                     <hr>
@@ -261,6 +255,13 @@
                             </div>
                         </div>
 
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ddlManagementCommittee_upd">Created By</label>
+                                <select class="form-control ddlManagementCommittee_upd"></select>
+                            </div>
+                        </div>
+
                     </div>
 
 
@@ -355,6 +356,9 @@
             <input type="hidden" class="hdnShareCertificateDate" value="${ToJavaScriptDate(ShareCertificateDate)}" />
             <input type="hidden" class="hdnProvisionalAllotmentNo" value="${ProvisionalAllotmentNo}" />
             <input type="hidden" class="hdnProvisionalAllotmentDate" value="${ToJavaScriptDate(ProvisionalAllotmentDate)}" />
+            <input type="hidden" class="hdnScanAllotmentOrder" value="${ScanAllotmentOrder}" />
+            <input type="hidden" class="hdnScanProvisionalOrder" value="${ScanProvisionalOrder}" />
+            <input type="hidden" class="hdnScanShareCertificate" value="${ScanShareCertificate}" />
             <input type="hidden" class="hdnManagementCommitteeId" value="${ManagementCommitteeId}" />
             <td></td>
             <td class="project-title tdMember" nowrap>${FirstName + ' ' + LastName}</td>
@@ -364,7 +368,9 @@
 
 
             <td class="project-title">
-                <a href="javascript:void(0)" data-toggle="modal" data-target="#EditAllotment" onclick="EditAllotment(this)" data-toggle="tooltip" data-placement="top" data-original-title="Edit Allotment"><i class="la la-pencil-square success"></i></a>
+                <a href="javascript:void(0)" data-toggle="modal" data-target="#EditAttachment" onclick="EditAllotment(this)" title="Edit Attachment"><i class="ft-paperclip"></i></a> &nbsp;
+
+                 <a href="javascript:void(0)" data-toggle="modal" data-target="#EditAllotment" onclick="EditAllotment(this)" data-toggle="tooltip" data-placement="top" data-original-title="Edit Allotment"><i class="la la-pencil-square success"></i></a>
             </td>
 
 
@@ -372,7 +378,6 @@
     </script>
 
     <script src="~/Scripts/assets/js/PagesJS/AssociateAllotment.js"></script>
-
 
 }
 

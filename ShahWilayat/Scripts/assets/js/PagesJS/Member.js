@@ -204,12 +204,18 @@ function AllClickFunction() {
         }, 500);
     });
 
-    $('.btnPrintIDCard').click(function () {
-
-    });
+  
 }
 
-function PrintIDCard() {
+function PrintIDCard(selector) {
+    objEditRow = $(selector).closest('tr');
+    $('.IDCardMembershipNo').html(objEditRow.find('.hdnMembershipNo').val());
+    $('.IDCardBloodGroup').html(objEditRow.find('.hdnBloodGroup').val() == null ? 'N/A' : objEditRow.find('.hdnBloodGroup').val());
+    $('.IDCardAddress').html(objEditRow.find('.hdnPermanentAddress').val());
+    $('.IDCardCNIC').html(objEditRow.find('.hdnCNIC').val());
+    $('.IDCardCellNo').html(objEditRow.find('.hdnCellNo').val());
+    $('.IDCardExpiryDate').html('31-12-2023');
+    $(".IDCardProfile").attr("src", '../Uploads/' + JSON.parse(objEditRow.find('.hdnProfileFile').val())[0]);
     $(function () {
         //$('#Print').load('http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js');
 
@@ -570,7 +576,7 @@ function UpdateAttachment() {
         var res = data;
         if (res == "true") {
             showSuccess('Successfully Updated!');
-            $('#EditMemberAttachment').modal('hide');
+            $('#EditAttachment').modal('hide');
             GetAllMembers();
         }
     });

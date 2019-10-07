@@ -63,6 +63,29 @@ namespace ShahWilayat.Controllers
                 return e.ToString();
             }
         }
+
+        public string UpdateAttachment(AssociateAllotment ao)
+        {
+            try
+            {
+                var obj = context.AssociateAllotments.FirstOrDefault(x => x.AssociateAllotmentId == ao.AssociateAllotmentId);
+
+                obj.ScanAllotmentOrder = ao.ScanAllotmentOrder;
+                obj.ScanProvisionalOrder = ao.ScanProvisionalOrder;
+                obj.ScanShareCertificate = ao.ScanShareCertificate;
+                obj.ModifiedDate = DateTime.Now;
+                obj.ModifiedBy = (int)HttpContext.Session["UserId"];
+                context.Entry(obj).State = EntityState.Modified;
+                context.SaveChanges();
+
+                return "true";
+
+            }
+            catch (Exception e)
+            {
+                return e.ToString();
+            }
+        }
         public string UpdatePlotAllottedStatus(int PlotId, string Action)
         {
             try
@@ -156,6 +179,9 @@ namespace ShahWilayat.Controllers
                    x.ShareCertificateDate,
                    x.ProvisionalAllotmentNo,
                    x.ProvisionalAllotmentDate,
+                   x.ScanAllotmentOrder,
+                   x.ScanProvisionalOrder,
+                   x.ScanShareCertificate,
                    x.ManagementCommitteeId,
 
                }).ToList();
