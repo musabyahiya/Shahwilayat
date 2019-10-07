@@ -83,7 +83,9 @@ function AllClickFunction() {
         AssociateMember[0].PermanentAddress = $('.txtPermanentAddress').val();
         AssociateMember[0].Occupation = $('.txtOccupation').val();
         AssociateMember[0].CnicExpiryDate = $('.txtCnicExpiryDate').val()
-
+        AssociateMember[0].CnicFrontFile = FileUpload('.txtCnicFrontFile');
+        AssociateMember[0].CnicBackFile = FileUpload('.txtCnicBackFile');
+        AssociateMember[0].ProfileFile = FileUpload('.txtProfileFile');
 
         CreateNewMember()
     });
@@ -163,7 +165,7 @@ function AllClickFunction() {
         frameDoc.document.write('<html><head><title>Member Individual Sheet</title>');
         frameDoc.document.write('</head><body>');
         //Append the external CSS file.
-        frameDoc.document.write('<link href="/Content/css/PrintMaterial/IndividualSheet.css" rel="stylesheet" type="text/css" />');
+        frameDoc.document.write('<link href="/Content/assets/css/PrintMaterial/MemberProfile.css" rel="stylesheet" type="text/css" />');
         //Append the DIV contents.
         frameDoc.document.write(contents);
         frameDoc.document.write('</body></html>');
@@ -175,7 +177,42 @@ function AllClickFunction() {
         }, 500);
     });
 }
+function PrintIDCard(selector) {
+    objEditRow = $(selector).closest('tr');
+    $('.IDCardMembershipNo').html(objEditRow.find('.hdnMembershipNo').val());
+    $('.IDCardBloodGroup').html(objEditRow.find('.hdnBloodGroup').val() == null ? 'N/A' : objEditRow.find('.hdnBloodGroup').val());
+    $('.IDCardAddress').html(objEditRow.find('.hdnPermanentAddress').val());
+    $('.IDCardCNIC').html(objEditRow.find('.hdnCNIC').val());
+    $('.IDCardCellNo').html(objEditRow.find('.hdnCellNo').val());
+    $('.IDCardExpiryDate').html(GetExpiryDate());
+    $(".IDCardProfile").attr("src", '../Uploads/' + JSON.parse(objEditRow.find('.hdnProfileFile').val())[0]);
+    $(function () {
+        //$('#Print').load('http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js');
 
+    });
+
+    var contents = $("#IDCard").html();
+    var frame1 = $('<iframe />');
+    frame1[0].name = "frame1";
+    frame1.css({ "position": "absolute", "top": "-1000000px" });
+    $("body").append(frame1);
+    var frameDoc = frame1[0].contentWindow ? frame1[0].contentWindow : frame1[0].contentDocument.document ? frame1[0].contentDocument.document : frame1[0].contentDocument;
+    frameDoc.document.open();
+    //Create a new HTML document.
+    frameDoc.document.write('<html><head><title>ID Card</title>');
+    frameDoc.document.write('</head><body>');
+    //Append the external CSS file.
+    frameDoc.document.write('<link href="/Content/assets/css/PrintMaterial/IDCard.css" rel="stylesheet" type="text/css" />');
+    //Append the DIV contents.
+    frameDoc.document.write(contents);
+    frameDoc.document.write('</body></html>');
+    frameDoc.document.close();
+    setTimeout(function () {
+        window.frames["frame1"].focus();
+        window.frames["frame1"].print();
+        frame1.remove();
+    }, 500);
+}
 function AllChangeFunction() {
     $('.ddlCountry').change(function () {
         var CountryId = $(this).val();
@@ -685,3 +722,22 @@ function PrintIndividualMember(selector) {
     });
 }
 
+
+function GetExpiryDate() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = parseInt(today.getFullYear()) + 3;
+
+    if (dd < 10) {
+        dd = '0' + dd
+    }
+
+    if (mm < 10) {
+        mm = '0' + mm
+    }
+
+    today = dd + '-' + mm + '-' + yyyy
+
+    return today;
+}

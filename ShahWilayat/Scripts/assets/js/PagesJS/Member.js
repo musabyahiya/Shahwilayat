@@ -204,7 +204,7 @@ function AllClickFunction() {
         }, 500);
     });
 
-  
+
 }
 
 function PrintIDCard(selector) {
@@ -214,7 +214,7 @@ function PrintIDCard(selector) {
     $('.IDCardAddress').html(objEditRow.find('.hdnPermanentAddress').val());
     $('.IDCardCNIC').html(objEditRow.find('.hdnCNIC').val());
     $('.IDCardCellNo').html(objEditRow.find('.hdnCellNo').val());
-    $('.IDCardExpiryDate').html('31-12-2023');
+    $('.IDCardExpiryDate').html(GetExpiryDate());
     $(".IDCardProfile").attr("src", '../Uploads/' + JSON.parse(objEditRow.find('.hdnProfileFile').val())[0]);
     $(function () {
         //$('#Print').load('http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js');
@@ -787,4 +787,23 @@ function onGetAllManagementCommittee(data) {
         console.log(Err);
     }
 
+}
+
+function GetExpiryDate() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = parseInt(today.getFullYear()) + 3;
+
+    if (dd < 10) {
+        dd = '0' + dd
+    }
+
+    if (mm < 10) {
+        mm = '0' + mm
+    }
+
+    today = dd + '-' + mm + '-' + yyyy
+  
+    return today;
 }
