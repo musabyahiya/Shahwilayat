@@ -3,8 +3,9 @@ GetAllTransfers();
 GetAllMembers();
 GetAllPlots();
 GetAllManagementCommittee();
+GetRptPlotTransfer();
 var objEditRow;
-
+var PlotTransfer;
 var Transfer =
 [{
     TransferId: 0,
@@ -22,6 +23,30 @@ var Transfer =
     ManagementCommitteeId: 0
 
 }]
+
+function GetRptPlotTransfer() {
+    ProgressBarShow();
+    var request = $.ajax({
+        method: "POST",
+        url: "/Transfer/GetRptPlotTransfer",
+    });
+    request.done(function (data) {
+
+        onGetRptPlotTransfer(data);
+        ProgressBarHide();
+    });
+    request.fail(function (jqXHR, Status) {
+        console.log(jqXHR.responseText);
+
+    });
+}
+
+
+function onGetRptPlotTransfer(data) {
+    var res = JSON.parse(data);
+    PlotTransfer = res;
+
+}
 
 function GetAllTransfer() {
 
@@ -270,7 +295,27 @@ function EditTransfer(selector) {
 }
 
 
-function PrintTransferOrder() {
+function PrintTransferOrder(selector) {
+    objEditRow = $(selector).closest('tr');
+    var MemberId = objEditRow.find('.hdnMemberId').val();
+    var PlotId = objEditRow.find('.hdnPlotId').val();
+    var obj = PlotTransfer.filter(x=> x.PlotId == PlotId);
+
+    var Tranfer = obj.filter(x=> x.Type == "Transfered" && x.MemberId == MemberId);
+    var Allottee = obj.filter(x=> x.Type == "Allotted");
+
+    BindTextToSelector('.printTransferFullName', Tranfer[0].FullName);
+    BindTextToSelector('.printTransferFatherName', Tranfer[0].FatherName);
+    BindTextToSelector('.printTransferCNIC', Tranfer[0].CNIC);
+    BindTextToSelector('.printTransferAddress', Tranfer[0].PermanentAddress);
+    BindTextToSelector('.printTransferPlotNo', Tranfer[0].PlotNo);
+    BindTextToSelector('.printTransferSize', Tranfer[0].Size);
+    BindTextToSelector('.printTransferMCMDate', formatDatePakFormat(Tranfer[0].MCMDate));
+    BindTextToSelector('.printAllotteeMembershipNo', Allottee[0].MembershipNo);
+    BindTextToSelector('.printAllotteeFullName', Allottee[0].FullName);
+    BindTextToSelector('.printAllotteeCNIC', Allottee[0].CNIC);
+    BindTextToSelector('.printAllotteeAddress', Allottee[0].PermanentAddress);
+    
     $(function () {
         //$('#Print').load('http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js');
 

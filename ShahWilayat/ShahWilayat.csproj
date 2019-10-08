@@ -243,6 +243,7 @@
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\PaymentSetupController.cs" />
     <Compile Include="Controllers\PlotController.cs" />
+    <Compile Include="Controllers\PlotTransferController.cs" />
     <Compile Include="Controllers\ReceiptController.cs" />
     <Compile Include="Controllers\SessionCheck.cs" />
     <Compile Include="Controllers\TenureController.cs" />
@@ -6064,6 +6065,7 @@
     <Content Include="Views\Receipt\Index.cshtml" />
     <Content Include="Views\MembershipSingle\Index.cshtml" />
     <Content Include="Views\GeneralPayment\Index.cshtml" />
+    <Content Include="Views\PlotTransfer\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

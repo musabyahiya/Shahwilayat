@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -97,6 +98,26 @@ namespace ShahWilayat.Controllers
 
         }
 
+        public string GetRptPlotTransfer()
+        {
+            try
+            {
+                DataSet ds = new DataSet();
+                DataTable dt = new DataTable();
+                string dbConnectionString = context.Database.Connection.ConnectionString;
+                SqlConnection con = new SqlConnection(dbConnectionString);
+                SqlDataAdapter da = new SqlDataAdapter("RptPlotTransfer", con);
+                da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                da.Fill(dt);
+                return JsonConvert.SerializeObject(dt);
+            }
+            catch (Exception e)
+            {
+                return e.ToString();
+            }
+
+        }
+
         public string SetPaymentTransfered(int MemberId, int PlotId)
         {
             try
@@ -124,7 +145,7 @@ namespace ShahWilayat.Controllers
                 DataSet ds = new DataSet();
                 DataTable dt = new DataTable();
                 string dbConnectionString = context.Database.Connection.ConnectionString;
-        
+
                 SqlConnection con = new SqlConnection(dbConnectionString);
                 SqlDataAdapter da = new SqlDataAdapter("GetCurrentAllottees", con);
                 da.SelectCommand.CommandType = CommandType.StoredProcedure;
@@ -169,7 +190,7 @@ namespace ShahWilayat.Controllers
                 obj.NewspaperScan = tr.NewspaperScan;
                 obj.IndemnityBondScan = tr.IndemnityBondScan;
                 obj.MCMDate = tr.MCMDate;
-      
+
                 obj.ModifiedDate = DateTime.Now;
                 obj.ModifiedBy = (int)HttpContext.Session["UserId"];
                 context.Entry(obj).State = EntityState.Modified;
@@ -181,7 +202,7 @@ namespace ShahWilayat.Controllers
             {
                 return e.ToString();
             }
-         
+
         }
 
         public string UpdateTransferedFile(Transfer tr, string Action)
@@ -217,7 +238,7 @@ namespace ShahWilayat.Controllers
         }
 
 
- 
+
 
         public string DeleteTransfer(Transfer tr)
         {
