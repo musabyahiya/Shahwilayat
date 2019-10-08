@@ -6,7 +6,7 @@
 
 <div class="content-header row">
     <div class="content-header-left col-md-6 col-12 mb-2">
-        <h3 class="content-header-title">Plot</h3>
+        <h3 class="content-header-title">Payment Receipt</h3>
     </div>
 
 </div>
@@ -52,22 +52,32 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel16">Create New Plot</h4>
+                <h4 class="modal-title" id="myModalLabel16">Receipt</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="form-body frmReceipt">
-                    <div id="Print">
+                    <div id="PrintReceipt">
 
-                        <table style="width: 100%;color: black;font-size:15px;">
+                        <table style="width: 100%;color: black;font-size:14px;">
                             <thead>
-                                <tr style="height:160px;"></tr>
-                            </thead>
+                                <tr>
+                                    <img src="~/Content/assets/css/PrintMaterial/Receipt/Top-img.png" style="width:100%;" />
 
-                            <tbody style="width: 100%; height: 100%; ">
-                                <tr style="line-height:1.5;">
+                                </tr>
+                            </thead>
+                            <tbody style="width: 100%;">
+                                <tr style="line-height:1.3;">
+                                    <td style="width: 15%;"></td>
+                                    <td align="center" style="padding-left: 15%;">
+                                        <h3 style="border-color:#005aa1;border-style: double;">Member Copy</h3>
+                                    </td>
+                                    <td></td>
+                                    <td style="width:10%;"></td>
+                                </tr>
+                                <tr style="line-height:1.3;">
                                     <td style="width: 15%;"></td>
                                     <td>
                                         <label>Issue date:</label>
@@ -76,7 +86,7 @@
                                     <td></td>
                                     <td style="width:10%;"></td>
                                 </tr>
-                                <tr style="line-height:1.5;">
+                                <tr style="line-height:1.3;">
                                     <td style="width: 15%;"></td>
                                     <td>
                                         <label>Receipt No: </label>
@@ -89,7 +99,7 @@
                                     </td>
                                     <td style="width:10%;"></td>
                                 </tr>
-                                <tr style="line-height:1.5;">
+                                <tr style="line-height:1.3;">
                                     <td style="width: 15%;"></td>
                                     <td>
                                         <label>Membership no.</label>
@@ -102,16 +112,16 @@
                                     </td>
                                     <td style="width:10%;"></td>
                                 </tr>
-                                <tr style="line-height:1.5;">
+                                <tr style="line-height:1.3;">
                                     <td style="width: 15%;"></td>
                                     <td>
-                                        <label>Received from <span class="printTitle"></span></label>
+                                        <label class="printTitle"></label>
                                         <span><u><b class="printFullName"></b></u></span>
                                     </td>
                                     <td align="right"></td>
                                     <td style="width:10%;"></td>
                                 </tr>
-                                <tr style="line-height:1.5;">
+                                <tr style="line-height:1.3;">
                                     <td style="width: 15%;"></td>
                                     <td>
                                         <label class="printMemberRelation"></label>
@@ -120,7 +130,7 @@
                                     <td align="right"></td>
                                     <td style="width:10%;"></td>
                                 </tr>
-                                <tr style="line-height:1.5;">
+                                <tr style="line-height:1.3;">
                                     <td style="width: 15%;"></td>
                                     <td>
                                         <label>A Sum of Rs:</label>
@@ -129,7 +139,7 @@
                                     <td align="right"></td>
                                     <td style="width:10%;"></td>
                                 </tr>
-                                <tr style="line-height:1.5;">
+                                <tr style="line-height:1.3;">
                                     <td style="width: 15%;"></td>
                                     <td>
                                         <label class="printPaymentMethod"></label>
@@ -141,10 +151,10 @@
                                     </td>
                                     <td style="width:10%;"></td>
                                 </tr>
-                                <tr style="line-height:1.5;">
+                                <tr style="line-height:1.3;">
                                     <td style="width: 15%;"></td>
                                     <td>
-                                        <label>on account of <span class="printPlotType"></span> Plot of:</label>
+                                        <label class="printPlotType"></label>
                                         <span><u><b class="printSize"></b></u></span>
                                         Sq.Yards.
                                     </td>
@@ -165,14 +175,6 @@
                                 </tr>
                             </thead>
                             <tbody class="ReceiptEntityListing" style="width: 100%; height: 100%;">
-                                @*<tr style="line-height:1.5;">
-                                        <td style="text-align: center;"><span>1</span></td>
-                                        <td><span>Cost of Land</span></td>
-                                        <td style="text-align: center;"><span>4000/-<span></td>
-                                    </tr>*@
-
-
-
 
                             </tbody>
                             <tbody style="width: 100%; height: 100%;">
@@ -195,6 +197,15 @@
                             </tbody>
                         </table>
                         <!--End of Table-->
+                        <table>
+                            <tbody>
+                                <tr>
+
+                                    <img src='~/Content/assets/css/PrintMaterial/Receipt/Bottom-img.png' style="width:100%;" />
+
+                                </tr>
+                            </tbody>
+                        </table>
 
                     </div>
 
@@ -251,7 +262,6 @@
             <input type="hidden" class="hdnPaymentDate" value="${PaymentDate}" />
             <input type="hidden" class="hdnPlotType" value="${PlotType}" />
             <input type="hidden" class="hdnFullName" value="${FullName}" />
-            <input type="hidden" class="hdnPaymentMethodId" value="${PaymentMethodId}" />
             <input type="hidden" class="hdnPaymentMethod" value="${PaymentMethod}" />
             <input type="hidden" class="hdnMemberRelation" value="${MemberRelation}" />
             <input type="hidden" class="hdnMembershipNo" value="${MembershipNo}" />
@@ -273,11 +283,11 @@
     <script type="text/x-jQuery-tmpl" id="ReceiptEntityListing">
         <tr class="trReceiptEntity" style="line-height:1.5;">
 
-            <td style="text-align: center;"></td>
-            <td class="project-title tdPaymentCategory">${PaymentCategory}</td>
-            <td class="project-title tdPaymentAmount" style="text-align: center;">${PaymentAmount}</td>
+            <td style="text-align: center;"><span></span></td>
+            <td class="project-title tdPaymentCategory"><span>${PaymentCategory}</span></td>
+            <td class="project-title tdPaymentAmount" style="text-align: center;"><span>${PaymentAmount}</span></td>
 
-
+<span>
         </tr>
 
     </script>

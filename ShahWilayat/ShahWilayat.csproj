@@ -2069,6 +2069,9 @@
     <Content Include="Content\assets\css\PrintMaterial\MembershipSingle\MemCopy.JPG" />
     <Content Include="Content\assets\css\PrintMaterial\MembershipSingle\user.jpg" />
     <Content Include="Content\assets\css\PrintMaterial\Receipt.css" />
+    <Content Include="Content\assets\css\PrintMaterial\Receipt\Bottom-img.png" />
+    <Content Include="Content\assets\css\PrintMaterial\Receipt\Receipt.css" />
+    <Content Include="Content\assets\css\PrintMaterial\Receipt\Top-img.png" />
     <Content Include="Content\assets\css\PrintMaterial\TransferOrder\Bottom-img.png" />
     <Content Include="Content\assets\css\PrintMaterial\TransferOrder\download.png" />
     <Content Include="Content\assets\css\PrintMaterial\TransferOrder\Top-img.png" />

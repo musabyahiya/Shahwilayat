@@ -12,7 +12,7 @@ namespace ShahWilayat.Controllers
     [SessionCheck]
     public class ReceiptController : Controller
     {
-       
+
         ShahWilayatEntities context = new ShahWilayatEntities();
         // GET: Receipt
         public ActionResult Index()
@@ -20,18 +20,48 @@ namespace ShahWilayat.Controllers
             return View();
         }
 
-        public string GetAllReceipt()
+        public string GetPaidReceipt(string ReceiptNo)
         {
-            DataSet ds = new DataSet();
-            DataTable dt = new DataTable();
-            string dbConnectionString = context.Database.Connection.ConnectionString;
-            SqlConnection con = new SqlConnection(dbConnectionString);
-            SqlDataAdapter da = new SqlDataAdapter("GetPaidReceipt", con);
-            da.SelectCommand.CommandType = CommandType.StoredProcedure;
-            da.SelectCommand.Parameters.Add("@ReceiptNo", SqlDbType.VarChar).Value = "947";
-            da.Fill(dt);
+            try
+            {
+                DataSet ds = new DataSet();
+                DataTable dt = new DataTable();
+                string dbConnectionString = context.Database.Connection.ConnectionString;
+                SqlConnection con = new SqlConnection(dbConnectionString);
+                SqlDataAdapter da = new SqlDataAdapter("GetPaidReceipt", con);
+                da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                da.SelectCommand.Parameters.Add("@ReceiptNo", SqlDbType.VarChar).Value = ReceiptNo;
+                da.Fill(dt);
 
-            return JsonConvert.SerializeObject(dt);
+                return JsonConvert.SerializeObject(dt);
+            }
+            catch (Exception ex)
+            {
+                return ex.ToString();
+            }
+
+        }
+
+        public string GetAllReceipts()
+        {
+            try
+            {
+                DataSet ds = new DataSet();
+                DataTable dt = new DataTable();
+                string dbConnectionString = context.Database.Connection.ConnectionString;
+                SqlConnection con = new SqlConnection(dbConnectionString);
+                SqlDataAdapter da = new SqlDataAdapter("GetAllReceipts", con);
+                da.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+                da.Fill(dt);
+
+                return JsonConvert.SerializeObject(dt);
+            }
+            catch (Exception ex)
+            {
+                return ex.ToString();
+            }
+
         }
 
     }
