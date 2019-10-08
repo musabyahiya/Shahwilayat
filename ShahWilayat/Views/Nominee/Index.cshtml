@@ -18,6 +18,9 @@
                 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#CreateNominee">
                     Add New Nominee
                 </button>
+                <button class="btn btn-info pull-right" style="margin:5px" type="button" onclick="tableToExcelFormatted('myTableNominee', 'NomineeListing');">
+                    <i class="la la-cloud-download"></i>
+                </button>
             </div>
         </div>
     </div>
@@ -52,6 +55,24 @@
                                 <th>Father/ Husband Name</th>
                                 <th>Action</th>
                                 <th style="text-align:center">Attachments</th>
+
+                            </tr>
+                        </thead>
+                        <tbody class="NomineeListing"></tbody>
+                    </table>
+
+
+                    <table class="table table-bordered mb-0" style="display:none" id="myTableNominee">
+                        <thead>
+                            <tr>
+                                <th nowrap>Sr No.</th>
+                                <th>Membership No</th>
+                                <th>Member</th>
+                                <th>Nominee</th>
+                                <th>Relation</th>
+                                <th>Member Relation</th>
+                                <th>Father/ Husband Name</th>
+            
 
                             </tr>
                         </thead>
@@ -546,6 +567,44 @@
             </td>
         </tr>
     </script>
+
+<script type="text/x-jQuery-tmpl" id="NomineeListingExport">
+    <tr class="trNomineeExport">
+
+        <input type="hidden" class="hdnNomineeId" value="${NomineeId}" />
+        <input type="hidden" class="hdnMemberId" value="${MemberId}" />
+        <input type="hidden" class="hdnTitleId" value="${TitleId}" />
+        <input type="hidden" class="hdnMemberRelationId" value="${MemberRelationId}" />
+        <input type="hidden" class="hdnRelationId" value="${RelationId}" />
+        <input type="hidden" class="hdnFirstName" value="${FirstName}" />
+        <input type="hidden" class="hdnLastName" value="${LastName}" />
+        <input type="hidden" class="hdnFatherName" value="${FatherName}" />
+        <input type="hidden" class="hdnDob" value="${ToJavaScriptDate(Dob)}" />
+        <input type="hidden" class="hdnBirthPlace" value="${BirthPlace}" />
+        <input type="hidden" class="hdnCNIC" value="${CNIC}" />
+        <input type="hidden" class="hdnCellNo" value="${CellNo}" />
+        <input type="hidden" class="hdnAddress" value="${Address}" />
+        <input type="hidden" class="hdnProfileFile" value="${ProfileFile}" />
+        <input type="hidden" class="hdnCnicFront" value="${CnicFront}" />
+        <input type="hidden" class="hdnCnicBack" value="${CnicBack}" />
+        <input type="hidden" class="hdnFrcFile" value="${FrcFile}" />
+        <input type="hidden" class="hdnHereshipCertificate" value="${HereshipCertificate}" />
+        <input type="hidden" class="hdnGuardianCertificate" value="${GuardianCertificate}" />
+        <input type="hidden" class="hdnDeathCertificate" value="${DeathCertificate}" />
+        <input type="hidden" class="hdnBirthCertificate" value="${BirthCertificate}" />
+
+        <td></td>
+        <td class="project-title tdMemberShipNo" nowrap>${MembershipNo}</td>
+        <td class="project-title tdMemberName" nowrap>${MemberName}</td>
+        <td class="project-title tdName" nowrap>${FirstName + ' ' + LastName}</td>
+        <td class="project-title tdRelation" nowrap>${Relation}</td>
+        <td class="project-title tdMemberRelation" nowrap>${MemberRelation}</td>
+        <td class="project-title tdFatherName" nowrap>${FatherName}</td>
+
+
+        
+    </tr>
+</script>
 
     <script src="~/Scripts/assets/js/PagesJS/Nominee.js"></script>
 

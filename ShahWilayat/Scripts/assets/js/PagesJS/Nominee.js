@@ -359,6 +359,14 @@ function onGetAllNominees(data) {
             $(this).find('td').first().text(i);
             i++;
         });
+
+        divTbodyGoalFund = $(".NomineeListingExport").html("");
+        $("#NomineeListingExport").tmpl(res).appendTo(divTbodyGoalFund);
+        var j = 1;
+        $('.trNomineeExport').each(function () {
+            $(this).find('td').first().text(j);
+            j++;
+        });
         // paginateTable('.tblNonimee', 10);
         ProgressBarHide();
     }
