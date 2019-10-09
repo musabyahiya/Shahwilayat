@@ -2073,6 +2073,11 @@
     <Content Include="Content\assets\css\PrintMaterial\Receipt\Bottom-img.png" />
     <Content Include="Content\assets\css\PrintMaterial\Receipt\Receipt.css" />
     <Content Include="Content\assets\css\PrintMaterial\Receipt\Top-img.png" />
+    <Content Include="Content\assets\css\PrintMaterial\TransferApplication\Blank.jpg" />
+    <Content Include="Content\assets\css\PrintMaterial\TransferApplication\Fahad.jpg" />
+    <Content Include="Content\assets\css\PrintMaterial\TransferApplication\Logo.png" />
+    <Content Include="Content\assets\css\PrintMaterial\TransferApplication\Musab.jpg" />
+    <Content Include="Content\assets\css\PrintMaterial\TransferApplication\Transfer-Application.css" />
     <Content Include="Content\assets\css\PrintMaterial\TransferOrder\Bottom-img.png" />
     <Content Include="Content\assets\css\PrintMaterial\TransferOrder\download.png" />
     <Content Include="Content\assets\css\PrintMaterial\TransferOrder\Top-img.png" />

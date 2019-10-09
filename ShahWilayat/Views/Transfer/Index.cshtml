@@ -183,7 +183,8 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">s
+            <div class="modal-body">
+                s
                 <div class="form-body frmTransfer_upd">
                     <h4 class="form-section"><i class="la la-exchange"></i> Transfer Details</h4>
                     <hr>
@@ -191,7 +192,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="ddlMember_upd">Member</label>
-                                <select id="ddlMember_upd"  disabled class="form-control ddlMember_upd notrequired" style="width:100%"></select>
+                                <select id="ddlMember_upd" disabled class="form-control ddlMember_upd notrequired" style="width:100%"></select>
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -305,7 +306,7 @@
                                     <label>Address: </label><span>
                                         <b>
                                             <u class="printTransferAddress">
-                                               
+
                                             </u>
                                         </b>
                                     </span>
@@ -402,6 +403,402 @@
 
 @*Edit Modal Start*@
 
+@*Edit Modal Transfer Order Start*@
+<div class="modal fade text-left" id="TransferApplication" role="dialog" aria-labelledby="myModalLabel16" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel16">Edit Transfer</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="PrintTransferApplication" class="reveal">
+                    <table style="width: 100%; height:100%; color: black;">
+                        <thead style="height:20px;">
+                            <tr style="line-height:1;">
+                                <td style="width:7%;"></td>
+                                <td>
+                                    <img src="~/Content/assets/css/PrintMaterial/TransferApplication/Logo.png" width="125" height="105" />
+                                   
+                                </td>
+
+                                <td>
+                                    <h2 style="text-align:left;font-size:26px;line-height:0;font-family: Segoe UI;">SHAH WILAYAT CO - OPERATIVE<br></h2><h3 style="text-align:left;line-height: 0;margin-left:50px;font-family: Segoe UI;">HOUSING SOCIETY LTD., KARACHI.</h3><h4 style="text-align: left;line-height:1;text-decoration: underline; line-height:1;font-weight:500;font-size:14px;margin-left:60px;font-family: Segoe UI;">
+                                        TRANSFER/MUTATION APPLICATION FORM
+                                    </h4>
+                                </td>
+                                <td style="width:1%;"></td>
+                            </tr>
+                        </thead>
+
+                        <tbody style="height: 100%; width: 100%;">
+                            <tr><td colspan="3"><br></td></tr>
+                            <tr style="line-height:1.3;">
+                                <td style="width: 7%;"></td>
+                                <td colspan="3">
+                                    <label>I, </label><span><b><u class="printAllotteeFullName"></u></b></span>
+                                    <label>s/o, </label><span><b><u class="printAllotteeFatherName"></u></b></span>
+                                </td>
+                                <td style="width:1%;"></td>
+                            </tr>
+                            <tr style="line-height:1.3;">
+                                <td style="width:7%;"></td>
+                                <td colspan="3">
+                                    <label>Resident of: </label>
+                                    <span>
+                                        <b>
+                                            <u class="printAllotteeAddress">
+                                                
+                                            </u>
+                                        </b>
+                                    </span>
+                                </td>
+                                <td style="width:1%;"></td>
+                            </tr>
+                            <tr style="line-height:1.3;">
+                                <td style="width:7%;"></td>
+                                <td colspan="3">
+                                    <p style="font-size:14px; line-height:1.3;">
+                                        State hereby as under: I have been Allotted Residential Open Plot of Land bearing Num ber: <span><b><u class="printTransferPlotNo"></u></b></span>; holding
+                                        membership no: <span><b><u class="printAllotteeMembershipNo"></u></b></span> and measuring:&nbsp;<span><b><u class="printTransferSize"></u></b></span> sq. yards, in this Society: Shah Wilayat Co-operative
+                                        Housing Society Ltd., Karachi. Phase-I, Sector: 49-A, Scheme No.: 33, Deh Thoming, Tappo Sogal, Main Super
+                                        Highway, Karachi.
+
+                                    </p>
+                                </td>
+                                <td style="width:1%;"></td>
+                            </tr>
+                            <tr style="line-height:1.5;">
+                                <td style="width:7%;"></td>
+                                <td colspan="3">
+                                    <p>The Provisional Allotment has been issued on:&nbsp;<span><b><u class="printAllotteeProvisionalAllotmentDate"></u></b></span>;</p>
+                                </td>
+                                <td style="width:1%;"></td>
+                            </tr>
+                            <tr style="line-height:1.5;">
+                                <td style="width:7%;"></td>
+                                <td colspan="3">
+                                    <p>Physical Possession of the afore said Plot taken on;<span>_______________</span></p>
+                                </td>
+                            </tr>
+                            <tr style="line-height:1.5;">
+                                <td style="width:7%;"></td>
+                                <td colspan="3">
+                                    <p>
+                                        Now, I intend to transfer/mutate the said Plot by Sale Deed / Gift Deed / Sale Agreement / Compromise Agreement duly<br> executed/registered on&nbsp;&nbsp;<span><b><u>06-11-2017</u></b></span>&nbsp;(Copy enclosed)
+                                    </p>
+                                </td>
+                                <td style="width:1%;"></td>
+                            </tr>
+                            <tr satyle="line-height:1.5;">
+                                <td style="width:7%;"></td>
+                                <td colspan="3">
+                                    <label>To:</label>
+                                    <span><b><u class="printTransferFullName"></u></b></span>
+                                    <label>S/o, D/o, W/o</label>
+                                    <span><b><u class="printTransferFatherName"></u></b></span>
+                                </td>
+                                <td style="width:1%;"></td>
+                            </tr>
+                            <tr style="line-height:1.5;">
+                                <td style="width:7%;"></td>
+                                <td colspan="3">
+                                    <p style="font-size: 13px;font-family: Monotype Corsiva; font-weight:800;line-height:1.5;">Therefore, I request that the said Plot and Shares with all rights pertaining to this Plot may please be transferred accordingly</p>
+                                </td>
+                                <td style="width:1%;"></td>
+                            </tr>
+                            <tr><td><br></td></tr>
+
+                        </tbody>
+                    </table>
+                    <table style="width: 100%; height:100%; color: black;">
+                        <tbody>
+                            <tr style="line-height:20px;">
+                                <td style="padding-left: 7%;">
+                                    <span>__________________________</span>
+                                    <span style="font-size:14px;line-height:1.5">SIGNATURE OF ALLOTTEE</span><br>
+                                    <label>N.I.C No :</label><span style="line-height:1.5"><b><u class="printTransferCNIC"></u></b></span><br>
+                                    <label>Date:</label><span style="line-height:1.5"><b><u>16-04-2019</u></b></span>
+
+                                </td>
+                                <td colspan="2" align="center">
+                                    <img src="~/Content/assets/css/PrintMaterial/TransferApplication/Blank.jpg" style="width:90px; height:110px; margin-left:50px;">
+                                    <img src="~/Content/assets/css/PrintMaterial/TransferApplication/Fahad.jpg" style="width:100px; height:120px; margin-right: 50px;border: 1px solid #000;" align="right">
+                                </td>
+                            </tr>
+                            <tr><td colspan="3" style="border-top:1px solid #000;"></td></tr>
+                            <tr><td></td></tr>
+                            <tr style="line-height:20px;">
+                                <td colspan="3" align="center">
+                                    <span style="font-size:18px;font-weight:600;line-height:1;text-align:center;text-decoration: underline;">ACCEPTANCE</span>
+                                </td>
+                            </tr>
+                            <tr style="line-height:20px;">
+
+                                <td colspan="3" style="padding-left: 7%;">
+                                    <label>I, </label><span><b><u class="printTransferFullName"></u></b></span>
+                                    <label>s/o, </label><span><b><u class="printTransferFatherName"></u></b></span>
+                                </td>
+                            </tr>
+
+                            <tr style="line-height:20px;">
+
+                                <td colspan="3" style="padding-left: 7%;">
+                                    <label>Resident of: </label>
+                                    <span>
+                                        <b>
+                                            <u class="printTransferAddress">
+                                                
+                                            </u>
+                                        </b>
+                                    </span>;hereby
+                                </td>
+
+                            </tr>
+
+                            <tr style="line-height:20px;">
+
+                                <td colspan="3" style="padding-left: 7%;">
+                                    <p style="font-size:16px; line-height:1.3;">
+                                        Accept the said Plot Number:&nbsp;<span><b><u class="printTransferPlotNo"></u></b></span> , holding membership no:&nbsp;<span><b><u class="printAllotteeMembershipNo"></u></b></span>
+                                        and state as under:
+                                        That, I have acquired the said Plot from:
+
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr style="line-height:20px;">
+                                <td colspan="3" style="padding-left: 7%;">
+                                    <p style="font-size:16px; line-height:2;">
+                                        <span><b><u class="printAllotteeFullName"></u></b></span>
+                                        <label>S/o, D/o, W/o</label>
+                                        <span><b><u class="printAllotteeFatherName"></u></b></span>
+                                    </p>
+                                </td>
+                            </tr>
+
+                            <tr style="line-height:20px;">
+
+                                <td colspan="3" style="padding-left: 7%;">
+                                    <p style="line-height: 1.3;">Through Sale Deed / Gift Deed / Sale Agreement / Compromise Statement duly executed and registered on&nbsp;<span><b><u>10-04-2019</u></b></span>&nbsp;and apply to the Society f or Transfer/Mutation.</p>
+                                </td>
+                            </tr>
+                            <tr><td colspan="3"></td></tr>
+                            <tr style="line-height:20px;">
+
+                                <td colspan="3" style="padding-left: 7%;">
+                                    <p style="line-height: 1.3;">
+                                        That, I have read the Terms & Conditions/By-laws of the Allotment made and undertake to abide by them as well as the
+                                        amendments of this Society makes from time to time.
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr><td colspan="3"></td></tr>
+                            <tr style="line-height:20px;">
+
+                                <td colspan="3" style="padding-left: 7%;">
+                                    <p style="line-height: 1.3;">
+                                        That, I shall be governed by the Terms & Conditions set forth for an Allottee or any other condition (s) that may be
+                                        imposed on this Society: Shah Wilayat Co-operative Housing Society Ltd., Karachi, Phase-I. Land situated in: Sector:
+                                        49-A, Scheme No.:33, Deh Thoming, Tappo Sogal; Main Super Highway, Karachi; at the time of Transfer
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr><td><br></td></tr>
+
+                            <tr style="line-height:20px;">
+                                <td width="38%" style="padding-left: 7%;">
+                                    <span li>____________________________</span>
+                                    <span style="font-size:14px;line-height:2">SIGNATURE OF TRANSFEREE</span><br>
+                                    <label>N.I.C No :</label><span style="line-height:1.5"><b><u>42201-4327962-2</u></b></span><br>
+                                    <label>Date:</label><span style="line-height:1.5"><b><u>16-04-2019</u></b></span>
+
+                                </td>
+                                <td colspan="2" align="center">
+                                    <img src="~/Content/assets/css/PrintMaterial/TransferApplication/Blank.jpg" style="width:90px; height:110px; margin-left:50px;">
+                                    <img src="~/Content/assets/css/PrintMaterial/TransferApplication/Musab.jpg" style="width:100px; height:120px; margin-right: 50px;border: 1px solid #000;" align="right">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table>
+                        <thead>
+                            <tr style="line-height:20px;">
+                                <td colspan="3" style="padding-left: 7%;">
+                                    <label>Dated :</label>&nbsp;&nbsp;<span><b>16-04-2019;</b></span>
+                                </td>
+                            </tr>
+                            <tr><td><br><br><br></td></tr>
+                        <tbody style="height: 100%; width: 100%;">
+
+                            <tr style="line-height:20px;">
+                                <td style="width:7%;"></td>
+                                <td colspan="3">
+                                    <label>To &nbsp;&nbsp;</label>
+                                    <span>: The Honorary Secretary,</span>
+                                </td>
+                            </tr>
+                            <tr style="line-height:20px;">
+                                <td style="width:7%;"></td>
+                                <td colspan="3">
+                                    <label>Society &nbsp;&nbsp;</label>
+                                    <span>: Shah Wilayat Co-operative Housing Society Limited, Karachi.</span>
+                                </td>
+                            </tr>
+                            <tr style="line-height:20px;">
+                                <td style="width:7%;"></td>
+                                <td colspan="3">
+                                    <label>Office &nbsp;&nbsp;</label>
+                                    <span>: No: 15, Plot No, SF 10, Block-B, Hanif Centre, North Nazimabad, Karachi.</span>
+                                </td>
+                            </tr>
+                            <tr style="line-height:20px;">
+                                <td style="width:7%;"></td>
+                                <td colspan="3">
+                                    <label>Phone &nbsp;&nbsp;</label>
+                                    <span>: 021-366 49933-4</span>
+                                </td>
+                            </tr>
+                            <tr><td><br><br></td></tr>
+
+                            <tr style="line-height:20px;">
+                                <td colspan="1" style="padding-left: 7%;">
+                                    <label>Subject</label>
+                                </td>
+                                <td style="padding-left: 7%;">
+                                    <span>: TRANSFER OF PLOT NO.</span>
+                                    <span> <b class="printTransferPlotNo"></b></span>
+                                </td>
+                                <td style="padding-left: 7%;">
+                                    <span> &nbsp;MEMBERSHIP NO: &nbsp; </span>
+                                    <span><b class="printAllotteeMembershipNo"></b></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border-top:1px solid #000; border-width:100%;"></td>
+                            </tr>
+                            <tr style="line-height:20px;">
+                                <td style="width:7%;"></td>
+                                <td colspan="3">
+                                    <label>Sir, &nbsp;&nbsp;</label>
+                                </td>
+                            </tr>
+                            <tr style="line-height:20px;">
+                                <td style="width:7%;"></td>
+                                <td colspan="3">
+                                    <label>Please find enclosed herewith the following documents regarding the Transfer of the said Plot. &nbsp;&nbsp;</label>
+                                </td>
+                            </tr>
+                            <tr style="line-height:20px;">
+                                <td style="width:7%;"></td>
+                                <td colspan="3">
+                                    <p style="line-height: 1.3;font-size:15px;">
+                                        1. Press Notification in Daily Jang.<br>
+                                        2. Transfer Application.<br>
+                                        3. Transfer/ Mutation Application Form.<br>
+                                        4. Membership Nominee Info Form.<br>
+                                        5. Sale Agreement Rs. 100/- Non-Judicial Paper duly attested.<br>
+                                        6. Affidavit (Purchaser and Seller Rs. 50/- Non-Judicial Paper duly attested).<br>
+                                        7. Indemnity Bond (Purchaser and Seller Rs. 50/- Non-Judicial Paper duly attested).<br>
+                                        8. Share Certificate.<br>
+                                        9. Cross Cheque/ Pay Order of Transfer Fees.<br>
+                                        10. Last Transfer Order.<br>
+                                        11. Previous Membership ID Card.<br>
+                                        12. CNIC copies of Seller, Purchaser and Witnesses.<br>
+                                        13. Other : <span>__________________________</span><br>
+
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr style="line-height:20px;">
+                                <td style="width:7%;"></td>
+                                <td colspan="3">
+                                    <label style="line-height:1.5">
+                                        In case, any other document may be required by your office the same will be submitted on demand.
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr><td></td></tr>
+                            <tr style="line-height:20px;">
+                                <td style="width:7%;"></td>
+                                <td colspan="3">
+                                    <label style="line-height:1.5;">
+                                        Sincerely,
+                                    </label>
+                                </td>
+                            </tr>
+
+                            <tr style="line-height:20px;">
+                                <td style="width:7%;"></td>
+                                <td colspan="3">
+                                    <label style="line-height:1.5;">
+                                        ______________________________
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr style="line-height:20px;">
+                                <td style="width:7%;"></td>
+                                <td colspan="3">
+                                    <label style="line-height:2;">Name :</label>
+                                    <span><u><b class="printTransferFullName"></b></u></span>
+                                </td>
+                            </tr>
+                            <tr style="line-height:20px;">
+                                <td style="width:7%;"></td>
+                                <td colspan="3">
+                                    <label style="line-height:2;">Date :</label>
+                                    <span><u><b>16-04-2019</b></u></span>
+                                </td>
+                            </tr>
+                            <tr style="line-height:20px;">
+                                <td style="width:7%;"></td>
+                                <td colspan="3">
+                                    <label style="line-height:2;">CNIC :</label>
+                                    <span><u><b class="printTransferCNIC"></b></u></span>
+                                </td>
+                            </tr>
+                            <tr style="line-height:20px;">
+                                <td style="width:7%;"></td>
+                                <td colspan="3">
+                                    <label style="line-height:2;">Address :</label>
+                                    <span><u class="printTransferAddress"><b></b></u></span>
+                                </td>
+                            </tr>
+                            <tr style="line-height:20px;">
+                                <td style="width:7%;"></td>
+                                <td colspan="3">
+                                    <label style="line-height:2;">Phone #</label>
+                                    <span><u class="printTransferLandline"></u></span>
+                                </td>
+                            </tr>
+                            <tr style="line-height:20px;">
+                                <td style="width:7%;"></td>
+                                <td colspan="3">
+                                    <label style="line-height:2;">Cell #</label>
+                                    <span><u class="printTransferCellNo"></u></span>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn grey btn-outline-info" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline-dark btnUpdateChanges">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Edit Modal Start*@
+
+
+
+
 @section Scripts
 {
     <script type="text/x-jQuery-tmpl" id="TransferListing">
@@ -429,11 +826,12 @@
 
 
             <td class="project-title" nowrap>
-                <a href="javascript:void(0)"  onclick="PrintTransferOrder(this)" data-toggle="tooltip" data-placement="top" data-original-title="Print Transfer Order"><i class="la la-exchange primary"></i></a> &nbsp;
+                <a href="javascript:void(0)" data-toggle="modal" data-target="#TransferApplication" onclick="PrintTransferApplication(this)" data-toggle="tooltip" data-placement="top" data-original-title="Print Transfer Application"><i class="la la-exchange danger"></i></a> &nbsp;
+                <a href="javascript:void(0)" onclick="PrintTransferOrder(this)" data-toggle="tooltip" data-placement="top" data-original-title="Print Transfer Order"><i class="la la-exchange primary"></i></a> &nbsp;
 
                 <a href="javascript:void(0)" data-toggle="modal" data-target="#EditTransfer" onclick="EditTransfer(this)" data-toggle="tooltip" data-placement="top" data-original-title="Edit Transfer"><i class="la la-pencil-square success"></i></a>
                 <a href="javascript:void(0)" data-toggle="modal" data-target="#EditAttachment" onclick="EditTransfer(this)" title="Edit Attachment"><i class="ft-paperclip"></i></a>
-                <a href="javascript:void(0)" data-toggle="modal" data-target="#DeleteTransfer" onclick="EditTransfer(this)" data-toggle="tooltip" data-placement="top" data-original-title="Delete Transfer"><i class="la la-trash danger"></i></a>
+                @*<a href="javascript:void(0)" data-toggle="modal" data-target="#DeleteTransfer" onclick="EditTransfer(this)" data-toggle="tooltip" data-placement="top" data-original-title="Delete Transfer"><i class="la la-trash danger"></i></a>*@
 
             </td>
 
