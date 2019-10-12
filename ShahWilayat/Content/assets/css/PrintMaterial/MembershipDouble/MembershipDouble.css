@@ -1,0 +1,369 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+body{
+	font-family:"open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+  html,body
+  {
+    font-family: "Bookman Old Style";
+  }
+  @page {
+    size: A4 portrait;
+    width: 100%;
+    height: 100%;
+    
+  }
+
+
+body
+{
+	-webkit-print-color-adjust: exact !important;
+
+}
+
+
+table {
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+.container
+ {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+
+.MemberName {
+  position: absolute;
+  top:33.30%;
+  left:13%;
+
+}
+.SecondMemberName {
+  position: absolute;
+  top:52.30%;
+  left:13%;
+
+}
+.SecondMemberFatherName
+{
+  position: absolute;
+  top:55.60%;
+  left:15.50%;
+}
+.SecondMemberDOB
+{
+  position: absolute;
+  top:58.50%;
+  left:14%;
+
+}
+.SecondMemberBirthPlace
+{
+  position: absolute;
+  top:58.50%;
+  left:32%;
+}
+.SecondMemberAddress
+{
+   position: absolute;
+  top:60.10%;
+  left:12.80%; 
+}
+.SecondMemberCNIC
+{
+   position: absolute;
+  top:62%;
+  left:11.80%;
+  letter-spacing:5px;
+
+}
+.SecondMemberBloodGroup
+{
+  position: absolute;
+  top:62%;
+  left:47%;
+}
+.SecondMemberEmail
+{
+  position: absolute;
+   top:63.50%;
+  left:30%;
+
+}
+.SecondMemberLandline
+{
+  position: absolute;
+  top:63.50%;
+  left:10%;
+}
+.SecondMemberOffLandline
+{
+ position: absolute;
+  top:63.50%;
+  left:22%;
+}
+.SecondMemberMobile
+{
+   position: absolute;
+   top:65%;
+  left:14%;
+}
+
+.MemberFatherName {
+  position: absolute;
+  top:36.40%;
+  left:15.50%;
+  width:20%;
+/*  transform: translate(-50%, -50%);*/
+}
+.NomineeName {
+  position: absolute;
+  top:34.40%;
+  left:57%;
+
+}
+.NomineeFatherName {
+  position: absolute;
+  top:38.40%;
+  left:60%;
+  width:20%;
+}
+.MemberDOB {
+  position: absolute;
+  top:39.60%;
+  left:14%;
+
+/*  transform: translate(-50%, -50%);*/
+}
+.MemberBirthPlace {
+  position: absolute;
+  top:39.60%;
+  left:32%;
+ 
+/*  transform: translate(-50%, -50%);*/
+}
+.NomineeDOB {
+  position: absolute;
+  top:42.30%;
+  left:62.50%;
+
+/*  transform: translate(-50%, -50%);*/
+}
+.NomineeBirthPlace {
+  position: absolute;
+  top:44.30%;
+  left:63%;
+  width:20%;
+/*  transform: translate(-50%, -50%);*/
+}
+.MemberImage
+  {
+    position: absolute;
+     top:31.10%;
+    left:39.50%;
+  }
+.MemberImage-2
+  {
+    position: absolute;
+     top:50%;
+    left:39.50%;
+  }
+.NomineeImage
+  {
+
+    position: absolute;
+    top:31.10%;
+    left:77%;
+
+  }
+
+.MemberAddress {
+  position: absolute;
+  top:41.20%;
+  left:12.80%;
+ 
+/*  transform: translate(-50%, -50%);*/
+}
+.NomineeAddress {
+  position: absolute;
+  top:46.40%;
+  left:58.50%;
+  width:32%;
+/*  transform: translate(-50%, -50%);*/
+}
+.MemberCNIC
+{
+ position: absolute;
+  top:43%;
+  left:11.80%;
+  letter-spacing:5px;
+  
+}
+.NomineeCNIC
+{
+  position: absolute;
+  top:50.60%;
+  left:62.05%;
+   letter-spacing:7.9px;
+  
+}
+.MemberLandline {
+  position: absolute;
+  top:44.50%;
+  left:10%;
+
+
+/*  transform: translate(-50%, -50%);*/
+}
+.NomineeLandline {
+  position: absolute;
+  top:52.50%;
+  left:58%;
+
+/*  transform: translate(-50%, -50%);*/
+}
+.MemberOffLandline {
+  position: absolute;
+  top:44.50%;
+  left:22%;
+
+/*  transform: translate(-50%, -50%);*/
+}
+.NomineeOffLandline {
+  position: absolute;
+  top:54.50%;
+  left:58%;
+/*  transform: translate(-50%, -50%);*/
+}
+.MemberBloodGroup {
+  position: absolute;
+  top:43%;
+  left:47%;
+
+/*  transform: translate(-50%, -50%);*/
+}
+.NomineeBloodRelation {
+  position: absolute;
+   top:52.80%;
+  left:84%;
+}
+.NomineeBloodRelation2
+{
+  position: absolute;
+   top:54.80%;
+  left:84%;
+}
+
+/*  transform: translate(-50%, -50%);*/
+.SecondNomineeRelation
+{
+   position: absolute;
+   top:66.50%;
+  left:18%;
+}
+.SecondNomineeRelationName
+{
+   position: absolute;
+   top:66.50%;
+  left:25%;
+}
+.MemberMobile {
+  position: absolute;
+   top:46%;
+  left:14%;
+
+/*  transform: translate(-50%, -50%);*/
+}
+.NomineeMobile {
+  position: absolute;
+  top:56.50%;
+  left:58%;
+/*  transform: translate(-50%, -50%);*/
+}
+.MemberEmail {
+  position: absolute;
+   top:44.50%;
+  left:30%;
+
+/*  transform: translate(-50%, -50%);*/
+}
+.NomineeEmail {
+  position: absolute;
+  top:58.40%;
+  left:57%;
+/*  transform: translate(-50%, -50%);*/
+}
+.NomineeRelation
+{
+  position: absolute;
+   top:47.50%;
+  left:18%;
+}
+.NomineeRelationName
+{
+ position: absolute;
+   top:47.50%;
+  left:25%;
+}
+.SecondNomineeRelationName
+{
+  position: absolute;
+   top:66.40%;
+  left:27%;
+}
+.PlotTitle
+{
+position: absolute;
+  top:69.70%;
+  left:19.20%;
+}
+
+.MembershipNo
+{
+position: absolute;
+   top:69.70%;
+  left:44.90%;
+}
+
+.PlotNo
+{
+position: absolute;
+    top:69.70%;
+  left:64.50%;
+}
+
+.PlotSize
+{
+ position: absolute;
+    top:69.70%;
+  left:78.30%;
+}
+.RefNo
+{
+  position: absolute;
+  top:21.80%;
+  left:14%;
+}
+.MembershipDate
+{
+  position: absolute;
+  top:21.80%;
+  left:75.80%;
+}
+.MemberCopy
+{
+  position: absolute;
+  top:19%;
+  left:40%;
+}
+span
+{
+  font-size: 11px;
+  font-weight: 600;
+  font-family: "Bookman Old Style";
+}
+
+

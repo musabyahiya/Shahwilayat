@@ -555,14 +555,14 @@
             </td>
 
             <td align="center" class="project-title" nowrap>
-                <a href="${ProfileFile==''? '': '../Uploads/'+JSON.parse(ProfileFile)[0]}" download="" data-toggle="tooltip" title="Profile Picture"><i class="la la-cloud-download warning"></i></a>&nbsp;
-                <a href="${FrcFile==''? '': '../Uploads/'+JSON.parse(FrcFile)[0]}" download="" data-toggle="tooltip" title="FRC"><i class="la la-cloud-download success"></i></a>&nbsp;
-                <a href="${CnicFront==''? '': '../Uploads/'+JSON.parse(CnicFront)[0]}" download="" data-toggle="tooltip" title="CNIC Front"><i class="la la-cloud-download info"></i></a>&nbsp;
-                <a href="${CnicBack==''? '': '../Uploads/'+JSON.parse(CnicBack)[0]}" download="" data-toggle="tooltip" title="CNIC Back"><i class="la la-cloud-download dark"></i></a>&nbsp;
-                <a href="${HereshipCertificate==''? '': '../Uploads/'+JSON.parse(HereshipCertificate)[0]}" download="" data-toggle="tooltip" title="Hereship Certificate"><i class="la la-cloud-download primary"></i></a>&nbsp;
-                <a href="${BirthCertificate==''? '': '../Uploads/'+JSON.parse(BirthCertificate)[0]}" download="" data-toggle="tooltip" title="Birth Certificate"><i class="la la-cloud-download danger"></i></a>&nbsp;
-                <a href="${GuardianCertificate==''? '': '../Uploads/'+JSON.parse(GuardianCertificate)[0]}" download="" data-toggle="tooltip" title="Guardian Certificate"><i class="la la-cloud-download warning"></i></a>&nbsp;
-                <a href="${DeathCertificate==''? '': '../Uploads/'+JSON.parse(DeathCertificate)[0]}" download="" data-toggle="tooltip" title="Death Certificate"><i class="la la-cloud-download default"></i></a>
+                <a href="${ProfileFile == ''? '': '../Uploads/'+JSON.parse(ProfileFile)[0]}" download="" data-toggle="tooltip" title="Profile Picture"><i class="la la-cloud-download warning"></i></a>&nbsp;
+                <a href="${FrcFile== null? '': '../Uploads/'+JSON.parse(FrcFile)[0]}" download="" data-toggle="tooltip" title="FRC"><i class="la la-cloud-download success"></i></a>&nbsp;
+                <a href="${CnicFront== null? '': '../Uploads/'+JSON.parse(CnicFront)[0]}" download="" data-toggle="tooltip" title="CNIC Front"><i class="la la-cloud-download info"></i></a>&nbsp;
+                <a href="${CnicBack == null? '': '../Uploads/'+JSON.parse(CnicBack)[0]}" download="" data-toggle="tooltip" title="CNIC Back"><i class="la la-cloud-download dark"></i></a>&nbsp;
+                <a href="${HereshipCertificate == null? '': '../Uploads/'+JSON.parse(HereshipCertificate)[0]}" download="" data-toggle="tooltip" title="Hereship Certificate"><i class="la la-cloud-download primary"></i></a>&nbsp;
+                <a href="${BirthCertificate == null? '': '../Uploads/'+JSON.parse(BirthCertificate)[0]}" download="" data-toggle="tooltip" title="Birth Certificate"><i class="la la-cloud-download danger"></i></a>&nbsp;
+                <a href="${GuardianCertificate == null? '': '../Uploads/'+JSON.parse(GuardianCertificate)[0]}" download="" data-toggle="tooltip" title="Guardian Certificate"><i class="la la-cloud-download warning"></i></a>&nbsp;
+                <a href="${DeathCertificate == null? '': '../Uploads/'+JSON.parse(DeathCertificate)[0]}" download="" data-toggle="tooltip" title="Death Certificate"><i class="la la-cloud-download default"></i></a>
 
             </td>
         </tr>
@@ -602,7 +602,6 @@
         <td class="project-title tdFatherName" nowrap>${FatherName}</td>
 
 
-        
     </tr>
 </script>
 

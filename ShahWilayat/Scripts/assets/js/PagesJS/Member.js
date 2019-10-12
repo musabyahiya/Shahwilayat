@@ -210,6 +210,7 @@ function AllClickFunction() {
 function PrintIDCard(selector) {
     objEditRow = $(selector).closest('tr');
     $('.IDCardMembershipNo').html(objEditRow.find('.hdnMembershipNo').val());
+    $('.IDCardFullName').html(objEditRow.find('.hdnFirstName').val() + ' ' + objEditRow.find('.hdnLastName').val());
     $('.IDCardBloodGroup').html(objEditRow.find('.hdnBloodGroup').val() == null ? 'N/A' : objEditRow.find('.hdnBloodGroup').val());
     $('.IDCardAddress').html(objEditRow.find('.hdnPermanentAddress').val());
     $('.IDCardCNIC').html(objEditRow.find('.hdnCNIC').val());
@@ -725,7 +726,7 @@ function PrintIndividualMember(selector) {
     $('.printLandline').html(objEditRow.find('.hdnLandline').val() == null ? 'N/A' : objEditRow.find('.hdnLandline').val());
     $('.printWhatsApp').html(objEditRow.find('.hdnWhatsApp').val() == null ? 'N/A' : objEditRow.find('.hdnWhatsApp').val());
     $('.printOfficePhone').html(objEditRow.find('.hdnOfficePhone').val() == null ? 'N/A' : objEditRow.find('.hdnOfficePhone').val());
-    $('.printEmail').html(objEditRow.find('.hdnEmail').val() == null ? 'N/A' : objEditRow.find('.hdnWhatsApp').val());
+    $('.printEmail').html(objEditRow.find('.hdnEmail').val() == null ? 'N/A' : objEditRow.find('.hdnEmail').val());
     $('.printDob').html(objEditRow.find('.hdnDob').val());
     $('.printBirthPlace').html(objEditRow.find('.hdnBirthPlace').val());
     $('.printCNIC').html(objEditRow.find('.hdnCNIC').val());
@@ -743,7 +744,9 @@ function PrintIndividualMember(selector) {
     $('.printMembershipDate').html(objEditRow.find('.hdnMembershipDate').val());
     $('.printReferenceNo').html(objEditRow.find('.hdnReferenceNo').val());
     $('.printFolioNo').html(objEditRow.find('.hdnFolioNo').val());
-    $('.printProfileFile').attr('src', objEditRow.find('.hdnProfileFile').val());
+
+    $(".printProfileFile").attr("src", '../Uploads/' + JSON.parse(objEditRow.find('.hdnProfileFile').val())[0]);
+   
 
     // for plot binding
     var res = AllotteeList.filter(x=> x.MemberId == Members[0].MemberId);

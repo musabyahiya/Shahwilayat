@@ -2,7 +2,7 @@
 
 GetMembershipFormSingle();
 var MembershipFormSingleList;
-
+var objEditRow;
 function GetMembershipFormSingle() {
     ProgressBarShow();
     var request = $.ajax({
@@ -112,7 +112,30 @@ function SearchTable() {
     });
 }
 
-function PrintMembershipSingle() {
+function PrintMembershipSingle(selector) {
+
+    objEditRow = $(selector).closest('tr');
+    $('.printProfileFile').attr('src', objEditRow.find('.hdnProfileFile').val());
+    $('.printNomineeProfileFile').attr('src', objEditRow.find('.hdnProfileFile').val());
+    BindTextToSelector('.printReferenceNo', objEditRow.find('.hdnReferenceNo').val());
+    BindTextToSelector('.printMembershipDate', formatDatePakFormat(objEditRow.find('.hdnMembershipDate').val()));
+    BindTextToSelector('.printFullName', objEditRow.find('.hdnFullName').val());
+    BindTextToSelector('.printFatherName', objEditRow.find('.hdnFatherName').val());
+    BindTextToSelector('.printNomineeFullName', objEditRow.find('.hdnNomineeName').val());
+    BindTextToSelector('.printNomineeFatherName', objEditRow.find('.hdnNomineeFatherName').val());
+    BindTextToSelector('.printDob', formatDatePakFormat(objEditRow.find('.hdnDob').val()));
+    BindTextToSelector('.printBirthPlace', objEditRow.find('.hdnBirthPlace').val());
+    BindTextToSelector('.printNomineeDob', formatDatePakFormat(objEditRow.find('.hdnNomineeDob').val()));
+    BindTextToSelector('.printNomineeBirthPlace', objEditRow.find('.hdnNomineeBirthPlace').val());
+
+    
+    BindTextToSelector('.printPermanentAddress', objEditRow.find('.hdnPermanentAddress').val());
+    BindTextToSelector('.printNomineePermanentAddress', objEditRow.find('.hdnNomineePermanentAddress').val());
+    BindTextToSelector('.printCNIC', objEditRow.find('.hdnCNIC').val());
+    BindTextToSelector('.printNomineeCNIC', objEditRow.find('.hdnNomineeCNIC').val());
+    BindTextToSelector('.printLandline', objEditRow.find('.hdnLandline').val());
+
+    var MemberId = objEditRow.find('.hdnMemberId').val();
     $(function () {
         //$('#Print').load('http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js');
 

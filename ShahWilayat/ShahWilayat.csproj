@@ -2064,10 +2064,16 @@
     <Content Include="Content\assets\css\PrintMaterial\ID_Back.png" />
     <Content Include="Content\assets\css\PrintMaterial\ID_Front.png" />
     <Content Include="Content\assets\css\PrintMaterial\MemberProfile.css" />
+    <Content Include="Content\assets\css\PrintMaterial\MembershipDouble\MembershipDouble.css" />
+    <Content Include="Content\assets\css\PrintMaterial\MembershipDouble\Form-2.jpg" />
+    <Content Include="Content\assets\css\PrintMaterial\MembershipDouble\Nominee.JPG" />
+    <Content Include="Content\assets\css\PrintMaterial\MembershipDouble\Person.JPG" />
+    <Content Include="Content\assets\css\PrintMaterial\MembershipDouble\Person2.JPG" />
     <Content Include="Content\assets\css\PrintMaterial\MembershipSingle\Fahad.jpg" />
     <Content Include="Content\assets\css\PrintMaterial\MembershipSingle\Form.jpg" />
     <Content Include="Content\assets\css\PrintMaterial\MembershipSingle\MembershipSingle.css" />
     <Content Include="Content\assets\css\PrintMaterial\MembershipSingle\MemCopy.JPG" />
+    <Content Include="Content\assets\css\PrintMaterial\MembershipSingle\Musab.jpg" />
     <Content Include="Content\assets\css\PrintMaterial\MembershipSingle\user.jpg" />
     <Content Include="Content\assets\css\PrintMaterial\Receipt.css" />
     <Content Include="Content\assets\css\PrintMaterial\Receipt\Bottom-img.png" />
