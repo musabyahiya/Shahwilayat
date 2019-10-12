@@ -26,12 +26,12 @@ function AllChangeFunction() {
         var MemberId = $('.ddlMember').val();
         var PlotTypeId = $(this).val();
         if (AllotmentTypeId == 1) {
-            var obj = OrignalAllotment.filter(x => x.PlotTypeId == PlotTypeId && x.MemberId == MemberId);
-            FillDropDownByReferencePlot('.ddlPlot', OrignalAllotment);
+            var obj = OrignalAllotment.filter(x => (x.PlotTypeId == PlotTypeId) && (x.MemberId == MemberId));
+            FillDropDownByReferencePlot('.ddlPlot', obj);
         }
         else {
-            var obj = AssociateAllotment.filter(x => x.PlotTypeId == PlotTypeId && x.MemberId == MemberId);
-            FillDropDownByReferencePlot('.ddlPlot', AssociateAllotment);
+            var obj = AssociateAllotment.filter(x => (x.PlotTypeId == PlotTypeId) && (x.MemberId == MemberId));
+            FillDropDownByReferencePlot('.ddlPlot', obj);
         }
 
 

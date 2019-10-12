@@ -103,7 +103,7 @@ function onGetPaidReceipt(data) {
         BindTextToSelector('.printReceiptNo', obj[0].ReceiptNo);
         BindTextToSelector('.printFatherName', obj[0].FatherName);
 
-        BindTextToSelector('.printAmount', moneyFormat(TotalAmount) + '/= (' + GetAmountInWords(TotalAmount).capitalize() + ')');
+        BindTextToSelector('.printAmount', moneyFormat(TotalAmount) + '/= (' + GetAmountInWords(Math.trunc(TotalAmount)).capitalize() + ')');
         BindTextToSelector('.printPaymentMethod', 'by ' + obj[0].PaymentMethod + ':');
         BindTextToSelector('.printChequeNo', obj[0].ChequeNo);
         BindTextToSelector('.printChequeDate', formatDatePakFormat(obj[0].ChequeDate));
