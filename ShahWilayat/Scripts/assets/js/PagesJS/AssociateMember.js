@@ -180,6 +180,7 @@ function AllClickFunction() {
 function PrintIDCard(selector) {
     objEditRow = $(selector).closest('tr');
     $('.IDCardMembershipNo').html(objEditRow.find('.hdnMembershipNo').val());
+    $('.IDCardFullName').html(objEditRow.find('.hdnFirstName').val() + ' ' + objEditRow.find('.hdnLastName').val());
     $('.IDCardBloodGroup').html(objEditRow.find('.hdnBloodGroup').val() == null ? 'N/A' : objEditRow.find('.hdnBloodGroup').val());
     $('.IDCardAddress').html(objEditRow.find('.hdnPermanentAddress').val());
     $('.IDCardCNIC').html(objEditRow.find('.hdnCNIC').val());
