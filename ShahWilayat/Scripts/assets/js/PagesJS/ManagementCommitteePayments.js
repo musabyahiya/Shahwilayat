@@ -1,17 +1,27 @@
 ﻿$(window).on("load", function () {
-    GetPaymentManagementCommitteeWise();
+    GetRptPaymentAmountCategoryWise();
 });
 
+AllChangeFunction();
 
-function GetPaymentManagementCommitteeWise() {
+
+
+function AllChangeFunction() {
+    $(".ddlPaymentCategory").change(function () {
+        var PaymentCategoryId = $(this).val();
+        GetRptPaymentAmountCategoryWise(PaymentCategoryId);
+    });
+
+}
+function GetRptPaymentAmountCategoryWise() {
     ProgressBarShow();
     var request = $.ajax({
         method: "POST",
-        url: "/ManagementCommitteePayments/RptGetPaymentManagementCommitteeWise",
+        url: "/ManagementCommitteePayments/GetRptGetPaymentAmountGeneral",
     });
     request.done(function (data) {
 
-        onGetPaymentManagementCommitteeWise(data);
+        onGetRptPaymentAmountCategoryWise(data);
     });
     request.fail(function (jqXHR, Status) {
         console.log(jqXHR.responseText);
@@ -20,7 +30,7 @@ function GetPaymentManagementCommitteeWise() {
 }
 
 
-function onGetPaymentManagementCommitteeWise(data) {
+function onGetRptPaymentAmountCategoryWise(data) {
     var res = JSON.parse(data);
     InitializeDevExpress(res)
 }
@@ -87,7 +97,7 @@ function InitializeDevExpress(source) {
             }
         }, {
             dataField: "FullName",
-            caption: "Full Name",
+            caption: "Member",
 
             headerFilter: {
                 allowSearch: true
@@ -111,12 +121,12 @@ function InitializeDevExpress(source) {
             }
         },
         {
-            dataField: "RemainingPercent",
-            caption: "Remaining %",
-            alignment: "right",
+            dataField: "Management",
+            caption: "Management",
+          
             width: 140,
             headerFilter: {
-                groupInterval: 10000
+                allowSearch: true
             }
         }],
         summary: {
@@ -181,5 +191,5 @@ function InitializeDevExpress(source) {
 
 
 function getNewFileName() {
-    return "RPT_GeneralPayment_" + GetCurrentDate();
+    return "RPT_ManagementCommitteePayments_" + GetCurrentDate();
 }

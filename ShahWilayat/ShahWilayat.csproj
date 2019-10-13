@@ -235,6 +235,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ManagementCommitteePaymentsController.cs" />
     <Compile Include="Controllers\ManualPaymentController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\MembershipSingleController.cs" />
@@ -5440,6 +5441,7 @@
     <Content Include="Scripts\assets\js\PagesJS\Letters.js" />
     <Content Include="Scripts\assets\js\PagesJS\Login.js" />
     <Content Include="Scripts\assets\js\PagesJS\MakePayment.js" />
+    <Content Include="Scripts\assets\js\PagesJS\ManagementCommitteePayments.js" />
     <Content Include="Scripts\assets\js\PagesJS\ManualPayment.js" />
     <Content Include="Scripts\assets\js\PagesJS\Member.js" />
     <Content Include="Scripts\assets\js\PagesJS\MembershipSingle.js" />
@@ -6077,6 +6079,7 @@
     <Content Include="Views\MembershipSingle\Index.cshtml" />
     <Content Include="Views\GeneralPayment\Index.cshtml" />
     <Content Include="Views\PlotTransfer\Index.cshtml" />
+    <Content Include="Views\ManagementCommitteePayments\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
