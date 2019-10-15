@@ -316,7 +316,7 @@ function PrintTransferOrder(selector) {
     BindTextToSelector('.printAllotteeFullName', Allottee[0].FullName);
     BindTextToSelector('.printAllotteeCNIC', Allottee[0].CNIC);
     BindTextToSelector('.printAllotteeAddress', Allottee[0].PermanentAddress);
-    
+    $(".printTransferProfile").attr("src", '../Uploads/' + JSON.parse(Tranfer[0].ProfileFile)[0]);
     $(function () {
         //$('#Print').load('http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js');
 

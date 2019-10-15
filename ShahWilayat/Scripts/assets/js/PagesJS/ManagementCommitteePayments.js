@@ -128,6 +128,15 @@ function InitializeDevExpress(source) {
             headerFilter: {
                 allowSearch: true
             }
+        },
+        {
+            dataField: "PaymentType",
+            caption: "Payment Type",
+
+            width: 140,
+            headerFilter: {
+                allowSearch: true
+            }
         }],
         summary: {
             totalItems: [{
