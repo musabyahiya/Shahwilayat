@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="96a10a94e89f42c7bddf9c3fbfeab382" Name="Diagram1" ZoomLevel="92">
+      <Diagram DiagramId="96a10a94e89f42c7bddf9c3fbfeab382" Name="Diagram1" ZoomLevel="69">
         <EntityTypeShape EntityType="ShahWilayatModel.Allotment" Width="1.5" PointX="8.25" PointY="33.125" IsExpanded="true" />
         <EntityTypeShape EntityType="ShahWilayatModel.AssociateAllotment" Width="1.5" PointX="11.25" PointY="33.25" IsExpanded="true" />
         <EntityTypeShape EntityType="ShahWilayatModel.AssociateMember" Width="1.5" PointX="3" PointY="30.75" IsExpanded="true" />

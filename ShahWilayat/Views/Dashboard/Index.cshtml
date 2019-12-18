@@ -4,100 +4,562 @@
     Layout = "~/Views/Shared/_MasterPage.cshtml";
 }
 
-@*<div class="row">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">Basic Tables</h4>
-                <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
-                <div class="heading-elements">
-                    <ul class="list-inline mb-0">
-                        <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-                        <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
-                        <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
-                        <li><a data-action="close"><i class="ft-x"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="card-content collapse show">
-                <div class="card-body">
-                    <p class="card-text">
-                        Using the most basic table markup, here’s how <code>.table</code>-based
-                        tables look in Bootstrap. You can use any example of below table
-                        for your table and it can be use with any type of bootstrap tables.
-                    </p>
-                    <p>
-                        <span class="text-bold-600">Example 1:</span> Table with outer spacing
-                    </p>
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Username</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>mdo</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>fat</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>twitter</td>
-                                </tr>
-                            </tbody>
-                        </table>
+<div class="content-wrapper">
+    <div class="content-header row mb-1">
+    </div>
+    <div class="content-body">
+        <!-- Revenue, Hit Rate & Deals -->
+        <div class="row"><div class="col-lg-12"><p class="alert text-bold-600" style="background-color:#1c84c6;color:white">Member Details</p></div></div>
+
+            <div class="row">
+                <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+                    <div class="card pull-up">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="badge badge-info pull-right font-small-1">Till Now</div>
+                                <div class="media d-flex">
+                                    <div class="media-body text-left">
+                                        <h5 class="text-muted text-bold-500">Total Members</h5>
+                                        <h3 class="text-bold-600">8</h3>
+                                        <small>Total number of Members.</small>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <p class="px-1">
-                    <span class="text-bold-600">Example 2:</span> Minimal Table with no outer spacing.
-                </p>
-                <div class="table-responsive">
-                    <table class="table mb-0">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Username</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>twitter</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+                    <div class="card pull-up">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="badge badge-success pull-right font-small-1">Last Month</div>
+                                <div class="media d-flex">
+                                    <div class="media-body text-left">
+                                        <h5 class="text-muted text-bold-500">Member Registered</h5>
+                                        <h3 class="text-bold-600">6</h3>
+                                        <small>Last month registered .</small>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+                    <div class="card pull-up">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="badge badge-primary pull-right font-small-1">YTD</div>
+                                <div class="media d-flex">
+                                    <div class="media-body text-left">
+                                        <h5 class="text-muted text-bold-500">Member Registered</h5>
+                                        <h3 class="text-bold-600">6</h3>
+                                        <small>Members registered year to date.</small>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+                    <div class="card pull-up">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="badge badge-danger pull-right font-small-1">YTD</div>
+                                <div class="media d-flex">
+                                    <div class="media-body text-left">
+                                        <h5 class="text-muted text-bold-500">Written off Members</h5>
+                                        <h3 class="text-bold-600">0</h3>
+                                        <small>Written off Members year to date.</small>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title text-center">Current Month Payments & YTD Payments</h4>
+                        </div>
+                        <div class="card-content collapse show">
+                            <div class="card-body pt-0">
+                                <div class="row">
+                                    <div class="col-md-6 col-12 border-right-blue-grey border-right-lighten-5 text-center">
+                                        <i class="la la-money font-large-2 success"></i>
+                                        <h4 class="font-large-1 text-bold-400">PKR 151,600</h4>
+                                    </div>
+                                    <div class="col-md-6 col-12 text-center">
+                                        <i class="la la-money font-large-2 success"></i>
+                                        <h4 class="font-large-1 text-bold-400">PKR 0</h4>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title text-center">Total Payments</h4>
+                        </div>
+                        <div class="card-content collapse show">
+                            <div class="card-body pt-0">
+                                <div class="row">
+                                    <div class="col-12 border-right-blue-grey border-right-lighten-5 text-center">
+                                        <i class="la la-money font-large-2 success"></i>
+                                        <h4 class="font-large-1 text-bold-400">PKR 219,840</h4>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title  ">Payments YTD</h4>
+                            <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                            <div class="heading-elements">
+                                <ul class="list-inline mb-0">
+                                    <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                                    <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+                                    <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                                    <li><a data-action="close"><i class="ft-x"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card-content collapse show">
+                            <div class="card-body chartjs" style="height: 400px;">
+                                <div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+                                <canvas id="combo-bar-line" height="358" width="985" class="chartjs-render-monitor" style="display: block; width: 985px; height: 358px;"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--/ Revenue, Hit Rate & Deals -->
+            <!-- Emails Products & Avg Deals -->
+            <!-- Analytics map based session -->
+            @*Musab Code start here*@
+
+        <div class="row"><div class="col-lg-12"><p class="alert text-bold-600" style="background-color:#005787;color:white">Residential Plots</p></div></div>
+          
+          <div class="row">
+                <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+                    <div class="card pull-up">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="media d-flex">
+                                    <div class="media-body text-left">
+                                        <h5 class="text-muted text-bold-500">Total Plots</h5>
+                                        <h3 class="text-bold-600">245</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+                    <div class="card pull-up">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="media d-flex">
+                                    <div class="media-body text-left">
+                                        <h5 class="text-muted text-bold-500">Plots Available</h5>
+                                        <h3 class="text-bold-600">239</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+                    <div class="card pull-up">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="badge badge-primary pull-right font-small-1">120 SqYd</div>
+                                <div class="media d-flex">
+                                    <div class="media-body text-left">
+                                        <h5 class="text-muted text-bold-500">Plot Category - R</h5>
+                                        <h3 class="text-bold-600">310</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+                    <div class="card pull-up">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="badge badge-success pull-right font-small-1">200 SqYd</div>
+                                <div class="media d-flex">
+                                    <div class="media-body text-left">
+                                        <h5 class="text-muted text-bold-500">Plot Category - A</h5>
+                                        <h3 class="text-bold-600">179</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+                    <div class="card pull-up">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="badge badge-info pull-right font-small-1">100 SqYd</div>
+                                <div class="media d-flex">
+                                    <div class="media-body text-left">
+                                        <h5 class="text-muted text-bold-500">Plot Category - FL</h5>
+                                        <h3 class="text-bold-600">52</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="row"><div class="col-lg-12"><p class="alert text-bold-600" style="background-color:#f8ac59;color:white">Commercial Plots</p></div></div>
+
+            <div class="row">
+
+
+                <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+                    <div class="card pull-up">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="media d-flex">
+                                    <div class="media-body text-left">
+                                        <h5 class="text-muted text-bold-500">Total Plots</h5>
+                                        <h3 class="text-bold-600">215</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+                    <div class="card pull-up">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="media d-flex">
+                                    <div class="media-body text-left">
+                                        <h5 class="text-muted text-bold-500">Plots Available</h5>
+                                        <h3 class="text-bold-600">13</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+                    <div class="card pull-up">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="badge badge-success pull-right font-small-1">200 SqYd</div>
+                                <div class="media d-flex">
+                                    <div class="media-body text-left">
+                                        <h5 class="text-muted text-bold-500">Plot Category - AS</h5>
+                                        <h3 class="text-bold-600">20</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+                    <div class="card pull-up">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="badge badge-primary pull-right font-small-1">400 SqYd</div>
+                                <div class="media d-flex">
+                                    <div class="media-body text-left">
+                                        <h5 class="text-muted text-bold-500">Plot Category - SB</h5>
+                                        <h3 class="text-bold-600">59</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+       <div class="row"><div class="col-lg-12"><p class="alert text-bold-600" style="background-color:#1ab394;color:white">Amenity Plots</p></div></div>
+    
+            <div class="row">
+                <div class="col-xl-4 col-lg-6 col-md-6 col-12">
+                    <div class="card pull-up">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="media d-flex">
+                                    <div class="media-body text-left">
+                                        <h5 class="text-muted text-bold-500">Mosque</h5>
+                                        <h3 class="text-bold-600">1</h3>
+                                        <small>Numbers of Mosque</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-6 col-md-6 col-12">
+                    <div class="card pull-up">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="media d-flex">
+                                    <div class="media-body text-left">
+                                        <h5 class="text-muted text-bold-500">School</h5>
+                                        <h3 class="text-bold-600">2</h3>
+                                        <small>Numbers of High School</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-6 col-md-6 col-12">
+                    <div class="card pull-up">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="media d-flex">
+                                    <div class="media-body text-left">
+                                        <h5 class="text-muted text-bold-500">Hospital</h5>
+                                        <h3 class="text-bold-600">1</h3>
+                                        <small>Numbers of Hospital</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+
+                <div class="col-xl-4 col-lg-6 col-md-6 col-12">
+                    <div class="card pull-up">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="media d-flex">
+                                    <div class="media-body text-left">
+                                        <h5 class="text-muted text-bold-500">Park</h5>
+                                        <h3 class="text-bold-600">2</h3>
+                                        <small>Numbers of Park</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-6 col-md-6 col-12">
+                    <div class="card pull-up">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="media d-flex">
+                                    <div class="media-body text-left">
+                                        <h5 class="text-muted text-bold-500">Play Groud</h5>
+                                        <h3 class="text-bold-600">6</h3>
+                                        <small>Numbers of Play Ground</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-6 col-md-6 col-12">
+                    <div class="card pull-up">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="media d-flex">
+                                    <div class="media-body text-left">
+                                        <h5 class="text-muted text-bold-500">Community Centre</h5>
+                                        <h3 class="text-bold-600">3</h3>
+                                        <small>Numbers of Community Centre</small>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
-    </div>
-</div>*@
+</div>
+
+@section Scripts
+
+      {
+
+
+
+
+    <!-- BEGIN: Vendor JS-->
+    <script src="~/Scripts/app-assets/vendors/js/vendors.min.js"></script>
+    <!-- BEGIN Vendor JS-->
+    <!-- BEGIN: Page Vendor JS-->
+    <script src="~/Scripts/app-assets/vendors/js/charts/chart.min.js"></script>
+
+
+    @*<script src="~/Scripts/app-assets/vendors/js/charts/echarts/echarts.js"></script>*@
+    <script src="~/Scripts/app-assets/vendors/js/charts/raphael-min.js"></script>
+    <script src="~/Scripts/app-assets/vendors/js/charts/morris.min.js"></script>
+    <script src="~/Scripts/app-assets/vendors/js/charts/jvector/jquery-jvectormap-2.0.3.min.js"></script>
+    <script src="~/Scripts/app-assets/vendors/js/charts/jvector/jquery-jvectormap-world-mill.js"></script>
+
+    @*<script src="~/Scripts/app-assets/js/scripts/charts/chartjs/line/line.min.js"></script>
+    <script src="~/Scripts/app-assets/js/scripts/charts/chartjs/line/line-area.min.js"></script>
+    <script src="~/Scripts/app-assets/js/scripts/charts/chartjs/line/line-logarithmic.min.js"></script>
+    <script src="~/Scripts/app-assets/js/scripts/charts/chartjs/line/line-multi-axis.min.js"></script>
+    <script src="~/Scripts/app-assets/js/scripts/charts/chartjs/line/line-skip-points.min.js"></script>
+    <script src="~/Scripts/app-assets/js/scripts/charts/chartjs/line/line-stacked-area.min.js"></script>*@
+
+    <!-- END: Page Vendor JS-->
+    <!-- BEGIN: Theme JS-->
+    @*<script src="~/Scripts/app-assets/js/core/app-menu.min.js"></script>
+    <script src="~/Scripts/app-assets/js/core/app.min.js"></script>
+    <script src="~/Scripts/app-assets/js/scripts/customizer.min.js"></script>
+    <script src="~/Scripts/app-assets/js/scripts/footer.min.js"></script>*@
+    <!-- END: Theme JS-->
+    <!-- BEGIN: Page JS-->
+    <!-- END: Page JS-->
+    <script src="@Url.Content("~/Scripts/js/PagesJS/Dashboard.js?v=2")"></script>
+    <script>
+
+        $(window).on("load", function () {
+            var r = $("#combo-bar-line");
+            Chart.Legend.prototype.afterFit = function () {
+                this.height = this.height + 50
+            }, new Chart(r, {
+                type: "bar",
+                options: {
+                    responsive: !0,
+                    maintainAspectRatio: !1,
+                    scales: {
+                        xAxes: [{
+                            display: !0,
+                            barPercentage: .75,
+                            categoryPercentage: .3,
+                            gridLines: {
+                                color: "#f3f3f3",
+                                drawTicks: !1
+                            },
+                            scaleLabel: {
+                                display: !1,
+                                labelString: "Days"
+                            }
+                        }],
+                        yAxes: [{
+                            display: !0,
+                            gridLines: {
+                                color: "#f3f3f3",
+                                drawTicks: !1
+                            },
+                            scaleLabel: {
+                                display: !1,
+                                labelString: "Value"
+                            }
+                        }]
+                    },
+                    title: {
+                        display: !1,
+                        text: "Appointment Statistics"
+                    }
+                },
+                data: {
+                    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                    datasets: [{
+                        type: "line",
+                        label: "Cost of Land",
+                        data: [0, 5000 , 10000, 15000, 20000, 25000, 30000,35000, 40000, 45000, 50000,55000,60000,70000,80000,100000],
+                        borderColor: "rgb(30,159,242)",
+                        backgroundColor: "transparent",
+                        borderWidth: 2,
+                        pointBorderColor: "#1e9ff2",
+                        pointBackgroundColor: "#FFF",
+                        pointBorderWidth: 2,
+                        pointHoverBorderWidth: 2,
+                        pointRadius: 4
+                    }, {  // here
+                        type: "bar",
+                        label: "Internal Development",
+                        data: [0, 50000,60000, 70000, 80000, 100000],
+                        backgroundColor: "#00A5A8",
+                        borderColor: "transparent",
+                        borderWidth: 2
+                    }, { // here
+                        type: "bar",
+                        label: "Outer Development",
+                        data: [0, 10000,30000, 50000,70000, 80000, 100000],
+                        backgroundColor: "#FF4081",
+                        borderColor: "transparent",
+                        borderWidth: 2
+                    }, {
+                        type: "bar",
+                        label: "Demarcation Charges ",
+                        data: [0,25000, 30000, 35000, 40000, 45000, 50000, 55000, 60000, 70000, 80000, 100000],
+                        backgroundColor: "#626e82",
+                        borderColor: "transparent",
+                        borderWidth: 2
+                    }, {
+                        type: "bar",
+                        label: "Security Charges",
+                        data: [0,5000, 10000,20000,40000,60000,80000, 100000],
+                        backgroundColor: "#FF6E40",
+                        borderColor: "transparent",
+                        borderWidth: 2
+                    }, {
+                        type: "bar",
+                        label: "Maintenance Charges",
+                        data: [0,2000, 3000, 5000, 8000, 10000, 12000, 15000, 20000, 30000,40000, 50000],
+                        backgroundColor: "#7C4DFF",
+                        borderColor: "transparent",
+                        borderWidth: 2
+                    },{
+                        type: "bar",
+                        label: "Possession Charges",
+                        data: [0,1000, 3000, 5000, 7000, 9000, 11000, 13000, 15000, 18000, 20000, 25000],
+                        backgroundColor: "#005787",
+                        borderColor: "transparent",
+                        borderWidth: 2
+                    }, {
+                        type: "bar",
+                        label: "Verification Charges",
+                        data: [0, 3000, 6000, 9000,12000, 15000, 20000, 25000, 30000, 35000, 40000, 45000],
+                        backgroundColor: "#2ca104",
+                        borderColor: "transparent",
+                        borderWidth: 2
+                    }, {
+                        type: "bar",
+                        label: "Transfer Fee",
+                        data: [0,2000,5000,8000,12000,15000,18000,2000,22000,25000],
+                        backgroundColor: "#7e6e91",
+                        borderColor: "transparent",
+                        borderWidth: 2
+                    }]
+                }
+            })
+        });
+    </script>
+
+}
+
+
+
