@@ -7,7 +7,7 @@
 
 <div class="content-header row">
     <div class="content-header-left col-md-6 col-12 mb-2">
-        <h3 class="content-header-title">Plot</h3>
+        <h3 class="content-header-title">Payment Setup</h3>
     </div>
 
 </div>
@@ -43,7 +43,7 @@
                     <table class="table table-bordered mb-0 tblPaymentSetup">
                         <thead>
                             <tr>
-                                <th nowrap>Sr No.</th>
+                                <th nowrap>Sr #</th>
                                 <th>Payment Category</th>
                                 <th>Tenure</th>
                                 <th>Rate</th>
@@ -104,10 +104,10 @@
 
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="ddlFixed">Fixed/ Square Yards</label>
+                                <label for="ddlFixed">Fixed/Sqd</label>
                                 <select class="form-control ddlFixed">
                                     <option value="0">--Select--</option>
-                                    <option value="1">Per Square Yard</option>
+                                    <option value="1">Per Sqd</option>
                                     <option value="2">Fixed</option>
                                 </select>
 
@@ -121,7 +121,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="ddlHasSizeBase">Has Size Base</label>
+                                <label for="ddlHasSizeBase">Predefined</label>
                                 <select class="form-control ddlHasSizeBase notrequired">
                                     <option value="0">--Select--</option>
                                     <option value="1">Yes</option>
@@ -201,10 +201,10 @@
 
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="ddlFixed_upd">Fixed/ Square Yards</label>
+                                <label for="ddlFixed_upd">Fixed/Sqd</label>
                                 <select class="form-control ddlFixed_upd">
                                     <option value="0">--Select--</option>
-                                    <option value="1">Per Square Yard</option>
+                                    <option value="1">Per Sqd</option>
                                     <option value="2">Fixed</option>
                                 </select>
 
@@ -218,7 +218,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="ddlHasSizeBase_upd">Has Size Base</label>
+                                <label for="ddlHasSizeBase_upd">Predefined</label>
                                 <select class="form-control ddlHasSizeBase_upd notrequired">
                                     <option value="0">--Select--</option>
                                     <option value="1">Yes</option>
@@ -252,6 +252,8 @@
     </div>
 </div>
 @*Edit Modal Start*@
+
+
 
 @*Edit Attachment Start*@
 <div class="modal fade text-left" id="EditAttachment" role="dialog" aria-labelledby="myModalLabel16" aria-hidden="true">
@@ -367,7 +369,7 @@
 
 
             <td class="project-title tdIsFixed">
-                <div class="${IsFixed==true?'badge badge-success badge-pill': 'badge badge-warning badge-pill'}">${IsFixed==true?'Fixed': 'Per Sqyd'}</div>
+                <div class="${IsFixed==true?'badge badge-success badge-pill': 'badge badge-warning badge-pill'}">${IsFixed==true?'Fixed': 'Per Sqd'}</div>
             </td>
             <td class="project-title" nowrap>
                 <a href="javascript:void(0)" data-toggle="modal" data-target="#EditPaymentSetup" onclick="EditPaymentSetup(this)" data-toggle="tooltip" data-placement="top" data-original-title="Edit Plot"><i class="la la-pencil-square success"></i></a>

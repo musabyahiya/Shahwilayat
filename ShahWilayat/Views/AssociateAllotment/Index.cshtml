@@ -8,7 +8,7 @@
 
 <div class="content-header row">
     <div class="content-header-left col-md-6 col-12 mb-2">
-        <h3 class="content-header-title">Associate Allotment</h3>
+        <h3 class="content-header-title">Administrator Allotment</h3>
     </div>
 
 </div>
@@ -17,7 +17,7 @@
         <div class="card">
             <div class="card-header">
                 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#CreateAllotment">
-                    Add New Associate Allotment
+                    Add New Administrator Allotment
                 </button>
             </div>
         </div>
@@ -44,10 +44,10 @@
                     <table class="table table-bordered mb-0 tblAllotment">
                         <thead>
                             <tr>
-                                <th nowrap>Sr No.</th>
-                                <th>Membership No</th>
+                                <th nowrap>Sr #</th>
+                                <th>Membership #</th>
                                 <th>Plot No</th>
-                                <th>Allotment Order No</th>
+                                <th>Allotment Order #</th>
                                 <th>Allotment Order Date</th>
                                 <th>Action</th>
 
@@ -76,25 +76,25 @@
             </div>
             <div class="modal-body">
                 <div class="form-body frmAllotment">
-                    <h4 class="form-section"><i class="la la-file-text"></i> Associate Allotment Details</h4>
+                    <h4 class="form-section"><i class="la la-file-text"></i>Administrator Allotment Details</h4>
                     <hr>
                     <div class="row">
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="ddlMember">Member</label>
+                                <label for="ddlMember">Member (Name/Membership #)</label>
                                 <select id="ddlMember" class="form-control ddlMember select2 mySelect" style="width: 100%"></select>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="ddlPlot">Plot No</label>
+                                <label for="ddlPlot">Plot (No./Size)</label>
                                 <select id="ddlPlot" class="form-control ddlPlot select2 mySelect" style="width: 100%"></select>
                             </div>
                         </div>
 
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="txtAllotmentOrderNo">Allotment No</label>
+                                <label for="txtAllotmentOrderNo">Allotment #</label>
                                 <input type="text" id="txtAllotmentOrderNo" class="form-control txtAllotmentOrderNo" placeholder="Enter allotment no">
                             </div>
                         </div>
@@ -106,7 +106,7 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="txtProvisionalAllotmentNo">Provisional Allotment No</label>
+                                <label for="txtProvisionalAllotmentNo">Provisional Allotment #</label>
                                 <input type="text" id="txtProvisionalAllotmentNo" class="form-control txtProvisionalAllotmentNo " placeholder="Enter provisional allotment no">
                             </div>
                         </div>
@@ -118,7 +118,7 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="txtShareCertificateNo">Share Certificate No</label>
+                                <label for="txtShareCertificateNo">Share Certificate #</label>
                                 <input type="text" id="txtShareCertificateNo" class="form-control txtShareCertificateNo " placeholder="Enter share certificate no">
                             </div>
                         </div>
@@ -130,20 +130,20 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="ddlManagementCommittee">Created By</label>
+                                <label for="ddlManagementCommittee">Created by</label>
                                 <select class="form-control ddlManagementCommittee"></select>
                             </div>
                         </div>
                       
                     </div>
-
+                    <h4 class="form-section"><i class="la la-paperclip"></i> Attachments - (Pls select from the following)</h4>
                     <hr>
                     <div class="row">
                         <div class="col-md-4">
                             <div class="fileinput fileinput-new" data-provides="fileinput">
 
                                 <span class="btn btn-block btn-outline btn-info btn-file">
-                                    <span class="fileinput-new">Attach Allotment Order</span>
+                                    <span class="fileinput-new">Allotment Order</span>
                                     <i class="fa fa-upload"></i>&nbsp;&nbsp;
                                     <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtScanAllotmentOrder" accept="image/*" />
                                 </span>
@@ -155,7 +155,7 @@
                             <div class="fileinput fileinput-new" data-provides="fileinput">
 
                                 <span class="btn btn-block btn-outline btn-info btn-file">
-                                    <span class="fileinput-new">Attach Provisional Allotment Order</span>
+                                    <span class="fileinput-new">Provisional Allotment Order</span>
                                     <i class="fa fa-upload"></i>&nbsp;&nbsp;
                                     <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtScanProvisionalOrder" accept="image/*" />
                                 </span>
@@ -167,7 +167,7 @@
                             <div class="fileinput fileinput-new" data-provides="fileinput">
 
                                 <span class="btn btn-block btn-outline btn-info btn-file">
-                                    <span class="fileinput-new">Attach Share Certificate</span>
+                                    <span class="fileinput-new">Share Certificate</span>
                                     <i class="fa fa-upload"></i>&nbsp;&nbsp;
                                     <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtScanShareCertificate" accept="image/*" />
                                 </span>
@@ -202,25 +202,25 @@
             </div>
             <div class="modal-body">
                 <div class="form-body frmAllotment_upd">
-                    <h4 class="form-section"><i class="la la-file-text"></i> Associate Allotment Details</h4>
+                    <h4 class="form-section"><i class="la la-file-text"></i> Administrator Allotment Details</h4>
                     <hr>
                     <div class="row">
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="ddlMember_upd">Member</label>
+                                <label for="ddlMember_upd">Member (Name/Membership #)</label>
                                 <select id="ddlMember_upd" class="form-control ddlMember_upd select2 mySelect" disabled style="width: 100%"></select>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="ddlPlot_upd">Plot No</label>
+                                <label for="ddlPlot_upd">Plot (No./Size)</label>
                                 <select id="ddlPlot_upd" class="form-control ddlPlot_upd select2 mySelect" disabled style="width: 100%"></select>
                             </div>
                         </div>
 
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="txtAllotmentOrderNo">Allotment No</label>
+                                <label for="txtAllotmentOrderNo">Allotment #</label>
                                 <input type="text" id="txtAllotmentOrderNo_upd" class="form-control txtAllotmentOrderNo_upd" placeholder="Enter allotment no">
                             </div>
                         </div>
@@ -232,7 +232,7 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="txtProvisionalAllotmentNo_upd">Provisional Allotment No</label>
+                                <label for="txtProvisionalAllotmentNo_upd">Provisional Allotment #</label>
                                 <input type="text" id="txtProvisionalAllotmentNo_upd" class="form-control txtProvisionalAllotmentNo_upd " placeholder="Enter provisional allotment no">
                             </div>
                         </div>
@@ -244,7 +244,7 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="txtShareCertificateNo_upd">Share Certificate No</label>
+                                <label for="txtShareCertificateNo_upd">Share Certificate #</label>
                                 <input type="text" id="txtShareCertificateNo_upd" class="form-control txtShareCertificateNo_upd " placeholder="Enter share certificate no">
                             </div>
                         </div>
@@ -257,7 +257,7 @@
 
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="ddlManagementCommittee_upd">Created By</label>
+                                <label for="ddlManagementCommittee_upd">Created by</label>
                                 <select class="form-control ddlManagementCommittee_upd"></select>
                             </div>
                         </div>
@@ -296,7 +296,7 @@
                             <div class="fileinput fileinput-new" data-provides="fileinput">
 
                                 <span class="btn btn-block btn-outline btn-info btn-file">
-                                    <span class="fileinput-new">Attach Allotment Order</span>
+                                    <span class="fileinput-new">Allotment Order</span>
                                     <i class="fa fa-upload"></i>&nbsp;&nbsp;
                                     <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtScanAllotmentOrder_upd notrequired" accept="image/*" />
                                 </span>
@@ -308,7 +308,7 @@
                             <div class="fileinput fileinput-new" data-provides="fileinput">
 
                                 <span class="btn btn-block btn-outline btn-info btn-file">
-                                    <span class="fileinput-new">Attach Provisional Allotment Order</span>
+                                    <span class="fileinput-new">Provisional Allotment Order</span>
                                     <i class="fa fa-upload"></i>&nbsp;&nbsp;
                                     <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtScanProvisionalOrder_upd notrequired" accept="image/*" />
                                 </span>
@@ -320,7 +320,7 @@
                             <div class="fileinput fileinput-new" data-provides="fileinput">
 
                                 <span class="btn btn-block btn-outline btn-info btn-file">
-                                    <span class="fileinput-new">Attach Share Certificate</span>
+                                    <span class="fileinput-new">Share Certificate</span>
                                     <i class="fa fa-upload"></i>&nbsp;&nbsp;
                                     <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtScanShareCertificate_upd notrequired" accept="image/*" />
                                 </span>

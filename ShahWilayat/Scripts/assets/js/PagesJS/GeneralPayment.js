@@ -7,7 +7,7 @@ function GetPaymentManagementCommitteeWise() {
     ProgressBarShow();
     var request = $.ajax({
         method: "POST",
-        url: "/ManagementCommitteePayments/RptGetPaymentManagementCommitteeWise",
+        url: "/ManagementCommitteePayments/GetRptGetPaymentAmountGeneral",
     });
     request.done(function (data) {
 

@@ -41,12 +41,12 @@
                     <table class="table table-bordered mb-0 tblPlot">
                         <thead>
                             <tr>
-                                <th nowrap>Sr No.</th>
+                                <th nowrap>Sr #</th>
                                 <th>PlotType</th>
                                 <th>SubType</th>
-                                <th style="text-align:center">Size (SqYd)</th>
+                                <th style="text-align:center">Size (Sqd)</th>
                                 <th style="text-align:center">Extra Land</th>
-                                <th>Plot No</th>
+                                <th>Plot #</th>
                                 <th>Allotment</th>
                                 <th>Action</th>
                             </tr>
@@ -88,7 +88,7 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="txtPlotNo">Plot No</label>
+                                <label for="txtPlotNo">Plot #</label>
                                 <input type="text" class="form-control txtPlotNo" placeholder="Enter plot no">
                             </div>
                         </div>
@@ -109,10 +109,10 @@
                         <div class="col-md-3">
                             <div class="form-group">
 
-                                <label for="ddlHasExtraSize">Has Extra Size</label>
+                                <label for="ddlHasExtraSize">Extra Land</label>
                                 <select class="form-control ddlHasExtraSize notrequired">
                                     <option value="0">--Select--</option>
-                                    <option value="1">Has Extra Size</option>
+                                    <option value="1">Yes</option>
                                 </select>
 
                             </div>
@@ -125,15 +125,18 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="ddlManagementCommittee">Created By</label>
+                                <label for="ddlManagementCommittee">Created by</label>
                                 <select class="form-control ddlManagementCommittee"></select>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                    </div>
+                    <h4 class="form-section"><i class="la la-paperclip"></i>Attachments - (Pls select from the following)</h4>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-4">
                             <div class="fileinput fileinput-new" data-provides="fileinput">
-                                <label>Site Plan</label>
                                 <span class="btn btn-block btn-outline btn-info btn-file">
-                                    <span class="fileinput-new">Attach Site Plan</span>
+                                    <span class="fileinput-new">Site Plan</span>
                                     <i class="fa fa-upload"></i>&nbsp;&nbsp;
                                     <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtSitePlan" accept="image/*" />
                                 </span>
@@ -141,11 +144,11 @@
                                 <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
                             </div>
                         </div>
+                        </div>
+
+
                     </div>
-
-
                 </div>
-            </div>
             <div class="modal-footer">
                 <button type="button" class="btn grey btn-outline-info" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-outline-dark btnSaveChanges">Save changes</button>
@@ -185,7 +188,7 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="txtPlotNo_upd">Plot No</label>
+                                <label for="txtPlotNo_upd">Plot #</label>
                                 <input type="text" class="form-control txtPlotNo_upd" placeholder="Enter plot no">
                             </div>
                         </div>
@@ -206,10 +209,10 @@
                         <div class="col-md-3">
                             <div class="form-group">
 
-                                <label for="ddlHasExtraSize_upd">Has Extra Size</label>
+                                <label for="ddlHasExtraSize_upd">Extra Land</label>
                                 <select class="form-control ddlHasExtraSize_upd notrequired">
                                     <option value="0">--Select--</option>
-                                    <option value="1">Has Extra Size</option>
+                                    <option value="1">Yes</option>
                                 </select>
 
                             </div>
@@ -222,28 +225,28 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="ddlManagementCommittee_upd">Created By</label>
+                                <label for="ddlManagementCommittee_upd">Created by</label>
                                 <select class="form-control ddlManagementCommittee_upd"></select>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="fileinput fileinput-new" data-provides="fileinput">
-                                <label>Site Plan</label>
-                                <span class="btn btn-block btn-outline btn-info btn-file">
-                                    <span class="fileinput-new">Attach Site Plan</span>
-                                    <i class="fa fa-upload"></i>&nbsp;&nbsp;
-                                    <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtSitePlan_upd notrequired" accept="image/*" />
-                                </span>
-                                <span class="fileinput-filename"></span>
-                                <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
+                    </div>
+                    <h4 class="form-section"><i class="la la-paperclip"></i>Attachments - (Pls select from the following)</h4>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-4">
+                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                    <span class="btn btn-block btn-outline btn-info btn-file">
+                                        <span class="fileinput-new">Site Plan</span>
+                                        <i class="fa fa-upload"></i>&nbsp;&nbsp;
+                                        <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtSitePlan_upd notrequired" accept="image/*" />
+                                    </span>
+                                    <span class="fileinput-filename"></span>
+                                    <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
+                                </div>
                             </div>
                         </div>
-
                     </div>
-
-
                 </div>
-            </div>
             <div class="modal-footer">
                 <button type="button" class="btn grey btn-outline-info" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-outline-dark btnUpdateChanges">Save changes</button>

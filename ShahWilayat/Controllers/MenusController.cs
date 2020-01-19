@@ -21,7 +21,7 @@ namespace ShahWilayat.Controllers
             var RoleId = (int)HttpContext.Session["RoleId"];
             var lst = context.RoleMenuMappings
            .Where(x => x.IsActive == true && x.MenuItem.IsActive == true && x.RoleId == RoleId)
-           .Select(x => new { x.MenuItemId, x.MenuItem.MenuItemName, x.MenuItem.MenuItemURL, x.MenuItem.Icon, x.MenuItem.IsParent, x.MenuItem.MenuOrder, x.MenuItem.ParentId }).OrderBy(x => x.MenuOrder).ToList();
+           .Select(x => new { x.MenuItemId, x.MenuItem.MenuItemName, x.MenuItem.MenuItemURL, x.MenuItem.Icon, x.MenuItem.IsParent, x.MenuItem.MenuOrder, x.MenuItem.SortOrder, x.MenuItem.ParentId }).OrderBy(x => x.MenuOrder).ThenBy(x=> x.SortOrder).ToList();
             return Json(lst, JsonRequestBehavior.AllowGet);
         }
     }

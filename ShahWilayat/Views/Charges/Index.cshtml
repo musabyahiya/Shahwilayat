@@ -8,7 +8,7 @@
 
 <div class="content-header row">
     <div class="content-header-left col-md-6 col-12 mb-2">
-        <h3 class="content-header-title">Plot</h3>
+        <h3 class="content-header-title">Charges</h3>
     </div>
 
 </div>
@@ -44,12 +44,12 @@
                     <table class="table table-bordered mb-0 tblCharges">
                         <thead>
                             <tr>
-                                <th nowrap>Sr No.</th>
+                                <th nowrap>Sr #</th>
                                 <th>Payment Setup</th>
                                
                                 <th>Due Date</th>
                                 <th>Surcharge (%)</th>
-                                <th align="center">Fixed/ Sqyd</th>
+                                <th align="center">Fixed/ Sqd</th>
                                 <th align="center">Action</th>
                             </tr>
                         </thead>
@@ -205,7 +205,7 @@
             <td class="project-title tdDueDate">${ToJavaScriptDate(DueDate)}</td>
             <td class="project-title tdSurcharge" align="center">${Surcharge}</td>
             <td class="project-title tdIsFixed">
-                <div class="${IsFixed==true?'badge badge-success badge-pill': 'badge badge-warning badge-pill'}">${IsFixed==true?'Fixed': 'Per Sqyd'}</div>
+                <div class="${IsFixed==true?'badge badge-success badge-pill': 'badge badge-warning badge-pill'}">${IsFixed==true?'Fixed': 'Per Sqd'}</div>
             </td>
 
             <td class="project-title" nowrap>

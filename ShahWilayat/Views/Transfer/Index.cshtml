@@ -42,8 +42,8 @@
                     <table class="table table-bordered mb-0 tblTransfer">
                         <thead>
                             <tr>
-                                <th nowrap>Sr No.</th>
-                                <th>Transfer Order No</th>
+                                <th nowrap>Sr #</th>
+                                <th>Transfer Order #</th>
                                 <th>Member</th>
                                 <th>Plot</th>
                                 <th>Transfer Date</th>
@@ -75,20 +75,20 @@
                     <div class="row">
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="ddlMember">Member</label>
+                                <label for="ddlMember">Member (Name/Membership #)</label>
                                 <select id="ddlMember" class="form-control ddlMember mySelect select2" style="width:100%"></select>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="ddlPlot">Plot</label>
+                                <label for="ddlPlot">Plot (No./Size)</label>
                                 <select id="ddlPlot" class="form-control ddlPlot mySelect select2" style="width:100%"></select>
                             </div>
                         </div>
 
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="txtTransferOrderNo">Transfer Order No</label>
+                                <label for="txtTransferOrderNo">Transfer Order #</label>
                                 <input type="text" id="txtTransferOrderNo" class="form-control txtTransferOrderNo" placeholder="Enter transfer no">
                             </div>
                         </div>
@@ -101,7 +101,7 @@
 
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="txtMCMDate">MCM Date</label>
+                                <label for="txtMCMDate">Management Committee Meeting (MCM) Date</label>
                                 <input type="text" id="txtMCMDate" class="form-control DatePicker txtMCMDate" placeholder="yyyy-mm-dd">
                             </div>
                         </div>
@@ -119,20 +119,20 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="ddlManagementCommittee">Created By</label>
+                                <label for="ddlManagementCommittee">Created by</label>
                                 <select class="form-control ddlManagementCommittee"></select>
                             </div>
                         </div>
 
                     </div>
-                    <h4 class="form-section"><i class="ft-paperclip"></i> Attachments</h4>
+                    <h4 class="form-section"><i class="la la-paperclip"></i>Attachments - (Pls select from the following)</h4>
                     <hr>
                     <div class="row">
                         <div class="col-md-3">
                             <div class="fileinput fileinput-new" data-provides="fileinput">
 
                                 <span class="btn btn-block btn-outline btn-info btn-file">
-                                    <span class="fileinput-new">Attach Newspaper Scan</span>
+                                    <span class="fileinput-new">Newspaper Ad</span>
                                     <i class="fa fa-upload"></i>&nbsp;&nbsp;
                                     <span class="fileinput-exists">Change</span><input type="file" class="txtNewspaperScan notrequired" accept="image/*" />
                                 </span>
@@ -144,7 +144,7 @@
                             <div class="fileinput fileinput-new" data-provides="fileinput">
 
                                 <span class="btn btn-block btn-outline btn-info btn-file">
-                                    <span class="fileinput-new">Attach Indemnity Bond Scan </span>
+                                    <span class="fileinput-new">Indemnity Bonds (Seller/Purchaser)</span>
                                     <i class="fa fa-upload"></i>&nbsp;&nbsp;
                                     <span class="fileinput-exists">Change</span><input type="file" class="txtIndemnityBondScan notrequired" accept="image/*" />
                                 </span>
@@ -156,7 +156,7 @@
                             <div class="fileinput fileinput-new" data-provides="fileinput">
 
                                 <span class="btn btn-block btn-outline btn-info btn-file">
-                                    <span class="fileinput-new">Attach Transfer Order Scan</span>
+                                    <span class="fileinput-new">Transfer Order</span>
                                     <i class="fa fa-upload"></i>&nbsp;&nbsp;
                                     <span class="fileinput-exists">Change</span><input type="file" class="txtTransferOrderScan notrequired" accept="image/*" />
                                 </span>
@@ -190,27 +190,26 @@
                 </button>
             </div>
             <div class="modal-body">
-                s
                 <div class="form-body frmTransfer_upd">
                     <h4 class="form-section"><i class="la la-exchange"></i> Transfer Details</h4>
                     <hr>
                     <div class="row">
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="ddlMember_upd">Member</label>
+                                <label for="ddlMember_upd">Member (Name/Membership #)</label>
                                 <select id="ddlMember_upd" disabled class="form-control ddlMember_upd notrequired" style="width:100%"></select>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="ddlPlot">Plot</label>
+                                <label for="ddlPlot">Plot (No./Size)</label>
                                 <select id="ddlPlot" disabled class="form-control ddlPlot notrequired" style="width:100%"></select>
                             </div>
                         </div>
 
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="txtTransferOrderNo_upd">Transfer Order No</label>
+                                <label for="txtTransferOrderNo_upd">Transfer Order #</label>
                                 <input type="text" id="txtTransferOrderNo_upd" class="form-control txtTransferOrderNo_upd" placeholder="Enter transfer no">
                             </div>
                         </div>
@@ -223,7 +222,7 @@
 
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="txtMCMDate_upd">MCM Date</label>
+                                <label for="txtMCMDate_upd">Management Committee Meeting (MCM) Date</label>
                                 <input type="text" id="txtMCMDate_upd" class="form-control DatePicker txtMCMDate_upd" placeholder="yyyy-mm-dd">
                             </div>
                         </div>
@@ -241,7 +240,7 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="ddlManagementCommittee">Created By</label>
+                                <label for="ddlManagementCommittee">Created by</label>
                                 <select class="form-control ddlManagementCommittee"></select>
                             </div>
                         </div>
@@ -258,6 +257,71 @@
 </div>
 
 @*Edit Modal Start*@
+
+@*Edit Attachment Start*@
+<div class="modal fade text-left" id="EditAttachment" role="dialog" aria-labelledby="myModalLabel16" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel16">Edit Attachment</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-body frmAttachment">
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+
+                                <span class="btn btn-block btn-outline btn-info btn-file">
+                                    <span class="fileinput-new">Newspaper Ad</span>
+                                    <i class="fa fa-upload"></i>&nbsp;&nbsp;
+                                    <span class="fileinput-exists">Change</span><input type="file" class="txtNewspaperScan_upd notrequired" accept="image/*" />
+                                </span>
+                                <span class="fileinput-filename"></span>
+                                <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+
+                                <span class="btn btn-block btn-outline btn-info btn-file">
+                                    <span class="fileinput-new">Indemnity Bonds (Seller/Purchaser)</span>
+                                    <i class="fa fa-upload"></i>&nbsp;&nbsp;
+                                    <span class="fileinput-exists">Change</span><input type="file" class="txtIndemnityBondScan_upd notrequired" accept="image/*" />
+                                </span>
+                                <span class="fileinput-filename"></span>
+                                <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+
+                                <span class="btn btn-block btn-outline btn-info btn-file">
+                                    <span class="fileinput-new">Transfer Order</span>
+                                    <i class="fa fa-upload"></i>&nbsp;&nbsp;
+                                    <span class="fileinput-exists">Change</span><input type="file" class="txtTransferOrderScan_upd notrequired" accept="image/*" />
+                                </span>
+                                <span class="fileinput-filename"></span>
+                                <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+           <div class="modal-footer">
+            <button type="button" class="btn grey btn-outline-info" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-outline-dark btnUpdateAttachment">Save changes</button>
+        </div>
+        </div>
+    </div>
+</div>
+@*Edit Attachment Start*@
 
 @*Edit Modal Transfer Order Start*@
 <div class="modal fade text-left" id="TransferOrder" role="dialog" aria-labelledby="myModalLabel16" aria-hidden="true">

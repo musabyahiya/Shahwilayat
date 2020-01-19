@@ -257,7 +257,7 @@ function UpdatePaymentPlan() {
 function FillDropDownByReferenceMember(DropDownReference, res) {
     $(DropDownReference).empty().append('<option selected="selected" value="0">--Select--</option>');
     $(res).each(function () {
-        $(DropDownReference).append($("<option></option>").val(this.MemberId).html(this.FirstName + ' ' + this.LastName + ' (' + this.MembershipNo + ' - ' + this.PlotNo + ')'));
+        $(DropDownReference).append($("<option></option>").val(this.MemberId).html(this.FirstName + ' ' + this.LastName + ' (' + this.MembershipNo + ') ' + this.PlotNo + ''));
     });
 }
 

@@ -46,8 +46,8 @@
                     <table class="table table-bordered mb-0 tblNominee">
                         <thead>
                             <tr>
-                                <th nowrap>Sr No.</th>
-                                <th>Membership No</th>
+                                <th nowrap>Sr #</th>
+                                <th>Membership #</th>
                                 <th>Member</th>
                                 <th>Nominee</th>
                                 <th>Relation</th>
@@ -65,13 +65,13 @@
                     <table class="table table-bordered mb-0" style="display:none" id="myTableNominee">
                         <thead>
                             <tr>
-                                <th nowrap>Sr No.</th>
-                                <th>Membership No</th>
+                                <th nowrap>Sr #</th>
+                                <th>Membership #</th>
                                 <th>Member</th>
                                 <th>Nominee</th>
                                 <th>Relation</th>
                                 <th>Member Relation</th>
-                                <th>Father/ Husband Name</th>
+                                <th>Father/Husband Name</th>
             
 
                             </tr>
@@ -108,14 +108,14 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="ddlTitle">Title</label>
-                                <select id="ddlTitle" class="form-control ddlTitle"></select>
+                                <label for="ddlRelation">Relation</label>
+                                <select id="ddlRelation" class="form-control ddlRelation"></select>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="ddlRelation">Relation</label>
-                                <select id="ddlRelation" class="form-control ddlRelation"></select>
+                                <label for="ddlTitle">Title</label>
+                                <select id="ddlTitle" class="form-control ddlTitle"></select>
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -132,13 +132,13 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="ddlMemberRelation">Member Relation</label>
+                                <label for="ddlMemberRelation">son/daughter/wife of</label>
                                 <select id="ddlMemberRelation" class="form-control ddlMemberRelation"></select>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="txtFatherName">Father Name</label>
+                                <label for="txtFatherName">Father/Husband Name</label>
                                 <input type="text" id="txtFatherName" class="form-control txtFatherName" placeholder="Enter father name">
                             </div>
                         </div>
@@ -157,7 +157,7 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="txtCellNo">Cell No</label>
+                                <label for="txtCellNo">Cell #</label>
                                 <input type="text" id="txtCellNo" class="form-control txtCellNo numbericOnly" placeholder="Enter cell number">
                             </div>
                         </div>
@@ -175,14 +175,14 @@
                             </div>
                         </div>
                     </div>
-                    <h4 class="form-section"><i class="ft-paperclip"></i> Attachments</h4>
+                    <h4 class="form-section"><i class="ft-paperclip"></i> Attachments - (Pls select from the following)</h4>
                     <hr>
                     <div class="row">
                         <div class="col-md-3">
                             <div class="fileinput fileinput-new" data-provides="fileinput">
 
                                 <span class="btn btn-block btn-outline btn-info btn-file">
-                                    <span class="fileinput-new">Attach CNIC Front</span>
+                                    <span class="fileinput-new">CNIC Front</span>
                                     <i class="fa fa-upload"></i>&nbsp;&nbsp;
                                     <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtCnicFront notrequired" accept="image/*" />
                                 </span>
@@ -194,7 +194,7 @@
                             <div class="fileinput fileinput-new" data-provides="fileinput">
 
                                 <span class="btn btn-block btn-outline btn-info btn-file">
-                                    <span class="fileinput-new">Attach CNIC Back</span>
+                                    <span class="fileinput-new">CNIC Back</span>
                                     <i class="fa fa-upload"></i>&nbsp;&nbsp;
                                     <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtCnicBack notrequired" accept="image/*" />
                                 </span>
@@ -206,7 +206,7 @@
                             <div class="fileinput fileinput-new" data-provides="fileinput">
 
                                 <span class="btn btn-block btn-outline btn-info btn-file">
-                                    <span class="fileinput-new">Attach Recent Profile Picture</span>
+                                    <span class="fileinput-new">Recent Profile Picture</span>
                                     <i class="fa fa-upload"></i>&nbsp;&nbsp;
                                     <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtProfileFile notrequired" accept="image/*" />
                                 </span>
@@ -218,7 +218,7 @@
                             <div class="fileinput fileinput-new" data-provides="fileinput">
 
                                 <span class="btn btn-block btn-outline btn-info btn-file">
-                                    <span class="fileinput-new">Attach Birth Certificate</span>
+                                    <span class="fileinput-new">Birth Certificate</span>
                                     <i class="fa fa-upload"></i>&nbsp;&nbsp;
                                     <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtBirthCertificate notrequired" accept="image/*" />
                                 </span>
@@ -230,7 +230,7 @@
                             <div class="fileinput fileinput-new" data-provides="fileinput">
 
                                 <span class="btn btn-block btn-outline btn-info btn-file">
-                                    <span class="fileinput-new">Attach Hereship Certificate</span>
+                                    <span class="fileinput-new">Hereship Certificate</span>
                                     <i class="fa fa-upload"></i>&nbsp;&nbsp;
                                     <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtHereshipCertificate notrequired" accept="image/*" />
                                 </span>
@@ -242,7 +242,7 @@
                             <div class="fileinput fileinput-new" data-provides="fileinput">
 
                                 <span class="btn btn-block btn-outline btn-info btn-file">
-                                    <span class="fileinput-new">Attach FRC </span>
+                                    <span class="fileinput-new">FRC (Family Registration Certificate)</span>
                                     <i class="fa fa-upload"></i>&nbsp;&nbsp;
                                     <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtFrcFile notrequired" accept="image/*" />
                                 </span>
@@ -253,7 +253,7 @@
                         <div class="col-md-3">
                             <div class="fileinput fileinput-new" data-provides="fileinput">
                                 <span class="btn btn-block btn-outline btn-info btn-file">
-                                    <span class="fileinput-new">Attach Guardian Certificate </span>
+                                    <span class="fileinput-new">Guardian Certificate </span>
                                     <i class="fa fa-upload"></i>&nbsp;&nbsp;
                                     <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtGuardianCertificate notrequired" accept="image/*" />
                                 </span>
@@ -265,7 +265,7 @@
                             <div class="fileinput fileinput-new" data-provides="fileinput">
 
                                 <span class="btn btn-block btn-outline btn-info btn-file">
-                                    <span class="fileinput-new">Attach Death Certificate </span>
+                                    <span class="fileinput-new">Death Certificate </span>
                                     <i class="fa fa-upload"></i>&nbsp;&nbsp;
                                     <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtDeathCertificate notrequired" accept="image/*" />
                                 </span>
@@ -309,14 +309,14 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="ddlTitle_upd">Title</label>
-                                <select id="ddlTitle_upd" class="form-control ddlTitle_upd"></select>
+                                <label for="ddlRelation_upd">Relation</label>
+                                <select id="ddlRelation_upd" class="form-control ddlRelation_upd"></select>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="ddlRelation_upd">Relation</label>
-                                <select id="ddlRelation_upd" class="form-control ddlRelation_upd"></select>
+                                <label for="ddlTitle_upd">Title</label>
+                                <select id="ddlTitle_upd" class="form-control ddlTitle_upd"></select>
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -333,7 +333,7 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="ddlMemberRelation_upd">Member Relation</label>
+                                <label for="ddlMemberRelation_upd">son/daughter/wife of</label>
                                 <select id="ddlMemberRelation_upd" class="form-control ddlMemberRelation_upd"></select>
                             </div>
                         </div>
@@ -358,7 +358,7 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="txtCellNo_upd">Cell No</label>
+                                <label for="txtCellNo_upd">Cell #</label>
                                 <input type="text" id="txtCellNo_upd" class="form-control txtCellNo_upd numbericOnly" placeholder="Enter cell number">
                             </div>
                         </div>
@@ -407,7 +407,7 @@
                             <div class="fileinput fileinput-new" data-provides="fileinput">
 
                                 <span class="btn btn-block btn-outline btn-info btn-file">
-                                    <span class="fileinput-new">Attach CNIC Front</span>
+                                    <span class="fileinput-new">CNIC Front</span>
                                     <i class="fa fa-upload"></i>&nbsp;&nbsp;
                                     <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtCnicFront_upd notrequired" accept="image/*" />
                                 </span>
@@ -419,7 +419,7 @@
                             <div class="fileinput fileinput-new" data-provides="fileinput">
 
                                 <span class="btn btn-block btn-outline btn-info btn-file">
-                                    <span class="fileinput-new">Attach CNIC Back</span>
+                                    <span class="fileinput-new">CNIC Back</span>
                                     <i class="fa fa-upload"></i>&nbsp;&nbsp;
                                     <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtCnicBack_upd notrequired" accept="image/*" />
                                 </span>
@@ -431,7 +431,7 @@
                             <div class="fileinput fileinput-new" data-provides="fileinput">
 
                                 <span class="btn btn-block btn-outline btn-info btn-file">
-                                    <span class="fileinput-new">Attach Recent Profile Picture</span>
+                                    <span class="fileinput-new">Recent Profile Picture</span>
                                     <i class="fa fa-upload"></i>&nbsp;&nbsp;
                                     <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtProfileFile_upd notrequired" accept="image/*" />
                                 </span>
@@ -443,7 +443,7 @@
                             <div class="fileinput fileinput-new" data-provides="fileinput">
 
                                 <span class="btn btn-block btn-outline btn-info btn-file">
-                                    <span class="fileinput-new">Attach Birth Certificate</span>
+                                    <span class="fileinput-new">Birth Certificate</span>
                                     <i class="fa fa-upload"></i>&nbsp;&nbsp;
                                     <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtBirthCertificate_upd notrequired" accept="image/*" />
                                 </span>
@@ -455,7 +455,7 @@
                             <div class="fileinput fileinput-new" data-provides="fileinput">
 
                                 <span class="btn btn-block btn-outline btn-info btn-file">
-                                    <span class="fileinput-new">Attach Hereship Certificate</span>
+                                    <span class="fileinput-new">Hereship Certificate</span>
                                     <i class="fa fa-upload"></i>&nbsp;&nbsp;
                                     <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtHereshipCertificate_upd notrequired" accept="image/*" />
                                 </span>
@@ -467,7 +467,7 @@
                             <div class="fileinput fileinput-new" data-provides="fileinput">
 
                                 <span class="btn btn-block btn-outline btn-info btn-file">
-                                    <span class="fileinput-new">Attach FRC </span>
+                                    <span class="fileinput-new">FRC (Family Registration Certificate) </span>
                                     <i class="fa fa-upload"></i>&nbsp;&nbsp;
                                     <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtFrcFile_upd notrequired" accept="image/*" />
                                 </span>
@@ -478,7 +478,7 @@
                         <div class="col-md-3">
                             <div class="fileinput fileinput-new" data-provides="fileinput">
                                 <span class="btn btn-block btn-outline btn-info btn-file">
-                                    <span class="fileinput-new">Attach Guardian Certificate </span>
+                                    <span class="fileinput-new">Guardian Certificate </span>
                                     <i class="fa fa-upload"></i>&nbsp;&nbsp;
                                     <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtGuardianCertificate_upd notrequired" accept="image/*" />
                                 </span>
@@ -490,7 +490,7 @@
                             <div class="fileinput fileinput-new" data-provides="fileinput">
 
                                 <span class="btn btn-block btn-outline btn-info btn-file">
-                                    <span class="fileinput-new">Attach Death Certificate </span>
+                                    <span class="fileinput-new">Death Certificate </span>
                                     <i class="fa fa-upload"></i>&nbsp;&nbsp;
                                     <span class="fileinput-exists">Change</span><input type="file" name="..." class="txtDeathCertificate_upd notrequired" accept="image/*" />
                                 </span>

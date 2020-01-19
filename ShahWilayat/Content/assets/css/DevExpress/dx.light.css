@@ -6750,6 +6750,7 @@
 }
 .dx-datagrid-headers .dx-datagrid-table .dx-row > td {
   border-bottom: 1px solid #ddd;
+  text-align: left !important;
 }
 .dx-datagrid-filter-row .dx-menu .dx-overlay-content {
   color: #333;

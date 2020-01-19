@@ -3852,6 +3852,7 @@
   cursor: pointer;
 }
 .dx-datagrid .dx-column-indicators {
+   float:right !important;;
   display: inline-block;
   vertical-align: top;
   white-space: nowrap;
@@ -4049,6 +4050,7 @@ input.dx-hidden {
 .dx-datagrid-content .dx-datagrid-table .dx-row > td,
 .dx-datagrid-content .dx-datagrid-table .dx-row > tr > td {
   vertical-align: top;
+  text-align: left !important;
 }
 .dx-datagrid-content .dx-datagrid-table .dx-row > td:first-child,
 .dx-datagrid-content .dx-datagrid-table .dx-row > tr > td:first-child {
