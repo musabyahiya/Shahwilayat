@@ -231,10 +231,12 @@
     <Compile Include="Controllers\AssociateTransferController.cs" />
     <Compile Include="Controllers\ChargesController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\GeneralPaymentAdminController.cs" />
     <Compile Include="Controllers\GeneralPaymentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ManagementCommitteePaymentsAdminController.cs" />
     <Compile Include="Controllers\ManagementCommitteePaymentsController.cs" />
     <Compile Include="Controllers\ManualPaymentController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
@@ -244,6 +246,7 @@
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\PaymentSetupController.cs" />
     <Compile Include="Controllers\PlotController.cs" />
+    <Compile Include="Controllers\PlotTransferAdminController.cs" />
     <Compile Include="Controllers\PlotTransferController.cs" />
     <Compile Include="Controllers\ReceiptController.cs" />
     <Compile Include="Controllers\SessionCheck.cs" />
@@ -5436,12 +5439,14 @@
     <Content Include="Scripts\assets\js\PagesJS\Dashboard.js" />
     <Content Include="Scripts\assets\js\PagesJS\FileManagement.js" />
     <Content Include="Scripts\assets\js\PagesJS\GeneralPayment.js" />
+    <Content Include="Scripts\assets\js\PagesJS\GeneralPaymentAdmin.js" />
     <Content Include="Scripts\assets\js\PagesJS\Invoice.js" />
     <Content Include="Scripts\assets\js\PagesJS\LandCost.js" />
     <Content Include="Scripts\assets\js\PagesJS\Letters.js" />
     <Content Include="Scripts\assets\js\PagesJS\Login.js" />
     <Content Include="Scripts\assets\js\PagesJS\MakePayment.js" />
     <Content Include="Scripts\assets\js\PagesJS\ManagementCommitteePayments.js" />
+    <Content Include="Scripts\assets\js\PagesJS\ManagementCommitteePaymentsAdmin.js" />
     <Content Include="Scripts\assets\js\PagesJS\ManualPayment.js" />
     <Content Include="Scripts\assets\js\PagesJS\Member.js" />
     <Content Include="Scripts\assets\js\PagesJS\MembershipSingle.js" />
@@ -5456,6 +5461,7 @@
     <Content Include="Scripts\assets\js\PagesJS\PaymentSetup.js" />
     <Content Include="Scripts\assets\js\PagesJS\Plot.js" />
     <Content Include="Scripts\assets\js\PagesJS\PlotTransfer.js" />
+    <Content Include="Scripts\assets\js\PagesJS\PlotTransferAdmin.js" />
     <Content Include="Scripts\assets\js\PagesJS\Receipt.js" />
     <Content Include="Scripts\assets\js\PagesJS\ShareRegister.js" />
     <Content Include="Scripts\assets\js\PagesJS\Tenure.js" />
@@ -6080,6 +6086,9 @@
     <Content Include="Views\GeneralPayment\Index.cshtml" />
     <Content Include="Views\PlotTransfer\Index.cshtml" />
     <Content Include="Views\ManagementCommitteePayments\Index.cshtml" />
+    <Content Include="Views\GeneralPaymentAdmin\Index.cshtml" />
+    <Content Include="Views\PlotTransferAdmin\Index.cshtml" />
+    <Content Include="Views\ManagementCommitteePaymentsAdmin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

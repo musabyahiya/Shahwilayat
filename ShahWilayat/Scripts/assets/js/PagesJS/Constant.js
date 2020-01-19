@@ -202,7 +202,7 @@ function validateForm(selector) {
     $(selector).find('select').each(function () {
 
         if ($(this).hasClass('mySelect')) {
-            if (($(selector).find(this).val() == 0 || $(selector).find(this).val() == null) && this.className.includes('notrequired') == false) {
+            if (($(selector).find(this).val() == 0 || $(selector).find(this).val() == null) && this.className.includes('notrequired') == false && (this.className.includes('picker__select--month') == false)) {
                 $(this).find('.select2-selection').attr('style', 'border-color : red !important; border-style: solid');
                 showError('Check All Mandatory Fields');
                 check = false;
@@ -212,7 +212,7 @@ function validateForm(selector) {
         }
         else {
 
-            if (($(this).val() == 0 || $(this).val() == null) && this.className.includes('notrequired') == false) {
+            if (($(this).val() == 0 || $(this).val() == null) && this.className.includes('notrequired') == false && (this.className.includes('picker__select--month') == false)) {
                 CSS_BorderAndColor(this, 'red');
                 showError('Check All Mandatory Fields');
                 check = false;

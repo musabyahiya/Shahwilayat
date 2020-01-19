@@ -136,7 +136,7 @@ function CreateNewTransfer() {
             GetAllTransfers();
         }
         else if (res == "false") {
-            showError('Please before transfer, make sure all the dues must be clear!');
+            showError('Please change the Member before transfer, duplication found!');
 
         }
     });

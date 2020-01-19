@@ -10,26 +10,6 @@ var ReceiptNo;
 var objEditRow;
 
 
-function SearchTable() {
-    $(".txtSearch").keyup(function () {
-        ProgressBarShow();
-        _this = this;
-
-        var search = $(_this).val();
-
-        if (search == '') {
-            onGetAllReceipts(ReceiptList);
-        }
-        else {
-            var obj = ReceiptList.filter(x=> x.ReceiptNo.includes(search()) ||
-				x.PlotNo.includes(search)
-				)
-            onGetAllReceipts(obj);
-
-        }
-        ProgressBarHide();
-    });
-}
 function AllClickFunction() {
 
 
@@ -170,6 +150,7 @@ function onGetAllReceipts(data) {
     }
     ProgressBarHide();
 }
+
 function EditReceipt(selector) {
     objEditRow = $(selector).closest('tr');
      ReceiptNo = objEditRow.find('.hdnReceiptNo').val();
