@@ -72,7 +72,7 @@ function CreateNewFileManagement() {
         var res = data;
         if (res == "true") {
             showSuccess('Successfully Created!');
-            $('#CreateFileManagement').modal('hide');
+            $('#FileManagement').modal('hide');
             $('.AppendInsideMe').html('');
             Counter++;
             GetAllFileManagement();
@@ -186,16 +186,16 @@ function GetAllFileManagement() {
             html += '<div class="ibox">';
 
             if (value.IsParent == 1) {
-                html += '<div class="ibox-title" style="background-color:#1787cb;color:white">';
-                html += ' <h5>' + value.ContentName + '</h5>';
-                html += '<div class="ibox-tools">';
-                html += '<a class="collapse-link" style="color:white">';
-                html += '<i class="fa fa-chevron-up" ' + HasToggle + ' ></i>';
-                html += '</a>';
-                html += '<a class="fullscreen-link" style="color:white">';
-                html += '<i class="fa fa-expand"></i>';
-                html += '</a>';
-                html += '</div>';
+                html += '<div class="ibox-title" style="background-color:#005aa1;color:white">';
+                html += ' <h6 style="color:white">' + value.ContentName + '</h6>';
+                //html += '<div class="ibox-tools">';
+                //html += '<a class="collapse-link" style="color:white">';
+                //html += '<i class="fa fa-chevron-up" ' + HasToggle + ' ></i>';
+                //html += '</a>';
+                //html += '<a class="fullscreen-link" style="color:white">';
+                //html += '<i class="fa fa-expand"></i>';
+                //html += '</a>';
+                //html += '</div>';
                 html += '</div>';
             }
 
@@ -245,7 +245,8 @@ function GetAllFileManagement() {
                         html += '<td>' + i + '</td>';
                         html += '<td>' + value3.ContentName + '</td>';
                         html += '<td>';
-                        html += '<button class="btn btn-group btn-xs btn-info" type="button"><a style="color:white" href="../Uploads/' + JSON.parse(value3.FilePath)[0] + '" download="" title="Download"><i class="fa fa-download"></i></a></button>';
+                        html += '<div class="badge badge-warning round"><a style="color:white" href="../Uploads/' + JSON.parse(value3.FilePath)[0] + '" download="" title="Download"><i class="font-medium-2 icon-line-height la la-cloud-upload"></i></a></div>';
+                        //  html += '<button class="btn btn-group btn-xs btn-info" type="button"><a style="color:white" href="../Uploads/' + JSON.parse(value3.FilePath)[0] + '" download="" title="Download"><i class="fa fa-download"></i></a></button>';
                         html += '</td>';
                         i++;
                     }
@@ -264,7 +265,8 @@ function GetAllFileManagement() {
                         $.each(objRowsChildChild, function (key4, value4) {
                             html += '<li class="list-group-item">';
                             html += value4.ContentName;
-                            html += '<button class="btn btn-group btn-xs btn-warning pull-right" type="button"><a style="color:white" href="../Uploads/' + JSON.parse(value4.FilePath)[0] + '" download="" title="Download"><i class="fa fa-download"></i></a></button>';
+                            //    html += '<button class="btn btn-group btn-xs btn-warning pull-right" type="button"><a style="color:white" href="../Uploads/' + JSON.parse(value4.FilePath)[0] + '" download="" title="Download"><i class="fa fa-download"></i></a></button>';
+                            html += '<div class="badge badge-warning round pull-right"><a style="color:white" href="../Uploads/' + JSON.parse(value4.FilePath)[0] + '" download="" title="Download"><i class="font-medium-2 icon-line-height la la-cloud-upload"></i></a></div>';
 
                             html += '</li>';
                         });
@@ -306,7 +308,7 @@ function GetAllFileManagement() {
         });
 
         //$(".collapse").collapse()
-     //   $('div.ibox-content').slideUp();
+        //   $('div.ibox-content').slideUp();
         ProgressBarHide();
     });
     request.fail(function (jqXHR, Status) {
