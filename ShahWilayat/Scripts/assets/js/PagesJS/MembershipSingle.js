@@ -7,7 +7,7 @@ function GetMembershipFormSingle() {
     ProgressBarShow();
     var request = $.ajax({
         method: "POST",
-        url: "/Member/GetAllMembers",
+        url: "/MembershipSingle/GetMembershipFormSingle",
         data: {}
     });
     request.done(function (data) {
@@ -25,7 +25,7 @@ function GetMembershipFormSingle() {
 function onGetMembershipFormSingle(data) {
     try {
 
-        var res = data;
+        var res = JSON.parse(data);
         
         MembershipFormSingleList = res;
         var divTbodyGoalFund = $(".MembershipFormSingleListing").html("");
@@ -130,7 +130,7 @@ function PrintMembershipSingle(selector) {
 
     
     BindTextToSelector('.printPermanentAddress', objEditRow.find('.hdnPermanentAddress').val());
-    BindTextToSelector('.printNomineePermanentAddress', objEditRow.find('.hdnNomineePermanentAddress').val());
+    BindTextToSelector('.printNomineePermanentAddress', objEditRow.find('.hdnNomineeAddress').val());
     BindTextToSelector('.printCNIC', objEditRow.find('.hdnCNIC').val());
     BindTextToSelector('.printNomineeCNIC', objEditRow.find('.hdnNomineeCNIC').val());
     BindTextToSelector('.printLandline', objEditRow.find('.hdnLandline').val());

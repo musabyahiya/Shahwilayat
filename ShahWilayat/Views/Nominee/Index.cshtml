@@ -555,8 +555,8 @@
             </td>
 
             <td align="center" class="project-title" nowrap>
-                <a href="${ProfileFile == ''? '': '../Uploads/'+JSON.parse(ProfileFile)[0]}" download="" data-toggle="tooltip" title="Profile Picture"><i class="la la-cloud-download warning"></i></a>&nbsp;
-                <a href="${FrcFile== null? '': '../Uploads/'+JSON.parse(FrcFile)[0]}" download="" data-toggle="tooltip" title="FRC"><i class="la la-cloud-download success"></i></a>&nbsp;
+                <a href="${ProfileFile == null? '': '../Uploads/'+JSON.parse(ProfileFile)[0]}" download="" data-toggle="tooltip" title="Profile Picture"><i class="la la-cloud-download warning"></i></a>&nbsp;
+                @*<a href="${FrcFile== null? '': '../Uploads/'+JSON.parse(FrcFile)[0]}" download="" data-toggle="tooltip" title="FRC"><i class="la la-cloud-download success"></i></a>&nbsp;*@
                 <a href="${CnicFront== null? '': '../Uploads/'+JSON.parse(CnicFront)[0]}" download="" data-toggle="tooltip" title="CNIC Front"><i class="la la-cloud-download info"></i></a>&nbsp;
                 <a href="${CnicBack == null? '': '../Uploads/'+JSON.parse(CnicBack)[0]}" download="" data-toggle="tooltip" title="CNIC Back"><i class="la la-cloud-download dark"></i></a>&nbsp;
                 <a href="${HereshipCertificate == null? '': '../Uploads/'+JSON.parse(HereshipCertificate)[0]}" download="" data-toggle="tooltip" title="Hereship Certificate"><i class="la la-cloud-download primary"></i></a>&nbsp;
