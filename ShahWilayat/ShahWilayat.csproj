@@ -231,6 +231,7 @@
     <Compile Include="Controllers\AssociateTransferController.cs" />
     <Compile Include="Controllers\ChargesController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\FileManagementController.cs" />
     <Compile Include="Controllers\GeneralPaymentAdminController.cs" />
     <Compile Include="Controllers\GeneralPaymentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -6089,6 +6090,7 @@
     <Content Include="Views\GeneralPaymentAdmin\Index.cshtml" />
     <Content Include="Views\PlotTransferAdmin\Index.cshtml" />
     <Content Include="Views\ManagementCommitteePaymentsAdmin\Index.cshtml" />
+    <Content Include="Views\FileManagement\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

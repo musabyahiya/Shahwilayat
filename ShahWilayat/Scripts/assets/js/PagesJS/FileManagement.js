@@ -1,4 +1,31 @@
-﻿GetAllFileManagement();
+﻿//$(document).ready(function () {
+
+//    var defaultData = [{
+//        text: 'Parent 1',
+//        href: '#parent1',
+//        tags: ['4'],
+//        nodes: [{
+//            text: 'Child 1',
+//            href: '#child1',
+//            tags: ['2'],
+//            nodes: [{
+//                text: 'Grandchild 1',
+//                href: '#grandchild1',
+//                tags: ['0']
+//            }, {
+//                text: 'Grandchild 2',
+//                href: '#grandchild2',
+//                tags: ['0']
+//            }]
+//        }]
+//    }];
+
+
+//});
+
+
+
+GetAllFileManagement();
 GetAllParents();
 GetAllChilds();
 AllClickFunction();
@@ -46,7 +73,7 @@ function CreateNewFileManagement() {
         if (res == "true") {
             showSuccess('Successfully Created!');
             $('#CreateFileManagement').modal('hide');
-            $('.AppendInside').html('');
+            $('.AppendInsideMe').html('');
             Counter++;
             GetAllFileManagement();
         }
@@ -111,6 +138,8 @@ function onGetAllSubChilds(data) {
 
 }
 
+
+
 function GetAllParents() {
 
     var request = $.ajax({
@@ -161,7 +190,7 @@ function GetAllFileManagement() {
                 html += ' <h5>' + value.ContentName + '</h5>';
                 html += '<div class="ibox-tools">';
                 html += '<a class="collapse-link" style="color:white">';
-                html += '<i class="fa fa-chevron-up" '+HasToggle+' ></i>';
+                html += '<i class="fa fa-chevron-up" ' + HasToggle + ' ></i>';
                 html += '</a>';
                 html += '<a class="fullscreen-link" style="color:white">';
                 html += '<i class="fa fa-expand"></i>';
@@ -270,14 +299,14 @@ function GetAllFileManagement() {
             html += '</div>';
             html += '</div>';
 
-            html.indexOf('ibox-title') != -1 ? $('.AppendInside').append(html) : '';
+            html.indexOf('ibox-title') != -1 ? $('.AppendInsideMe').append(html) : '';
 
             html = '';
 
         });
 
         //$(".collapse").collapse()
-        $('div.ibox-content').slideUp();
+     //   $('div.ibox-content').slideUp();
         ProgressBarHide();
     });
     request.fail(function (jqXHR, Status) {

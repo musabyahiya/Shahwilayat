@@ -7,7 +7,7 @@ function GetMembershipFormSingle() {
     ProgressBarShow();
     var request = $.ajax({
         method: "POST",
-        url: "/MembershipSingle/GetMembershipFormSingle",
+        url: "/Member/GetAllMembers",
         data: {}
     });
     request.done(function (data) {
@@ -25,7 +25,7 @@ function GetMembershipFormSingle() {
 function onGetMembershipFormSingle(data) {
     try {
 
-        var res = JSON.parse(data);
+        var res = data;
         
         MembershipFormSingleList = res;
         var divTbodyGoalFund = $(".MembershipFormSingleListing").html("");
