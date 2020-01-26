@@ -15,7 +15,7 @@
 <div class="row">
     <div class="col-12">
         <div class="card">
-            <div class="card-header">
+            @*<div class="card-header">
                 <fieldset>
                     <div class="input-group">
                         <input type="text" class="form-control txtSearch" placeholder="Search..." aria-describedby="basic-addon4">
@@ -25,7 +25,7 @@
                     </div>
                 </fieldset>
 
-            </div>
+            </div>*@
             <div class="card-content">
 
                 <div class="table-responsive">
@@ -103,10 +103,10 @@
                                             <span><b class="printNomineeBirthPlace"></b></span>
                                         </div>
                                         <div class="MemberImage">
-                                            <img class="printProfileFile" src="~/Content/assets/css/PrintMaterial/MembershipSingle/Fahad.jpg" style="width:111px; height: 153px;">
+                                            <img class="printProfileFile" src="" style="width:111px; height: 153px;">
                                         </div>
                                         <div class="NomineeImage">
-                                            <img class="printNomineeProfileFile" src="~/Content/assets/css/PrintMaterial/MembershipSingle/Musab.jpg" style="width:111px; height: 153px;border-radius:0px 16px 0px 0px;">
+                                            <img class="printNomineeProfileFile" src="" style="width:111px; height: 153px;border-radius:0px 16px 0px 0px;">
                                         </div>
                                         <div class="MemberAddress">
                                             <span class="printPermanentAddress"></span>
@@ -199,11 +199,17 @@
             <input type="hidden" class="hdnBirthPlace" value="${BirthPlace}" />
             <input type="hidden" class="hdnPermanentAddress" value="${PermanentAddress}" />
             <input type="hidden" class="hdnCNIC" value="${CNIC}" />
+            <input type="hidden" class="hdnNomineeCNIC" value="${NomineeCNIC}" />
+            <input type="hidden" class="hdnProfileFile" value="${ProfileFile}" />
+            <input type="hidden" class="hdnNomineeProfileFile" value="${NomineeProfileFile}" />
             <input type="hidden" class="hdnCellNo" value="${CellNo}" />
+            <input type="hidden" class="hdnNomineeCellNo" value="${NomineeCellNo}" />
             <input type="hidden" class="hdnLandline" value="${Landline}" />
+            <input type="hidden" class="hdnNomineeLandline" value="${NomineeLandline}" />
             <input type="hidden" class="hdnOfficePhone" value="${OfficePhone}" />
             <input type="hidden" class="hdnBloodGroup" value="${BloodGroup}" />
             <input type="hidden" class="hdnEmail" value="${Email}" />
+            <input type="hidden" class="hdnNomineeEmail" value="${NomineeEmail}" />
             <input type="hidden" class="hdnRelationId" value="${RelationId}" />
             <input type="hidden" class="hdnRelation" value="${Relation}" />
             <input type="hidden" class="hdnNomineeName" value="${NomineeName}" />
@@ -215,6 +221,7 @@
             <input type="hidden" class="hdnMembershipDate" value="${MembershipDate}" />
             <input type="hidden" class="hdnMembershipNo" value="${MembershipNo}" />
             <input type="hidden" class="hdnPlotNo" value="${PlotNo}" />
+            <input type="hidden" class="hdnPlotType" value="${PlotType}" />
             <input type="hidden" class="hdnPlotSize" value="${PlotSize}" />
             <td></td>
             <td class="project-title tdMemberShipNo" nowrap>${MembershipNo}</td>

@@ -1,4 +1,4 @@
-﻿
+﻿SearchTable();
 
 GetMembershipFormSingle();
 var MembershipFormSingleList;
@@ -44,6 +44,7 @@ function onGetMembershipFormSingle(data) {
     }
 
 }
+
 
 
 
@@ -101,10 +102,9 @@ function SearchTable() {
         else {
             var obj = MembershipFormSingleList.filter(x=> x.FirstName.toLowerCase().includes(search.toLowerCase()) ||
 				x.LastName.toLowerCase().includes(search.toLowerCase()) ||
-                x.MemberName.toLowerCase().includes(search.toLowerCase()) ||
-			    x.MembershipNo.toLowerCase().includes(search.toLowerCase()) ||
-                x.FatherName.toLowerCase().includes(search.toLowerCase()) ||
-                x.CellNo.toLowerCase().includes(search.toLowerCase())
+                x.NomineeName.toLowerCase().includes(search.toLowerCase()) ||
+			    x.MembershipNo.toLowerCase().includes(search.toLowerCase())
+               
 				)
             onGetMembershipFormSingle(obj);
         }
@@ -134,6 +134,19 @@ function PrintMembershipSingle(selector) {
     BindTextToSelector('.printCNIC', objEditRow.find('.hdnCNIC').val());
     BindTextToSelector('.printNomineeCNIC', objEditRow.find('.hdnNomineeCNIC').val());
     BindTextToSelector('.printLandline', objEditRow.find('.hdnLandline').val());
+    BindTextToSelector('.printNomineeLandline', objEditRow.find('.hdnNomineeLandline').val());
+    BindTextToSelector('.printCellNo', objEditRow.find('.hdnCellNo').val());
+    BindTextToSelector('.printNomineeCellNo', objEditRow.find('.hdnNomineeCellNo').val());
+    BindTextToSelector('.printEmail', objEditRow.find('.hdnEmail').val());
+    BindTextToSelector('.printNomineeEmail', objEditRow.find('.hdnNomineeEmail').val());
+
+    BindTextToSelector('.printPlotNo', objEditRow.find('.hdnPlotNo').val());
+    BindTextToSelector('.printPlotSize', objEditRow.find('.hdnPlotSize').val());
+    BindTextToSelector('.printPlotType', objEditRow.find('.hdnPlotType').val());
+    BindTextToSelector('.printMembershipNo', objEditRow.find('.hdnMembershipNo').val());
+
+    $(".printNomineeProfileFile").attr("src", '../Uploads/' + JSON.parse(objEditRow.find('.hdnNomineeProfileFile').val())[0]);
+    $(".printProfileFile").attr("src", '../Uploads/' + JSON.parse(objEditRow.find('.hdnProfileFile').val())[0]);
 
     var MemberId = objEditRow.find('.hdnMemberId').val();
     $(function () {
