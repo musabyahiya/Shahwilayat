@@ -1,4 +1,5 @@
-GetAllMenus()
+GetAllMenus();
+AllClickFunction();
 
 function GetUserInfo() {
 
@@ -78,7 +79,7 @@ function onGetAllMenus(data) {
                 html += '</li>';
             }
         });
-      
+
         $(".AppendInside").append(html);
     }
     catch (Err) {
@@ -88,3 +89,31 @@ function onGetAllMenus(data) {
 }
 
 
+function Logout() {
+
+    var request = $.ajax({
+        method: "POST",
+        url: "/Login/Logout",
+        data: {}
+    });
+    request.done(function (data) {
+        var res = data;
+        if (res == "True") {
+            window.location.href = "/Login";
+        }
+
+    });
+    request.fail(function (jqXHR, textStatus) {
+        console.log(textStatus);
+
+    });
+}
+
+function AllClickFunction() {
+
+    $('.btnLogout').click(function () {
+        Logout();
+    });
+
+
+}

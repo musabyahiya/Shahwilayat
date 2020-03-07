@@ -18,10 +18,7 @@ var Tenure =
 }];
 
 
-function AllChangeFunction() {
 
-
-}
 function AllClickFunction() {
     $('.btnSaveChanges').click(function () {
         var duplicationTenure = false;

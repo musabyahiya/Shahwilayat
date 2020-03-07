@@ -35,7 +35,7 @@ namespace ShahWilayat.Controllers
                 return false;
             }
         }
-        public ActionResult Logout()
+        public bool Logout()
         {
             Session["Email"] = null;
             Session["FirstName"] = null;
@@ -44,7 +44,7 @@ namespace ShahWilayat.Controllers
             Session["Role"] = null;
             Session["UserId"] = null;
 
-            return RedirectToAction("Index", "Login");
+            return true;
         }
     }
 }
