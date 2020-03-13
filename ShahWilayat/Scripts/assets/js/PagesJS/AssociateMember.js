@@ -587,7 +587,7 @@ function GetAllAssociateMembers() {
     });
     request.done(function (data) {
 
-
+        MemberList = data;
         onGetAllAssociateMembers(data);
     });
     request.fail(function (jqXHR, Status) {
@@ -600,7 +600,7 @@ function onGetAllAssociateMembers(data) {
     try {
 
         var res = data;
-        MemberList = data;
+        
         var divTbodyGoalFund = $(".MemberListing").html("");
         $("#MemberListing").tmpl(res).appendTo(divTbodyGoalFund);
 
@@ -618,6 +618,8 @@ function onGetAllAssociateMembers(data) {
 
 }
 
+
+
 function SearchTable() {
     $(".txtSearch").keyup(function () {
         ProgressBarShow();
@@ -631,11 +633,7 @@ function SearchTable() {
         else {
             var obj = MemberList.filter(x=> x.FirstName.toLowerCase().includes(search.toLowerCase()) ||
 				x.LastName.toLowerCase().includes(search.toLowerCase()) ||
-				x.Email.toLowerCase().includes(search.toLowerCase()) ||
-				x.CellNo.toLowerCase().includes(search.toLowerCase()) ||
-			    x.MembershipNo.toLowerCase().includes(search.toLowerCase()) ||
-                x.FolioNo.toLowerCase().includes(search.toLowerCase()) ||
-                x.ReferenceNo.toLowerCase().includes(search.toLowerCase())
+                x.MembershipNo.includes(search)
 				)
             onGetAllAssociateMembers(obj);
 

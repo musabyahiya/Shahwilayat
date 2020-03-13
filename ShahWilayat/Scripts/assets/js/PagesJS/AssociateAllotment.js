@@ -4,7 +4,7 @@ GetAllMembers();
 GetAllPlots();
 GetAllManagementCommittee();
 AllChangeFunction();
-
+SearchTable();
 
 
 var AllotmentList;
@@ -223,6 +223,7 @@ function GetAllAllotment() {
     });
     request.done(function (data) {
 
+        AllotmentList = data;
         onGetAllAllotment(data);
     });
     request.fail(function (jqXHR, Status) {
@@ -255,7 +256,7 @@ function EditAllotment(selector) {
 
     Allotment[0].AssociateAllotmentId = objEditRow.find('.hdnAssociateAllotmentId').val();
     Allotment[0].PlotId = objEditRow.find('.hdnPlotId').val();
-   
+
     ScanAllotmentOrder = objEditRow.find('.hdnScanAllotmentOrder').val();
     ScanProvisionalOrder = objEditRow.find('.hdnScanProvisionalOrder').val();
     ScanShareCertificate = objEditRow.find('.hdnScanShareCertificate').val();
@@ -349,5 +350,27 @@ function UpdateAttachment() {
     request.fail(function (jqXHR, Status) {
         console.log(jqXHR.responseText);
 
+    });
+}
+
+function SearchTable() {
+    $(".txtSearch").keyup(function () {
+        ProgressBarShow();
+        _this = this;
+
+        var search = $(_this).val();
+
+        if (search == '') {
+            onGetAllAllotment(AllotmentList);
+        }
+        else {
+            var obj = AllotmentList.filter(x=> x.FirstName.toLowerCase().includes(search.toLowerCase()) ||
+				x.AllotmentOrderNo.includes(search) ||
+                x.LastName.includes(search.toLowerCase())
+				)
+            onGetAllAllotment(obj);
+
+        }
+        ProgressBarHide();
     });
 }

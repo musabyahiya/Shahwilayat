@@ -853,3 +853,15 @@ String.prototype.capitalize = function () {
 }
 
 // https://stackoverflow.com/questions/31331062/disable-previous-dates-when-using-pickadate-js
+
+
+function isJSONObj(value) {
+    try {
+        var obj = JSON.parse(value);
+        return true;
+    }
+
+    catch (Err) {
+        return false;
+    }
+}

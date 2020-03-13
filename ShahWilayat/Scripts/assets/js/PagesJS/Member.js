@@ -661,11 +661,7 @@ function SearchTable() {
         else {
             var obj = MemberList.filter(x=> x.FirstName.toLowerCase().includes(search.toLowerCase()) ||
 				x.LastName.toLowerCase().includes(search.toLowerCase()) ||
-				x.Email.toLowerCase().includes(search.toLowerCase()) ||
-				x.CellNo.toLowerCase().includes(search.toLowerCase()) ||
-			    x.MembershipNo.toLowerCase().includes(search.toLowerCase()) ||
-                x.FolioNo.toLowerCase().includes(search.toLowerCase()) ||
-                x.ReferenceNo.toLowerCase().includes(search.toLowerCase())
+                x.MembershipNo.includes(search)
 				)
             onGetAllMembers(obj);
 
@@ -746,7 +742,7 @@ function PrintIndividualMember(selector) {
     $('.printFolioNo').html(objEditRow.find('.hdnFolioNo').val());
 
     $(".printProfileFile").attr("src", '../Uploads/' + JSON.parse(objEditRow.find('.hdnProfileFile').val())[0]);
-   
+
 
     // for plot binding
     var res = AllotteeList.filter(x=> x.MemberId == Members[0].MemberId);
@@ -807,6 +803,6 @@ function GetExpiryDate() {
     }
 
     today = dd + '-' + mm + '-' + yyyy
-  
+
     return today;
 }

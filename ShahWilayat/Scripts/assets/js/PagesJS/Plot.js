@@ -40,8 +40,7 @@ function SearchTable() {
         }
         else {
             var obj = PlotList.filter(x=> x.PlotType.toLowerCase().includes(search.toLowerCase()) ||
-				x.PlotNo.includes(search.toLowerCase()) ||
-				x.PlotSubType.toLowerCase().includes(search.toLowerCase())
+				x.PlotNo.includes(search.toLowerCase())
 				)
             onGetAllPlot(obj);
 
@@ -460,7 +459,7 @@ function GetAllPlot() {
         data: {}
     });
     request.done(function (data) {
-
+          PlotList = data;
         onGetAllPlot(data);
     });
     request.fail(function (jqXHR, Status) {
@@ -473,7 +472,7 @@ function onGetAllPlot(data) {
 
     try {
         var res = data;
-        PlotList = data;
+      
         var divTbodyGoalFund = $(".PlotListing").html("");
         $("#PlotListing").tmpl(res).appendTo(divTbodyGoalFund);
 

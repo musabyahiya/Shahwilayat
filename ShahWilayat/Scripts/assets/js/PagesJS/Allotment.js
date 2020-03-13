@@ -3,8 +3,7 @@ AllClickFunction();
 GetAllMembers();
 GetAllPlots();
 GetAllManagementCommittee();
-AllChangeFunction();
-
+SearchTable();
 
 
 var AllotmentList;
@@ -107,10 +106,26 @@ function AllClickFunction() {
     });
 }
 
-function AllChangeFunction() {
+function SearchTable() {
+    $(".txtSearch").keyup(function () {
+        ProgressBarShow();
+        _this = this;
 
+        var search = $(_this).val();
 
+        if (search == '') {
+            onGetAllAllotment(AllotmentList);
+        }
+        else {
+            var obj = AllotmentList.filter(x=> x.FirstName.toLowerCase().includes(search.toLowerCase()) ||
+				x.AllotmentOrderNo.includes(search) ||
+                x.LastName.includes(search.toLowerCase())
+				)
+            onGetAllAllotment(obj);
 
+        }
+        ProgressBarHide();
+    });
 }
 
 
@@ -222,7 +237,7 @@ function GetAllAllotment() {
         data: {}
     });
     request.done(function (data) {
-
+        AllotmentList = data;
         onGetAllAllotment(data);
     });
     request.fail(function (jqXHR, Status) {

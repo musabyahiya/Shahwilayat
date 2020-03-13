@@ -121,11 +121,11 @@ namespace ShahWilayat.Controllers
                  x.CnicBack,
                  x.ProfileFile,
                  x.Address,
-                 FrcFile = x.FrcFile == null ? "" : x.FrcFile,
-                 HereshipCertificate = x.HereshipCertificate == null ? "" : x.HereshipCertificate,
-                 GuardianCertificate = x.GuardianCertificate == null ? "" : x.GuardianCertificate,
-                 DeathCertificate = x.DeathCertificate == null ? "" : x.DeathCertificate,
-                 BirthCertificate = x.BirthCertificate == null ? "" : x.BirthCertificate
+                 FrcFile = x.FrcFile == null ? "[]" : x.FrcFile,
+                 HereshipCertificate = x.HereshipCertificate == null ? "[]" : x.HereshipCertificate,
+                 GuardianCertificate = x.GuardianCertificate == null ? "[]" : x.GuardianCertificate,
+                 DeathCertificate = x.DeathCertificate == null ? "[]" : x.DeathCertificate,
+                 BirthCertificate = x.BirthCertificate == null ? "[]" : x.BirthCertificate
 
              }).OrderBy(x => x.MemberId).ToList();
 

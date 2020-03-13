@@ -109,9 +109,9 @@ function AllClickFunction() {
     });
 
     $('.btnUpdateAttachment').click(function () {
-     
 
-        Nominee[0].ProfileFile = FileUpload('.txtProfileFile_upd') == ''? ProfileFile : FileUpload('.txtProfileFile_upd');
+
+        Nominee[0].ProfileFile = FileUpload('.txtProfileFile_upd') == '' ? ProfileFile : FileUpload('.txtProfileFile_upd');
         Nominee[0].FrcFile = FileUpload('.txtFrcFile_upd') == '' ? FrcFile : FileUpload('.txtFrcFile_upd');
         Nominee[0].CnicFront = FileUpload('.txtCnicFront_upd') == '' ? CnicFront : FileUpload('.txtCnicFront_upd');
         Nominee[0].CnicBack = FileUpload('.txtCnicBack_upd') == '' ? CnicBack : FileUpload('.txtCnicBack_upd');
@@ -335,7 +335,7 @@ function GetAllNominees() {
         data: {}
     });
     request.done(function (data) {
-
+        NomineeList = data;
         onGetAllNominees(data);
 
     });
@@ -350,7 +350,7 @@ function onGetAllNominees(data) {
     try {
 
         var res = data;
-        NomineeList = res;
+
         var divTbodyGoalFund = $(".NomineeListing").html("");
         $("#NomineeListing").tmpl(res).appendTo(divTbodyGoalFund);
 
@@ -371,7 +371,7 @@ function onGetAllNominees(data) {
         ProgressBarHide();
     }
     catch (Err) {
-        console.log(Err.message);
+        showError("Loading fail, a technical error occured!");
     }
 
 }
@@ -584,9 +584,8 @@ function SearchTable() {
             var obj = NomineeList.filter(x=> x.FirstName.toLowerCase().includes(search.toLowerCase()) ||
 				x.LastName.toLowerCase().includes(search.toLowerCase()) ||
                 x.MemberName.toLowerCase().includes(search.toLowerCase()) ||
-			    x.MembershipNo.toLowerCase().includes(search.toLowerCase()) ||
-                x.FatherName.toLowerCase().includes(search.toLowerCase()) ||
-                x.CellNo.toLowerCase().includes(search.toLowerCase())
+			    x.MembershipNo.toLowerCase().includes(search.toLowerCase())
+
 				)
             onGetAllNominees(obj);
         }
