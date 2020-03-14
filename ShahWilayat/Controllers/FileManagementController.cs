@@ -80,7 +80,7 @@ namespace ShahWilayat.Controllers
              {
                  x.FileManagementId,
                  x.ContentName,
-                 x.FilePath,
+                 FilePath = x.FilePath == null ? "[]": x.FilePath,
                  x.ParentId,
                  x.IsParent,
                  x.IsSubParent,

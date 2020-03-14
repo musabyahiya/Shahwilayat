@@ -11,8 +11,8 @@ function GetMembershipFormSingle() {
         data: {}
     });
     request.done(function (data) {
-
-        onGetMembershipFormSingle(data);
+        MembershipFormSingleList = JSON.parse(data);
+        onGetMembershipFormSingle(MembershipFormSingleList);
 
     });
     request.fail(function (jqXHR, textStatus) {
@@ -25,9 +25,9 @@ function GetMembershipFormSingle() {
 function onGetMembershipFormSingle(data) {
     try {
 
-        var res = JSON.parse(data);
-        
-        MembershipFormSingleList = res;
+        var res = data;
+
+
         var divTbodyGoalFund = $(".MembershipFormSingleListing").html("");
         $("#MembershipFormSingleListing").tmpl(res).appendTo(divTbodyGoalFund);
 
@@ -104,7 +104,7 @@ function SearchTable() {
 				x.LastName.toLowerCase().includes(search.toLowerCase()) ||
                 x.NomineeName.toLowerCase().includes(search.toLowerCase()) ||
 			    x.MembershipNo.toLowerCase().includes(search.toLowerCase())
-               
+
 				)
             onGetMembershipFormSingle(obj);
         }
@@ -128,7 +128,7 @@ function PrintMembershipSingle(selector) {
     BindTextToSelector('.printNomineeDob', formatDatePakFormat(objEditRow.find('.hdnNomineeDob').val()));
     BindTextToSelector('.printNomineeBirthPlace', objEditRow.find('.hdnNomineeBirthPlace').val());
 
-    
+
     BindTextToSelector('.printPermanentAddress', objEditRow.find('.hdnPermanentAddress').val());
     BindTextToSelector('.printNomineePermanentAddress', objEditRow.find('.hdnNomineeAddress').val());
     BindTextToSelector('.printCNIC', objEditRow.find('.hdnCNIC').val());

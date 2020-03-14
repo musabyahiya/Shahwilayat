@@ -38,9 +38,9 @@ namespace ShahWilayat.Controllers
                    x.ExtraSize,
                    x.PlotNo,
                    x.HasAlotted,
-                   x.SitePlan,
+                   SitePlan = x.SitePlan == null ? "[]" : x.SitePlan,
                    x.ManagementCommitteeId,
-                   
+
                    TotalSize = x.HasExtraSize == true ? (x.ExtraSize + x.PlotSize.PlotSize1) : x.PlotSize.PlotSize1
                }).OrderByDescending(x => x.PlotId).ToList();
 

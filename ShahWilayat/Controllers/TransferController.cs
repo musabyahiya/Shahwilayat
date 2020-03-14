@@ -26,29 +26,37 @@ namespace ShahWilayat.Controllers
             {
                 GetCurrentAllottees();
                 var obj = context.TempTables.FirstOrDefault(x => x.PlotId == tr.PlotId);
-                int MemberId = obj.MemberId;
-
-
-                if (CheckDuplicateAllotment(tr.MemberId, tr.PlotId) == "true")
+                if (obj != null)
                 {
-
-                    UpdateTransferedFile(tr, "Create");
-                    tr.IsActive = true;
-                    tr.CreatedDate = DateTime.Now;
-                    tr.CreatedBy = (int)HttpContext.Session["UserId"];
-                    context.Transfers.Add(tr);
-                    context.SaveChanges();
-
-                    ActivateGoneMember(MemberId, tr.PlotId);
-                    SetPaymentTransfered(MemberId, tr.PlotId);
-                    return "true";
+                    int MemberId = obj.MemberId;
 
 
+                    if (CheckDuplicateAllotment(tr.MemberId, tr.PlotId) == "true")
+                    {
+
+                        UpdateTransferedFile(tr, "Create");
+                        tr.IsActive = true;
+                        tr.CreatedDate = DateTime.Now;
+                        tr.CreatedBy = (int)HttpContext.Session["UserId"];
+                        context.Transfers.Add(tr);
+                        context.SaveChanges();
+
+                        ActivateGoneMember(MemberId, tr.PlotId);
+                        SetPaymentTransfered(MemberId, tr.PlotId);
+                        return "true";
+
+
+                    }
+                    else
+                    {
+                        return "false";
+                    }
                 }
                 else
                 {
                     return "false";
                 }
+                
 
 
             }
@@ -296,8 +304,9 @@ namespace ShahWilayat.Controllers
                  x.MCMDate,
                  x.NewspaperAdvDate,
                  x.NewspaperName,
-                 x.NewspaperScan,
-                 x.IndemnityBondScan,
+                 NewspaperScan = x.NewspaperScan == null ? "[]" : x.NewspaperScan,
+                 IndemnityBondScan = x.IndemnityBondScan == null ? "[]" : x.IndemnityBondScan,
+                 TransferOrderScan = x.TransferOrderScan == null ? "[]" : x.TransferOrderScan,
                  x.ManagementCommitteeId
 
              }).ToList();

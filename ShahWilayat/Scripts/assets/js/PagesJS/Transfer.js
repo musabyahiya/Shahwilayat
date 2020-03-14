@@ -3,9 +3,11 @@ GetAllTransfers();
 GetAllMembers();
 GetAllPlots();
 GetAllManagementCommittee();
+SearchTable();
 GetRptPlotTransfer();
 var objEditRow;
 var PlotTransfer;
+var TransferList;
 var Transfer =
 [{
     TransferId: 0,
@@ -189,7 +191,6 @@ function UpdateTransfer() {
         }
         else if (res == "false") {
             showError('Please change the Member before transfer, duplication found!');
-
         }
     });
     request.fail(function (jqXHR, Status) {
@@ -226,7 +227,7 @@ function GetAllTransfers() {
         data: {}
     });
     request.done(function (data) {
-
+        TransferList = data;
         onGetAllTransfers(data);
     });
     request.fail(function (jqXHR, Status) {
@@ -418,8 +419,6 @@ function GetAllManagementCommittee() {
 
 function onGetAllManagementCommittee(data) {
     try {
-
-
         var res = data;
         FillDropDownByReference('.ddlManagementCommittee', res);
         FillDropDownByReference('.ddlManagementCommittee_upd', res);
@@ -429,3 +428,26 @@ function onGetAllManagementCommittee(data) {
     }
 
 }
+
+function SearchTable() {
+    $(".txtSearch").keyup(function () {
+        ProgressBarShow();
+        _this = this;
+
+        var search = $(_this).val();
+
+        if (search == '') {
+            onGetAllTransfers(TransferList);
+        }
+        else {
+            var obj = TransferList.filter(x=> x.Member.toLowerCase().includes(search.toLowerCase()) ||
+				x.TransferOrderNo.includes(search) ||
+                x.Plot.includes(search)
+
+				)
+            onGetAllTransfers(obj);
+        }
+        ProgressBarHide();
+    });
+}
+

@@ -314,9 +314,9 @@ namespace ShahWilayat.Controllers
                    x.ReferenceNo,
                    x.FolioNo,
                    x.ManagementCommitteeId,
-                   x.CnicBackFile,
-                   x.CnicFrontFile,
-                   x.ProfileFile
+                   CnicBackFile= x.CnicBackFile==null?"[]": x.CnicBackFile,
+                   CnicFrontFile= x.CnicFrontFile == null ? "[]" : x.CnicFrontFile,
+                   ProfileFile = x.ProfileFile == null ? "[]" : x.ProfileFile,
 
                }).OrderByDescending(x => x.MemberId).ToList();
 

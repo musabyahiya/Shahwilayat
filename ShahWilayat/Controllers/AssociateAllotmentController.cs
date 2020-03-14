@@ -42,7 +42,7 @@ namespace ShahWilayat.Controllers
             {
                 var obj = context.AssociateAllotments.FirstOrDefault(x => x.AssociateAllotmentId == ao.AssociateAllotmentId);
 
-              //  UpdatePlotAllottedStatus(obj.PlotId, "Update");
+                //  UpdatePlotAllottedStatus(obj.PlotId, "Update");
                 obj.AllotmentOrderNo = ao.AllotmentOrderNo;
                 obj.AllotmentOrderDate = ao.AllotmentOrderDate;
                 obj.ShareCertificateNo = ao.ShareCertificateNo;
@@ -179,9 +179,9 @@ namespace ShahWilayat.Controllers
                    x.ShareCertificateDate,
                    x.ProvisionalAllotmentNo,
                    x.ProvisionalAllotmentDate,
-                   x.ScanAllotmentOrder,
-                   x.ScanProvisionalOrder,
-                   x.ScanShareCertificate,
+                   ScanAllotmentOrder = x.ScanAllotmentOrder == null ? "[]" : x.ScanAllotmentOrder,
+                   ScanProvisionalOrder= x.ScanProvisionalOrder == null ? "[]":x.ScanProvisionalOrder,
+                   ScanShareCertificate = x.ScanShareCertificate == null ? "[]": x.ScanShareCertificate,
                    x.ManagementCommitteeId,
 
                }).ToList();

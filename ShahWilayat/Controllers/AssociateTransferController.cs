@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -25,26 +26,33 @@ namespace ShahWilayat.Controllers
             {
                 GetCurrentAssociateAllottees();
                 var obj = context.AssociateTempTables.FirstOrDefault(x => x.PlotId == tr.PlotId);
-                int MemberId = obj.MemberId;
 
-
-                if (CheckDuplicateAllotment(tr.MemberId, tr.PlotId) == "true")
+                if(obj!=null)
                 {
+                    int MemberId = obj.MemberId;
 
-                    UpdateTransferedFile(tr, "Create");
-                    tr.IsActive = true;
-                    tr.CreatedDate = DateTime.Now;
-                    tr.CreatedBy = (int)HttpContext.Session["UserId"];
-                    context.AssociateTransfers.Add(tr);
-                    context.SaveChanges();
-                    ActivateAssociateGoneMember(MemberId, tr.PlotId);
-                    SetPaymentTransfered(MemberId, tr.PlotId);
-                    return "true";
+
+                    if (CheckDuplicateAllotment(tr.MemberId, tr.PlotId) == "true")
+                    {
+
+                        UpdateTransferedFile(tr, "Create");
+                        tr.IsActive = true;
+                        tr.CreatedDate = DateTime.Now;
+                        tr.CreatedBy = (int)HttpContext.Session["UserId"];
+                        context.AssociateTransfers.Add(tr);
+                        context.SaveChanges();
+                        ActivateAssociateGoneMember(MemberId, tr.PlotId);
+                        SetPaymentTransfered(MemberId, tr.PlotId);
+                        return "true";
+                    }
+                    else
+                    {
+                        return "false";
+                    }
+
                 }
-                else
-                {
-                    return "false";
-                }
+
+                return "false";
 
 
             }
@@ -254,8 +262,9 @@ namespace ShahWilayat.Controllers
                  x.MCMDate,
                  x.NewspaperAdvDate,
                  x.NewspaperName,
-                 x.NewspaperScan,
-                 x.IndemnityBondScan
+                 NewspaperScan = x.NewspaperScan == null ? "[]": x.NewspaperScan,
+                 IndemnityBondScan = x.IndemnityBondScan == null ? "[]" : x.IndemnityBondScan,
+                 TransferOrderScan =  x.TransferOrderScan == null ? "[]" : x.TransferOrderScan,
 
              }).ToList();
 
@@ -331,5 +340,26 @@ namespace ShahWilayat.Controllers
                 return Json(e, JsonRequestBehavior.AllowGet);
             }
         }
+
+        public string GetRptPlotTransfer()
+        {
+            try
+            {
+                DataSet ds = new DataSet();
+                DataTable dt = new DataTable();
+                string dbConnectionString = context.Database.Connection.ConnectionString;
+                SqlConnection con = new SqlConnection(dbConnectionString);
+                SqlDataAdapter da = new SqlDataAdapter("RptPlotTransferAdmin", con);
+                da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                da.Fill(dt);
+                return JsonConvert.SerializeObject(dt);
+            }
+            catch (Exception e)
+            {
+                return e.ToString();
+            }
+
+        }
+
     }
 }
